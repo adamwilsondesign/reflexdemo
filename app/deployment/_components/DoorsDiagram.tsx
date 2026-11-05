@@ -23,7 +23,7 @@ export function DoorsDiagram() {
 
   useEffect(() => {
     if (reduce || !inView) return;
-    const iv = setInterval(() => setTick((t) => t + 1), 1600);
+    const iv = setInterval(() => setTick((t) => t + 1), 2000);
     return () => clearInterval(iv);
   }, [inView, reduce]);
 
@@ -33,7 +33,7 @@ export function DoorsDiagram() {
   }, [tick, reduce]);
 
   const tab = tick % TABS.length;
-  const target = Math.floor(tick / 1) % TARGETS.length;
+  const target = tick % TARGETS.length;
 
   return (
     <Stage field="lake" className="p-4 sm:p-7 md:p-8">
@@ -72,7 +72,7 @@ export function DoorsDiagram() {
                 ))}
               </div>
               <div className="relative mt-2.5 h-[86px] overflow-hidden">
-                <AnimatePresence mode="wait" initial={false}>
+                <AnimatePresence initial={false}>
                   <motion.div
                     key={tab}
                     initial={reduce ? false : { opacity: 0, y: 8 }}
@@ -155,7 +155,7 @@ export function DoorsDiagram() {
             <div className="mt-3 flex items-center gap-2">
               <span className="font-mono text-[9.5px] uppercase tracking-[0.05em] text-paper/45">Into</span>
               <span className="relative h-6 flex-1 overflow-hidden">
-                <AnimatePresence mode="wait" initial={false}>
+                <AnimatePresence initial={false}>
                   <motion.span
                     key={target}
                     initial={reduce ? false : { y: 14, opacity: 0 }}

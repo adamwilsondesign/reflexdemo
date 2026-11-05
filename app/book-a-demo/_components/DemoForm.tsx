@@ -78,12 +78,23 @@ export function DemoForm({ className }: { className?: string }) {
     if (want.length) setV((s) => ({ ...s, interests: Array.from(new Set([...s.interests, ...want])) }));
   }, []);
 
+  const scrollToForm = () => {
+    const el = formRef.current;
+    if (!el) return;
+    const top = el.getBoundingClientRect().top;
+    const header = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-h")) || 104;
+    if (top > header && top < window.innerHeight * 0.5) return; // already in view
+    const lenis = (window as unknown as { __lenis?: { scrollTo: (t: HTMLElement, o?: { offset?: number; immediate?: boolean }) => void } }).__lenis;
+    if (lenis) lenis.scrollTo(el, { offset: -(header + 16), immediate: !!reduce });
+    else el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+  };
+
   // Example prompts elsewhere on the page can drop text into the optional question field.
   useEffect(() => {
     const onExample = (e: Event) => {
       const text = (e as CustomEvent<string>).detail;
       setV((s) => ({ ...s, notes: text }));
-      formRef.current?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+      scrollToForm();
       window.setTimeout(() => notesRef.current?.focus({ preventScroll: true }), reduce ? 0 : 700);
     };
     window.addEventListener(DEMO_EXAMPLE_EVENT, onExample);
@@ -108,7 +119,10 @@ export function DemoForm({ className }: { className?: string }) {
     if (errorList.length) {
       track("demo_form_error", { fields: errorList });
       // Move focus to the summary so screen-reader users hear what needs fixing.
-      requestAnimationFrame(() => summaryRef.current?.focus());
+      requestAnimationFrame(() => {
+        summaryRef.current?.focus({ preventScroll: true });
+        scrollToForm();
+      });
       return;
     }
     setStatus("submitting");
@@ -173,7 +187,7 @@ export function DemoForm({ className }: { className?: string }) {
         )}
       </AnimatePresence>
 
-      <div className="mt-6 grid gap-x-4 gap-y-5 sm:grid-cols-2">
+      <div className="mt-6 grid grid-cols-2 gap-x-3 gap-y-5 sm:gap-x-4">
         <TextField id={id("firstName")} label="First name" autoComplete="given-name" value={v.firstName} onChange={(x) => set("firstName", x)} onBlur={() => blur("firstName")} error={show("firstName")} />
         <TextField id={id("lastName")} label="Last name" autoComplete="family-name" value={v.lastName} onChange={(x) => set("lastName", x)} onBlur={() => blur("lastName")} error={show("lastName")} />
         <TextField
@@ -187,11 +201,11 @@ export function DemoForm({ className }: { className?: string }) {
           onChange={(x) => set("email", x)}
           onBlur={() => blur("email")}
           error={show("email")}
-          className="sm:col-span-2"
+          className="col-span-2"
         />
-        <TextField id={id("firm")} label="Firm" autoComplete="organization" value={v.firm} onChange={(x) => set("firm", x)} onBlur={() => blur("firm")} error={show("firm")} />
-        <SelectField id={id("role")} label="Role" value={v.role} onChange={(x) => { set("role", x); blur("role"); }} onBlur={() => blur("role")} error={show("role")} options={ROLES} placeholder="Select your role" />
-        <SelectField id={id("firmType")} label="Firm type" optional value={v.firmType} onChange={(x) => set("firmType", x)} options={FIRM_TYPES} placeholder="Select firm type" className="sm:col-span-2" />
+        <TextField id={id("firm")} label="Firm" autoComplete="organization" value={v.firm} onChange={(x) => set("firm", x)} onBlur={() => blur("firm")} error={show("firm")} className="col-span-2 sm:col-span-1" />
+        <SelectField id={id("role")} label="Role" value={v.role} onChange={(x) => { set("role", x); blur("role"); }} onBlur={() => blur("role")} error={show("role")} options={ROLES} placeholder="Select your role" className="col-span-2 sm:col-span-1" />
+        <SelectField id={id("firmType")} label="Firm type" optional value={v.firmType} onChange={(x) => set("firmType", x)} options={FIRM_TYPES} placeholder="Select firm type" className="col-span-2" />
       </div>
 
       <fieldset className="mt-6">
@@ -211,7 +225,7 @@ export function DemoForm({ className }: { className?: string }) {
                     on ? "border-lake-700 bg-lake-700 text-white" : "border-ink/15 bg-white text-ink/75 hover:border-ink/35 hover:text-ink",
                   )}
                 >
-                  <svg viewBox="0 0 12 12" className={clsx("h-3 w-3 transition-transform duration-300", on ? "rotate-0" : "rotate-45")} fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+                  <svg viewBox="0 0 12 12" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
                     {on ? <path d="M2.5 6.2l2.3 2.3 4.7-5" /> : <path d="M6 2v8M2 6h8" />}
                   </svg>
                   {name}

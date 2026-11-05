@@ -22,12 +22,25 @@ export function BlogIndex({ posts }: { posts: BlogPost[] }) {
   const reduce = useReducedMotion();
   const filters: Filter[] = ["All", ...BLOG_CATEGORIES];
   const shown = filter === "All" ? posts : posts.filter((p) => p.category === filter);
+  // Widen 1–2 cards so the 3-column grid always ends on a full row (desktop).
+  const wideCount = (3 - (shown.length % 3)) % 3;
+  const wideAt = new Set(wideCount === 2 ? [0, Math.min(shown.length - 1, 6)] : wideCount === 1 ? [0] : []);
   const count = (f: Filter) => (f === "All" ? posts.length : posts.filter((p) => p.category === f).length);
 
   return (
     <div>
       <div className="flex flex-col gap-5 border-b border-ink/10 pb-5 md:flex-row md:items-end md:justify-between">
-        <div role="tablist" aria-label="Filter articles by category" className="no-scrollbar -mx-[var(--gutter)] flex gap-1 overflow-x-auto px-[var(--gutter)] md:mx-0 md:px-0">
+        <div
+          role="tablist"
+          aria-label="Filter articles by category"
+          onKeyDown={(e) => {
+            if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+            e.preventDefault();
+            const next = (filters.indexOf(filter) + (e.key === "ArrowRight" ? 1 : -1) + filters.length) % filters.length;
+            setFilter(filters[next]);
+            (e.currentTarget.querySelectorAll("button")[next] as HTMLButtonElement | undefined)?.focus();
+          }}
+          className="no-scrollbar -mx-[var(--gutter)] flex gap-1 overflow-x-auto px-[var(--gutter)] md:mx-0 md:px-0">
           <LayoutGroup id="blog-tabs">
             {filters.map((f) => {
               const on = filter === f;
@@ -36,6 +49,7 @@ export function BlogIndex({ posts }: { posts: BlogPost[] }) {
                   key={f}
                   role="tab"
                   aria-selected={on}
+                  tabIndex={on ? 0 : -1}
                   aria-controls="blog-grid"
                   onClick={() => setFilter(f)}
                   className={clsx(
@@ -72,18 +86,19 @@ export function BlogIndex({ posts }: { posts: BlogPost[] }) {
         </AnimatePresence>
       </div>
 
-      <motion.ul id="blog-grid" role="tabpanel" aria-label={`${filter} articles`} layout={!reduce} className="mt-10 grid gap-5 sm:grid-cols-2 md:mt-12 lg:grid-cols-3 lg:gap-6">
+      <motion.ul id="blog-grid" role="tabpanel" aria-label={`${filter} articles`} layout={!reduce} className="mt-10 grid gap-5 sm:grid-cols-2 md:mt-12 lg:grid-flow-dense lg:grid-cols-3 lg:gap-6">
         <AnimatePresence mode="popLayout" initial={false}>
           {shown.map((p, i) => (
             <motion.li
               key={p.slug}
+              className={wideAt.has(i) ? "lg:col-span-2" : undefined}
               layout={!reduce}
               initial={reduce ? false : { opacity: 0, y: 24, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.96, transition: { duration: 0.25 } }}
               transition={{ duration: 0.7, ease: EASE, delay: reduce ? 0 : Math.min(i, 6) * 0.04 }}
             >
-              <PostCard post={p} />
+              <PostCard post={p} wide={wideAt.has(i)} />
             </motion.li>
           ))}
         </AnimatePresence>

@@ -57,14 +57,15 @@ export function PlatformCockpit() {
               </li>
             ))}
           </ul>
-          <div className="relative min-h-[250px] p-3.5 sm:p-4">
-            <AnimatePresence mode="wait" initial={false}>
+          <div className="relative grid min-h-[250px] p-3.5 sm:p-4">
+            <AnimatePresence initial={false}>
               <motion.div
                 key={on}
                 initial={reduce ? false : { opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.5, ease: EASE }}
+                className="[grid-area:1/1]"
               >
                 {on === 0 && (
                   <div>
@@ -175,9 +176,9 @@ export function McpConsole() {
             <span className="h-1.5 w-1.5 rounded-full bg-pine-300" /> Connected
           </span>
         </div>
-        <div className="min-h-[248px] p-4 font-mono text-[11px] leading-[1.75] sm:text-[11.5px]">
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div key={t % CALLS.length} initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
+        <div className="grid min-h-[248px] p-4 font-mono text-[11px] leading-[1.75] sm:text-[11.5px]">
+          <AnimatePresence initial={false}>
+            <motion.div key={t % CALLS.length} initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }} className="[grid-area:1/1]">
               <p className="text-paper/40">
                 <span className="text-paper/60">client</span> {c.from}
               </p>
@@ -273,7 +274,7 @@ export function EmbeddedFrame() {
     <div ref={ref} className="relative rounded-[18px] border border-white/10 bg-white/[0.04] p-3 sm:p-5">
       <div className="flex items-center justify-between px-1 pb-3">
         <span className="t-ui text-paper/55">Your platform</span>
-        <span className="font-mono text-[10px] uppercase tracking-[0.05em] text-paper/40">Your brand · your entitlements</span>
+        <span className="hidden font-mono text-[10px] uppercase tracking-[0.05em] text-paper/40 sm:inline">Your brand · your entitlements</span>
       </div>
       <div className="grid gap-3 rounded-[12px] bg-[#e9e7e3] p-3 sm:grid-cols-[1fr_1.15fr] sm:p-4">
         {/* host app chrome */}
@@ -296,7 +297,7 @@ export function EmbeddedFrame() {
         </div>
         {/* native panel powered by Reflexivity */}
         <motion.div
-          className="relative rounded-md bg-white p-3 ring-1 ring-lake-500/30"
+          className="relative flex flex-col justify-between rounded-md bg-white p-3 ring-1 ring-lake-500/30"
           animate={reduce ? undefined : { boxShadow: ["0 0 0 0 rgb(93 115 140 / 0)", "0 0 0 6px rgb(93 115 140 / 0.12)", "0 0 0 0 rgb(93 115 140 / 0)"] }}
           transition={{ duration: 3, repeat: Infinity }}
         >
@@ -304,9 +305,9 @@ export function EmbeddedFrame() {
             <span className="font-display text-[12px] font-semibold text-ink">What changed for this list</span>
             <span className="font-mono text-[9px] uppercase tracking-[0.05em] text-ink/35">native panel</span>
           </div>
-          <div className="relative mt-2 min-h-[112px]">
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.div key={step} initial={reduce ? false : { opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.45, ease: EASE }}>
+          <div className="relative mt-2 grid min-h-[112px]">
+            <AnimatePresence initial={false}>
+              <motion.div key={step} initial={reduce ? false : { opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.45, ease: EASE }} className="[grid-area:1/1]">
                 {step === 0 && (
                   <p className="text-[11.5px] leading-relaxed text-ink/70">
                     Utility capex guidance rose across three names on the list<Cite n={1} />. Schneider is the most exposed to the transformer bottleneck<Cite n={2} />.
@@ -329,7 +330,18 @@ export function EmbeddedFrame() {
               </motion.div>
             </AnimatePresence>
           </div>
-          <p className="mt-1 font-mono text-[9.5px] uppercase tracking-[0.05em] text-ink/40">Sources attached</p>
+          <div className="mt-2 flex items-center justify-between border-t border-ink/8 pt-2.5">
+            <span className="font-mono text-[9.5px] uppercase tracking-[0.05em] text-ink/40">Sources attached</span>
+            <span className="flex gap-1">
+              {[1, 2, 3].map((n) => (
+                <span key={n} className="flex h-4 w-4 items-center justify-center rounded bg-lake-100 font-mono text-[9px] text-lake-700">{n}</span>
+              ))}
+            </span>
+          </div>
+          <div className="mt-2.5 flex items-center justify-between rounded-md border border-ink/10 px-2.5 py-2">
+            <span className="text-[11px] text-ink/45">Ask about this list…</span>
+            <AlfredGlyph className="h-3 w-3 text-lake-700" />
+          </div>
         </motion.div>
       </div>
     </div>

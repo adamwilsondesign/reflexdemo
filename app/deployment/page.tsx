@@ -130,7 +130,7 @@ export default function DeploymentPage() {
       <AnchorNav items={ANCHORS} />
 
       {/* 2 · Two ways to work */}
-      <Section surface="paper" id="compare" className="scroll-mt-[calc(var(--header-h)+60px)]">
+      <Section surface="paper" id="compare" bare className="scroll-mt-[calc(var(--header-h)+60px)] pb-20 pt-16 md:pb-28 md:pt-20 lg:pb-[136px] lg:pt-24">
         <div className="container-x">
           <SectionHeader
             eyebrow="Two ways to work"
@@ -372,7 +372,7 @@ export default function DeploymentPage() {
           <Reveal delay={0.1}>
             <div className="mt-6 grid gap-6 md:grid-cols-3">
               {[
-                ["Permission-aware", "Alfred only sees the files and messages a user already has access to in Microsoft 365."],
+                ["Permission-aware", "Designed to respect the Microsoft 365 permissions each user already has."],
                 ["Firm knowledge + market data", "Answers can draw on your IC memos and call notes alongside integrated market data, with each source shown."],
                 ["Where you work", "Teams and Copilot are additional surfaces; MCP connects assistants such as ChatGPT and Claude."],
               ].map(([t, b]) => (
@@ -425,7 +425,7 @@ export default function DeploymentPage() {
             align="split"
             lead="A clear sequence with owners on both sides, whether you start with seats, an integration, or both."
           />
-          <div className="mt-14 md:mt-20">
+          <div className="mt-14 md:mt-20 [&_li]:pb-8 md:[&_li]:pb-0">
             <Steps items={STEPS} />
           </div>
         </div>

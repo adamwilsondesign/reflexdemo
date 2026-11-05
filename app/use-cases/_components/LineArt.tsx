@@ -43,7 +43,7 @@ export function LensLines({ className }: { className?: string }) {
       {arcs.map((d, i) => (
         <motion.path
           key={d}
-          d={`M10 280 C 150 ${280 + d * 1.9}, 370 ${280 + d * 1.9}, 510 280`}
+          d={`M10 280 C 150 ${280 + d * 1.3}, 370 ${280 + d * 1.3}, 510 280`}
           stroke="currentColor"
           strokeOpacity={0.75}
           strokeWidth={1}
@@ -52,7 +52,7 @@ export function LensLines({ className }: { className?: string }) {
         />
       ))}
       {arcs.map((d, i) => (
-        <motion.circle key={`p${d}`} cx={260} cy={280 + d * 1.43} r={2.6} fill="#7d978c" {...pop(1.1 + i * 0.03)} />
+        <motion.circle key={`p${d}`} cx={260} cy={280 + d * 0.975} r={2.6} fill="#7d978c" {...pop(1.1 + i * 0.03)} />
       ))}
       <motion.circle cx={10} cy={280} r={6} stroke="currentColor" strokeWidth={3} fill="none" {...pop(0.2)} />
       <motion.circle cx={510} cy={280} r={8} stroke="currentColor" strokeWidth={4} fill="none" {...pop(1.6)} />

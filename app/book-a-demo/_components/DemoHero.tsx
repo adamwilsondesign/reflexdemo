@@ -30,8 +30,8 @@ export function DemoHero() {
   const quote = TESTIMONIALS[0];
 
   return (
-    <section data-tone="dark" className="relative isolate overflow-hidden bg-lake-900 pb-16 pt-[calc(var(--header-h)+40px)] text-paper md:pb-24 md:pt-[calc(var(--header-h)+64px)]">
-      <div className="pointer-events-none absolute inset-0 -z-20 field-ink opacity-60" />
+    <section data-tone="dark" className="relative isolate overflow-clip bg-lake-900 pb-16 pt-[calc(var(--header-h)+40px)] text-paper md:pb-24 md:pt-[calc(var(--header-h)+64px)]">
+      <div className="pointer-events-none absolute inset-0 -z-20 field-ink opacity-40" />
       <div
         className="pointer-events-none absolute inset-0 -z-10 bg-chart-dark"
         style={{ maskImage: "radial-gradient(90% 70% at 25% 10%, #000 25%, transparent 75%)", WebkitMaskImage: "radial-gradient(90% 70% at 25% 10%, #000 25%, transparent 75%)" }}
@@ -157,7 +157,7 @@ function AmbientGraph() {
           key={i}
           cx={x}
           cy={y}
-          r={0.45}
+          r={0.28}
           fill="#d5dee6"
           initial={reduce ? false : { opacity: 0 }}
           animate={reduce ? { opacity: 0.8 } : { opacity: [0.35, 0.9, 0.35] }}

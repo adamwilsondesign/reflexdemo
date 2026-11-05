@@ -29,7 +29,7 @@ export function SignalFilter({ className }: { className?: string }) {
     <div ref={ref} className={clsx("relative overflow-hidden rounded-[18px] border border-white/10 bg-[#1d2a3a]", className)}>
       <div className="flex items-center justify-between border-b border-white/10 px-5 py-3.5">
         <span className="t-ui text-[10.5px] text-paper/60">Market developments</span>
-        <span className="t-ui text-[10.5px] text-paper/60">Relevance to your coverage</span>
+        <span className="t-ui hidden text-[10.5px] text-paper/60 sm:inline">Relevance to your coverage</span>
       </div>
       <div className="relative h-[380px] overflow-hidden mask-fade-b sm:h-[420px]">
         <motion.ul
@@ -51,7 +51,7 @@ export function SignalFilter({ className }: { className?: string }) {
               </span>
               {r.hit ? (
                 <span className="shrink-0 rounded-full bg-pine-100 px-2.5 py-1 font-mono text-[9.5px] font-medium uppercase tracking-[0.04em] text-pine-700">
-                  → Insight · {r.hit}
+                  → Insight<span className="hidden sm:inline"> · {r.hit}</span>
                 </span>
               ) : (
                 <span className="hidden shrink-0 font-mono text-[9.5px] uppercase tracking-[0.04em] text-paper/25 sm:inline">Not in coverage</span>

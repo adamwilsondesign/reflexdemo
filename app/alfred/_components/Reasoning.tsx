@@ -61,6 +61,8 @@ export function ImpactCard() {
   const inView = useInView(ref, { amount: 0.4 });
   const [k, setK] = useState(0);
   const reduce = useReducedMotion();
+  const [seen, setSeen] = useState(false);
+  useEffect(() => { if (inView) setSeen(true); }, [inView]);
   useEffect(() => {
     if (!inView || reduce) return;
     const iv = setInterval(() => setK((x) => x + 1), 7000);
@@ -81,7 +83,7 @@ export function ImpactCard() {
         </div>
         <p className="mt-6 font-display text-[24px] font-semibold leading-tight tracking-[-0.01em] text-ink sm:text-[28px]">Impact pathways</p>
         <p className="mt-1 text-[14px] text-ink/55">Following demand through the AI supply chain</p>
-        {inView || reduce ? <ImpactPathway key={k} className="mt-4 h-[260px] sm:h-[280px]" /> : <div className="mt-4 h-[260px] sm:h-[280px]" />}
+        {seen || reduce ? <ImpactPathway key={k} className="mt-4 h-[260px] sm:h-[280px]" /> : <div className="mt-4 h-[260px] sm:h-[280px]" />}
       </div>
       <motion.div initial={reduce ? false : { opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.6, ease: EASE }} className="ui-card mt-3 p-5">
         <p className="t-ui text-ink/45">Second-order effect</p>

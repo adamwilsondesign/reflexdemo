@@ -80,6 +80,7 @@ export function TrustTabs() {
   return (
     <AutoTabs
       interval={6500}
+      visualClassName="[&>div]:aspect-[4/5.2] sm:[&>div]:aspect-[4/3.4]"
       items={[
         {
           title: "Open the source.",

@@ -140,7 +140,7 @@ export function InsightsHero() {
 
         {/* Arriving Insights */}
         <div className="relative h-[372px] overflow-hidden sm:h-[396px]">
-          <AnimatePresence initial={false}>
+          <AnimatePresence initial={false} mode="popLayout">
             {visible.map((it, i) => (
               <motion.article
                 key={it.key}

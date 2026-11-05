@@ -32,42 +32,65 @@ export function BlogHeroVisual({ posts }: { posts: BlogPost[] }) {
       <Stage field="lake" className="aspect-[5/5.2] w-full sm:aspect-[5/4]">
         <div className="pointer-events-none absolute inset-0 bg-chart-dark opacity-70" />
 
-        {/* precision icon lattice */}
-        <div className="absolute left-[6%] top-[8%] hidden grid-cols-3 gap-3 sm:grid" aria-hidden="true">
-          {icons.map((name, i) => (
-            <motion.span
-              key={name}
-              className="flex h-11 w-11 items-center justify-center rounded-[10px] border border-white/10 bg-white/[0.04] text-paper"
-              animate={{ opacity: i === activeIdx ? 1 : 0.35, scale: i === activeIdx ? 1.08 : 1 }}
-              transition={{ duration: 0.8, ease: EASE }}
-            >
-              <PrecisionIcon name={name} className="h-6 w-6" />
-            </motion.span>
-          ))}
+        {/* precision icon lattice: the active article's icon lights up */}
+        <div className="absolute left-[6%] top-[9%] hidden sm:block" aria-hidden="true">
+          <div className="grid grid-cols-3 gap-2.5">
+            {icons.map((name, i) => (
+              <motion.span
+                key={name}
+                className="flex h-14 w-14 items-center justify-center rounded-[12px] border text-paper"
+                animate={{
+                  opacity: i === activeIdx ? 1 : 0.4,
+                  backgroundColor: i === activeIdx ? "rgba(255,255,255,0.14)" : "rgba(255,255,255,0.03)",
+                  borderColor: i === activeIdx ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.08)",
+                }}
+                transition={{ duration: 0.8, ease: EASE }}
+              >
+                <motion.span animate={{ rotate: i === activeIdx ? 30 : 0 }} transition={{ duration: 1.2, ease: EASE }} className="flex">
+                  <PrecisionIcon name={name} className="h-7 w-7" />
+                </motion.span>
+              </motion.span>
+            ))}
+          </div>
+          <div className="mt-6 w-[188px] border-t border-white/15 pt-4">
+            <p className="t-ui text-[10px] text-paper/50">Now reading</p>
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.p
+                key={active.slug}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.4, ease: EASE }}
+                className="mt-2 font-mono text-[11px] uppercase leading-[1.5] tracking-[0.04em] text-paper/80"
+              >
+                {active.category} · {active.author.name}
+              </motion.p>
+            </AnimatePresence>
+          </div>
         </div>
 
         {/* card stack */}
-        <div className="absolute inset-x-[6%] bottom-[7%] sm:inset-x-auto sm:right-[6%] sm:w-[62%]">
-          <div className="relative aspect-[4/4.1] w-full">
+        <div className="absolute inset-x-[6%] bottom-[9%] sm:inset-x-auto sm:right-[6%] sm:w-[52%]">
+          <div className="relative h-[300px] w-full md:h-[310px]">
             <AnimatePresence initial={false}>
               {visible
                 .map((p, depth) => (
                   <motion.article
                     key={p.slug}
-                    className="ui-card absolute inset-x-0 bottom-0 overflow-hidden p-0"
+                    className="absolute inset-x-0 bottom-0 overflow-hidden rounded-[14px] border border-white/60 bg-[#f7f6f4] shadow-[0_24px_48px_-20px_rgb(0_0_0/0.45)]"
                     style={{ zIndex: 3 - depth, transformOrigin: "50% 0%" }}
-                    initial={{ opacity: 0, y: -40, scale: 0.88 }}
-                    animate={{ opacity: depth === 0 ? 1 : depth === 1 ? 0.75 : 0.45, y: -depth * 22, scale: 1 - depth * 0.05 }}
-                    exit={{ opacity: 0, y: 60, rotate: -3, transition: { duration: 0.7, ease: EASE } }}
+                    initial={{ opacity: 0, y: -60, scale: 0.86 }}
+                    animate={{ opacity: depth === 2 ? 0.6 : 1, y: -depth * 18, scale: 1 - depth * 0.06 }}
+                    exit={{ opacity: 0, y: 70, rotate: -4, transition: { duration: 0.7, ease: EASE } }}
                     transition={{ duration: 0.9, ease: EASE }}
                     aria-hidden={depth !== 0}
                   >
-                    <BlogCover post={p} size="sm" showLabel={false} className="aspect-[16/8]" sizes="360px" />
+                    <BlogCover post={p} size="sm" showLabel={false} className="h-[150px]" sizes="380px" />
                     <div className="p-4 md:p-5">
                       <p className="t-ui text-[10px] text-ink/55">
                         {p.category} · {p.readingTime} min read
                       </p>
-                      <p className="mt-2 line-clamp-2 font-display text-[16px] font-semibold leading-[1.25] tracking-[-0.01em] text-ink md:text-[18px]">{p.title}</p>
+                      <p className="mt-2 line-clamp-2 min-h-[2.5em] font-display text-[16px] font-semibold leading-[1.25] tracking-[-0.01em] text-ink md:text-[17px]">{p.title}</p>
                       <div className="mt-3 flex items-center justify-between text-[12px] text-ink/55">
                         <span>{p.author.name}</span>
                         <span>{formatDate(p.date)}</span>

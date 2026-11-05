@@ -90,7 +90,7 @@ export function AlfredHero() {
         </span>
       </div>
 
-      <div className="relative min-h-[392px] sm:min-h-[400px]">
+      <div className="relative min-h-[380px] sm:min-h-[350px]">
         {/* front prompt card */}
         <motion.div
           animate={{ scale: alwaysOn ? 0.96 : 1, opacity: alwaysOn ? 0.55 : 1, y: alwaysOn ? 14 : 0 }}
