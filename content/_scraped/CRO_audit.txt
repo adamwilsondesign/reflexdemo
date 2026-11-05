@@ -1,0 +1,656 @@
+Reflexivity website: CRO and narrative
+audit
+The assessment
+The new site has a stronger and more differentiated foundation than the existing one. It moves
+beyond a generic “faster AI research” pitch and begins to articulate what makes Reflexivity
+distinctive: the Knowledge Graph, proactive intelligence, and analysis an investor can inspect.
+
+The biggest opportunity is to make those pieces feel like one coherent investment workflow,
+rather than a collection of impressive capabilities. A visitor should quickly understand:
+
+   1.​ What Reflexivity is and who it is for.
+   2.​ What it does when an investor has a question.
+   3.​ What it does when they are not actively asking.
+   4.​ Why its relationship intelligence changes the answer.
+   5.​ How the investor can verify the work.
+   6.​ What they will see when they request a demo.
+
+The most urgent conversion issue is the demo destination: I could not find an accessible
+booking form, scheduler, or contact action on the prototype’s demo page during this
+review. The page explains the walkthrough, but I could not complete or fully test a demo
+request. This may be unfinished prototype work or a rendering issue, so it should be verified in
+the intended production environment before launch.
+
+How to read this audit
+
+   ●​ Verified issue means I observed the specific copy or behavior on the prototype.
+   ●​ Recommendation means a proposed improvement, not a claim that the current site is
+      broken.
+   ●​ Confirm before publishing flags claims that depend on product, legal, security, data, or
+      client approval.
+   ●​ I reviewed the core homepage, demo, product, use-case, deployment, customer,
+      security, and company templates—not every page or every device state.
+   ●​ I compared the prototype with the existing Reflexivity site and the attached messaging,
+      capabilities, moat, and Knowledge Graph materials. I have not independently verified
+      internal product claims or customer permissions.
+1. Launch-critical fixes
+Demo conversion
+  ●​ Verify and implement the booking mechanism. The demo page presented the value
+     proposition and walkthrough description, but no usable form or scheduler appeared in
+     my review.
+  ●​ Provide a fallback contact route if an embedded scheduler or form fails to load.
+  ●​ Test the entire journey from every “Request a Demo” button through submission,
+     confirmation, CRM delivery, and sales follow-up.
+  ●​ Keep the demo request distinct from newsletter signup. The newsletter field is
+     visible in the footer; it should never be mistaken for the demo form.
+  ●​ Avoid requiring a real portfolio to book. Position a portfolio, watchlist, or research
+     question as optional, with a sample available for visitors who cannot share sensitive
+     information.
+
+
+Placeholder and misleading content
+  ●​ Remove the announcement-bar placeholder: “We raised $XXM at a $XXB
+     Valuation…” appears across the prototype.
+  ●​ Replace “Supporting line” in the homepage capability accordion with a real, clearly
+     differentiated capability—or remove the fourth item.
+  ●​ Replace the five “placeholder, graphic coming soon” elements on the Thematic
+     Exposure page.
+  ●​ Correct the Alfred breadcrumb from “Product / Insights” to “Product / Alfred.”
+  ●​ Correct “data feds” to “data feeds” on the Knowledge Graph page.
+  ●​ Correct “Earning Insights” to “Earnings Insights” on the Insights page.
+  ●​ Fix or remove the Contact link. The prototype’s Contact destination returned an
+     effectively blank page in my review.
+  ●​ Point “Data notices” to its intended destination. It currently links to the homepage.
+  ●​ Remove the Framer promotional badge from the production experience, if it is not
+     intended to remain.
+
+
+Proof and claim accuracy
+  ●​ Relabel the homepage’s “Trusted by” logo strip. It includes organizations presented
+     as data or content sources elsewhere; the label should not imply they are all customers.
+  ●​ Separate customer, distribution-partner, investor, and data-provider proof rather
+     than grouping their logos under a shared claim.
+     ●​ Review universal claims such as “every claim” and “each number.” Use precise
+        language that product and compliance teams can substantiate across outputs and
+        deployment modes.
+     ●​ Verify the security page’s data-retention and model-training statements before
+        launch, including how they apply to saved research, connected data, logs, and
+        third-party providers.
+     ●​ Verify the promised timing of earnings previews and recaps before publishing “three
+        days before” and “within 30 minutes” as blanket guarantees.
+     ●​ Reconcile coverage metrics and definitions across materials before publishing a
+        single approved set.
+
+The supplied materials use different scopes and figures—for example, approximately 600K
+versus 1M+ relationships, and 800+ versus 900+ themes. The capabilities deck also discusses
+40K+ securities, while the moat document gives a smaller public-company universe. These may
+describe different datasets or snapshots, but the distinction needs to be explicit. The Knowledge
+Graph overview is useful context, not a substitute for a current approved metric sheet.
+Knowledge Graph Overview(3).pdf
+
+
+
+
+2. Narrative strategy
+The story the site should tell
+The current homepage opens with “Trace the relationships shaping markets,” which is
+distinctive, but it leads with the mechanism before fully establishing the product and the two jobs
+it performs. A stronger sequence would be:
+
+ Ste      Question the visitor                 What the site should communicate
+  p              has
+
+ 1      What is this?               An AI investment research platform for institutional
+                                    investors.
+
+ 2      What can I do with it?      Investigate questions, test ideas, and analyze portfolios on
+                                    demand.
+
+ 3      What happens when I’m       Monitoring surfaces relevant developments and possible
+        away?                       second-order effects.
+
+ 4      Why is it different?        The Knowledge Graph connects companies, products,
+                                    themes, and markets.
+5       Can I trust the work?       Sources, calculations, and missing inputs are visible and
+                                    inspectable.
+
+6       Will it fit my firm?        The platform and approved integration options fit different
+                                    workflows.
+
+7       What should I do next?      Bring a real question to a tailored demo.
+
+
+Positioning and language
+    ●​ Name the category in the hero: “AI investment research platform for institutional
+       investors,” rather than relying on the smaller “AI Investment Research” label alone.
+    ●​ Keep Reflexivity and Alfred distinct: Reflexivity is the platform; Alfred is its AI analyst.
+    ●​ Introduce the Knowledge Graph as the relationship-intelligence layer, not as a
+       separate product visitors must understand before they understand the platform.
+    ●​ Explain the two modes together: on-demand analysis when the investor asks, and
+       proactive intelligence when relevant developments emerge.
+    ●​ Connect capabilities to outcomes: show how relationship intelligence reveals
+       exposure, monitoring identifies a development, and Alfred helps investigate the
+       implication.
+    ●​ Use “coverage universe” only after giving a plain-language example, such as
+       companies and themes the visitor follows.
+    ●​ Distinguish alerts, Insights, monitoring, and scheduled research so these terms do
+       not appear interchangeable.
+    ●​ Replace broad promises with a concrete investment task wherever a visitor might
+       reasonably ask, “What would that look like for me?”
+    ●​ Use a consistent vocabulary for the Knowledge Graph, Insights, Alfred, and
+       deployment options across all pages.
+    ●​ Avoid positioning the platform as only a chat interface. The monitoring, relationship
+       layer, and workflow context are important to the larger story.
+    ●​ Avoid overstating what general-purpose AI or competing terminals cannot do.
+       Compare specific workflows and evidence requirements rather than making absolute
+       competitor claims.
+    ●​ Separate current functionality from roadmap concepts. Persistent workflows,
+       scheduled reruns, personalized briefs, and thesis monitoring should be published as
+       current only after product confirmation.
+
+
+Suggested core narrative
+      Investment research that sees the connections—and shows its work.​
+      Reflexivity is an AI investment research platform for institutional investors. Ask
+      Alfred to investigate a question or test a thesis, while always-on intelligence
+      surfaces developments across the companies and themes you follow. Underneath
+      both is a Knowledge Graph that maps market relationships, supported by
+      institutional data and analysis you can inspect.
+
+This is a proposed direction, not a claim that every feature and data entitlement works
+identically for every customer.
+
+
+
+
+3. Homepage
+Hero and first impression
+   ●​ Keep the existing relationship-led headline as a possible campaign line, but pair it with
+      an explicit product definition.
+   ●​ Make “on-demand research” and “always-on intelligence” visible in the first screen or
+      immediately below it.
+   ●​ Give visitors one concrete example of a question Alfred can answer.
+   ●​ Add a secondary “Explore the platform” action for visitors who are not ready to request a
+      demo.
+   ●​ Show a recognizable product interface near the opening proposition so the site feels like
+      a platform, not solely a brand campaign.
+   ●​ Make the product visual demonstrate an actual investment workflow rather than using
+      decorative interface fragments alone.
+
+
+Story flow
+   ●​ Reorder the first capability sections into ask → monitor → connect → verify, so visitors
+      follow a user journey rather than a technical feature list.
+   ●​ Tie the existing “Uncover hidden exposures,” “Stay ahead,” and “Research faster”
+      benefits to a specific action or output.
+   ●​ Introduce Alfred by name before expecting visitors to understand where it fits.
+   ●​ Explain how the Knowledge Graph supports both Alfred and Insights, instead of
+      presenting it as an isolated pillar.
+   ●​ Use one worked example to bridge from a market event to a connected exposure and a
+      follow-up research question.
+   ●​ Give each capability in the existing accordion a short link to its relevant detail page.
+   ●​ Add a concise trust section for source attribution, inspectable calculations, and visible
+      data gaps.
+   ●​ Bring one approved customer outcome or testimonial into the main story rather than
+      relying primarily on logos.
+Audience and deployment
+  ●​ Rewrite the “Built for the way you invest” cards around each audience’s actual
+     investment job.
+  ●​ Remove the duplicated API/custom-integration copy currently shared by Asset Managers
+     and Wealth Managers.
+  ●​ Replace the Financial Institutions card’s Microsoft-tool list with the outcome relevant to
+     that audience.
+  ●​ Link each audience card to an appropriate use case, customer story, or tailored demo
+     context.
+  ●​ Simplify “Seats, or the same layer in the stack you already run” to a more direct heading
+     such as “Use Reflexivity your way.”
+  ●​ Explain the difference between platform access and integrations without implying every
+     capability is identical in each deployment.
+
+
+
+
+4. Demo request journey
+Booking page
+  ●​ Add a clearly visible booking form or scheduler near the opening proposition.
+  ●​ Use “Request a demo” consistently if the visitor submits a request; use “Book a demo”
+     only if they can select a time.
+  ●​ Preserve the page’s strong idea of bringing a real investment question, but make the
+     wording less demanding: “Bring a question, watchlist, or example—or we can provide
+     one.”
+  ●​ Explain the expected demo length if there is a standard duration.
+  ●​ State who will lead the walkthrough and who it is designed for.
+  ●​ Explain whether the next step is immediate scheduling or a follow-up from the team.
+  ●​ Reassure visitors that they do not need to upload confidential holdings to request a
+     demo.
+  ●​ Place a concise trust cue beside the form, such as an approved client quote or relevant
+     institutional credential.
+
+
+Form and follow-up
+  ●​ Ask only for the fields needed to route the request: typically name, work email, firm, and
+     role.
+  ●​ Make investment focus or preferred workflow optional.
+  ●​ Avoid requesting portfolio holdings, AUM, or other sensitive information in the initial form.
+  ●​ Provide clear inline validation and accessible error messages.
+  ●​ Confirm successful submission with a specific next step and expected response window.
+  ●​ Send a confirmation email that explains what the visitor can expect.
+  ●​ Carry the originating page or selected use case into the CRM so sales can tailor the
+     conversation.
+  ●​ Track form starts, submission errors, successful requests, and booked meetings
+     separately.
+  ●​ Test the form and confirmation on mobile, with keyboard navigation, and with blocked
+     third-party scripts.
+
+
+
+
+5. Product architecture and navigation
+  ●​ Add a concise Platform Overview destination—or clearly designate the homepage as
+     that overview—so “Product” leads to a coherent starting point.
+  ●​ Structure the Product navigation around Alfred, Insights, Knowledge Graph, and
+     Trust & Data.
+  ●​ Keep Use Cases organized around investor jobs, as the existing menu already begins to
+     do.
+  ●​ Add short menu descriptions that explain the difference between product capabilities and
+     investment workflows.
+  ●​ Ensure every menu item leads to a completed, relevant destination.
+  ●​ Make “Request a Demo” the consistent primary action across the navigation.
+  ●​ Keep Log in available for existing users without making it compete with demo requests.
+  ●​ Add contextual links between related pages—for example, Insights to Portfolio
+     Monitoring and Knowledge Graph to Thematic Exposure.
+  ●​ Use descriptive breadcrumbs consistently on product and use-case pages.
+  ●​ Verify dropdowns work with keyboard, touch, and screen readers.
+
+
+
+
+6. Alfred page
+Narrative
+  ●​ Keep the existing “One analyst, two modes” framework; it is one of the clearest
+     explanations on the prototype.
+  ●​ Show a concrete on-demand question, the analytical steps, and an example of the
+     resulting answer.
+  ●​ Show an always-on example separately so visitors understand what arrives without a
+     prompt.
+  ●​ Explain how Alfred uses the Knowledge Graph without suggesting it is the only source of
+     information.
+  ●​ Differentiate the research workflow from the final deliverable: prompt, data gathering,
+     analysis, result, and review.
+  ●​ Replace “Ask the hardest question on your desk” with a more credible invitation
+     grounded in real investment tasks.
+  ●​ Explain what “analyst-grade” means in observable terms rather than relying on the
+     adjective alone.
+
+
+Functionality and trust
+  ●​ Describe which outputs can be saved, revisited, exported, or rerun—and under what
+     conditions—after product confirmation.
+  ●​ Replace “Durable workflows hold steady. Saves, schedules and updates” with a specific
+     explanation of what a user can do.
+  ●​ Confirm whether scheduled research and personalized morning summaries are currently
+     available before presenting them as standard features.
+  ●​ Clarify whether a user can inspect or download code for every applicable calculation or
+     only supported analyses.
+  ●​ Show a source citation, a missing-data state, and a calculation in the context of one
+     answer.
+  ●​ Link the “Works where you do” section to the deployment page for entitlement and
+     integration details.
+  ●​ Replace the repeated generic demo buttons with context-specific supporting copy while
+     keeping a consistent primary CTA label.
+
+
+
+
+7. Knowledge Graph page
+Explain the mechanism
+  ●​ Lead with the investor outcome—finding connected exposures and second-order
+     effects—before “the market intelligence layer for any stack.”
+  ●​ Explain what a graph relationship represents using a single company-to-company or
+     company-to-theme example.
+  ●​ Define what a relationship weight means and what it does not mean.
+  ●​ Distinguish relationship exposure from a forecast, recommendation, or guaranteed
+     causal effect.
+  ●​ Explain how evidence supports a relationship and how a user can inspect it.
+  ●​ Describe the update cadence accurately rather than implying every relationship updates
+     instantly.
+  ●​ Clarify the difference between a company being exposed to a theme and being a useful
+     constituent of an investable thematic universe.
+
+
+Make the worked example useful
+  ●​ Explain the GLP-1 example in plain language: the initiating event, the linked companies,
+     and why each connection matters.
+  ●​ Make it clear which labels represent direct relationships, peers, products, and broader
+     themes.
+  ●​ Show one source-backed relationship detail rather than asking visitors to trust the
+     network visualization alone.
+  ●​ Explain the ranking or scoring methodology at a level appropriate for a prospective
+     institutional buyer.
+  ●​ Offer a deeper methodology conversation through the demo or technical contact path.
+  ●​ Ensure the dated “all nodes, links and ranks” annotation is maintained when the
+     example changes.
+
+
+Graph as a product
+  ●​ Explain the difference between using the graph inside Reflexivity and licensing graph
+     data for another system.
+  ●​ Describe available delivery methods and sample outputs only after confirming current
+     API, MCP, and feed support.
+  ●​ Add a representative use case for systematic teams or thematic-basket builders.
+  ●​ Present coverage metrics with definitions, as-of dates, and consistent units.
+  ●​ Use “data feeds” consistently and clarify any licensing or entitlement constraints.
+  ●​ Support the bank and Interactive Brokers claims with approved wording and permission.
+
+
+
+
+8. Insights and portfolio monitoring
+Insights page
+  ●​ Explain what an Insight is in one sentence before listing its components.
+  ●​ Show one complete example from catalyst through takeaway, connected exposure, and
+     follow-up question.
+  ●​ Distinguish company catalysts, market catalysts, earnings intelligence, and
+     scenario-pattern detection by the question each helps answer.
+  ●​ Clarify whether users receive Insights in the platform, by email, via alerts, or through
+     another delivery method.
+  ●​ Explain what determines relevance to a user’s companies or themes.
+  ●​ Show why a specific Insight was surfaced to a specific coverage universe, if that
+     functionality is available.
+  ●​ Clarify whether the four-part “What’s inside an Insight” structure applies to every Insight
+     type or only the example shown.
+  ●​ Avoid describing all market developments as real-time unless the underlying source and
+     delivery timing support that claim.
+  ●​ Explain that historical pattern detection identifies historical relationships, not certain
+     future price movements.
+
+
+Portfolio Monitoring page
+  ●​ Clarify whether users monitor a connected portfolio, an uploaded portfolio, a watchlist, or
+     manually followed companies and themes.
+  ●​ Define the difference between portfolio holdings and a watchlist so users do not assume
+     portfolio integration that may not exist.
+  ●​ Replace “Every development reaches you in real time” with timing language the product
+     team can substantiate.
+  ●​ Show a morning workflow: relevant development → affected name → possible
+     implication → follow-up analysis.
+  ●​ Explain how alerts are prioritized and whether users can configure the scope or
+     frequency.
+  ●​ Show the transition from an Insight into an Alfred follow-up.
+  ●​ Confirm that the promised daily email, dashboard summary, and alerts are currently
+     available before treating them as universal.
+  ●​ Add an example that makes the portfolio relevance tangible without requiring the visitor
+     to disclose real positions.
+
+
+
+
+9. Use-case templates
+Deep Research
+  ●​ Develop the existing Amazon thesis example into a complete mini-story rather than
+     stopping at the question.
+  ●​ Show the competing arguments, evidence, and warning indicators a user could inspect.
+  ●​ Distinguish a cited research memo from a guaranteed investment recommendation.
+  ●​ Explain which parts of the output are generated, calculated, or drawn from source
+     material.
+  ●​ Show how the investor can follow up, challenge an assumption, and revise the analysis.
+  ●​ Make “institutional data built in” specific by linking to the data-source and entitlement
+     explanation.
+  ●​ Avoid promising that every query returns the same fixed set of sections.
+  ●​ End with a CTA tied to the visitor’s own research question.
+
+
+Thematic Exposure
+  ●​ Replace the placeholder visuals with a real theme, constituent list, and one inspectable
+     exposure rationale.
+  ●​ Explain the difference between discovering companies related to a theme and
+     constructing a tradeable basket.
+  ●​ Show how strength of exposure is represented and what evidence supports it.
+  ●​ Clarify whether users can create custom themes, modify constituents, or monitor
+     changes today.
+  ●​ Explain how often thematic relationships and constituent lists update.
+  ●​ Show an example of a less-obvious company alongside an obvious one.
+  ●​ Avoid implying every relationship represents a beneficiary; some exposures may
+     represent risks.
+  ●​ Connect the workflow to the Knowledge Graph page for methodology detail.
+
+
+Scenario and Stress Testing
+  ●​ Define backtesting, scenario analysis, and stress testing in terms of the questions they
+     answer.
+  ●​ Retain the Treasury-yield example, but show a sample result and the inputs behind it.
+  ●​ Explain the historical window, asset universe, and key assumptions used in the example.
+  ●​ Show how a user can change an assumption or rerun the analysis, if supported.
+  ●​ Distinguish historical correlation from a prediction of future performance.
+  ●​ Explain what happens when a requested input or dataset is unavailable.
+  ●​ Avoid “live data” as a blanket claim unless the applicable feeds and entitlements support
+     it.
+  ●​ Add a concise methodological disclaimer suitable for the workflow without overwhelming
+     the page.
+
+
+
+
+10. Auditability and data
+Make trust tangible
+  ●​ Preserve the existing three-part structure: citations, missing-data handling, and
+     code-backed calculations.
+  ●​ Replace repeated “every answer” language with precise, supportable descriptions of
+     coverage and exceptions.
+  ●​ Demonstrate one answer where a visitor can see the source, the calculation, and the
+     resulting claim.
+  ●​ Show a missing-input state explicitly rather than describing it only in prose.
+  ●​ Explain whether source links open original documents, excerpts, provider records, or a
+     mixture.
+  ●​ Explain what can be rerun, by whom, and under which data entitlements.
+  ●​ Clarify the difference between a cited source and independently verified accuracy.
+  ●​ Avoid “zero hallucination” or equivalent absolute claims; describe the controls and their
+     limitations instead.
+
+
+Data sources and entitlements
+  ●​ Bring forward the existing site’s useful data-to-source mapping rather than relying on
+     provider logos alone.
+  ●​ Identify which datasets are included in core platform access and which require separate
+     entitlement.
+  ●​ Explain how client-provided data can be connected and how permissions are respected.
+  ●​ Describe entity resolution with a worked example beyond the Apple naming analogy.
+  ●​ Explain what happens when providers disagree or a data point is missing.
+  ●​ Make refresh timing and historical coverage discoverable for each major data type.
+  ●​ Avoid implying that every source is available for every security, market, or customer.
+
+
+
+
+11. Deployment and integrations
+  ●​ Retain the four deployment options already shown: Platform Access, API & MCP,
+     Knowledge Feeds, and Embedded.
+  ●​ Add a comparison of buyer, use case, output, and integration effort for each option.
+  ●​ Explain what the customer receives in each model: interface, API response, feed, or
+     embedded experience.
+  ●​ Separate generally available integrations from custom or roadmap work.
+  ●​ Confirm the Microsoft 365 claims for SharePoint, OneDrive, Outlook, OneNote, Teams,
+     and Copilot individually.
+  ●​ Clarify whether customers bring their own MCP server, connect Reflexivity through MCP,
+     or both.
+  ●​ Explain whether API and feed access include the same datasets, auditability, and
+     permissions as the platform.
+  ●​ Replace “Every option runs on the same…auditability” with qualified wording if
+     capabilities differ by deployment.
+  ●​ Give technical buyers a path to documentation or a technical discovery call.
+  ●​ Add a high-level implementation sequence: discovery, access and entitlements,
+     integration, validation, and rollout.
+  ●​ Explain whether integrations can coexist with platform seats.
+  ●​ Connect the Embedded option to an approved partner example where disclosure is
+     permitted.
+
+
+
+
+12. Customers, proof, and institutional
+credibility
+Customer page
+  ●​ Rename the existing page “Solutions by firm” or add actual customer stories; the current
+     page describes four firm types rather than presenting customer case studies.
+  ●​ Turn each audience section into a concrete workflow with a problem, Reflexivity action,
+     and expected output.
+  ●​ Add approved customer stories showing the starting challenge, deployment, workflow,
+     and result.
+  ●​ Use attributable quotes only with permission and sufficient context.
+  ●​ Distinguish quantified outcomes from illustrative examples.
+  ●​ Show different buyer types without implying every firm uses all deployment models.
+  ●​ Add role-specific routes for portfolio managers, analysts, research leaders, and platform
+     teams.
+  ●​ Connect each story to a relevant tailored demo prompt.
+
+
+Proof throughout the site
+  ●​ Label the homepage provider strip “Data and content sources” where appropriate.
+  ●​ Use separate proof treatments for customers, distribution partners, investors, and data
+     sources.
+  ●​ Bring forward the existing site’s institutional founder and leadership credentials in a
+     compact, relevant way.
+  ●​ Use approved partnership proof to explain how Reflexivity is deployed in practice.
+  ●​ Add dates or context to time-sensitive metrics such as client count and assets covered.
+ ●​ Verify rights before naming customers, publishing quotes, or displaying logos.
+ ●​ Do not publish internal sales-call quotations or commercial details from the attached
+    moat document without explicit approval.
+ ●​ Avoid unsupported rankings such as “world’s largest bank” unless the definition, date,
+    and customer permission are confirmed.
+
+
+
+
+13. Security and procurement
+ ●​ Keep Security distinct from Auditability: one explains protection of data; the other
+    explains how research can be inspected.
+ ●​ Confirm the SOC 2 Type II claim, current audit period, and appropriate wording with the
+    security team.
+ ●​ Explain how a prospective customer can request the security report or complete a
+    due-diligence review.
+ ●​ Clarify encryption at rest and in transit only where verified.
+ ●​ Explain access controls and how connected-source permissions are enforced.
+ ●​ Define what “client isolation” means for the actual deployment architecture.
+ ●​ Clarify retention separately for uploaded documents, connected data, prompts, outputs,
+    saved research, backups, and operational logs.
+ ●​ Verify the “never trained on your data” statement against all model providers and
+    contractual arrangements.
+ ●​ Explain where customer data is processed and what deployment choices are available.
+ ●​ Replace the vague label “Aware Access” with a clearer term such as “Permission-aware
+    access.”
+ ●​ Offer a security-specific contact path alongside the demo CTA.
+ ●​ Reconcile any differences between the new security page and claims on the existing site
+    before migration.
+
+
+
+
+14. Company and supporting pages
+About
+ ●​ Add concise credentials beneath leadership names; the existing site provides more
+    immediately useful background than the prototype’s name-and-title list.
+ ●​ Connect the team’s investment and technical experience to why the platform was built.
+ ●​ Use the founder’s approved origin story to explain the product philosophy.
+  ●​ Separate investor-facing company information from the extensive recruiting and benefits
+     content.
+  ●​ Move detailed benefits, values, and open roles to Careers, with a concise link from
+     About.
+  ●​ Verify the current leadership roster and job titles before publishing.
+  ●​ Make the company’s offices and contact details easy to find.
+
+
+Contact and resources
+  ●​ Complete the Contact page with routes for sales, partnerships, support, press, and
+     security inquiries.
+  ●​ Give existing customers a direct support path rather than routing them through demo
+     requests.
+  ●​ Ensure blog, news, customer stories, privacy, terms, and data-notice links resolve to
+     finished content.
+  ●​ Remove or hide resource links that are not ready at launch.
+  ●​ Add a relevant conversion path to editorial and technical resources without forcing an
+     immediate demo request.
+  ●​ Give newsletter visitors a specific reason to subscribe and explain what they will receive.
+
+
+
+
+15. Design, accessibility, and technical
+polish
+Product presentation
+  ●​ Use real or representative product UI to demonstrate the workflow, not merely as
+     decorative texture.
+  ●​ Pair each major interface visual with a short explanation of what the user is seeing.
+  ●​ Keep product examples legible enough to communicate the actual task and outcome.
+  ●​ Use consistent visual language for graph relationships, Insights, Alfred answers, and
+     sources.
+  ●​ Reduce visual repetition when several pages use the same generic benefit language
+     and CTA structure.
+  ●​ Make the relationship between a heading, supporting copy, product example, and next
+     action immediately clear.
+  ●​ Preserve the premium visual direction while prioritizing readable research examples over
+     abstraction.
+  ●​ Verify that animation does not hide essential content or delay the demo path; my
+     full-page capture did not reliably show all animated text.
+
+
+Accessibility and performance
+  ●​   Test navigation, accordions, and forms with keyboard-only interaction.
+  ●​   Give the newsletter field and all form controls persistent accessible labels.
+  ●​   Check contrast on dark sections, muted body copy, and buttons.
+  ●​   Provide descriptive alt text for meaningful product visuals and empty alt text for
+       decorative imagery.
+  ●​   Ensure reduced-motion settings do not prevent content from appearing.
+  ●​   Test on small mobile screens and at increased browser zoom.
+  ●​   Check that sticky navigation and cookie controls do not obscure CTAs or form fields.
+  ●​   Optimize large media and reserve space for images to minimize layout shifts.
+  ●​   Ensure critical content remains visible if animations, embeds, or third-party scripts fail.
+  ●​   Audit page titles and descriptions: the reviewed prototype pages shared the same
+       generic document title.
+
+
+
+
+16. Measurement and experimentation
+  ●​ Define the primary funnel as qualified demo request → meeting booked → meeting
+     held, not just CTA clicks.
+  ●​ Track demo CTA clicks by page, section, and use-case context.
+  ●​ Measure drop-off between the demo landing page and form submission.
+  ●​ Record validation errors and scheduler-loading failures.
+  ●​ Pass page context and campaign attribution into the CRM.
+  ●​ Segment results by firm type, role, traffic source, and device.
+  ●​ Track visits to Security, Deployment, and Data pages as supporting research
+     signals—not substitutes for conversion.
+  ●​ Measure which use cases lead to qualified meetings, not just page views.
+  ●​ Test a product-explicit hero against the relationship-led headline.
+  ●​ Test a concrete workflow example against a capability-led opening.
+  ●​ Test “Request a Demo” versus “See Your Workflow in Reflexivity” while keeping the
+     destination and conversion event consistent.
+  ●​ Use sales feedback to identify repeated objections and update the relevant page rather
+     than adding generic FAQs everywhere.
+  ●​ Establish a review process for claims, source metrics, customer proof, and feature
+     availability before each launch.
+Recommended implementation order
+1. Before launch
+
+Finish and test the demo path; remove placeholders; correct misleading labels and links; verify
+security, availability, and performance claims; and establish one approved set of metrics.
+
+2. Strengthen the main story
+
+Clarify the homepage proposition, introduce the two modes, explain how the Knowledge Graph
+connects them, and show one complete investment workflow with inspectable evidence.
+
+3. Build buyer confidence
+
+Improve the customer proof, audience-specific use cases, data transparency, deployment
+comparison, and security procurement path.
+
+4. Optimize with evidence
+
+Instrument the full demo funnel, gather sales feedback, and test messaging and page variations
+against qualified meetings—not just traffic or click-through rate.
+
+Bottom line: the site does not need more feature claims. It needs a clearer demonstration of
+how Reflexivity helps an investor move from question or market event → connected
+evidence → analysis they can inspect → an informed next step.
+

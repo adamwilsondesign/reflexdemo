@@ -1,0 +1,2170 @@
+Reflexivity Website: Information
+Architecture & Content Map
+Compiled from Figma, "Reflexivity – Master (External)", page "App Map & Content Map Draft 2"
+(frames: Client-Approved Sitemap, Content Map – Goal / Concept). Updated from client review
++ Sept 4 call.
+
+1. Information architecture (sitemap)
+Content Map Reviewed/Ready for next version of wireframing
+
+Nav group
+Product
+
+Use Cases
+
+Page
+Homepage
+Platform (inventory)
+Alfred
+Knowledge Graph
+Insights
+
+URL
+/home
+/platform
+/alfred
+/knowledge-graph
+/insights
+
+Auditability & Data
+Security
+Overview
+Portfolio Monitoring
+
+/auditability-data
+Remove for launch
+/security
+/use-cases
+Optional
+/use-cases/portfolio-mo
+nitoring
+/use-cases/deep-resear
+ch
+/use-cases/thematic-ex *use for mockup*
+posure
+/use-cases/scenario-str
+ess-testing
+/deployment
+
+Deep Research
+Thematic Exposure
+
+Deployment
+
+Customers
+
+Scenario & Stress
+Testing
+Deployment (single
+page)
+Platform seats
+API & MCP
+Data Feeds
+Embedded /
+White-label
+Microsoft 365
+Overview
+Hedge Funds
+Financial Institutions
+
+Notes
+*Let’s do this very last*
+*use for mockup*
+
+#platform
+#api-mcp
+#knowledge-feeds
+#embedded
+#microsoft-365
+/customers
+
+Single page that
+includes case studies
+/customers/hedge-fund #1 priority audience
+s
+/customers/financial-ins
+
+Nav group
+
+Page
+Wealth Managers &
+RIAs
+Asset Managers
+
+Resources
+
+Company
+
+Conversion & utility
+
+Blog / Articles
+Article
+Customer Stories
+Customer Story
+News & Press
+Newsletter
+About
+Careers
+Contact
+Book a Demo
+Demo Confirmation
+Log in
+Help Center
+
+URL
+Notes
+titutions
+/customers/wealth-man
+agers
+/customers/asset-mana
+gers
+/blog
+/blog/[slug]
+Template
+/customer-stories
+/customer-stories/[slug] Template
+/news
+/newsletter
+/about
+/careers
+/contact
+/book-a-demo
+Primary CTA
+/thank-you
+app subdomain
+Utility
+footer / external
+Footer only
+
+2. Footer
+Product
+Platform
+
+Company
+About
+
+Knowledge Graph Careers
+Security
+Contact
+Deployment
+
+Resources
+Blog
+
+Legal
+/privacy
+
+Customer Stories /terms
+News & Press
+/data-notices
+Newsletter
+Cookie Settings
+
+Utilities
+Help Center
+(external)
+Log in (app)
+Book a Demo
+404
+
+3. Content map: page-by-page goal and concept
+Each section has a narrative job (goal) and a concept written in human language. Order follows
+the sitemap left to right.
+
+Home /
+Section
+
+Copy (recommended)
+
+Layout guidance
+
+Eyebrow: AI Investment Research
+Trace the relationships shaping markets.
+1. Hero
+
+Short headline and one
+Reflexivity helps institutional investors test
+ideas faster and uncover the hidden risks and supporting sentence.
+opportunities they’d otherwise miss.
+CTA: Book a Demo
+
+2. Customer
+logos
+
+Trusted by
+
+Approved customer logo
+reel directly below the
+hero. Do not substitute
+data-vendor logos for
+customers.
+
+Find what matters. Understand what comes
+next.
+Uncover hidden exposures. Map how
+companies, products, and themes connect,
+Four concise outcome
+including
+the
+non-obvious.
+3. Investor value
+blocks. Emphasize
+/ What Reflexivity Stay ahead of market-moving
+investor value rather than
+helps you do
+developments. Automatically surface relevant technical features or broad
+AI claims.
+catalysts and their ripple effects.
+Research and test investment ideas faster.
+From deep research to portfolio stress tests, in
+minutes.
+Headline: Built to catch what others miss.
+Knowledge Graph: A proprietary map of
+relationships across companies, products,
+themes, and markets reveals hidden
+exposures and second-order effects.
+Always-on intelligence: Alfred monitors
+4. Differentiation relevant market developments, surfacing
+insights without waiting for a prompt.
+Auditable analysis: Research grounded in
+institutional data, with traceable sources and
+code-backed calculations.
+Supporting line: Natively integrated data
+from LSEG, S&P Global, Cboe, Dow Jones,
+
+Make the Knowledge
+Graph the strongest
+visual within this section,
+alongside concise
+explanations of the other
+differentiators. Include a
+dedicated data-source
+logo strip underneath.
+
+Nasdaq, Quartr, and more.
+Built for the way you invest.
+Hedge Funds
+5. Who we work
+Financial Institutions
+with
+Asset Managers
+Wealth Managers & RIAs
+
+Four audience cards, with
+Hedge Funds first. These
+should not dominate the
+entire page, since we no
+longer have a designated
+page per ICP.
+
+Trusted by investors who use it every day.
+
+6. Testimonials
+
+“Reflexivity has become an indispensable daily
+tool for the modern portfolio manager. Pairing
+ever-improving LLMs with best-in-class LSEG
+data, it makes idea generation, backtesting,
+risk management and trade construction
+Two large quote blocks.
+seamless.”
+We will have more of these
+Will Steffe, Annapurna Global Macro
+coming, so might need the
+option to make a flexible
+“Reflexivity tells me what's about to matter
+component.
+across my book, not just what already
+happened. It flags the knock-on effects of an
+event the moment they emerge, with citations
+on every claim so I can check the read and
+move on it fast.”
+Adam Till, Founder, MainSail Fund
+Your research platform. Your existing stack.
+
+7. Access +
+integration
+
+Access Reflexivity through our complete
+platform, or integrate our solutions into the
+tools and systems your team already uses.
+
+Two routes: Platform
+Access and API / MCP /
+Custom Integration.
+
+CTA: Explore Deployment Options
+See what Reflexivity can uncover for you.
+8. Final CTA
+
+Explore the connections, risks, and
+opportunities across your own coverage
+universe.
+CTA: Book a Demo
+
+Product
+Platform /platform
+
+Generous spacing, one
+focused conversion action.
+
+Page goal: Summary of the most critical features that make up our product and what you can
+buy, whether that’s through a platform seat or as a custom integration. Meant to prompt further
+exploration of solutions or deployment options.
+NOTE: This is not a platform overview page. Reference example: https://www.harvey.ai/platform
+Section
+1. Hero
+
+2. Complete environment
+
+Goal / narrative job
+Concept
+Position Reflexivity’s
+Simple header and H2. CTAs
+capabilities suite as the
+linking to demo and
+investment intelligence layer
+partnerships.
+that fits into your research
+One environment combining
+workflow.
+Alfred, the Knowledge Graph,
+Position the Platform as the
+institutional data, monitoring,
+complete, maintained way to
+and investment workflows.
+use Reflexivity.
+Introduce the full suite of
+A capability grid linking to
+capabilities (this is not a
+- Alfred,
+preview of the web platform
+- Knowledge Graph
+page).
+- Insights
+Give a simple inventory of what - Auditability & Data
+is included.
+- Security
+
+This page is a capabilities
+overview, not a second
+homepage.
+Each card links to the more
+detailed capability page.
+Example:
+https://www.harvey.ai/platform
+3. On-demand research
+Show how the Platform
+Alfred turns a question into a
+accelerates questions the
+cited workflow with analysis,
+investor already knows to ask. charts, and executable outputs.
+4. Always-on monitoring
+Show the value created when The Platform watches a
+the user is not prompting.
+coverage universe and
+surfaces portfolio-relevant
+developments and
+second-order implications.
+5. Investment workflows
+Show breadth without turning Deep Research, Portfolio
+jobs into separate products.
+Monitoring, Thematic Exposure,
+Scenario & Stress Testing, and
+Idea Generation. Link to
+use-case pages.
+6. Decision-grade by design Establish why this can be
+Cited outputs, explicit
+trusted for institutional work.
+missing-data behavior, and
+code-backed calculations are
+built in, not added later.
+7. Works with existing tools Reduce the fear of
+Microsoft 365, documents,
+
+Section
+
+8. Why buy the Platform
+
+9. Proof + CTA
+
+Goal / narrative job
+rip-and-replace.
+
+Concept
+Excel, and exports. Link to the
+Microsoft section on
+Deployment.
+Make the case versus
+Contrast a maintained
+assembling Claude plus MCP. environment with the
+engineering, data controls,
+entity resolution, validation, and
+audit infrastructure a team
+would otherwise own.
+Convert into a product-specific Test the Platform against the
+conversation.
+visitor's own portfolio or
+watchlist.
+
+Alfred /alfred
+Section
+1. Hero
+
+Goal / narrative job
+Concept
+Introduce Alfred as Reflexivity's One analyst, two modes:
+AI Analyst. Make the role
+answer complex questions on
+instantly clear.
+demand, or keep watching
+when you step away. Alfred is a
+capability of the platform, not
+the company name.
+2. One analyst, two modes
+Establish the core mental
+On-Demand and Always-On
+*NOTE: I think this is
+model.
+share the same context,
+important and missing from
+Knowledge Graph, and data.
+current wireframes.
+They are not two products.
+3. On-demand
+Show how Alfred accelerates A prompt becomes a complete
+questions the investor already cited workflow for research,
+wants answered.
+portfolio analysis, hypothesis
+testing, or scenario work.
+Note: I think being able to show
+an example of the types of
+prompts you could submit here
+is more important than trying to
+show a complete workflow. The
+stuff below differentiates,
+people understand a
+query-based AI output at this
+point so we probably don’t need
+to waste time visualizing.
+[Alex to provide sample
+prompts]
+
+Section
+4. Always-on alerting /
+proactive monitoring
+
+5. How Alfred reasons
+
+Goal / narrative job
+Concept
+Show the value created without Alfred queries itself. Alfred
+a prompt.
+monitors followed companies
+and themes, then surfaces
+events, ripple effects, and
+implications.
+Q: link to insights page from
+here?
+[Alex to provide example
+catalyst insight]
+Explain why this is more than a Entity resolution and context
+chat window/LLM. Emphasize flow through the Graph and
+built-in relationship intelligence institutional data into
+and institutional data as core executable analysis and a
+differentiators.
+tailored output.
+Built in relationship
+[Q: Is this the right spot for an
+intelligence: reasons on top of a illustration? Reference here of
+knowledge graph that maps how something ugly but practical]
+companies and themes connect
+across products, customers,
+competitors and geographies,
+surfacing the hidden exposures
+and ripple effects.
+Built-in data sources:
+●​
+●​
+●​
+●​
+●​
+●​
+●​
+
+6. Jobs to be done *NOTE: I
+think this is important and
+missing from current
+wireframes.
+
+7. Trust every output
+
+LSEG
+S&P Global
+Dow Jones
+Quartr
+Cboe
+MT Newswires
+Benzinga
+
+Make the practical range clear. To list as examples:
+●​ Investment research
+●​ Portfolio analysis and
+watchlist monitoring
+●​ Deep fundamental
+research
+●​ Thesis pressure testing
+●​ scenario analysis and
+backtesting
+Establish fitness for high-stakes Three pillars:
+decisions.
+●​ Every figure cited by
+default.
+●​ NA over guesswork (i.e.
+
+Section
+
+Goal / narrative job
+
+8. Analysis that stays alive
+
+Show that the work survives the Scheduled queries, a daily
+conversation.
+watchlist summary, refreshable
+objects, reusable workflows.
+Syncs with where you work.
+How Alfred can work with you:
+1. Bring your own MCP to the
+Platform / Alfred
+2. Syncs with Microsoft 365 *
+3. Your own environment via
+API/MCP or custom
+integrations.
+Convert into an Alfred-specific Bring a real investment
+demonstration.
+question, portfolio, or workflow.
+
+9. Works where you do
+
+10. Proof + CTA
+
+Concept
+flags the data
+limitations).
+●​ Every claim traces it’s
+inputs, inline with the
+analysis
+
+*for the works where you do section, example below
+
+Knowledge Graph /knowledge-graph *one of the most important pages on the
+site*
+Section
+1. Hero
+
+Goal / narrative job
+Concept
+Establish the Graph as the
+A living structural map of the
+differentiated relationship layer market that reveals exposures,
+— and as a product in its own second-order effects, and
+
+Section
+
+Goal / narrative job
+right. Your data doesn’t mean
+anything without this.
+
+Concept
+opportunities other systems fail
+to connect.
+
+Copy:
+The market intelligence layer
+for any stack.
+
+Reflexivity’s Knowledge
+Graph maps how
+companies, products,
+themes and markets
+connect, revealing hidden
+exposures and
+second-order effects
+beyond the obvious
+names.
+1.a Proofpoint
+
+Establish credibility
+
+Testimonial-esque box or line.
+
+Copy
+Powers thematic analysis at
+the world’s largest bank and
+is distributed by Interactive
+Brokers to millions of end
+users.
+2. What the Graph maps *this Make the scope immediately
+is very important* helpful
+understandable.
+reference here.
+Copy:
+
+Companies, themes,
+geographies, and products or
+brands. Securities are not
+isolated data points.
+
+Find the connections in your The graph doesn’t just tell you
+data that matter, and why.
+how things are connected, but
+how strongly.
+Every relationship is weighted,
+revealing the strength of each Examples
+exposure and the evidence to
+back it up.
+Companies
+sub-hed
+Products and brands
+
+Section
+
+Goal / narrative job
+sub-hed
+
+Concept
+
+Themes and drivers
+sub-hed
+Markets and geographies
+Sub-hed
+3. Event to ripple effects
+Demonstrate why relationship
+NOTE: I think demonstrating intelligence matters.
+one core example here is the
+most effective way to
+Copy:
+communicate the graph
+Surface the ripple effects of
+any market event.
+
+Show that Reflexivty tracks how
+an event ripples across the
+network.
+
+Highlight:
+- Catalyst: Sept U.S. Flash PMI
+Rekindles Factory Cost
+Pressure (focus on headline,
+In markets, nothing exists in a not the graph)
+vacuum. Trace an event across - Industry Theme / Neutral / +/the broader investment
+change
+implications for your portfolio. - Ranked assets / how the
+event ripples across the
+network
+Example.
+
+5. Coverage and scale
+
+Prove institutional scale
+
+without a spec sheet.
+Copy
+A living map of the financial
+market, built for institutional
+scale
+Each filing, earnings call, press
+release, and market event
+expands the Knowledge Graph,
+continuously enriching the
+relationships it tracks.
+●​ 40,000 securities
+mapped
+●​ 600K+ evidence-backed
+relationships
+●​ 47 global markets
+
+A short metrics row.
+
+Insights /insights
+
+Section
+1. Hero
+
+Goal / narrative job
+Make always-on monitoring a
+first-class product, not a
+footnote under Alfred.
+
+2. Why this exists
+
+Connect the page to a real
+demand signal.
+
+3. Anatomy of an insight
+
+Teach the visitor how to read
+the product. Emphasize that
+Insights bring structure to
+unstructured data.
+
+4. What Insights covers
+
+Show range without inventing
+extra products.
+
+5. CTA
+
+Convert into a
+coverage-universe
+demonstration.
+Prove personalization is
+methodological, not cosmetic.
+
+5. Same event, different
+artifact
+
+Concept
+Intelligence that arrives before
+you query. Catalysts, earnings,
+themes, and second-order
+effects framed for the names
+you follow.
+Chat answers questions. It
+does not watch the book.
+Buyers have asked for alerting
+and scheduled monitoring as
+the daily job that makes the
+platform worth opening every
+morning.
+The signal, what it touches,
+why it is yours, and what to do
+next. The why-surfaced line is
+never implicit.
+
+[Alex to provide example]
+Company and market catalysts.
+Theme and macro shifts.
+Earnings previews and recaps.
+Note: these are comprehensive Scenario-pattern detection.
+- figure out how to represent
+visually without overwhelming.
+Overview here.
+
+6. Proof by audience
+
+Help each ICP recognize the
+morning ritual.
+
+7. From insight to work
+
+Connect push mode to build
+mode.
+
+Auditability & Data /auditability-data
+
+Show Insights against the
+visitor's own watchlist or book.
+An activist stake becomes a
+category read for a consumer
+PM and a deal-mechanics read
+for special sits. Both stay one
+click from source.
+One hedge-fund book example
+and one wealth or RIA
+client-note example.
+Any insight can open in Alfred,
+refresh on a schedule, or live
+on a workspace.
+
+Section
+1. Hero
+
+2. Institutional data
+
+Goal / narrative job
+Concept
+Separate can-I-trust-the-answer Analysis an investment
+from the security diligence
+committee can use. Institutional
+page.
+data, visible sourcing,
+calculations that can be re-run.
+Show that quality starts with the Natively integrated sources. No
+feeds, not the model.
+separate data contract required
+for core coverage.
+Emphasize that our platform
+reasons over a robust set of
+institutional-grade data
+sources. No separate data
+contracts required. List them all
+to demonstrate scale.
+●​ LSEG
+●​ S&P Global
+●​ Dow Jones
+●​ Quartr
+●​ Cboe
+●​ MT Newswires
+●​ Benzinga
+
+3. Three trust rules
+
+Give a simple mental model.
+
+4. Source to answer
+
+Make the audit trail visible.
+
+Cited by default. NA over
+guesswork. Code-backed
+calculations.
+Document through calculation
+to claim, with evidence still
+attached.
+
+[Alex to provide a visual of
+full source provenance]
+5. Entity resolution
+Name the unglamorous layer When a user says Apple, the
+sophisticated buyers actually system knows which Apple,
+want.
+which provider to query, and
+how to reconcile disagreement.
+6. Versus a general workflow Win build-versus-buy without A general model reasons over
+attacking the models Reflexivity what you provide. Reflexivity
+uses.
+maps entities, enforces
+sourcing, flags missing data,
+and keeps the workflow alive.
+7. CTA
+
+Security /security
+
+Move diligence visitors into a
+deeper conversation.
+
+Review Reflexivity against data,
+audit, and research-control
+requirements.
+
+Section
+1. Hero
+
+Goal / narrative job
+Concept
+Give enterprise and risk buyers Built for institutional research,
+a standalone page they do not not consumer AI. Calm,
+have to hunt for.
+specific, complete.
+
+Security built for
+institutional research.
+Reflexivity protects sensitive
+research and connected data
+through independently audited
+controls, encryption, and
+permission-aware access.
+CTA: Request a Security
+Overview
+2. Enterprise controls
+
+Answer DDQ questions early.
+
+SOC 2, encryption, client
+isolation, permission-aware
+access, governance that can
+vary by deployment.
+Copy: ​
+​
+
+Enterprise controls​
+SOC 2 Type II
+Reflexivity's security controls
+undergo annual independent
+audits.
+Encryption
+Customer data is encrypted in
+transit to protect sensitive
+information.
+Permission-aware access
+Access to connected sources
+respects your firm's existing
+permissions.
+3. Data handling
+
+Reduce ambiguity about what
+is stored and who can see it.
+
+Clear statements on isolation,
+entitlements, and
+
+Section
+
+Goal / narrative job
+
+Concept
+connected-source access.
+Copy:
+
+Your data, protected.
+Client isolation
+Customer data and research
+remain isolated from other
+client environments.
+Controlled connections
+Your firm controls which
+sources Reflexivity can
+connect to and can revoke
+access at any time.
+Limited data retention
+Reflexivity does not
+persistently store client data,
+minimizing exposure of
+sensitive information.
+Never trained on your data
+Your prompts, documents,
+connected data, and outputs
+are never used to train
+Reflexivity's models or those of
+third-party providers.
+
+5. Security Portal
+
+Link to security portal - I will
+provide this separately
+
+Example (scroll to bottom)
+https://linqalpha.com/security
+
+6. CTA
+
+Convert into a security review. Request a security overview or
+DDQ conversation.
+Copy:
+
+Start a security review
+with our team.
+
+Section
+
+Goal / narrative job
+
+Concept
+Request a security overview,
+discuss your firm's
+requirements, or begin a due
+diligence review with our team.
+CTA: Request a Security
+Overview
+
+Use Cases
+Use Cases overview /use-cases (optional, keep short)
+Section
+1. Hero
+
+2. Explore use cases
+
+3. One connected workflow
+
+4. Same engine
+
+5. Different teams + CTA
+
+Goal / narrative job
+Frame Reflexivity around the
+jobs investors need to finish,
+not a feature catalog.
+Give a fast route into the most
+relevant workflow.
+
+Concept
+Explore how the same engine
+supports research, monitoring,
+testing, and idea generation.
+Five cards only: Portfolio
+Monitoring, Deep Research,
+Thematic Exposure, Scenario &
+Stress Testing, Idea
+Generation.
+Prevent the jobs from feeling Research, monitoring, and
+like isolated products.
+testing feed each other.
+Always-on intelligence
+continues across the workflow.
+Repeat the foundations without Knowledge Graph, Alfred,
+repeating the homepage.
+Insights, and auditable analysis
+sit under every use case.
+Route into audiences and
+Hedge Funds first, then
+convert.
+Financial Institutions, Wealth,
+Asset Managers. Invite the
+visitor to bring the job they
+actually run.
+
+Portfolio Monitoring /use-cases/portfolio-monitoring
+Section
+1. Hero
+
+Goal / narrative job
+Concept
+Sell the morning-open job:
+Catalysts, anomalies, earnings,
+watch the book without living in and second-order
+alert noise.
+read-throughs across holdings,
+with an explicit reason each
+item appeared.
+
+Section
+2. The old workflow
+
+Goal / narrative job
+Make the pain concrete.
+
+Concept
+Terminals and news feeds tell
+you what moved. Analysts still
+Access to information is
+stitch who else is affected and
+becoming easier. Understanding whether it matters.
+what matters is not.
+
+3. How Reflexivity does it
+
+Show the Graph and Insights at Detection finds the event. The
+work.
+Graph maps transmission. User
+context decides why it is yours.
+Alfred is one click away.
+From our capabilities deck:
+“ Real-time context for every
+company development and
+market move, personalized to
+your watchlist. “
+“Track the developments
+driving your portfolio and
+coverage universe in​
+real time.
+​
+Earnings, macro shifts, sector
+catalysts, geopolitical, and
+cross-market impacts.”
+
+4. Worked example
+
+Prove second-order value.
+
+5. Who it is for + CTA
+
+Connect to audiences and
+convert.
+
+[Alex to provide visual
+examples we can choose
+from of:
+-​ Alfred daily dashboard
+-​ Watchlist summary
+-​ Catalysts]
+A headline names one sector.
+The product shows the related
+themes, and holdings that
+actually change.
+[Alex to provide example]
+Core for hedge funds and asset
+managers. The same
+monitoring becomes client
+commentary for wealth. Show
+this against your book.
+
+Deep Research /use-cases/deep-research
+Section
+1. Hero
+
+2. How Reflexivity does it
+
+Goal / narrative job
+Concept
+Sell speed with traceability, not One prompt becomes a
+just speed.
+complete cited workflow: thesis,
+valuation, catalysts, risks, and
+related names.
+Make auditability, relationship Entity resolution, Graph
+intelligence and built in data the context, institutional data, and
+differentiators.
+code-backed calculations.
+Filings and transcripts are
+inputs to this job, not a
+separate Document Intelligence
+product.
+1.​ Built in relationship
+intelligence: Deep
+Research reasons on
+top of a knowledge
+graph that maps how
+companies and themes
+connect across
+products, customers,
+competitors and
+geographies, surfacing
+the hidden exposures
+and ripple effects
+general-purpose LLMs
+or MCP connectors
+cannot capture.
+2.​ Transparent, auditable
+analysis: Every answer
+shows its reasoning and
+links every claim to
+source. Deep Research
+is trained to eliminate
+guesswork and flag
+proactively when data is
+unavailable.
+3.​ Natively integrated
+institutional data - no
+separate data
+contracts required.
+
+3. Worked example
+
+Show an initiation-quality
+artifact.
+
+A company after a selloff:
+recommendation, valuation,
+catalysts, downside, and the
+
+Section
+
+Goal / narrative job
+
+4. How teams are using
+Reflexivity
+
+Reference jobs to be done /
+research types to underscore
+that this is for serious
+institutional research.
+
+5. Who it is for + CTA
+
+Convert into a live question.
+
+2. The old workflow
+
+Contrast retrieval with
+reasoning.
+
+Concept
+names most affected if the
+thesis plays out.
+[Alex to provide a deep
+research example]
+To list as examples:
+●​ Investment research
+●​ Portfolio analysis
+●​ Deep fundamental
+research
+●​ Thesis pressure testing
+●​ scenario analysis and
+backtesting
+Bring a name or hypothesis you
+already care about.
+Document search and general
+chat return fragments.
+Someone still verifies the
+numbers and assembles the
+memo.
+
+Thematic Exposure /use-cases/thematic-exposure
+Reference doc:
+https://drive.google.com/drive/folders/1QiJX_kbMUOyOzsvHeZs1Hqe2t-h9DXOd
+Section
+1. Hero
+
+Goal / narrative job
+Concept
+Put the Knowledge Graph at
+Find every company a theme
+the center of a job buyers
+moves, including the ones no
+already pay for.
+headline will name.
+Lead with the Knowledge
+Graph as the missing piece: the
+names a team can’t see.
+
+2. How teams will use it
+
+Show the value in jobs buyers The Graph becomes the
+already do.
+relationship layer on top of your
+data, unlocking a new class of
+relationship models.
+●​ Launch faster from
+narrative to constituent
+list
+●​ Miss fewer names with
+second-order exposure
+●​ The evidence to back
+up your pick
+
+Section
+
+Goal / narrative job
+
+3. Worked example
+
+Prove the blind spot with a
+theme everyone thinks they
+know. Most market data is
+categorized, but the hidden
+correlations are not mapped.
+Demonstrate scale of the
+Knowledge Graph
+
+4. Numbers
+
+Concept
+●​ Stay current as
+catalysts shift exposure
+[Alex to provide example show what the theme
+overview highlights /
+exposures mapped]
+Numbers complement the
+worked example
+40,000+ securities mapped
+600,000+ evidence-backed
+relationships
+47 global markets
+900+ ready-made themes
+
+5. Who it is for + CTA
+2. The old workflow
+
+3. How Reflexivity does it
+
+Talk to us about an integration
+or book a demo.
+Explain why implicit model
+A strong model can name
+knowledge is not enough.
+related companies. It cannot
+give a stable, evidence-backed
+map that means the same thing
+on Tuesday as on Monday.
+Distinguish company-to-theme Whether a theme matters to a
+from theme-to-company.
+company is not the same as
+whether that company is a
+tradable expression of the
+theme. Eligibility and evidence
+sit behind the baskets desks
+actually want.
+
+Scenario & Stress Testing /use-cases/scenario-stress-testing
+Section
+1. Hero
+
+2. The old workflow
+
+3. How Reflexivity does it
+
+Goal / narrative job
+Concept
+Sell conviction before capital is Pressure-test a hypothesis
+committed.
+against history, correlations,
+shocks, and what-breaks
+analysis on live data.
+Show the gap in terminals and Terminals look up history.
+general AI.
+General models narrate a
+scenario. Neither reliably runs
+the calculation, shows the
+code, and keeps the object
+alive.
+Emphasize executable
+Code-backed simulations,
+
+Section
+
+Goal / narrative job
+analysis.
+
+4. How teams will use it
+
+Demonstrate jobs to be done
+
+Concept
+missing inputs flagged instead
+of invented, outputs that can be
+rerun as the tape changes.
+Historical backtesting of your
+strategies against 50+ years of
+market data
+Custom scenario building
+with specific macro conditions,
+market shocks, and variables.
+
+4. Worked example
+
+5. Who it is for + CTA
+
+Real-Time Stress Testing of
+portfolios and positions against
+changing market and macro
+conditions.
+One scenario an investor would A supply shock, rate path, or
+actually run.
+earnings miss taken through
+portfolio impact and related
+names.
+[Alex to provide example]
+Convert into a hypothesis they Bring the scenario you would
+already hold.
+otherwise build in a
+spreadsheet.
+
+Deployment
+Deployment /deployment (single page with anchors)
+
+Section
+1. Hero
+
+2. Two ways to work
+
+3. Platform Access
+(#platform)
+
+Goal / narrative job
+Concept
+Position Reflexivity as
+Start with the finished Platform,
+intelligence the institution can or bring the Knowledge Graph,
+add without replacing its stack. Alfred, and Insights into
+systems you already run. No
+rip-and-replace.
+Help each buyer choose a door A short comparison of Platform
+quickly.
+Access versus Build: who it is
+for, who maintains the
+infrastructure, how it is priced,
+how far it can be customized.
+Explain the seat-based product Alfred, Knowledge Graph,
+without repeating the whole
+integrated data, Insights, and
+Platform page.
+Microsoft 365 in a maintained
+
+Section
+
+4. API & MCP (#api-mcp)
+
+5. Knowledge feeds
+(#knowledge-feeds)
+
+6. Embedded / white-label
+(#embedded)
+
+7. Microsoft 365
+(#microsoft-365)
+Connectors
+
+8. One shared foundation
+
+9. Practical questions
+
+10. Final CTA
+
+Goal / narrative job
+
+Concept
+environment. Best for teams
+that want the daily cockpit
+without owning the plumbing.
+Meet the sophisticated DIY
+The pitch is not abandon
+buyer inside their own stack.
+Claude. It is keep the tools you
+run, and plug in the layer they
+structurally lack: entity
+resolution, the Graph,
+monitoring, and auditability.
+Sell the Graph as infrastructure. Relationship data for thematic
+baskets, research platforms,
+and internal models. This is the
+channel where the Graph is
+licensed as a feed.
+Relationship data licensed as a
+feed for thematic baskets,
+research platforms and internal
+models.
+Show the partner pattern
+Reflexivity intelligence
+already in production.
+presented as native
+functionality inside another
+institution's product.
+Make portability concrete in
+Connect SharePoint, OneDrive,
+both directions. Bring your
+Outlook, and OneNote so
+knowledge in, or reflexivity out. Alfred reasons across firm
+for teams that live in Office.
+knowledge and market
+intelligence together. Teams
+and Copilot as additional
+surfaces.
+
+Prevent the two doors from
+sounding like two different
+products.
+Remove friction before the
+sales call.
+
+Start the right conversation.
+
+List connectors:
+Microsoft 365
+Microsoft Copiot
+ChatGPT
+Claude
+Etc.
+Same Graph, same data, same
+auditability, whichever way the
+customer deploys.
+Short FAQ on seats versus
+custom scope, security review,
+implementation, and starting on
+one path then expanding.
+Talk about Platform access, a
+custom integration, or both.
+
+Solutions Customers
+Solutions Customers overview /solutionscustomers (optional router)
+Section
+1. Hero
+
+Goal / narrative job
+Concept
+Help each buyer see their own The same platform, framed
+outcome, not a generic
+around how hedge funds,
+solutions bucket.
+financial institutions, wealth
+teams, and asset managers
+Highlight the breadth of firm / actually work.
+institution types we cover
+across:
+1.​ Hedge Funds (#1)
+2.​ Financial Institutions
+(#2)
+3.​ Asset Managers (#3)
+4.​ Wealth Managers (#4)
+
+2. Audience grid
+
+Fast routing with Hedge Funds Four cards with one outcome
+first.
+line each. Visual priority on
+Hedge Funds.
+
+3. Testimonials
+3. Case Studies
+
+Customer quotes
+Customers can click into most
+relevant case studies (this may
+have to come after we’ve built
+out our library, but can build a
+placeholder component).
+Convert into a demo or
+partnerships discussion
+
+CTA
+
+Hedge Funds (priority) /solutions/hedge-funds
+Section
+1. Hero
+
+2. Workflows
+
+3. Why this audience
+
+Goal / narrative job
+Concept
+Speak to idea generation, book Find differentiated ideas, watch
+monitoring, and conviction.
+the book, and pressure-test
+hypotheses with cited,
+code-backed work.
+Map platform capabilities onto Deep research. Portfolio and
+the hedge-fund day.
+catalyst monitoring. Always-on
+earnings intelligence. Scenario
+and stress testing.
+Make the competitive contrast Retrieval tools synthesize what
+
+Section
+
+Goal / narrative job
+specific.
+
+4. Proof + CTA
+
+Convert into a live book
+walkthrough.
+
+Concept
+has been published. Reflexivity
+shows how a development
+connects across the book and
+what to do about it.
+Preferred founder quote on
+knock-on effects and citations.
+Run this against your coverage
+universe.
+
+Financial Institutions /solutions/financial-institutions
+Section
+1. Hero
+
+2. Workflows
+
+Goal / narrative job
+Speak to banks, brokerages,
+and platforms that want to
+embed intelligence, not only
+buy seats.
+Lead with the Build door.
+
+3. Why this audience
+
+Validate with the partner
+pattern.
+
+4. Proof + CTA
+
+Open a partnership or
+integration conversation.
+
+Concept
+Add Reflexivity's relationship
+layer, analyst, and insights to
+products and workflows you
+already distribute.
+White-label and embedded
+experiences. API and MCP into
+internal platforms. Knowledge
+Graph feeds for baskets and
+research.
+Institutions already present
+Reflexivity intelligence as native
+functionality. The page should
+feel like infrastructure, not
+another research terminal.
+Talk about embedding the
+Graph, Alfred, or Insights.
+
+Wealth Managers & RIAs /solutions/wealth-managers
+Section
+1. Hero
+
+2. Workflows
+
+3. Why this audience
+
+4. Proof + CTA
+
+Goal / narrative job
+Sell institutional-quality
+answers without a dedicated
+research desk.
+Map the advisor day.
+
+Contrast with terminals they
+cannot scale and general AI
+they cannot send to a client.
+Convert into a
+
+Concept
+Client-ready explanations tied
+to holdings, in language an
+advisor can use the same day.
+Source-backed answers to
+client questions. Portfolio
+implications. Holdings
+monitoring. Narratives and
+talking points for meetings.
+The output has to be cited,
+holdings-aware, and polished
+enough to leave the building.
+Preferred wealth-manager
+
+Section
+
+Goal / narrative job
+client-conversation demo.
+
+Concept
+quote on institutional-quality
+research in minutes. Try this on
+a household or model book.
+
+Asset Managers /solutions/asset-managers
+Section
+1. Hero
+
+2. Workflows
+
+3. Why this audience
+
+4. Proof + CTA
+
+Goal / narrative job
+Concept
+Sell an end-to-end investment Connect research, construction,
+workflow, not a single feature. exposure, monitoring, and
+committee narrative in one
+environment.
+Cover the institutional AM day. Fund and security research.
+Portfolio construction and
+explanation. Exposure and
+scenario analysis. Attribution
+and IC narratives.
+Emphasize governance as well Outputs need to be explainable
+as speed.
+to a committee, refreshable
+through time, and consistent
+across the team.
+Convert into a process-level
+Bring a sleeve, theme, or
+demo.
+committee pack and see the
+workflow end to end.
+
+Resources
+Blog / Articles /blog, /blog/[slug]
+Section
+Hub
+
+Goal / narrative job
+Support lead generation and
+expertise without becoming a
+generic magazine.
+
+Article template
+
+Make every piece feel like
+Reflexivity, not a wire rewrite.
+
+Concept
+A curated list across market
+insight, product education, and
+company thinking. Quality over
+cadence.
+Clear title, short lede, sourced
+argument, and a relevant
+product or demo CTA at the
+end.
+
+Customer Stories /customer-stories, /customer-stories/[slug]
+Section
+Hub
+
+Goal / narrative job
+Prove institutional use across
+
+Concept
+A small set of named stories,
+
+Section
+
+Story template
+
+Goal / narrative job
+both doors — seats and
+embedded or feed.
+Show a before, a deployment
+choice, and a result.
+
+Concept
+not a wall of anonymous blurbs.
+Who the customer is, what job
+they needed done, whether
+they used Platform or Build,
+and what changed.
+
+News & Press /news
+Section
+Page
+
+Goal / narrative job
+Concept
+Give journalists and prospects Company announcements and
+a single official feed.
+reputable coverage. Keep it
+short.
+
+Newsletter /newsletter
+Section
+Page
+
+Goal / narrative job
+Concept
+Capture permission for ongoing A simple subscribe module
+contact.
+promising market and product
+intelligence, not a blast.
+
+Company
+About /about
+Section
+1. Hero
+
+2. Team
+
+3. What we believe
+
+Goal / narrative job
+Concept
+Explain why this team is
+Built by operators from
+qualified to build an investment Duquesne, Brevan Howard,
+research platform.
+Fortress, and Kensho. Jan's
+line: the market platform he
+wished he had managing a
+$15B global macro book.
+Make the institutional founding Short bios for CEO, President,
+story scannable.
+CTO, CPO, CSO. Offices: New
+York, London, Tokyo.
+Restate the category without
+Models will keep improving.
+repeating the homepage
+The durable work is the data,
+feature list.
+the Graph, the monitoring, and
+the audit trail around them.
+
+Careers /careers
+Section
+Page
+
+Goal / narrative job
+Attract people who want to
+build institutional market
+infrastructure.
+
+Concept
+Short culture statement, open
+roles, and a clear apply path.
+
+Goal / narrative job
+Catch partnership and sales
+inbound that does not belong
+on Book a Demo.
+
+Concept
+Form plus
+partnerships@reflexivity.com.
+Route product interest to demo.
+
+Contact /contact
+Section
+Page
+
+Conversion + Footer
+Book a Demo /book-a-demo
+Section
+Page
+
+Goal / narrative job
+Convert qualified interest
+against the visitor's own work,
+not a canned tour.
+
+Concept
+Headline: trial Reflexivity
+against your portfolio, watchlist,
+or research workflow. Short
+form. Promise a walkthrough
+tailored to their process.
+
+Demo confirmation /thank-you
+Section
+Page
+
+Goal / narrative job
+Concept
+Confirm the meeting and keep What happens next, who they
+momentum.
+will meet, optional links to
+Platform or Knowledge Graph
+while they wait.
+
+Log in app subdomain
+Section
+Utility
+
+Goal / narrative job
+Get existing users out of the
+marketing site.
+
+Help Center footer / external
+
+Concept
+Text link in header and footer.
+Not a marketing page.
+
+Section
+Utility
+
+Goal / narrative job
+Support customers without
+putting Help in primary
+navigation.
+
+Concept
+External destination from the
+footer only.
+
+Goal / narrative job
+Complete the site for legal,
+support, and secondary
+navigation without competing
+with lead-gen in the header.
+
+Concept
+Five groups: Product,
+Company, Resources, Legal,
+Utilities. Legal includes Privacy,
+Terms, Data notices, and
+Cookie settings.
+
+Footer global component
+Section
+Component
+
+*** See latest examples / direction HERE. ***
+Screenshots also uploaded here.
+
+—--
+
+Alfred Product Page
+Sample prompts:
+Map AAPL's full ecosystem (suppliers, customers, competitors, partners) and surface the non-obvious names with hidden
+exposure. / Shorter version: Map AAPL's ecosystem and find the hidden beneficiaries.
+What changed in NFLX management's tone relative to prior 4 earnings calls, and what does it signal?
+Stress-test my thesis: what breaks it, and what should I watch?
+Sample ‘alerts’:
+
+Example of insight generated from an alert (one layer deeper) - the thing to emphasize here is the 5 takeaways:
+
+Knowledge Graph Product Page
+Event to ripple effects examples x 2
+Goal: Demonstrate why relationship intelligence matters
+One worked example: what happened, why it matters, what else is affected and the investment implication
+Alex working on a simplified version
+
+Insights Product Page Examples
+Example of Insight anatomy.
+Market Catalyst: AI data center power buildout accelerates
+https://app.reflexivity.com/kg-insight?insightId=185f467b-f177-4798-96cb-fa5da8eee9b1
+Company Catalyst: Sanofi settles Regeneron dispute in expanded antibody pact
+https://app.reflexivity.com/kg-insight?insightId=4f6f9a81-daf6-4e67-ba80-7ad0bf00423d
+Earnings Insight (Recap): Guidance overshadowed a mixed Nike quarter
+https://app.reflexivity.com/kg-insight?insightId=a0d9f5b5-4edd-4aa9-883e-1d3aeb507646&activeDrawerTab=earnings_recap
+Scenario Insight: Eli Lilly, recession probability at a new low
+https://app.reflexivity.com/?activeDrawer=insights&entityTag=lly_nyse&activeInsight=5041c67d-3b8e-43d9-ac6d-3a763d40e72e
+
+Portfolio Monitoring Use Case Page Example
+Visual examples of:
+-​ Alfred daily watchlist summary sent via email (image uploaded here)
+
+-​
+
+Alfred Dashboard (this is what you see when you open Alfred - ‘Start your research here’): (image uploaded here)
+
+-​
+
+Insights alerts pushed to users depending on their watchlist - see breadth of types (these are also found in the insights tab)
+
+-​
+
+Company Catalyst worked example - something that’s moved: CoreWeave rolls out Nvidia Vera Rubin with Cognition live
+-​ Full Catalyst: ​https://app.reflexivity.com/kg-insight?insightId=1b11a9fd-b554-486a-9f5a-7efe331c1243
+-​ Ripple effects:
+
+-​
+
+-​
+
+Thematic Exposure
+Goal: Prove the potential blind spots with a theme everyone thinks they know. << this is hard. Instead, we can try to show how the
+Knowledge Graph maps a range of hidden correlations between data points / categories without getting TOO specific.
+
+Example of a thematic overview / highlight exposures that may be a surprise.
+-​ Theme Overview: Industrial Automation: https://app.reflexivity.com/theme/6e2abfdd-ac76-4aba-8cc8-239623d28db3
+
+-​
+
+-​
+
+Scenario Analysis Use Case Page
+Goal: Example of a scenario someone would actually run. Also more examples on our existing webpage here.
+Scenario analysis on all S&P 1500 stocks about what happens when 10y US Treasury bonds fall sharply (= rates rise by 0.5% in
+3M). Images here.
+
+Overview of how often it happened and the performance of the securities Images here.
+
+Deep Research
+Example: https://app.reflexivity.com/alfred?mode=research&conversationId=2698dee9-638c-4d66-a9cd-8f6609150f19&scrollTo=top
+Prompt:
+I'm long Amazon after the late-September selloff. My thesis: AWS growth re-accelerates on AI demand and retail margins keep
+expanding, so the selloff is an overreaction.
+Pressure-test this thesis:
+●​ What the market is pricing in now, and how far that is from my view.
+●​ The three strongest arguments against my thesis, with evidence.
+●​ What breaks it: the specific data points or events that would prove me wrong, and when they land.
+●​ Valuation: what I have to believe for the stock to work from here.
+●​ Second-order risk: which suppliers, customers or competitors would signal trouble first.
+
+●​ Verdict: does the thesis hold, weaken or break?
+Cite a source for every number and flag where data is unavailable.
+Output:
+
+https://app.reflexivity.com/alfred?mode=research&conversationId=2698dee9-638c-4d66-a9cd-8f6609150f19&scrollTo=top
+
+CUSTOMERS / PARTNERS
+Purpose: logos reel on the new website. “Trusted by…”
+Name
+
+Tier
+
+Notes/Context
+
+LSEG
+
+Tier 1
+
+​
+
+Interactive Brokers
+
+Tier 1
+
+​
+
+JP Morgan (?)
+
+Tier 1
+
+Lombard Odier
+
+Tier 1
+
+​
+
+Mubadala
+
+Tier 1
+
+​
+
+Sun Life Financial
+
+Tier 2
+
+​
+
+CastleHook
+
+Tier 2
+
+QUICK
+
+Tier 2
+
+​
+
+Wood and Co
+
+Tier 2
+
+​
+
+Need to verify first
+
+Need to ask
+
+Okay to use
+
+​
+
+​
+
+​
+​
+INVESTORS
+Purpose: logos reel on ‘About’ page or otherwise on the new website. “Supported by world-class investors…”
+Name
+LSEG
+
+Tier
+
+Notes/Context
+
+Okay to use
+​
+
+SoftBank
+
+​
+
+Greycroft
+
+​
+
+Rose Park Advisors
+
+​
+
+General Catalyst
+
+​
+
+QUICK
+
+​
+
+MUFG
+
+​
+
+Interactive Brokers
+
+​
+
+Stanley Druckenmiller
+
+​
+
+Approved testimonials:
+“Reflexivity has become an indispensable daily tool for the modern portfolio manager. Pairing ever-improving LLMs with best-in-class
+LSEG data, it makes idea generation, backtesting, risk management and trade construction seamless.”
+- Will Steffe, Annapurna Global Macro
+"Reflexivity tells me what's about to matter across my book, not just what already happened. It flags the knock-on effects of an event
+the moment they emerge, with citations on every claim so I can check the read and move on it fast."
+- Adam Till, Founder, MainSail Fund
+
+Customer story
+Example draft (NOT approved for distribution):
+https://docs.google.com/document/d/1DoHvF6bNcu9bLGpZel3AZQtxLips2PfHqAe3BOlXHnU/edit?tab=t.0
+Inspiration: https://rogo.com/customers/baird-investment-banking
+
+Report to consider:
+GLP-1 Theme Observatory: https://reflexivity.com/en/theme-observatory/glp-1 - note: this is
+less of a blog, and more of a report. Can we use the blog format/template and them insert the
+html?
+Blogs to add (not already in Framer)
+linkedin.com/pulse/most-sophisticated-investors-world-just-told-you-whats-jan-szilagyi-y1jac/?lip
+i=urn%3Ali%3Apage%3Ad_flagship3_profile_creator_profile_all_content_view%3BcE3MBlpJRZ
+ejds737GGP%2Fg%3D%3D
+
+News to add (not already in Framer)
+https://www.cnbc.com/video/2026/09/16/ai-leaders-push-for-faster-development-while-keeping-g
+uardrails-in-place.html
+https://www.bloomberg.com/news/articles/2026-09-13/us-stock-futures-fall-on-ai-warning-oil-gai
+ns-markets-wrap
+https://www.cnbc.com/video/2026/08/06/confidence-in-cruise-and-travel-sector-appears-very-str
+ong-says-reflexivity-ceo-jan-szilagyi.html
+https://www.barrons.com/articles/moonshot-ai-alibaba-tech-stocks-189f80f2
+https://www.reuters.com/world/asia-pacific/asian-tech-firms-seeking-follow-sk-hynix-may-find-for
+eign-investors-more-2026-07-13/
+https://www.bloomberg.com/news/articles/2026-06-30/trump-tariff-defeat-is-market-tailwind-no-o
+ne-is-talking-about
+
+Feedback
+Archive
+10/28
+-​ We’re missing the Platform inventory page. Not essential for launch but lmk what you think.
+
+Requests
+Status
+
+Request
+
+Details
+
+​
+
+Add logos to news inventory
+
+Not the most pressing thing, but it would be great to be able to show a logo of the
+news sources (we have a lot of good placements, but it kinda falls flat without the
+CNBC / Bloomberg logos).
+
+​
+
+Install Hubspot Tracking Code
+
+Instructions
+<!-- Start of HubSpot Embed Code -->
+<script type="text/javascript" id="hs-script-loader" async defer
+src="//js.hs-scripts.com/6546779.js"></script>
+<!-- End of HubSpot Embed Code -->
+(Internal reference link - for Alex)
+
+​
+
+Set up GA4
+
+​
+
+Add newer content pieces to Resources
+
+​
+
+Brand Kit for Hubspot (once we are final
+here)
+
+(couple news articles/blogs, and a report) that we'll need to get on the current
+website.
+https://docs.google.com/document/d/1qho1463MeD9Oq3pWoNg2otABbVc1_h3Hl
+P0pSysilSk/edit?tab=t.tm23wl5zfumv
+​ Any logos in SVG or PNG would be great.
+​ Hex codes for brand colors
+
+​ Font names and weights used for headings and body (if they are
+custom, let me know and I can get you better instructions)
+​ If you have it - Brand guidelines doc as a reference for tone, spacing,
+and button styles
+​
+
+​
+
+Brand / Press Kit for Series C
+Announcement
+
+​ Social icon/logo
+​ Social background banner
+​ Social posts (Alex to provide structure direction / content needs)
+​ Landing page
+​ Website banner with link to landing page
+
+Documentation
+Hubspot Form Embed Code (Main Lead Form)
+Coming
+Hubspot Form Embed Code (Lead Gen Landing Pages)
+Coming
+Hubspot Newsletter Sign-up Embed Code
+Coming
+
+
