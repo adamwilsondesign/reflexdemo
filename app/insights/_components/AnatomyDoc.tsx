@@ -101,13 +101,17 @@ export function AnatomyDoc({ step }: { step: number }) {
                 </li>
               ))}
             </ul>
+            <p className="mt-2 text-[12px] text-[#8f8f8f]">Exposure: US 62%, Europe 21%, Asia 17%</p>
           </div>
 
           {/* Ask Alfred */}
           <div ref={(el) => { refs.current[3] = el; }} className={clsx("mt-5 border-t border-black/10 pt-4", sec(3))}>
             <CardHeader title="Ask Alfred" />
             <p className="mt-3 rounded-[10px] bg-[#f9f9f9] px-3 py-2 text-[13px] text-[#0d0d0d]">Which of these names has the most exposure to US grid interconnect delays?</p>
-            <p className="mt-2 text-[13px] text-[#8f8f8f]">Compare utility capex plans for 2026 →</p>
+            <ul className="mt-2 divide-y divide-black/10 text-[13px] text-[#5d5d5d]">
+              <li className="py-1.5">Compare utility capex plans for 2026 →</li>
+              <li className="py-1.5">Summarize regional exposure for the cohort →</li>
+            </ul>
             <div className="h-6" />
           </div>
         </motion.div>

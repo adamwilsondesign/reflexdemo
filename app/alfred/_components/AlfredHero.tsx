@@ -122,7 +122,7 @@ export function AlfredHero() {
                 className="ui-card p-4"
               >
                 <p className="text-[13px] text-[#8f8f8f]">Analysis complete</p>
-                <p className="mt-1 text-[24px] font-semibold leading-tight text-[#0d0d0d]">{p.result}</p>
+                <p className="mt-1 text-[20px] font-semibold leading-tight text-[#0d0d0d] sm:text-[24px]">{p.result}</p>
                 <p className="mt-2 text-[13px] text-[#5d5d5d]">{p.tags.join(" · ")}</p>
               </motion.div>
             )}
