@@ -78,8 +78,8 @@ export function DemoForm({ className }: { className?: string }) {
     if (want.length) setV((s) => ({ ...s, interests: Array.from(new Set([...s.interests, ...want])) }));
   }, []);
 
-  const scrollToForm = () => {
-    const el = formRef.current;
+  const scrollToForm = (target?: HTMLElement | null) => {
+    const el = target ?? formRef.current;
     if (!el) return;
     const top = el.getBoundingClientRect().top;
     const header = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-h")) || 104;
@@ -94,7 +94,9 @@ export function DemoForm({ className }: { className?: string }) {
     const onExample = (e: Event) => {
       const text = (e as CustomEvent<string>).detail;
       setV((s) => ({ ...s, notes: text }));
-      scrollToForm();
+      // Small screens: bring the question field itself into view; desktop: the top of the form.
+      const small = window.innerWidth < 1024;
+      scrollToForm(small ? (notesRef.current?.parentElement ?? null) : null);
       window.setTimeout(() => notesRef.current?.focus({ preventScroll: true }), reduce ? 0 : 700);
     };
     window.addEventListener(DEMO_EXAMPLE_EVENT, onExample);

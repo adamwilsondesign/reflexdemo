@@ -106,11 +106,11 @@ export default function ScenarioStressTestingPage() {
                 <CodeBlock
                   lines={[
                     `<span style="color:#8fa3b6">episodes</span> = find_episodes(<span style="color:#d5e0da">"US10Y"</span>, rise=0.5, window=<span style="color:#d5e0da">"3M"</span>)`,
-                    `<span style="color:#8fa3b6">fwd</span> = forward_returns(sp1500, episodes, [<span style="color:#d5e0da">"1W","1M","3M","6M","1Y"</span>])`,
+                    `<span style="color:#8fa3b6">fwd</span> = forward_returns(sp1500, episodes, horizons)`,
                     `<span style="color:#8fa3b6">summary</span> = fwd.median(by=<span style="color:#d5e0da">"sector"</span>)  <span style="color:#7d978c"># 23 episodes</span>`,
                   ]}
                 />
-                <MissingData label="Pre-listing history, 212 stocks" reason="Excluded from earlier episodes" />
+                <MissingData label="Pre-listing history, 212 stocks" reason="Excluded pre-listing" />
                 <div className="flex items-center justify-between rounded-lg bg-white/90 px-3 py-2.5">
                   <span className="font-display text-[12.5px] font-medium text-ink">Re-run on latest data</span>
                   <span className="font-mono text-[10px] uppercase text-ink/45">Same code · new inputs</span>

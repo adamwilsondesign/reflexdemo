@@ -139,24 +139,8 @@ export default function ContactPage() {
               title="Tell us what you need."
               lead="Pick a topic and we’ll route your note to the right team. Product interest is fastest through a demo request."
             />
-            <Reveal delay={0.2}>
-              <div className="mt-12 border-t border-ink/12 pt-8">
-                <p className="t-ui text-ink/50">Offices</p>
-                <ul className="mt-4 space-y-3">
-                  {OFFICES.map((o) => (
-                    <li key={o} className="flex items-center justify-between border-b border-ink/8 pb-3">
-                      <span className="font-display text-[20px] font-semibold tracking-[-0.01em]">{o}</span>
-                      <span className="h-1.5 w-1.5 rounded-full bg-lake-500" aria-hidden="true" />
-                    </li>
-                  ))}
-                </ul>
-                <p className="t-small mt-6 text-ink/55">
-                  Partnerships:{" "}
-                  <a href="mailto:partnerships@reflexivity.com" className="link-underline text-ink">
-                    partnerships@reflexivity.com
-                  </a>
-                </p>
-              </div>
+            <Reveal delay={0.2} className="hidden lg:block">
+              <OfficeList />
             </Reveal>
           </div>
           <Reveal className="lg:col-span-8" delay={0.1}>
@@ -164,6 +148,9 @@ export default function ContactPage() {
               <ContactForm />
             </Suspense>
           </Reveal>
+          <div className="lg:hidden">
+            <OfficeList />
+          </div>
         </div>
       </Section>
 
@@ -174,5 +161,27 @@ export default function ContactPage() {
         cta="contact-final"
       />
     </>
+  );
+}
+
+function OfficeList() {
+  return (
+    <div className="border-t border-ink/12 pt-8 lg:mt-12">
+      <p className="t-ui text-ink/50">Offices</p>
+      <ul className="mt-4 space-y-3">
+        {OFFICES.map((o) => (
+          <li key={o} className="flex items-center justify-between border-b border-ink/8 pb-3">
+            <span className="font-display text-[20px] font-semibold tracking-[-0.01em]">{o}</span>
+            <span className="h-1.5 w-1.5 rounded-full bg-lake-500" aria-hidden="true" />
+          </li>
+        ))}
+      </ul>
+      <p className="t-small mt-6 text-ink/55">
+        Partnerships:{" "}
+        <a href="mailto:partnerships@reflexivity.com" className="link-underline text-ink">
+          partnerships@reflexivity.com
+        </a>
+      </p>
+    </div>
   );
 }

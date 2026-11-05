@@ -9,7 +9,7 @@ const W = 400;
 const H = 200;
 const ORIGIN = 92; // y of 0% line
 const TICKS = [
-  { x: 0, l: "Event" },
+  { x: 0, l: "0" },
   { x: 0.07, l: "1W" },
   { x: 0.2, l: "1M" },
   { x: 0.42, l: "3M" },

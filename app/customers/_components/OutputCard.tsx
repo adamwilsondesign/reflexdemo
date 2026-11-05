@@ -27,26 +27,31 @@ export function OutputCard({ spec }: { spec: OutputSpec }) {
   return (
     <Stage field={spec.field ?? "lake"} className="flex h-full w-full flex-col justify-center p-3 sm:p-8" parallax={false}>
       <div className="mx-auto w-full max-w-[520px]">
-        <motion.div {...f(0.05)} className="ui-card p-4 sm:p-5">
-          <CardHeader trail={spec.trail} right={<Pill tone="lake">Illustrative</Pill>} />
-          <p className="mt-3.5 font-display text-[14.5px] font-medium leading-snug text-ink sm:text-[16px]">{spec.prompt}</p>
+        <motion.div {...f(0.05)} className="ui-card p-3 sm:p-5">
+          <div className="hidden sm:block">
+            <CardHeader trail={spec.trail} right={<Pill tone="lake">Illustrative</Pill>} />
+          </div>
+          <p className="t-ui mb-1.5 text-[10px] text-ink/45 sm:hidden">{spec.trail.join(" / ")} · Illustrative</p>
+          <p className="font-display text-[13.5px] font-medium leading-snug text-ink sm:mt-3.5 sm:text-[16px]">{spec.prompt}</p>
         </motion.div>
-        <motion.div {...f(0.25)} className="ui-card mt-2.5 p-4 sm:p-5">
-          <ul className="space-y-2">
+        <motion.div {...f(0.25)} className="ui-card mt-2 p-3 sm:mt-2.5 sm:p-5">
+          <ul className="space-y-1.5 sm:space-y-2">
             {spec.lines.map((l, i) => (
               <motion.li
                 key={l.text}
                 {...f(0.45 + i * 0.18)}
-                className="flex items-start justify-between gap-3 border-b border-ink/6 pb-2 text-[12.5px] leading-snug text-ink/80 last:border-0 last:pb-0 sm:text-[13px]"
+                className="flex items-start justify-between gap-3 border-b border-ink/6 pb-2 text-[12px] leading-snug text-ink/80 last:border-0 last:pb-0 sm:text-[13px]"
               >
                 <span>
                   {l.text}
                   {l.cite && <Cite n={l.cite} />}
                 </span>
                 {l.tag && (
-                  <Pill tone={l.tone ?? "neutral"} className="shrink-0 !py-0.5 !text-[9.5px]">
-                    {l.tag}
-                  </Pill>
+                  <span className="hidden shrink-0 sm:inline-flex">
+                    <Pill tone={l.tone ?? "neutral"} className="!py-0.5 !text-[9.5px]">
+                      {l.tag}
+                    </Pill>
+                  </span>
                 )}
               </motion.li>
             ))}
@@ -62,7 +67,7 @@ export function OutputCard({ spec }: { spec: OutputSpec }) {
             </motion.div>
           )}
         </motion.div>
-        <motion.p {...f(1.1)} className={clsx("t-ui mt-3 flex items-center gap-2", spec.field === "mist" ? "text-ink/55" : "text-white/75")}>
+        <motion.p {...f(1.1)} className={clsx("t-ui mt-3 hidden items-center gap-2 sm:flex", spec.field === "mist" ? "text-ink/55" : "text-white/75")}>
           <span className="h-1.5 w-1.5 rounded-full bg-current" />
           Output · {spec.output}
         </motion.p>

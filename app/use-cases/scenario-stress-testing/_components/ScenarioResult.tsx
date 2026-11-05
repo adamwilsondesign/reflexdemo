@@ -174,7 +174,7 @@ export function ScenarioResult() {
               </div>
             </div>
             <div className="flex flex-col justify-between gap-3">
-              <MissingData label="Pre-listing history, 212 stocks" reason="Excluded from earlier episodes" />
+              <MissingData label="Pre-listing history, 212 stocks" reason="Excluded pre-listing" />
               <div className="flex items-center justify-between rounded-lg border border-ink/10 px-3 py-2.5">
                 <span className="text-[12.5px] text-ink/70">Re-run on the latest data</span>
                 <Pill tone="lake">Re-runnable</Pill>

@@ -8,11 +8,11 @@ import { Stage } from "@/components/product/ui";
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 const LANES = [
-  { k: "Sales", to: "Demo team" },
-  { k: "Partnerships", to: "Partnerships" },
-  { k: "Support", to: "Help Center" },
-  { k: "Press", to: "Communications" },
-  { k: "Security", to: "Security review" },
+  { k: "Sales", s: "Sales", to: "Demo team" },
+  { k: "Partnerships", s: "Partner", to: "Partnerships" },
+  { k: "Support", s: "Support", to: "Help Center" },
+  { k: "Press", s: "Press", to: "Communications" },
+  { k: "Security", s: "Security", to: "Security review" },
 ] as const;
 
 const MESSAGES = [
@@ -91,7 +91,7 @@ export function RouteVisual() {
           })}
         </svg>
 
-        <ul className="grid grid-cols-5 gap-1.5">
+        <ul className="grid grid-cols-5 gap-1 sm:gap-1.5">
           {LANES.map((l, k) => {
             const on = routed && k === m.lane;
             return (
@@ -102,7 +102,10 @@ export function RouteVisual() {
                   on ? "border-white bg-white text-ink shadow-[0_10px_30px_-10px_rgb(0_0_0/0.5)]" : "border-white/20 bg-white/[0.06] text-white/75",
                 )}
               >
-                <span className="block font-display text-[10.5px] font-semibold leading-tight sm:text-[12.5px]">{l.k}</span>
+                <span className="block font-display text-[10px] font-semibold leading-tight sm:text-[12.5px]">
+                  <span className="sm:hidden">{l.s}</span>
+                  <span className="hidden sm:inline">{l.k}</span>
+                </span>
                 <span className={clsx("mt-1 hidden font-mono text-[9px] uppercase tracking-[0.04em] sm:block", on ? "text-ink/50" : "text-white/45")}>{l.to}</span>
               </li>
             );
