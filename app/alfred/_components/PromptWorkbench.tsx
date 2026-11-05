@@ -3,7 +3,7 @@
 import { AnimatePresence, motion, useInView, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
-import { CardHeader, Pill, StepList, useTypewriter } from "@/components/product/ui";
+import { CardHeader, Cite, StepList, useTypewriter } from "@/components/product/ui";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -89,10 +89,10 @@ export function PromptWorkbench() {
                 onClick={() => setActive(k)}
                 className={clsx(
                   "group block w-full rounded-[12px] border p-4 text-left transition-[border-color,background-color,box-shadow] duration-500 md:p-5",
-                  on ? "border-ink/20 bg-white shadow-[0_12px_30px_-18px_rgb(23_25_28/0.35)]" : "border-ink/10 bg-transparent hover:border-ink/20 hover:bg-white/50",
+                  on ? "border-ink/20 bg-white" : "border-ink/10 bg-transparent hover:border-ink/20 hover:bg-white/50",
                 )}
               >
-                <span className={clsx("t-ui block", on ? "text-lake-700" : "text-ink/45")}>{q.task}</span>
+                <span className={clsx("t-ui block", on ? "text-ink/70" : "text-ink/45")}>{q.task}</span>
                 <span className={clsx("mt-2 block font-display text-[17px] font-medium leading-snug transition-opacity", on ? "text-ink" : "text-ink/60")}>{q.short}</span>
               </button>
             );
@@ -106,50 +106,48 @@ export function PromptWorkbench() {
       <div className="lg:col-span-7" role="tabpanel" aria-label={p.short}>
         <div className="grain field-mist relative isolate overflow-hidden rounded-[18px] p-4 sm:p-7">
           <div className="pointer-events-none absolute inset-0 -z-10 bg-chart opacity-60" />
-          <div className="ui-card p-4 sm:p-5">
-            <CardHeader trail={p.trail} right={<Pill tone="lake">On-demand</Pill>} />
-            <p className="mt-4 min-h-[4em] font-display text-[15px] font-medium leading-snug text-ink sm:min-h-[2.8em] sm:text-[16.5px]">
-              {typed}
-              {!typedDone && <span className="animate-blink ml-0.5 inline-block h-[1em] w-[2px] translate-y-[2px] bg-lake-700" />}
-            </p>
-          </div>
-
-          <div className="mt-3 grid gap-3 sm:grid-cols-5">
-            <div className="ui-card p-4 sm:col-span-2">
-              <p className="t-ui text-ink/45">Workflow</p>
-              <StepList className="mt-3" steps={p.steps} active={Math.min(step - 1, total)} />
-              <p className="mt-4 border-t border-ink/8 pt-3 font-mono text-[10px] uppercase tracking-[0.05em] text-ink/45">
-                {showResult ? "Ready for your review" : step > 0 ? "Working…" : "Queued"}
+          <div className="pui">
+            <div className="ui-card p-4">
+              <CardHeader trail={p.trail.slice(-1)} />
+              <p className="mt-3 min-h-[4.4em] text-[15px] leading-[1.45] text-[#0d0d0d] sm:min-h-[2.9em] sm:text-[16px]">
+                {typed}
+                {!typedDone && <span className="animate-blink ml-0.5 inline-block h-[1em] w-px translate-y-[2px] bg-[#0d0d0d]" />}
               </p>
             </div>
-            <div className="relative min-h-[220px] sm:col-span-3">
-              <AnimatePresence mode="wait">
-                {showResult ? (
-                  <motion.div key={"r" + active} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.6, ease: EASE }} className="ui-card h-full p-4">
-                    <p className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.06em] text-lake-700">
-                      <span className="h-1.5 w-1.5 rounded-full bg-lake-700" /> Result
-                    </p>
-                    <p className="mt-2 font-display text-[20px] font-semibold leading-tight text-ink">{p.result}</p>
-                    <ul className="mt-3 space-y-1.5">
-                      {p.rows.map(([a, b, c], k) => (
-                        <motion.li key={a} initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.15 + k * 0.1, duration: 0.5 }} className="flex items-center gap-3 rounded-md bg-ink/[0.035] px-2.5 py-2">
-                          <span className="min-w-0 flex-1">
-                            <span className="block truncate font-display text-[13px] font-semibold text-ink">{a}<sup className="ml-0.5 font-mono text-[9px] text-lake-700">{k + 1}</sup></span>
-                            <span className="block truncate text-[11px] text-ink/55">{b}</span>
-                          </span>
-                          <span className="shrink-0 font-mono text-[9.5px] uppercase tracking-[0.05em] text-ink/45">{c}</span>
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                ) : (
-                  <motion.div key={"w" + active} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex h-full flex-col gap-2 rounded-[12px] border border-dashed border-ink/15 p-4">
-                    {[0, 1, 2, 3].map((k) => (
-                      <span key={k} className="shimmer h-3 rounded-full bg-ink/[0.06]" style={{ width: `${90 - k * 14}%` }} />
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
+
+            <div className="mt-3 grid gap-3 sm:grid-cols-5">
+              <div className="ui-card p-4 sm:col-span-2">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-[14px] font-semibold">Workflow</span>
+                  <span className="text-[12px] text-[#8f8f8f]">{showResult ? "Done" : step > 0 ? "Working" : "Queued"}</span>
+                </div>
+                <StepList className="mt-3" steps={p.steps} active={Math.min(step - 1, total)} />
+              </div>
+              <div className="relative min-h-[200px] sm:col-span-3">
+                <AnimatePresence mode="wait">
+                  {showResult ? (
+                    <motion.div key={"r" + active} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.6, ease: EASE }} className="ui-card h-full p-4">
+                      <p className="text-[13px] text-[#8f8f8f]">Result</p>
+                      <p className="mt-1 text-[20px] font-semibold leading-tight text-[#0d0d0d]">{p.result}</p>
+                      <ul className="mt-3 divide-y divide-black/10 border-t border-black/10">
+                        {p.rows.map(([a, b, c], k) => (
+                          <motion.li key={a} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 + k * 0.1, duration: 0.5 }} className="flex items-baseline gap-3 py-2">
+                            <span className="min-w-0 flex-1">
+                              <span className="block truncate text-[13px] font-medium text-[#0d0d0d]">{a}<Cite n={k + 1} /></span>
+                              <span className="block truncate text-[12px] text-[#8f8f8f]">{b}</span>
+                            </span>
+                            <span className="shrink-0 text-[12px] text-[#5d5d5d]">{c}</span>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  ) : (
+                    <motion.div key={"w" + active} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="ui-card flex h-full items-center justify-center p-4">
+                      <span className="text-[13px] text-[#8f8f8f]">{step > 0 ? "Working…" : "Waiting for the question"}</span>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
           </div>
         </div>

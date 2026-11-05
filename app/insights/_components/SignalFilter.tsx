@@ -26,10 +26,10 @@ export function SignalFilter({ className }: { className?: string }) {
   const rowH = 58;
 
   return (
-    <div ref={ref} className={clsx("relative overflow-hidden rounded-[18px] border border-white/10 bg-[#1d2a3a]", className)}>
-      <div className="flex items-center justify-between border-b border-white/10 px-5 py-3.5">
-        <span className="t-ui text-[10.5px] text-paper/60">Market developments</span>
-        <span className="t-ui hidden text-[10.5px] text-paper/60 sm:inline">Relevance to your coverage</span>
+    <div ref={ref} className={clsx("pui ui-card relative overflow-hidden", className)}>
+      <div className="flex items-center justify-between border-b border-black/10 px-4 py-3">
+        <span className="text-[14px] font-semibold">Market developments</span>
+        <span className="hidden text-[12px] text-[#8f8f8f] sm:inline">Relevance to your coverage</span>
       </div>
       <div className="relative h-[380px] overflow-hidden mask-fade-b sm:h-[420px]">
         <motion.ul
@@ -42,25 +42,25 @@ export function SignalFilter({ className }: { className?: string }) {
               key={i}
               aria-hidden={i >= ROWS.length ? true : undefined}
               style={{ height: rowH }}
-              className={clsx("flex items-center gap-3 border-b px-5", r.hit ? "border-white/10" : "border-white/[0.05]")}
+              className="flex items-center gap-3 border-b border-black/10 px-4"
             >
-              <span className={clsx("h-1.5 w-1.5 shrink-0 rounded-full", r.hit ? "bg-pine-300" : "bg-white/20")} />
+              <span className={clsx("h-1.5 w-1.5 shrink-0 rounded-full", r.hit ? "bg-[#0d0d0d]" : "bg-transparent")} />
               <span className="min-w-0 flex-1">
-                <span className={clsx("block truncate text-[13px]", r.hit ? "font-medium text-paper" : "text-paper/35")}>{r.h}</span>
-                <span className="block font-mono text-[9.5px] uppercase tracking-[0.05em] text-paper/30">{r.src}</span>
+                <span className={clsx("block truncate text-[13px]", r.hit ? "font-medium text-[#0d0d0d]" : "text-[#8f8f8f]")}>{r.h}</span>
+                <span className="block text-[12px] text-[#8f8f8f]">{r.src}</span>
               </span>
               {r.hit ? (
-                <span className="shrink-0 rounded-full bg-pine-100 px-2.5 py-1 font-mono text-[9.5px] font-medium uppercase tracking-[0.04em] text-pine-700">
-                  → Insight<span className="hidden sm:inline"> · {r.hit}</span>
+                <span className="shrink-0 text-[12px] font-medium text-[#0d0d0d]">
+                  → Insight<span className="hidden font-normal text-[#5d5d5d] sm:inline"> · {r.hit}</span>
                 </span>
               ) : (
-                <span className="hidden shrink-0 font-mono text-[9.5px] uppercase tracking-[0.04em] text-paper/25 sm:inline">Not in coverage</span>
+                <span className="hidden shrink-0 text-[12px] text-[#8f8f8f] sm:inline">Not in coverage</span>
               )}
             </li>
           ))}
         </motion.ul>
       </div>
-      <p className="t-ui border-t border-white/10 px-5 py-3 text-[10px] text-paper/40">Illustrative · relevance is set by your watchlist, themes and Knowledge Graph links</p>
+      <p className="border-t border-black/10 px-4 py-3 text-[12px] text-[#8f8f8f]">Illustrative. Relevance is set by your watchlist, themes and Knowledge Graph links.</p>
     </div>
   );
 }

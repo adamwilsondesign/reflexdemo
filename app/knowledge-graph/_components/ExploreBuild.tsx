@@ -3,7 +3,7 @@
 import { motion, useInView, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
-import { AlfredGlyph, Pill, useTypewriter } from "@/components/product/ui";
+import { CardHeader, useTypewriter } from "@/components/product/ui";
 import { TextLink } from "@/components/ui/Layouts";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -13,17 +13,14 @@ function ExploreVisual() {
   const inView = useInView(ref, { amount: 0.4 });
   const typed = useTypewriter("Which of my holdings depend on TSMC, directly or through suppliers?", { start: inView, speed: 28, delay: 300 });
   return (
-    <div ref={ref} className="space-y-2.5 p-5 sm:p-6">
+    <div ref={ref} className="pui space-y-3 p-5 sm:p-6">
       <div className="ui-card p-4">
-        <span className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.05em] text-ink/50"><AlfredGlyph className="h-3.5 w-3.5 text-lake-700" /> Alfred</span>
-        <p className="mt-2 min-h-[2.8em] font-display text-[14px] font-medium leading-snug text-ink">{typed}</p>
+        <CardHeader />
+        <p className="mt-2 min-h-[2.9em] text-[15px] leading-[1.45] text-[#0d0d0d]">{typed}</p>
       </div>
-      <div className="ui-card flex items-center justify-between gap-3 p-3.5">
-        <span className="min-w-0">
-          <span className="block font-mono text-[9.5px] uppercase tracking-[0.05em] text-ink/45">Insight · touches 3 holdings</span>
-          <span className="mt-0.5 block truncate font-display text-[13px] font-semibold text-ink">AI data center power buildout accelerates</span>
-        </span>
-        <Pill tone="pine">Alert</Pill>
+      <div className="ui-card p-4">
+        <span className="flex items-center gap-1.5 text-[12px] text-[#8f8f8f]"><span className="h-1.5 w-1.5 rounded-full bg-[#0d0d0d]" />Insight, touches 3 holdings</span>
+        <span className="mt-0.5 block truncate text-[14px] font-medium text-[#0d0d0d]">AI data center power buildout accelerates</span>
       </div>
     </div>
   );
@@ -31,11 +28,11 @@ function ExploreVisual() {
 
 const RECORD = [
   `{`,
-  `  <span style="color:#8fa3b6">"source"</span>: <span style="color:#c9d6c2">"NVIDIA"</span>,`,
-  `  <span style="color:#8fa3b6">"target"</span>: <span style="color:#c9d6c2">"TSMC"</span>,`,
-  `  <span style="color:#8fa3b6">"relationship"</span>: <span style="color:#c9d6c2">"supplier"</span>,`,
-  `  <span style="color:#8fa3b6">"weight"</span>: <span style="color:#e6c9a8">0.90</span>,`,
-  `  <span style="color:#8fa3b6">"evidence"</span>: [<span style="color:#c9d6c2">"filing"</span>, <span style="color:#c9d6c2">"transcript"</span>]`,
+  `  "source": "NVIDIA",`,
+  `  "target": "TSMC",`,
+  `  "relationship": "supplier",`,
+  `  "weight": 0.90,`,
+  `  "evidence": ["filing", "transcript"]`,
   `}`,
 ];
 
@@ -55,17 +52,19 @@ function BuildVisual() {
     return () => clearTimeout(t);
   }, [n, ch, inView, reduce]);
   return (
-    <div ref={ref} className="flex flex-col gap-3 p-5 sm:p-6">
-      <div className="flex gap-1.5">
-        {["Data feeds", "API", "MCP"].map((c, k) => (
-          <span key={c} className={clsx("rounded-full px-3 py-1 font-mono text-[10.5px] uppercase tracking-[0.05em] transition-colors duration-500", k === ch ? "bg-paper text-ink" : "border border-white/15 text-paper/60")}>{c}</span>
-        ))}
+    <div ref={ref} className="pui p-5 sm:p-6">
+      <div className="ui-card p-4">
+        <div className="flex gap-4 text-[13px]">
+          {["Data feeds", "API", "MCP"].map((c, k) => (
+            <span key={c} className={clsx("transition-colors duration-500", k === ch ? "font-medium text-[#0d0d0d]" : "text-[#8f8f8f]")}>{c}</span>
+          ))}
+        </div>
+        <pre className="mt-3 min-h-[150px] overflow-hidden rounded-[10px] border border-black/10 bg-[#f9f9f9] p-3 text-[12px] leading-[1.6] text-[#0d0d0d]">
+          {RECORD.slice(0, n).map((l, i) => (
+            <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }} className="whitespace-pre">{l}</motion.div>
+          ))}
+        </pre>
       </div>
-      <pre className="min-h-[164px] overflow-hidden rounded-lg border border-white/10 bg-black/30 p-3.5 font-mono text-[11.5px] leading-[1.7] text-paper/85">
-        {RECORD.slice(0, n).map((l, i) => (
-          <motion.div key={i} initial={{ opacity: 0, x: -4 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.3 }} dangerouslySetInnerHTML={{ __html: l }} />
-        ))}
-      </pre>
     </div>
   );
 }

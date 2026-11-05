@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion, useInView, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
-import { Pill, Stage } from "@/components/product/ui";
+import { Stage } from "@/components/product/ui";
 import { ROLES } from "./roles";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -32,14 +32,13 @@ export function TeamNetwork() {
   }, [inView, reduce]);
 
   const role = ROLES[i];
-  const counts = ROLES.reduce<Record<string, number>>((m, r) => ((m[r.team] = (m[r.team] ?? 0) + 1), m), {});
 
   return (
     <Stage field="lake" className="p-4 sm:p-7 md:p-8">
       <div ref={ref}>
-        <div className="mb-3 flex items-center justify-between text-white/80">
-          <span className="t-ui">One distributed team</span>
-          <span className="t-ui">3 offices</span>
+        <div className="mb-3 flex items-center justify-between text-[13px] text-white/80">
+          <span>One distributed team</span>
+          <span>3 offices</span>
         </div>
 
         <div className="relative">
@@ -71,7 +70,7 @@ export function TeamNetwork() {
                 )}
                 <circle cx={c.x} cy={c.y} r={10} fill="rgb(255 255 255 / 0.15)" stroke="#fff" strokeWidth={1.2} />
                 <circle cx={c.x} cy={c.y} r={3.5} fill="#fff" />
-                <text x={c.x} y={c.y + 30} textAnchor="middle" className="fill-white font-mono text-[12px] uppercase tracking-[0.06em]">
+                <text x={c.x} y={c.y + 30} textAnchor="middle" className="fill-white text-[13px]">
                   {c.name}
                 </text>
               </g>
@@ -79,36 +78,29 @@ export function TeamNetwork() {
           </svg>
         </div>
 
-        <div className="ui-card mt-3 p-4 sm:p-5">
-          <div className="flex items-center justify-between">
-            <span className="t-ui text-ink/50">Now hiring</span>
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.05em] text-ink/45">
-              {i + 1} / {ROLES.length}
+        <div className="ui-card mt-3 p-4">
+          <div className="flex items-center justify-between text-[13px]">
+            <span className="font-semibold text-[#0d0d0d]">Now hiring</span>
+            <span className="tabular-nums text-[#8f8f8f]">
+              {i + 1} of {ROLES.length}
             </span>
           </div>
-          <div className="relative mt-3 grid h-[52px] overflow-hidden">
+          <div className="relative mt-2 grid h-[60px] overflow-hidden border-t border-black/10 pt-2">
             <AnimatePresence initial={false}>
               <motion.div
                 key={i}
-                initial={reduce ? false : { opacity: 0, y: 18 }}
+                initial={reduce ? false : { opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -18 }}
+                exit={{ opacity: 0, y: -14 }}
                 transition={{ duration: 0.55, ease: EASE }}
                 className="[grid-area:1/1]"
               >
-                <p className="truncate font-display text-[16px] font-semibold text-ink sm:text-[18px]">{role.title}</p>
-                <p className="mt-0.5 text-[12.5px] text-ink/55">
+                <p className="truncate text-[16px] font-medium text-[#0d0d0d]">{role.title}</p>
+                <p className="mt-0.5 text-[13px] text-[#5d5d5d]">
                   {role.team} · {role.city}
                 </p>
               </motion.div>
             </AnimatePresence>
-          </div>
-          <div className="mt-4 flex flex-wrap gap-1.5 border-t border-ink/8 pt-3">
-            {Object.entries(counts).map(([t, n]) => (
-              <Pill key={t} tone={t === role.team ? "lake" : "neutral"}>
-                {t} · {n}
-              </Pill>
-            ))}
           </div>
         </div>
       </div>

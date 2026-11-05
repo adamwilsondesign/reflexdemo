@@ -12,7 +12,6 @@ const STEPS = ["What happened", "Why it matters", "What else is affected", "The 
 const RANKED = [
   { name: "Rockwell Automation", tk: "ROK", role: "Factory automation", hop: "1st order", dir: "+", w: 0.86 },
   { name: "Siemens", tk: "SIE", role: "Automation and industrial software", hop: "1st order", dir: "+", w: 0.81 },
-  { name: "Fanuc", tk: "6954", role: "Industrial robots", hop: "1st order", dir: "+", w: 0.74 },
   { name: "Eaton", tk: "ETN", role: "Electrical equipment", hop: "2nd order", dir: "±", w: 0.62 },
   { name: "Whirlpool", tk: "WHR", role: "Appliance manufacturing", hop: "2nd order", dir: "−", w: 0.55 },
 ];
@@ -51,50 +50,39 @@ export function RippleExample() {
   return (
     <div ref={ref}>
       {/* step rail */}
-      <div className="mb-6 grid grid-cols-4 gap-2 md:mb-8" role="tablist" aria-label="Worked example steps">
+      <div className="pui mb-6 grid grid-cols-4 gap-2 md:mb-8" role="tablist" aria-label="Worked example steps">
         {STEPS.map((s, k) => (
-          <button key={s} role="tab" aria-selected={k === step} onClick={() => setStep(k)} className="group text-left">
-            <span className="block h-[2px] overflow-hidden rounded-full bg-white/15">
-              <span className={clsx("block h-full bg-paper transition-[width] duration-700", k <= step ? "w-full" : "w-0")} />
-            </span>
-            <span className={clsx("mt-2.5 block font-mono text-[9.5px] uppercase tracking-[0.06em] transition-colors sm:text-[10.5px]", k === step ? "text-paper" : "text-paper/45 group-hover:text-paper/70")}>{s}</span>
+          <button key={s} role="tab" aria-selected={k === step} onClick={() => setStep(k)} className={clsx("group border-t pt-2.5 text-left text-[12px] transition-colors duration-500 sm:text-[13px]", k === step ? "border-white text-white" : k < step ? "border-white/40 text-white/55" : "border-white/15 text-white/45 hover:text-white/70")}>
+            {s}
           </button>
         ))}
       </div>
 
-      <div className="grain field-lake relative isolate overflow-hidden rounded-[18px] p-4 sm:p-6 lg:p-8">
+      <div className="pui grain field-lake relative isolate overflow-hidden rounded-[18px] p-4 sm:p-6 lg:p-8">
         <div className="grid gap-4 lg:grid-cols-12 lg:gap-6">
           {/* catalyst + theme */}
           <div className="space-y-3 lg:col-span-4">
-            <motion.div initial={reduce ? false : { opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.8, ease: EASE }} className={clsx("ui-card p-5 transition-shadow duration-500", step === 0 && "ring-1 ring-lake-500/50")}>
+            <motion.div initial={reduce ? false : { opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.8, ease: EASE }} className={clsx("ui-card p-4 transition-colors duration-500", step === 0 && "border-black/30")}>
               <div className="flex items-center justify-between gap-2">
-                <span className="t-ui text-[10px] text-ink/50">Market catalyst · Macro</span>
-                <Pill tone="warn">Input costs</Pill>
+                <span className="text-[12px] text-[#8f8f8f]">Market catalyst, macro</span>
+                <Pill>Input costs</Pill>
               </div>
-              <p className="mt-3 font-display text-[21px] font-semibold leading-[1.15] tracking-[-0.01em] text-ink sm:text-[23px]">Sept U.S. Flash PMI Rekindles Factory Cost Pressure</p>
-              <div className="mt-4 h-12 text-[#9a4b3c]"><Sparkline points={series(36, 21, -0.25, 1.8)} className="h-full w-full" fill="rgb(154 75 60 / 0.08)" /></div>
+              <p className="mt-2 text-[20px] font-semibold leading-[1.2] text-[#0d0d0d]">Sept U.S. Flash PMI Rekindles Factory Cost Pressure</p>
+              <div className="mt-3 h-10"><Sparkline points={series(36, 21, -0.25, 1.8)} className="h-full w-full" /></div>
             </motion.div>
 
-            <div className={clsx("ui-card p-4 transition-opacity duration-700", show(1) ? "opacity-100" : "opacity-55", step === 1 && "ring-1 ring-lake-500/50")}>
-              <p className="t-ui text-[9.5px] text-ink/45">Industry theme</p>
-              <div className="mt-1.5 flex flex-wrap items-center justify-between gap-2">
-                <span className="font-display text-[16px] font-semibold text-ink">Industrial Automation</span>
-                <span className="flex items-center gap-1.5">
-                  <Pill>Neutral</Pill>
-                  <span className="rounded-full bg-pine-100 px-2 py-1 font-mono text-[10.5px] text-pine-700">+0.6%</span>
-                </span>
+            <div className={clsx("ui-card p-4 transition-[opacity,border-color] duration-700", show(1) ? "opacity-100" : "opacity-55", step === 1 && "border-black/30")}>
+              <p className="text-[12px] text-[#8f8f8f]">Industry theme</p>
+              <div className="mt-1 flex items-baseline justify-between gap-2">
+                <span className="text-[16px] font-semibold text-[#0d0d0d]">Industrial automation</span>
+                <span className="text-[13px] tabular-nums text-[#5d5d5d]">+0.6%</span>
               </div>
-              <p className="mt-3 text-[12px] leading-relaxed text-ink/60">Higher input costs pressure manufacturers’ margins, and strengthen the case for automation spend.</p>
-              <div className="mt-3 flex flex-wrap gap-1.5">
-                {["Energy · cost pressure", "Reshoring", "Robotics"].map((t, k) => (
-                  <span key={t} className={clsx("rounded-full px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.04em]", k === 0 ? "bg-lake-100 text-lake-700" : "bg-ink/[0.05] text-ink/55")}>{t}</span>
-                ))}
-              </div>
+              <p className="mt-2 text-[13px] leading-relaxed text-[#5d5d5d]">Higher input costs pressure manufacturers’ margins, and strengthen the case for automation spend.</p>
             </div>
           </div>
 
           {/* ripple diagram */}
-          <div className="relative hidden aspect-square w-full rounded-[14px] bg-ink/[0.18] sm:block lg:col-span-4 lg:aspect-auto">
+          <div className="relative hidden aspect-square w-full sm:block lg:col-span-4 lg:aspect-auto">
             <svg viewBox="0 0 400 400" className="absolute inset-0 h-full w-full" aria-hidden="true">
               {[92, 165].map((r, k) => (
                 <circle key={r} cx={C.x} cy={C.y} r={r} fill="none" stroke="rgba(244,243,241,0.14)" strokeDasharray="2 5" opacity={show(k + 1) ? 1 : 0.4} style={{ transition: "opacity .8s" }} />
@@ -107,8 +95,8 @@ export function RippleExample() {
                 return (
                   <g key={t.label} opacity={show(1) ? 1 : 0} style={{ transition: `opacity .8s ${k * 0.15}s` }}>
                     <line x1={C.x} y1={C.y} x2={x} y2={y} stroke="rgba(213,222,230,0.6)" strokeWidth="1.2" />
-                    <circle cx={x} cy={y} r="9" fill="none" stroke="#7d978c" strokeWidth="2.4" />
-                    <text x={x} y={y + (t.a < 0 ? -18 : 26)} textAnchor="middle" fill="rgba(244,243,241,0.85)" fontSize="11" fontFamily="var(--font-archivo)">{t.label}</text>
+                    <circle cx={x} cy={y} r="7" fill="none" stroke="#ffffff" strokeWidth="1.5" />
+                    <text x={x} y={y + (t.a < 0 ? -18 : 26)} textAnchor="middle" fill="rgba(244,243,241,0.85)" fontSize="12">{t.label}</text>
                   </g>
                 );
               })}
@@ -119,42 +107,41 @@ export function RippleExample() {
                 return (
                   <g key={c.tk} opacity={show(2) ? 1 : 0} style={{ transition: `opacity .7s ${0.1 + k * 0.12}s` }}>
                     <line x1={tx} y1={ty} x2={x} y2={y} stroke="rgba(213,222,230,0.35)" strokeWidth="1" />
-                    <circle cx={x} cy={y} r="5.5" fill="#f4f3f1" />
-                    <text x={x} y={y - 11} textAnchor="middle" fill="rgba(244,243,241,0.9)" fontSize="11" fontFamily="var(--font-archivo)">{c.tk}</text>
+                    <circle cx={x} cy={y} r="4.5" fill="#ffffff" />
+                    <text x={x} y={y - 11} textAnchor="middle" fill="rgba(244,243,241,0.9)" fontSize="12">{c.tk}</text>
                   </g>
                 );
               })}
-              <circle cx={C.x} cy={C.y} r="13" fill="#f4f3f1" />
-              <circle cx={C.x} cy={C.y} r="22" fill="none" stroke="rgba(244,243,241,0.4)" />
-              <text x={C.x} y={C.y + 40} textAnchor="middle" fill="rgba(244,243,241,0.7)" fontSize="10.5" fontFamily="var(--font-archivo)">US FLASH PMI</text>
+              <circle cx={C.x} cy={C.y} r="10" fill="#ffffff" />
+                            <text x={C.x} y={C.y + 40} textAnchor="middle" fill="rgba(255,255,255,0.75)" fontSize="12">US flash PMI</text>
             </svg>
           </div>
 
           {/* ranked assets */}
           <div className="lg:col-span-4">
-            <div className={clsx("ui-card h-full p-4 transition-opacity duration-700 sm:p-5", show(2) ? "opacity-100" : "opacity-55", step >= 2 && "ring-1 ring-lake-500/50")}>
+            <div className={clsx("ui-card h-full p-4 transition-[opacity,border-color] duration-700", show(2) ? "opacity-100" : "opacity-55", step >= 2 && "border-black/30")}>
               <div className="flex items-center justify-between">
-                <span className="t-ui text-[10px] text-ink/50">Ranked exposure</span>
-                <Pill tone="lake">Graph</Pill>
+                <span className="text-[14px] font-semibold">Ranked exposure</span>
+                <span className="text-[12px] text-[#8f8f8f]">Weight</span>
               </div>
-              <ol className="mt-3 space-y-1.5">
+              <ol className="mt-3 divide-y divide-black/10 border-t border-black/10">
                 {RANKED.map((r, k) => (
-                  <li key={r.tk} className={clsx("flex items-center gap-2.5 rounded-md px-2.5 py-2 transition-all duration-500", show(2) ? "bg-ink/[0.035] opacity-100" : "opacity-40")} style={{ transitionDelay: `${k * 90}ms` }}>
-                    <span className="w-3 font-mono text-[10px] text-ink/40">{k + 1}</span>
+                  <li key={r.tk} className={clsx("flex items-center gap-3 py-2 transition-opacity duration-500", show(2) ? "opacity-100" : "opacity-40")} style={{ transitionDelay: `${k * 90}ms` }}>
+                    <span className="w-3 text-[12px] tabular-nums text-[#8f8f8f]">{k + 1}</span>
                     <span className="min-w-0 flex-1">
-                      <span className="block truncate font-display text-[13px] font-semibold text-ink">{r.name}</span>
-                      <span className="block truncate text-[10.5px] text-ink/50">{r.role} · {r.hop}</span>
+                      <span className="block truncate text-[13px] font-medium text-[#0d0d0d]">{r.name}</span>
+                      <span className="block truncate text-[12px] text-[#8f8f8f]">{r.role}, {r.hop}</span>
                     </span>
-                    <span className={clsx("flex h-5 w-5 shrink-0 items-center justify-center rounded font-mono text-[12px]", r.dir === "+" ? "bg-pine-100 text-pine-700" : r.dir === "−" ? "bg-[#f3e6d6] text-[#7a5326]" : "bg-ink/[0.06] text-ink/60")} aria-label={r.dir === "+" ? "Tailwind" : r.dir === "−" ? "Headwind" : "Mixed"}>{r.dir}</span>
-                    <span className="h-1 w-10 overflow-hidden rounded-full bg-ink/8"><span className="block h-full bg-lake-500 transition-[width] duration-700" style={{ width: show(2) ? `${r.w * 100}%` : "0%" }} /></span>
+                    <span className="w-4 text-center text-[13px] text-[#5d5d5d]" aria-label={r.dir === "+" ? "Tailwind" : r.dir === "−" ? "Headwind" : "Mixed"}>{r.dir}</span>
+                    <span className="w-8 text-right text-[13px] tabular-nums text-[#0d0d0d]">{r.w.toFixed(2)}</span>
                   </li>
                 ))}
               </ol>
               <AnimatePresence>
                 {show(3) && (
-                  <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.6, ease: EASE }} className="mt-3 rounded-lg border border-ink/10 bg-white p-3">
-                    <p className="t-ui text-[9.5px] text-ink/40">Investment implication</p>
-                    <p className="mt-1 text-[12.5px] leading-relaxed text-ink/80">Automation suppliers screen as beneficiaries of renewed cost pressure; manufacturers without pricing power carry margin risk. Next: ask Alfred which holdings can pass costs through.</p>
+                  <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.6, ease: EASE }} className="mt-3 rounded-[10px] bg-[#f9f9f9] p-3">
+                    <p className="text-[12px] text-[#8f8f8f]">Implication</p>
+                    <p className="mt-0.5 text-[13px] leading-relaxed text-[#0d0d0d]">Automation suppliers screen as beneficiaries of renewed cost pressure; manufacturers without pricing power carry margin risk.</p>
                   </motion.div>
                 )}
               </AnimatePresence>

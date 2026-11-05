@@ -58,11 +58,7 @@ export function TwoModes() {
           <div>
             <p className="font-display text-[20px] font-semibold leading-snug md:text-[22px]">Two modes. Same context.</p>
           </div>
-          <ul className="flex flex-wrap gap-2">
-            {SHARED.map((s) => (
-              <li key={s} className="rounded-full border border-white/15 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.04em] text-paper/75">{s}</li>
-            ))}
-          </ul>
+          <p className="t-small text-paper/75">{SHARED.join(" · ")}</p>
         </div>
         <p className="t-small mt-5 max-w-[720px] text-paper/60">
           Alfred runs on our proprietary Knowledge Graph and institutional-grade data sources. They are not two products: an alert can open straight into an on-demand follow-up, with the same entities and context in place.

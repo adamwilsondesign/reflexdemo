@@ -2,24 +2,23 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import clsx from "clsx";
-import { AlfredGlyph, Pill, Stage } from "@/components/product/ui";
+import { CardHeader, Stage } from "@/components/product/ui";
 import { useLoop } from "../../_components/useLoop";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 const ROWS = [
   { t: "CRWV", n: "CoreWeave", tag: "AI infrastructure" },
-  { t: "NVDA", n: "NVIDIA", tag: "Semiconductors" },
   { t: "NKE", n: "Nike", tag: "Consumer" },
   { t: "VRT", n: "Vertiv", tag: "Data center power" },
   { t: "LLY", n: "Eli Lilly", tag: "GLP-1" },
 ];
 
-const FEED: { row: number; also: number[]; type: string; tone: "lake" | "pine"; dir: string; title: string; why: string }[] = [
-  { row: 0, also: [1], type: "Company catalyst", tone: "lake", dir: "Bullish", title: "CoreWeave rolls out Nvidia Vera Rubin with Cognition live", why: "CoreWeave is on your watchlist. NVIDIA is connected as platform supplier." },
-  { row: 2, also: [], type: "Earnings recap", tone: "pine", dir: "Bearish", title: "Guidance overshadowed a mixed Nike quarter", why: "Nike reported overnight. Two suppliers in the Graph share the read-through." },
-  { row: 3, also: [1], type: "Market catalyst", tone: "lake", dir: "Bullish", title: "AI data center power buildout accelerates", why: "Second-order: Vertiv sits in the data center power theme you follow." },
-  { row: 4, also: [], type: "Scenario pattern", tone: "pine", dir: "Pattern", title: "Eli Lilly: recession probability at a new low", why: "A historical pattern on a watchlist name, with the episodes behind it." },
+const FEED: { row: number; meta: string; title: string; why: string }[] = [
+  { row: 0, meta: "Company catalyst · Bullish", title: "CoreWeave rolls out Nvidia Vera Rubin with Cognition live", why: "CoreWeave is on your watchlist. NVIDIA is connected as platform supplier." },
+  { row: 1, meta: "Earnings recap · Bearish", title: "Guidance overshadowed a mixed Nike quarter", why: "Nike reported overnight. Two suppliers in the Graph share the read-through." },
+  { row: 2, meta: "Market catalyst · Bullish", title: "AI data center power buildout accelerates", why: "Second-order: Vertiv sits in the data center power theme you follow." },
+  { row: 3, meta: "Scenario pattern", title: "Eli Lilly: recession probability at a new low", why: "A historical pattern on a watchlist name, with the episodes behind it." },
 ];
 
 /** Hero: the morning open. Insights land on the names you follow, each with the reason it reached you. */
@@ -28,41 +27,22 @@ export function MorningOpen() {
   const it = FEED[step];
   return (
     <Stage field="lake" className="p-4 sm:p-7" image="/figma/n915.png">
-      <div ref={ref} className="relative mx-auto max-w-[560px] pb-[200px] sm:pb-[150px]">
+      <div ref={ref} className="relative mx-auto max-w-[560px] pb-[176px] sm:pb-[130px]">
         {/* watchlist */}
-        <div className="ui-card p-4 sm:w-[78%] sm:p-5">
-          <div className="flex items-start justify-between">
-            <span className="flex items-center gap-2.5">
-              <AlfredGlyph className="h-4 w-4 text-lake-700" />
-              <span>
-                <span className="block font-display text-[14px] font-semibold text-ink">Your watchlist</span>
-                <span className="block font-mono text-[10px] uppercase tracking-[0.05em] text-ink/45">Monday · 07:00 ET · 5 names · 4 themes</span>
-              </span>
-            </span>
-            <span className="relative mt-1 flex h-2 w-2" aria-hidden="true">
-              {!reduce && <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-pine-500 opacity-60" />}
-              <span className="relative h-2 w-2 rounded-full bg-pine-500" />
-            </span>
-          </div>
-          <ul className="mt-4 space-y-1">
+        <div className="ui-card p-4 sm:w-[78%]">
+          <CardHeader title="Your watchlist" trail={["Mon 07:00"]} />
+          <ul className="mt-3 divide-y divide-black/10 border-t border-black/10">
             {ROWS.map((r, i) => {
               const hit = it.row === i;
-              const near = it.also.includes(i);
               return (
-                <li
-                  key={r.t}
-                  className={clsx(
-                    "relative flex items-center gap-3 rounded-md px-2.5 py-2 transition-colors duration-500",
-                    hit ? "bg-lake-100/80" : near ? "bg-ink/[0.03]" : "",
-                  )}
-                >
-                  <span className={clsx("flex h-7 w-7 shrink-0 items-center justify-center rounded-md font-display text-[10.5px] font-semibold transition-colors duration-500", hit ? "bg-lake-700 text-white" : "bg-ink/[0.06] text-ink/60")}>{r.t.slice(0, 2)}</span>
+                <li key={r.t} className="flex items-center gap-3 py-2.5">
                   <span className="min-w-0 flex-1">
-                    <span className="block truncate font-display text-[13px] font-semibold text-ink">{r.n}</span>
-                    <span className="block truncate font-mono text-[9.5px] uppercase tracking-[0.04em] text-ink/40">{r.tag}</span>
+                    <span className={clsx("block truncate text-[14px] transition-colors duration-500", hit ? "font-semibold text-[#0d0d0d]" : "font-medium text-[#5d5d5d]")}>{r.n}</span>
+                    <span className="block truncate text-[12px] text-[#8f8f8f]">{r.tag}</span>
                   </span>
-                  <span className={clsx("font-mono text-[9.5px] uppercase tracking-[0.04em] transition-opacity duration-500", hit || near ? "opacity-100" : "opacity-0", hit ? "text-lake-700" : "text-ink/45")}>
-                    {hit ? "New insight" : "Connected"}
+                  <span className={clsx("flex items-center gap-1.5 text-[12px] text-[#0d0d0d] transition-opacity duration-500", hit ? "opacity-100" : "opacity-0")}>
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#0d0d0d]" />
+                    New insight
                   </span>
                 </li>
               );
@@ -75,21 +55,15 @@ export function MorningOpen() {
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={step}
-              initial={reduce ? false : { opacity: 0, y: 18, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.98 }}
+              initial={reduce ? false : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.6, ease: EASE }}
-              className="ui-card p-4 sm:p-5"
+              className="ui-card p-4"
             >
-              <div className="flex items-center justify-between gap-2">
-                <Pill tone={it.tone}>{it.type}</Pill>
-                <span className="font-mono text-[10px] uppercase text-ink/40">{it.dir}</span>
-              </div>
-              <p className="mt-2.5 font-display text-[15.5px] font-semibold leading-snug text-ink sm:text-[17px]">{it.title}</p>
-              <p className="mt-2.5 border-t border-ink/8 pt-2.5 text-[12px] leading-relaxed text-ink/65">
-                <span className="font-mono text-[9.5px] uppercase tracking-[0.05em] text-lake-700">Why you’re seeing this · </span>
-                {it.why}
-              </p>
+              <p className="text-[12px] text-[#8f8f8f]">{it.meta}</p>
+              <p className="mt-1 text-[16px] font-semibold leading-snug text-[#0d0d0d]">{it.title}</p>
+              <p className="mt-2 border-t border-black/10 pt-2 text-[13px] leading-relaxed text-[#5d5d5d]">{it.why}</p>
             </motion.div>
           </AnimatePresence>
         </div>

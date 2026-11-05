@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { StateTabs } from "./StateTabs";
 import { PrecisionIcon } from "@/components/ui/PrecisionIcon";
-import { Pill, Stage } from "@/components/product/ui";
+import { Pill, Stage, StepList } from "@/components/product/ui";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -40,32 +40,23 @@ function Isolation() {
   const items = ["Research & saved work", "Uploaded documents", "Connected sources", "Prompts & outputs"];
   return (
     <Board field="lake">
-      <motion.div {...fade(reduce)} className="ui-card relative p-5">
-        <div className="flex items-center justify-between">
+      <motion.div {...fade(reduce)} className="ui-card p-4">
+        <div className="flex items-center justify-between gap-2">
           <span>
-            <span className="block font-mono text-[9.5px] uppercase tracking-[0.05em] text-ink/45">Client environment</span>
-            <span className="mt-0.5 block font-display text-[16px] font-semibold text-ink">Your firm</span>
+            <span className="block text-[12px] text-[#8f8f8f]">Client environment</span>
+            <span className="block text-[16px] font-semibold text-[#0d0d0d]">Your firm</span>
           </span>
-          <Pill tone="lake">Isolated</Pill>
+          <Pill>Isolated</Pill>
         </div>
-        <ul className="mt-4 space-y-1.5 rounded-lg border border-dashed border-lake-500/50 p-2">
+        <ul className="mt-3 divide-y divide-black/10 border-t border-black/10">
           {items.map((t, i) => (
-            <motion.li key={t} {...fade(reduce, 0.2 + i * 0.1)} className="flex items-center justify-between rounded-md bg-white/80 px-3 py-2 text-[12.5px] text-ink">
+            <motion.li key={t} {...fade(reduce, 0.2 + i * 0.1)} className="py-2 text-[13px] text-[#0d0d0d]">
               {t}
-              <span className="h-1.5 w-1.5 rounded-full bg-lake-500" />
             </motion.li>
           ))}
         </ul>
       </motion.div>
-      <div className="mt-3 grid grid-cols-2 gap-2">
-        {["Other client", "Other client"].map((t, i) => (
-          <motion.div key={i} {...fade(reduce, 0.7 + i * 0.1)} className="flex items-center gap-2 rounded-[10px] border border-white/25 bg-white/10 px-3 py-2.5 backdrop-blur">
-            <svg viewBox="0 0 16 16" className="h-3.5 w-3.5 shrink-0 text-white/70" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true"><circle cx="8" cy="8" r="6" /><path d="M4 12L12 4" /></svg>
-            <span className="truncate font-mono text-[9.5px] uppercase tracking-[0.04em] text-white/80">{t}</span>
-          </motion.div>
-        ))}
-      </div>
-      <p className="t-ui mt-3 text-[10px] text-white/70">No shared access between environments</p>
+      <p className="mt-3 text-[13px] text-white/80">No shared access with other client environments</p>
     </Board>
   );
 }
@@ -81,38 +72,38 @@ function Connections() {
     return () => clearTimeout(t);
   }, [inView, reduce]);
   const rows = [
-    { n: "Document library", s: "Research folder · read-only", on: true },
+    { n: "Document library", s: "Research folder, read-only", on: true },
     { n: "Email archive", s: "Not connected", on: false },
-    { n: "Internal research notes", s: "Team workspace · read-only", on: true, flip: true },
+    { n: "Internal research notes", s: "Team workspace, read-only", on: true, flip: true },
     { n: "CRM", s: "Not connected", on: false },
   ];
   return (
     <Board field="pine">
-      <motion.div ref={ref} {...fade(reduce)} className="ui-card p-5">
-        <div className="flex items-center justify-between">
-          <span className="font-display text-[16px] font-semibold text-ink">Connected sources</span>
-          <span className="font-mono text-[9.5px] uppercase tracking-[0.05em] text-ink/45">Admin controlled</span>
+      <motion.div ref={ref} {...fade(reduce)} className="ui-card p-4">
+        <div className="flex items-center justify-between gap-2">
+          <span className="text-[14px] font-semibold text-[#0d0d0d]">Connected sources</span>
+          <span className="text-[12px] text-[#8f8f8f]">Admin controlled</span>
         </div>
-        <ul className="mt-4 space-y-1.5">
+        <ul className="mt-3 divide-y divide-black/10 border-t border-black/10">
           {rows.map((r) => {
             const on = r.flip ? !revoked : r.on;
             return (
-              <li key={r.n} className="flex items-center gap-3 rounded-md bg-white/80 px-3 py-2.5">
+              <li key={r.n} className="flex items-center gap-3 py-2">
                 <span className="min-w-0 flex-1">
-                  <span className="block truncate font-display text-[13px] font-medium text-ink">{r.n}</span>
-                  <span className={clsx("block truncate font-mono text-[9.5px] uppercase tracking-[0.04em] transition-colors duration-500", r.flip && revoked ? "text-[#7a5326]" : "text-ink/45")}>
-                    {r.flip && revoked ? "Access revoked · just now" : r.s}
+                  <span className="block truncate text-[13px] font-medium text-[#0d0d0d]">{r.n}</span>
+                  <span className={clsx("block truncate text-[12px] transition-colors duration-500", r.flip && revoked ? "font-medium text-[#0d0d0d]" : "text-[#8f8f8f]")}>
+                    {r.flip && revoked ? "Access revoked just now" : r.s}
                   </span>
                 </span>
-                <span role="img" aria-label={on ? "Connected" : "Not connected"} className={clsx("relative h-5 w-9 shrink-0 rounded-full transition-colors duration-500", on ? "bg-lake-700" : "bg-ink/15")}>
-                  <span className={clsx("absolute top-0.5 h-4 w-4 rounded-full bg-white shadow transition-[left] duration-500", on ? "left-[18px]" : "left-0.5")} />
+                <span role="img" aria-label={on ? "Connected" : "Not connected"} className={clsx("relative h-5 w-9 shrink-0 rounded-full transition-colors duration-500", on ? "bg-[#0d0d0d]" : "bg-[#e6e6e6]")}>
+                  <span className={clsx("absolute top-0.5 h-4 w-4 rounded-full bg-white transition-[left] duration-500", on ? "left-[18px]" : "left-0.5")} />
                 </span>
               </li>
             );
           })}
         </ul>
       </motion.div>
-      <p className="t-ui mt-3 text-[10px] text-white/75">Illustrative source names</p>
+      <p className="mt-3 text-[12px] text-white/75">Illustrative source names</p>
     </Board>
   );
 }
@@ -132,37 +123,13 @@ function Retention() {
   const steps = ["Request received", "Processed for your query", "Response delivered", "Client data not persisted"];
   return (
     <Board field="ink">
-      <motion.div ref={ref} {...fade(reduce)} className="ui-card p-5">
-        <div className="flex items-center justify-between">
-          <span className="font-display text-[16px] font-semibold text-ink">Data lifecycle</span>
-          <Pill tone="pine">Limited retention</Pill>
+      <motion.div ref={ref} {...fade(reduce)} className="ui-card p-4">
+        <div className="flex items-center justify-between gap-2">
+          <span className="text-[14px] font-semibold text-[#0d0d0d]">Data lifecycle</span>
+          <span className="text-[12px] text-[#8f8f8f]">Limited retention</span>
         </div>
-        <ol className="relative mt-5 space-y-3 pl-6">
-          <span className="absolute bottom-2 left-[7px] top-2 w-px bg-ink/12" aria-hidden="true" />
-          {steps.map((t, i) => {
-            const done = i <= s;
-            return (
-              <li key={t} className="relative">
-                <span className={clsx("absolute -left-6 top-0.5 flex h-[15px] w-[15px] items-center justify-center rounded-full border transition-colors duration-500", done ? (i === 3 ? "border-pine-500 bg-pine-500" : "border-lake-700 bg-lake-700") : "border-ink/20 bg-white")}>
-                  {done && <svg viewBox="0 0 16 16" className="h-2.5 w-2.5 text-white" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5" /></svg>}
-                </span>
-                <span className={clsx("block font-display text-[13.5px] transition-colors duration-500", done ? "font-medium text-ink" : "text-ink/35")}>{t}</span>
-              </li>
-            );
-          })}
-        </ol>
-        <div className="mt-5 flex gap-1.5">
-          {["Prompt", "Excerpt", "Connected data"].map((t) => (
-            <motion.span
-              key={t}
-              animate={{ opacity: s >= 3 ? 0.25 : 1, filter: s >= 3 ? "blur(1.5px)" : "blur(0px)" }}
-              transition={{ duration: 0.8 }}
-              className="rounded-md border border-ink/10 bg-white px-2 py-1 font-mono text-[9.5px] uppercase tracking-[0.04em] text-ink/60"
-            >
-              {t}
-            </motion.span>
-          ))}
-        </div>
+        <StepList className="mt-3 border-t border-black/10 pt-3" steps={steps} active={s + 1} />
+        <p className={clsx("mt-3 text-[12px] text-[#5d5d5d] transition-opacity duration-700", s >= 3 ? "opacity-100" : "opacity-0")}>Prompt, excerpts and connected data cleared</p>
       </motion.div>
     </Board>
   );
@@ -173,39 +140,26 @@ function NeverTrained() {
   const inputs = ["Prompts", "Documents", "Connected data", "Outputs"];
   return (
     <Board field="lake">
-      <motion.div {...fade(reduce)} className="ui-card p-5">
-        <span className="font-mono text-[9.5px] uppercase tracking-[0.05em] text-ink/45">Your firm&rsquo;s data</span>
-        <div className="mt-3 grid grid-cols-2 gap-1.5">
-          {inputs.map((t, i) => (
-            <motion.span key={t} {...fade(reduce, 0.15 + i * 0.08)} className="rounded-md bg-white/85 px-3 py-2 font-display text-[12.5px] font-medium text-ink">
-              {t}
-            </motion.span>
-          ))}
-        </div>
+      <motion.div {...fade(reduce)} className="ui-card p-4">
+        <span className="block text-[12px] text-[#8f8f8f]">Your firm&rsquo;s data</span>
+        <p className="mt-1 text-[14px] text-[#0d0d0d]">{inputs.join(" · ")}</p>
         <div className="relative my-3 flex justify-center" aria-hidden="true">
-          <span className="h-8 w-px bg-ink/20" />
+          <span className="h-8 w-px bg-black/10" />
           <motion.span
             initial={reduce ? false : { scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.8, ease: EASE }}
-            className="absolute top-1/2 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full bg-[#9a4b3c] text-white"
+            className="absolute top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full border border-black/20 bg-white text-[#0d0d0d]"
           >
-            <svg viewBox="0 0 12 12" className="h-2.5 w-2.5" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M3 3l6 6M9 3l-6 6" /></svg>
+            <svg viewBox="0 0 12 12" className="h-2.5 w-2.5" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M3 3l6 6M9 3l-6 6" /></svg>
           </motion.span>
         </div>
-        <div className="relative overflow-hidden rounded-lg border border-dashed border-ink/20 px-4 py-3">
+        <div className="relative rounded-[10px] border border-dashed border-black/15 px-3 py-2.5">
           <div className="flex items-center justify-between">
-            <span className="font-display text-[13.5px] font-semibold text-ink/45">Model training</span>
+            <span className="text-[14px] font-medium text-[#8f8f8f] line-through decoration-black/30">Model training</span>
             <Pill>Excluded</Pill>
           </div>
-          <p className="mt-1 text-[11.5px] text-ink/45">Reflexivity models · third-party model providers</p>
-          <motion.span
-            aria-hidden="true"
-            initial={reduce ? false : { scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.7, delay: 1, ease: EASE }}
-            className="absolute left-3 right-3 top-[22px] h-px origin-left bg-ink/35"
-          />
+          <p className="mt-0.5 text-[12px] text-[#8f8f8f]">Reflexivity models, third-party model providers</p>
         </div>
       </motion.div>
     </Board>

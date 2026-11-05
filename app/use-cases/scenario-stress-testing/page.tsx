@@ -8,7 +8,7 @@ import type { IconName } from "@/components/ui/PrecisionIcon";
 import { SplitFeature } from "@/components/ui/Layouts";
 import { ScenarioFan } from "@/components/graphics/Cartography";
 import { DataSourceLogos } from "@/components/ui/LogoStrip";
-import { CodeBlock, MissingData, Pill, Stage } from "@/components/product/ui";
+import { CodeBlock, MissingData, Stage } from "@/components/product/ui";
 import { Audiences, Contrast, IllustrativeNote, RelatedUseCases } from "../_components/Shared";
 import { FanChart } from "./_components/FanChart";
 import { ScenarioResult } from "./_components/ScenarioResult";
@@ -86,24 +86,17 @@ export default function ScenarioStressTestingPage() {
             <Stage field="ink" className="p-5 sm:p-8">
               <div className="mx-auto max-w-[480px] space-y-3">
                 <div className="ui-card p-4">
-                  <div className="flex items-center justify-between">
-                    <span className="t-ui text-[10px] text-ink/45">Scenario · rates shock</span>
-                    <Pill tone="lake">Run 2 of 2</Pill>
-                  </div>
-                  <p className="mt-2 font-display text-[15px] font-semibold leading-snug text-ink">What followed when the US 10-year yield rose 0.5pp in three months?</p>
+                  <p className="text-[12px] text-[#8f8f8f]">Scenario · rates shock · run 2 of 2</p>
+                  <p className="mt-1 text-[15px] font-semibold leading-snug text-[#0d0d0d]">What followed when the US 10-year yield rose 0.5pp in three months?</p>
                 </div>
                 <CodeBlock
                   lines={[
-                    `<span style="color:#8fa3b6">episodes</span> = find_episodes(<span style="color:#d5e0da">"US10Y"</span>, rise=0.5, window=<span style="color:#d5e0da">"3M"</span>)`,
-                    `<span style="color:#8fa3b6">fwd</span> = forward_returns(sp1500, episodes, horizons)`,
-                    `<span style="color:#8fa3b6">summary</span> = fwd.median(by=<span style="color:#d5e0da">"sector"</span>)  <span style="color:#7d978c"># 23 episodes</span>`,
+                    "episodes = find_episodes(\"US10Y\", rise=0.5, window=\"3M\")",
+                    "fwd = forward_returns(sp1500, episodes, horizons)",
+                    "summary = fwd.median(by=\"sector\")  # 23 episodes",
                   ]}
                 />
                 <MissingData label="Pre-listing history, 212 stocks" reason="Excluded pre-listing" />
-                <div className="flex items-center justify-between rounded-lg bg-white/90 px-3 py-2.5">
-                  <span className="font-display text-[12.5px] font-medium text-ink">Re-run on latest data</span>
-                  <span className="font-mono text-[10px] uppercase text-ink/45">Same code · new inputs</span>
-                </div>
               </div>
             </Stage>
             <IllustrativeNote onDark className="mt-4">Simplified code shown for illustration.</IllustrativeNote>

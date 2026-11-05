@@ -56,23 +56,22 @@ export function KGHero() {
             <li className="flex items-center gap-1.5"><span className="h-2 w-2 border-[1.3px] border-neutral-300" />Market / geography</li>
             <li className="hidden text-paper/40 sm:block">Hover or tap a node to inspect it</li>
           </ul>
-          <div className="w-full max-w-[360px] rounded-[14px] border border-white/12 bg-[#1b1e23]/80 p-4 backdrop-blur-md lg:pointer-events-auto" aria-live="polite">
-            <p className="t-ui flex items-center gap-2 text-[10px] text-paper/50">
-              <span className="relative flex h-2 w-2"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-pine-300 opacity-60" /><span className="relative h-2 w-2 rounded-full bg-pine-300" /></span>
+          <div className="pui ui-card w-full max-w-[360px] p-4 lg:pointer-events-auto" aria-live="polite">
+            <p className="flex items-center gap-1.5 text-[12px] text-[#8f8f8f]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#0d0d0d]" />
               Now tracing
             </p>
             <AnimatePresence mode="wait">
               {info && (
-                <motion.div key={focus} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -4 }} transition={{ duration: 0.45, ease: EASE }}>
-                  <p className="mt-2 font-display text-[17px] font-semibold">
-                    {info.label} <span className="ml-1 font-mono text-[10px] font-normal uppercase tracking-[0.05em] text-paper/45">{info.type}</span>
+                <motion.div key={focus} initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.45, ease: EASE }}>
+                  <p className="mt-1 text-[18px] font-semibold text-[#0d0d0d]">
+                    {info.label} <span className="ml-1 text-[13px] font-normal text-[#8f8f8f]">{info.type}</span>
                   </p>
-                  <ul className="mt-3 space-y-1.5">
+                  <ul className="mt-3 divide-y divide-black/10 border-t border-black/10">
                     {info.rels.slice(0, 3).map((r) => (
-                      <li key={r.to} className="flex items-center gap-3 text-[12px] text-paper/75">
-                        <span className="min-w-0 flex-1 truncate">{r.rel} · {r.to}</span>
-                        <span className="h-1 w-14 overflow-hidden rounded-full bg-white/10"><span className="block h-full rounded-full bg-lake-300" style={{ width: `${r.w * 100}%` }} /></span>
-                        <span className="w-8 text-right font-mono text-[10.5px] text-paper/55">{r.w.toFixed(2)}</span>
+                      <li key={r.to} className="flex items-center gap-3 py-2 text-[13px]">
+                        <span className="min-w-0 flex-1 truncate text-[#5d5d5d]">{r.rel} <span className="text-[#0d0d0d]">{r.to}</span></span>
+                        <span className="tabular-nums text-[#0d0d0d]">{r.w.toFixed(2)}</span>
                       </li>
                     ))}
                   </ul>

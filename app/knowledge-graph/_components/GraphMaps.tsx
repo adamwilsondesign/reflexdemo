@@ -118,32 +118,22 @@ export function GraphMaps() {
           <div className="relative h-[340px] sm:absolute sm:inset-0 sm:h-auto">
             <KnowledgeGraph tone="dark" minor={60} focus={s.focus} showLegend={false} />
           </div>
-          <p className="t-ui pointer-events-none absolute left-4 top-4 text-[10px] text-paper/45 sm:left-5 sm:top-5">Hover or tap a node</p>
+          <p className="pui pointer-events-none absolute left-4 top-4 text-[12px] text-white/55 sm:left-5 sm:top-5">Hover or tap a node</p>
 
           <div className="pointer-events-none relative min-h-[200px] px-3 pb-3 sm:absolute sm:min-h-0 sm:bottom-5 sm:right-5 sm:w-[320px] sm:p-0">
             <AnimatePresence mode="wait">
-              <motion.div key={active} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.5, ease: EASE }} className="rounded-[12px] border border-white/12 bg-[#1b1e23]/90 p-4 text-paper backdrop-blur-md">
-                <p className="t-ui text-[9.5px] text-paper/45">Example relationship</p>
-                <p className="mt-2 flex flex-wrap items-center gap-1.5 font-display text-[14.5px] font-semibold">
-                  {s.path.map((p, k) => (
-                    <span key={p} className="flex items-center gap-1.5">
-                      {k > 0 && <span className="text-paper/35">→</span>}
-                      {p}
-                    </span>
-                  ))}
-                </p>
-                <div className="mt-3 flex items-center gap-3">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.05em] text-paper/55">{s.rel}</span>
-                  <span className="h-1 flex-1 overflow-hidden rounded-full bg-white/10">
-                    <motion.span className="block h-full rounded-full bg-lake-300" initial={{ width: 0 }} animate={{ width: `${s.w * 100}%` }} transition={{ duration: 0.9, ease: EASE, delay: 0.15 }} />
-                  </span>
-                  <span className="font-mono text-[11px] text-paper/80">{s.w.toFixed(2)}</span>
-                </div>
-                <ul className="mt-3 space-y-1.5 border-t border-white/10 pt-3">
+              <motion.div key={active} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.5, ease: EASE }} className="pui ui-card p-4">
+                <p className="text-[12px] text-[#8f8f8f]">Example relationship</p>
+                <p className="mt-1 text-[15px] font-semibold text-[#0d0d0d]">{s.path.join(" → ")}</p>
+                <ul className="mt-3 divide-y divide-black/10 border-t border-black/10 text-[13px]">
+                  <li className="flex items-center justify-between py-2">
+                    <span className="text-[#5d5d5d]">{s.rel}</span>
+                    <span className="tabular-nums font-medium text-[#0d0d0d]">{s.w.toFixed(2)}</span>
+                  </li>
                   {s.evidence.map(([k, v]) => (
-                    <li key={v} className="flex gap-2 text-[11.5px] leading-snug">
-                      <span className="w-[92px] shrink-0 font-mono text-[9.5px] uppercase tracking-[0.04em] text-paper/45">{k}</span>
-                      <span className="text-paper/75">{v}</span>
+                    <li key={v} className="flex gap-3 py-2 leading-snug">
+                      <span className="w-[96px] shrink-0 text-[#8f8f8f]">{k}</span>
+                      <span className="text-[#0d0d0d]">{v}</span>
                     </li>
                   ))}
                 </ul>

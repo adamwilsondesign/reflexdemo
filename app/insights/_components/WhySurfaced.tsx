@@ -3,7 +3,6 @@
 import { AnimatePresence, motion, useInView, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
-import { Pill } from "@/components/product/ui";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -88,7 +87,7 @@ export function WhySurfaced() {
       </div>
 
       <div id="why-panel" role="tabpanel" aria-labelledby={`why-tab-${r.key}`} className="lg:col-span-7">
-        <div className="field-mist grain relative overflow-hidden rounded-[18px] border border-ink/8 p-5 sm:p-8">
+        <div className="pui field-mist grain relative overflow-hidden rounded-[18px] border border-ink/8 p-5 sm:p-8">
           <AnimatePresence mode="wait">
             <motion.div key={r.key} initial={reduce ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.55, ease: EASE }}>
               {/* Path */}
@@ -99,16 +98,16 @@ export function WhySurfaced() {
                       initial={reduce ? false : { opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 0.15 + i * 0.35, ease: EASE }}
-                      className={clsx("rounded-[10px] border bg-white px-3.5 py-3 shadow-[0_6px_20px_-10px_rgb(23_25_28/0.3)] sm:flex-1", i === r.chain.length - 1 ? "border-lake-300" : "border-ink/8")}
+                      className={clsx("ui-card px-3 py-2.5 sm:flex-1", i === r.chain.length - 1 && "border-black/30")}
                     >
-                      <span className="block font-mono text-[9.5px] uppercase tracking-[0.05em] text-ink/45">{c.k}</span>
-                      <span className="mt-1 block font-display text-[14px] font-semibold leading-tight text-ink">{c.v}</span>
-                      <span className="mt-0.5 block text-[11px] text-ink/50">{c.sub}</span>
+                      <span className="block text-[12px] text-[#8f8f8f]">{c.k}</span>
+                      <span className="mt-0.5 block text-[14px] font-semibold leading-tight text-[#0d0d0d]">{c.v}</span>
+                      <span className="mt-0.5 block text-[12px] text-[#5d5d5d]">{c.sub}</span>
                     </motion.div>
                     {i < r.chain.length - 1 && (
-                      <span className="relative mx-auto block h-6 w-px bg-ink/15 sm:mx-0 sm:h-px sm:w-6 sm:shrink-0" aria-hidden="true">
+                      <span className="relative mx-auto block h-6 w-px bg-black/10 sm:mx-0 sm:h-px sm:w-6 sm:shrink-0" aria-hidden="true">
                         <motion.span
-                          className="absolute left-0 top-0 block bg-lake-500 sm:h-px"
+                          className="absolute left-0 top-0 block bg-[#0d0d0d] sm:h-px"
                           initial={reduce ? false : { scaleX: 0, scaleY: 0 }}
                           animate={{ scaleX: 1, scaleY: 1 }}
                           style={{ width: "100%", height: "100%", transformOrigin: "left top" }}
@@ -125,26 +124,20 @@ export function WhySurfaced() {
                 initial={reduce ? false : { opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.25 + r.chain.length * 0.35, ease: EASE }}
-                className="ui-card mt-6 p-5"
+                className="ui-card mt-6 p-4"
               >
-                <div className="flex items-center justify-between gap-2">
-                  <Pill tone={r.insight.type.startsWith("Earnings") ? "pine" : "lake"}>{r.insight.type}</Pill>
-                  <span className="font-mono text-[10px] text-ink/40">In your Insights feed</span>
+                <div className="flex items-center justify-between gap-2 text-[12px] text-[#8f8f8f]">
+                  <span>{r.insight.type}</span>
+                  <span>In your Insights feed</span>
                 </div>
-                <p className="mt-3 font-display text-[18px] font-semibold leading-snug text-ink sm:text-[20px]">{r.insight.title}</p>
-                <div className="mt-4 flex items-start gap-2.5 rounded-lg border border-lake-300/60 bg-lake-100/60 px-3.5 py-3">
-                  <svg viewBox="0 0 16 16" className="mt-[2px] h-4 w-4 shrink-0 text-lake-700" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
-                    <circle cx="8" cy="8" r="6.2" />
-                    <path d="M8 7.2v3.6M8 5v.2" strokeLinecap="round" />
-                  </svg>
-                  <p className="text-[13px] leading-snug text-lake-900">
-                    <span className="font-semibold">Why you&rsquo;re seeing this.</span> {r.why}
-                  </p>
-                </div>
+                <p className="mt-1 text-[18px] font-semibold leading-snug text-[#0d0d0d]">{r.insight.title}</p>
+                <p className="mt-3 rounded-[10px] bg-[#f9f9f9] px-3 py-2 text-[13px] leading-snug text-[#5d5d5d]">
+                  <span className="font-medium text-[#0d0d0d]">Why you&rsquo;re seeing this.</span> {r.why}
+                </p>
               </motion.div>
             </motion.div>
           </AnimatePresence>
-          <p className="t-ui mt-5 text-[10px] text-ink/40">Illustrative example</p>
+          <p className="mt-4 text-[12px] text-[#5d5d5d]">Illustrative example</p>
         </div>
       </div>
     </div>

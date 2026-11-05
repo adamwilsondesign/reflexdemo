@@ -148,9 +148,9 @@ export default function InsightsPage() {
                   <span className="t-body block italic text-paper/90">{t.question}</span>
                   <span className="mt-3 block">{t.body}</span>
                   {t.note && <span className="mt-3 block text-paper/55">{t.note}</span>}
-                  <span className="mt-6 block rounded-[10px] border border-white/15 bg-white/[0.05] px-4 py-3">
-                    <span className="block font-display text-[10px] font-medium uppercase tracking-[0.06em] text-paper/50">Example Insight</span>
-                    <span className="mt-1 block font-display text-[14.5px] font-medium text-paper/90">{t.example}</span>
+                  <span className="ui-card mt-6 block px-4 py-3">
+                    <span className="block text-[12px] text-[#8f8f8f]">Example insight</span>
+                    <span className="mt-0.5 block text-[14px] font-medium text-[#0d0d0d]">{t.example}</span>
                   </span>
                 </>
               ),

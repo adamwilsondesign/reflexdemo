@@ -105,7 +105,7 @@ export function DurableOrbit() {
             initial={reduce ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.2 + i * 0.15 }}
-            className="t-ui absolute whitespace-nowrap rounded-full border border-ink/10 bg-paper/90 px-2.5 py-1 text-[10px] text-ink/75 backdrop-blur-sm sm:text-[11px]"
+            className="pui absolute whitespace-nowrap rounded-[10px] border border-black/10 bg-white px-2 py-1 text-[12px] text-[#0d0d0d] sm:text-[13px]"
             style={{ left: `${x}%`, top: `${y}%`, transform: `translate(-50%, ${above ? "calc(-100% - 14px)" : "14px"})` }}
           >
             {l.label}
@@ -122,7 +122,7 @@ export function DurableOrbit() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.5, ease: EASE }}
-            className="absolute px-1 text-center font-mono text-[8.5px] uppercase leading-tight tracking-[0.05em] sm:text-[10px]"
+            className="pui absolute px-1 text-center text-[10px] font-medium leading-tight sm:text-[12px]"
           >
             {MODELS[gen % MODELS.length]}
           </motion.span>

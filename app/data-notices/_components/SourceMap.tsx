@@ -29,19 +29,20 @@ export function SourceMap() {
   return (
     <div ref={ref} className="relative grid grid-cols-[minmax(0,0.9fr)_minmax(0,0.5fr)_minmax(0,1.1fr)] items-center gap-0" aria-hidden="true">
       {/* providers */}
-      <ul className="flex flex-col gap-1.5">
+      <ul className="ui-card divide-y divide-black/10 overflow-hidden px-3 py-1">
         {PROVIDERS.map((p, i) => (
           <motion.li
             key={p}
-            initial={reduce ? false : { opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={reduce ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.4 + i * 0.06, ease: EASE }}
             className={clsx(
-              "truncate rounded-md border px-2.5 py-[6px] font-mono text-[10.5px] uppercase tracking-[0.04em] transition-colors duration-500",
-              i === on ? "border-white bg-white text-lake-700 shadow-[0_6px_18px_-8px_rgb(0_0_0/0.4)]" : "border-white/25 bg-white/10 text-white/80",
+              "flex items-center justify-between gap-2 truncate py-[5px] text-[12px] transition-colors duration-500 sm:text-[13px]",
+              i === on ? "font-medium text-[#0d0d0d]" : "text-[#8f8f8f]",
             )}
           >
-            {p}
+            <span className="truncate">{p}</span>
+            <span className={clsx("h-1.5 w-1.5 shrink-0 rounded-full bg-[#0d0d0d] transition-opacity duration-500", i === on ? "opacity-100" : "opacity-0")} />
           </motion.li>
         ))}
       </ul>
@@ -75,17 +76,15 @@ export function SourceMap() {
         className="ui-card p-3.5 sm:p-4"
       >
         <div className="flex items-center gap-2">
-          <span className="flex h-6 w-6 items-center justify-center rounded-md bg-white ring-1 ring-ink/5">
-            <AlfredGlyph className="h-3 w-3 text-lake-700" />
-          </span>
-          <span className="font-mono text-[9.5px] uppercase tracking-[0.05em] text-ink/50">Answer · cited</span>
+          <AlfredGlyph className="h-4 w-4 text-[#0d0d0d]" />
+          <span className="text-[14px] font-semibold text-[#0d0d0d]">Answer</span>
         </div>
-        <p className="mt-2.5 text-[12px] leading-relaxed text-ink/80">
+        <p className="mt-2 text-[13px] leading-relaxed text-[#5d5d5d]">
           Figures and claims link back to the licensed source they came from<Cite n={on + 1} />
         </p>
-        <div className="mt-3 rounded-md border border-ink/8 bg-white/85 px-2.5 py-2">
-          <p className="font-mono text-[9px] uppercase tracking-[0.05em] text-ink/40">Source {on + 1}</p>
-          <motion.p key={on} initial={reduce ? false : { opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="mt-0.5 truncate font-display text-[12px] font-medium text-ink">
+        <div className="mt-3 border-t border-black/10 pt-2">
+          <p className="text-[12px] text-[#8f8f8f]">Source {on + 1}</p>
+          <motion.p key={on} initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }} className="mt-0.5 truncate text-[14px] font-medium text-[#0d0d0d]">
             {PROVIDERS[on]}
           </motion.p>
         </div>

@@ -143,7 +143,7 @@ export function BranchLines({
       {ends.map((e, i) => {
         const d = `M${ox},${oy} C ${ox + 120},${oy} ${e.x - 140},${e.y} ${e.x},${e.y}`;
         return (
-          <g key={e.b}>
+          <g key={i}>
             <motion.path d={d} stroke="currentColor" strokeOpacity={0.6} strokeWidth={1.1} {...draw(seen, reduce, 0.3 + i * 0.18, 1.4)} />
             <Pulse d={d} live={live} dur={2.8} delay={i * 0.6} color={accent} width={2} />
             <motion.circle cx={e.x} cy={e.y} r={4} fill={accent} {...pop(seen, reduce, 1.2 + i * 0.18)} />

@@ -77,21 +77,21 @@ export function BlogHeroVisual({ posts }: { posts: BlogPost[] }) {
                 .map((p, depth) => (
                   <motion.article
                     key={p.slug}
-                    className="absolute inset-x-0 bottom-0 overflow-hidden rounded-[14px] border border-white/60 bg-[#f7f6f4] shadow-[0_24px_48px_-20px_rgb(0_0_0/0.45)]"
+                    className="ui-card pui absolute inset-x-0 bottom-0 overflow-hidden p-0"
                     style={{ zIndex: 3 - depth, transformOrigin: "50% 0%" }}
                     initial={{ opacity: 0, y: -60, scale: 0.86 }}
-                    animate={{ opacity: depth === 2 ? 0.6 : 1, y: -depth * 18, scale: 1 - depth * 0.06 }}
+                    animate={{ opacity: depth === 0 ? 1 : 0, y: -depth * 14, scale: 1 - depth * 0.04 }}
                     exit={{ opacity: 0, y: 70, transition: { duration: 0.7, ease: EASE } }}
                     transition={{ duration: 0.9, ease: EASE }}
                     aria-hidden={depth !== 0}
                   >
                     <BlogCover post={p} size="sm" className="h-[150px]" sizes="380px" />
-                    <div className="p-4 md:p-5">
-                      <p className="t-ui text-[10px] text-ink/55">
+                    <div className="p-4">
+                      <p className="text-[12px] text-[#8f8f8f]">
                         {p.category} · {p.readingTime} min read
                       </p>
-                      <p className="mt-2 line-clamp-2 min-h-[2.5em] font-display text-[16px] font-semibold leading-[1.25] tracking-[-0.01em] text-ink md:text-[17px]">{p.title}</p>
-                      <div className="mt-3 flex items-center justify-between text-[12px] text-ink/55">
+                      <p className="mt-1 line-clamp-2 min-h-[2.5em] text-[16px] font-semibold leading-[1.3] text-[#0d0d0d]">{p.title}</p>
+                      <div className="mt-2 flex items-center justify-between border-t border-black/10 pt-2 text-[12px] text-[#5d5d5d]">
                         <span>{p.author.name}</span>
                         <span>{formatDate(p.date)}</span>
                       </div>

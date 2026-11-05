@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import clsx from "clsx";
-import { Pill, Stage } from "@/components/product/ui";
+import { Stage } from "@/components/product/ui";
 import { useLoop } from "../../_components/useLoop";
 import { CONSTITUENTS, THEME } from "./data";
 
@@ -17,15 +17,6 @@ const pos = CONSTITUENTS.map((_, i) => {
   return { x: 50 + Math.cos(a) * RAD[i] * 0.8, y: 50 + Math.sin(a) * RAD[i] * 0.92 };
 });
 
-// faint background constituents: the long tail of the theme
-let seed = 7;
-const rnd = () => ((seed = (seed * 9301 + 49297) % 233280) / 233280);
-const MINOR = Array.from({ length: 34 }, () => {
-  const a = rnd() * Math.PI * 2;
-  const r = 14 + rnd() * 34;
-  return { x: 50 + Math.cos(a) * r * 0.8, y: 50 + Math.sin(a) * r * 0.92, s: 0.5 + rnd() * 0.7 };
-});
-
 /** Hero: a theme at the centre, constituents mapped by how directly they are exposed, evidence on hover of the loop. */
 export function ThemeRadar() {
   const { ref, step, reduce } = useLoop(CONSTITUENTS.length, 2600, 3);
@@ -34,94 +25,73 @@ export function ThemeRadar() {
     <Stage field="ink" className="p-4 sm:p-6">
       <div ref={ref} className="mx-auto w-full max-w-[560px]">
         <div className="relative aspect-[1/0.9] w-full">
-        <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 h-full w-full" fill="none" aria-hidden="true">
-          {MINOR.map((m, i) => (
-            <g key={`m${i}`}>
-              <line x1={50} y1={50} x2={m.x} y2={m.y} stroke="rgb(244 243 241 / 0.05)" strokeWidth={0.5} vectorEffect="non-scaling-stroke" />
-              <ellipse cx={m.x} cy={m.y} rx={m.s * 0.55} ry={m.s * 0.5} fill="rgb(244 243 241 / 0.28)" />
-            </g>
-          ))}
-          {[27, 41].map((r) => (
-            <ellipse key={r} cx={50} cy={50} rx={r * 0.8} ry={r * 0.92} stroke="rgb(244 243 241 / 0.12)" strokeWidth={0.25} strokeDasharray="0.6 1.2" vectorEffect="non-scaling-stroke" />
-          ))}
-          {pos.map((p, i) => {
-            const risk = CONSTITUENTS[i].tier === "Risk";
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 h-full w-full" fill="none" aria-hidden="true">
+            {[27, 41].map((r) => (
+              <ellipse key={r} cx={50} cy={50} rx={r * 0.8} ry={r * 0.92} stroke="rgb(255 255 255 / 0.1)" strokeWidth={1} vectorEffect="non-scaling-stroke" />
+            ))}
+            {pos.map((p, i) => {
+              const on = i === step;
+              return (
+                <motion.line
+                  key={i}
+                  x1={50}
+                  y1={50}
+                  x2={p.x}
+                  y2={p.y}
+                  stroke={on ? "#ffffff" : "rgb(255 255 255 / 0.25)"}
+                  strokeWidth={on ? 1.5 : 1}
+                  vectorEffect="non-scaling-stroke"
+                  strokeDasharray={CONSTITUENTS[i].tier === "Core" ? undefined : "3 3"}
+                  initial={reduce ? false : { opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.4 + i * 0.08, ease: EASE }}
+                />
+              );
+            })}
+          </svg>
+
+          {/* theme node */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <span className="flex h-[84px] w-[84px] items-center justify-center rounded-full bg-white px-2 text-center text-[12px] font-semibold leading-tight text-[#0d0d0d] sm:h-[100px] sm:w-[100px] sm:text-[13px]">{THEME}</span>
+          </div>
+
+          {CONSTITUENTS.map((k, i) => {
             const on = i === step;
             return (
-              <motion.line
-                key={i}
-                x1={50}
-                y1={50}
-                x2={p.x}
-                y2={p.y}
-                stroke={risk ? "#c07a6a" : on ? "#d5e0da" : "rgb(244 243 241 / 0.3)"}
-                strokeWidth={on ? 2 : 0.6 + CONSTITUENTS[i].score}
-                vectorEffect="non-scaling-stroke"
-                strokeDasharray={CONSTITUENTS[i].tier === "Core" ? undefined : "3 3"}
-                initial={reduce ? false : { pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 1.1, delay: 0.5 + i * 0.08, ease: EASE }}
-              />
+              <motion.div
+                key={k.ticker}
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ left: `${pos[i].x}%`, top: `${pos[i].y}%` }}
+                initial={reduce ? false : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: reduce ? 0 : 0.8 + i * 0.08, ease: EASE }}
+              >
+                <span
+                  className={clsx(
+                    "block whitespace-nowrap rounded-[10px] border px-2 py-1 text-[12px] transition-colors duration-500 sm:px-2.5",
+                    on ? "border-white bg-white font-medium text-[#0d0d0d]" : "border-white/15 bg-[#0d0d0d] text-white/75",
+                  )}
+                >
+                  <span className="sm:hidden">{SHORT[i]}</span>
+                  <span className="hidden sm:inline">{k.name.replace(" Systems", "")}</span>
+                </span>
+              </motion.div>
             );
           })}
-        </svg>
-
-        {/* theme node */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <span className="absolute inset-0 -m-3 rounded-full border border-pine-300/40" aria-hidden="true" />
-          {!reduce && <span className="animate-pulse-ring absolute inset-0 rounded-full border border-pine-300/50" aria-hidden="true" />}
-          <span className="relative flex h-[84px] w-[84px] flex-col items-center justify-center rounded-full bg-pine-500 text-center sm:h-[104px] sm:w-[104px]">
-            <span className="font-mono text-[8px] uppercase tracking-[0.06em] text-paper/70 sm:text-[9px]">Theme</span>
-            <span className="mt-0.5 px-2 font-display text-[11px] font-semibold leading-tight text-paper sm:text-[13px]">{THEME}</span>
-          </span>
-        </div>
-
-        {CONSTITUENTS.map((k, i) => {
-          const on = i === step;
-          const risk = k.tier === "Risk";
-          return (
-            <motion.div
-              key={k.ticker}
-              className="absolute -translate-x-1/2 -translate-y-1/2"
-              style={{ left: `${pos[i].x}%`, top: `${pos[i].y}%` }}
-              initial={reduce ? false : { opacity: 0, scale: 0.7 }}
-              animate={{ opacity: 1, scale: on ? 1.08 : 1 }}
-              transition={{ duration: 0.6, delay: reduce ? 0 : on ? 0 : 0.8 + i * 0.08, ease: EASE }}
-            >
-              <span
-                className={clsx(
-                  "flex items-center gap-1.5 whitespace-nowrap rounded-full border px-2 py-1 font-display text-[10px] font-semibold transition-colors duration-500 sm:px-2.5 sm:text-[11.5px]",
-                  on ? (risk ? "border-[#c07a6a] bg-[#f3e1dc] text-[#6e3328]" : "border-paper bg-paper text-ink") : risk ? "border-[#c07a6a]/60 bg-ink text-[#e2b3a8]" : "border-white/20 bg-[#20242a] text-paper/85",
-                )}
-              >
-                <span className={clsx("h-1.5 w-1.5 rounded-full", risk ? "bg-[#c07a6a]" : k.tier === "Core" ? "bg-pine-300" : "bg-lake-300")} />
-                <span className="sm:hidden">{SHORT[i]}</span>
-                <span className="hidden sm:inline">{k.name.replace(" Systems", "")}</span>
-              </span>
-            </motion.div>
-          );
-        })}
-
         </div>
 
         {/* evidence card */}
         <div className="mt-2">
           <AnimatePresence mode="wait" initial={false}>
-            <motion.div key={c.ticker} initial={reduce ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.5, ease: EASE }} className="ui-card p-3.5 sm:p-4">
-              <div className="flex items-center justify-between gap-2">
-                <span className="font-display text-[13.5px] font-semibold text-ink">{c.name}</span>
-                <Pill tone={c.tier === "Risk" ? "warn" : c.tier === "Core" ? "pine" : "lake"}>{c.tier === "Risk" ? "Exposed · risk" : c.tier}</Pill>
-              </div>
-              <div className="mt-2 flex items-center gap-3">
-                <span className="font-mono text-[10px] uppercase text-ink/45">Exposure</span>
-                <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-ink/8">
-                  <motion.span className={clsx("block h-full", c.tier === "Risk" ? "bg-[#9a4b3c]" : "bg-pine-500")} initial={{ width: 0 }} animate={{ width: `${c.score * 100}%` }} transition={{ duration: 0.8, ease: EASE }} />
+            <motion.div key={c.ticker} initial={reduce ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.5, ease: EASE }} className="ui-card p-4">
+              <div className="flex items-baseline justify-between gap-3">
+                <span className="truncate text-[14px] font-semibold text-[#0d0d0d]">{c.name}</span>
+                <span className="shrink-0 text-[13px] text-[#8f8f8f]">
+                  {c.tier} · <span className="tabular-nums text-[#0d0d0d]">{c.score.toFixed(2)}</span>
                 </span>
-                <span className="font-mono text-[11px] text-ink">{c.score.toFixed(2)}</span>
               </div>
-              <p className="mt-2 line-clamp-2 text-[11.5px] leading-relaxed text-ink/65">
-                <span className="font-mono text-[9.5px] uppercase tracking-[0.05em] text-lake-700">Evidence · </span>
-                {c.evidence[0].text} <span className="text-ink/40">({c.evidence[0].source})</span>
+              <p className="mt-1.5 line-clamp-2 text-[13px] leading-relaxed text-[#5d5d5d]">
+                {c.evidence[0].text} <span className="text-[#8f8f8f]">({c.evidence[0].source})</span>
               </p>
             </motion.div>
           </AnimatePresence>

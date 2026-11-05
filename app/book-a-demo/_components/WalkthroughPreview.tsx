@@ -3,7 +3,7 @@
 import { AnimatePresence, motion, useInView, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
-import { AlfredGlyph } from "@/components/product/ui";
+import { AlfredGlyph, CodeBlock, SourceRow } from "@/components/product/ui";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -84,26 +84,24 @@ const WATCH = [
 
 function PreviewCard({ step }: { step: number }) {
   const reduce = useReducedMotion();
-  const labels = ["Watchlist", "Alfred · Knowledge Graph", "Sources · Calculation"];
+  const labels = ["Watchlist", "Alfred", "Source and calculation"];
   return (
-    <div className="relative self-start" aria-hidden="true">
+    <div className="pui relative self-start" aria-hidden="true">
       <div className="ui-card relative overflow-hidden p-4">
         <div className="flex items-center justify-between">
           <span className="flex items-center gap-2">
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-white ring-1 ring-ink/5">
-              <AlfredGlyph className="h-3.5 w-3.5 text-lake-700" />
-            </span>
-            <span className="font-mono text-[10px] uppercase tracking-[0.05em] text-ink/55">{labels[step]}</span>
+            <AlfredGlyph className="h-4 w-4 text-[#0d0d0d]" />
+            <span className="text-[14px] font-semibold text-[#0d0d0d]">{labels[step]}</span>
           </span>
-          <span className="font-mono text-[9.5px] uppercase tracking-[0.05em] text-ink/35">Illustrative</span>
+          <span className="text-[12px] text-[#8f8f8f]">Illustrative</span>
         </div>
         <div className="relative mt-3 h-[168px]">
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={step}
-              initial={reduce ? false : { opacity: 0, y: 8, filter: "blur(4px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              exit={reduce ? undefined : { opacity: 0, y: -6, filter: "blur(4px)" }}
+              initial={reduce ? false : { opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={reduce ? undefined : { opacity: 0, y: -6 }}
               transition={{ duration: 0.6, ease: EASE }}
               className="absolute inset-0"
             >
@@ -120,23 +118,22 @@ function PreviewCard({ step }: { step: number }) {
 
 function Watchlist() {
   return (
-    <div className="flex h-full flex-col gap-1.5">
-      {WATCH.map((w, i) => (
-        <motion.div
-          key={w.t}
-          initial={{ opacity: 0, x: -6 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 + i * 0.09, ease: EASE }}
-          className="flex items-center gap-2.5 rounded-md border border-ink/8 bg-white/80 px-2.5 py-1.5"
-        >
-          <span className="w-11 font-mono text-[11px] font-medium text-lake-700">{w.t}</span>
-          <span className="flex-1 truncate font-display text-[12px] text-ink/75">{w.n}</span>
-          <span className="h-1 w-10 overflow-hidden rounded-full bg-ink/8">
-            <motion.span className="block h-full bg-lake-500" initial={{ width: 0 }} animate={{ width: `${40 + ((i * 23) % 50)}%` }} transition={{ duration: 0.9, delay: 0.3 + i * 0.1, ease: EASE }} />
-          </span>
-        </motion.div>
-      ))}
-      <span className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.05em] text-ink/40">+ your names, or our sample list</span>
+    <div className="flex h-full flex-col">
+      <ul className="divide-y divide-black/10 border-t border-black/10">
+        {WATCH.map((w, i) => (
+          <motion.li
+            key={w.t}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 + i * 0.09, ease: EASE }}
+            className="flex items-center gap-3 py-1.5 text-[13px]"
+          >
+            <span className="w-11 font-medium text-[#0d0d0d]">{w.t}</span>
+            <span className="flex-1 truncate text-[#5d5d5d]">{w.n}</span>
+          </motion.li>
+        ))}
+      </ul>
+      <span className="mt-auto text-[12px] text-[#8f8f8f]">Your names, or our sample list</span>
     </div>
   );
 }
@@ -151,7 +148,7 @@ function MiniGraph() {
   ];
   return (
     <div className="flex h-full flex-col">
-      <p className="rounded-md bg-white/80 px-2.5 py-1.5 font-display text-[12px] font-medium text-ink ring-1 ring-ink/8">Which of my names depend most on TSMC capacity?</p>
+      <p className="rounded-[10px] bg-[#f9f9f9] px-3 py-2 text-[13px] text-[#0d0d0d]">Which of my names depend most on TSMC capacity?</p>
       <div className="relative mt-2 flex-1">
         <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 h-full w-full">
           {nodes.slice(1).map((n, i) => (
@@ -161,8 +158,8 @@ function MiniGraph() {
               y1={50}
               x2={n.x}
               y2={n.y}
-              stroke={i % 2 ? "#3e5c50" : "#5d738c"}
-              strokeWidth={1.1}
+              stroke="rgb(0 0 0 / 0.2)"
+              strokeWidth={1}
               vectorEffect="non-scaling-stroke"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
@@ -173,12 +170,12 @@ function MiniGraph() {
         {nodes.map((n, i) => (
           <motion.span
             key={n.l}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: i * 0.1, ease: EASE }}
             className={clsx(
-              "absolute -translate-x-1/2 -translate-y-1/2 rounded-full px-2 py-0.5 font-mono text-[10px] font-medium",
-              n.main ? "bg-lake-700 text-white" : "border border-ink/10 bg-white text-ink/75",
+              "absolute -translate-x-1/2 -translate-y-1/2 bg-white px-1.5 text-[12px]",
+              n.main ? "font-semibold text-[#0d0d0d]" : "text-[#5d5d5d]",
             )}
             style={{ left: `${n.x}%`, top: `${n.y}%` }}
           >
@@ -193,27 +190,8 @@ function MiniGraph() {
 function SourceCalc() {
   return (
     <div className="flex h-full flex-col gap-2">
-      <div className="flex items-center gap-2.5 rounded-md border border-ink/8 bg-white/85 px-2.5 py-1.5">
-        <span className="flex h-4 w-4 items-center justify-center rounded bg-lake-100 font-mono text-[9px] text-lake-700">1</span>
-        <span className="min-w-0 flex-1">
-          <span className="block truncate font-display text-[12px] font-medium text-ink">Q2 earnings call transcript</span>
-          <span className="block font-mono text-[9.5px] uppercase tracking-[0.04em] text-ink/45">Quartr · p. 7</span>
-        </span>
-      </div>
-      <pre className="flex-1 overflow-hidden rounded-md bg-[#1b1e23] p-2.5 font-mono text-[10.5px] leading-[1.7] text-paper/80">
-        {[
-          ["rev", " = ", "segment_revenue", "(\"TSM\", fq=-4..0)"],
-          ["share", " = ", "rev[\"HPC\"] / rev.sum()", ""],
-          ["exposure", " = ", "weight(holdings) * share", ""],
-        ].map((l, i) => (
-          <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4, delay: 0.15 + i * 0.18 }}>
-            <span className="text-lake-300">{l[0]}</span>
-            {l[1]}
-            <span className="text-paper">{l[2]}</span>
-            <span className="text-pine-300">{l[3]}</span>
-          </motion.div>
-        ))}
-      </pre>
+      <SourceRow n={1} title="Q2 earnings call transcript" meta="Quartr, p.7" />
+      <CodeBlock lines={['share = rev["HPC"] / rev.sum()', "exposure = weight(holdings) * share"]} />
     </div>
   );
 }

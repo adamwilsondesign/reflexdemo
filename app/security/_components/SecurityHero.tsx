@@ -105,8 +105,8 @@ export function SecurityHero() {
               transition={{ duration: 3.2, repeat: Infinity, ease: "easeOut" }}
             />
           )}
-          <text x={C} y={C - 6} textAnchor="middle" className="fill-paper font-display" style={{ fontSize: 17, fontWeight: 600 }}>Your environment</text>
-          <text x={C} y={C + 16} textAnchor="middle" className="fill-paper/60 font-mono" style={{ fontSize: 9.5, letterSpacing: "0.08em" }}>RESEARCH · DATA · OUTPUTS</text>
+          <text x={C} y={C - 4} textAnchor="middle" fill="#ffffff" style={{ fontSize: 16, fontWeight: 600 }}>Your environment</text>
+          <text x={C} y={C + 16} textAnchor="middle" fill="rgb(255 255 255 / 0.65)" style={{ fontSize: 12 }}>Research, data, outputs</text>
 
           {/* Requests */}
           {REQUESTS.map((q, i) => (
@@ -116,7 +116,9 @@ export function SecurityHero() {
                 <motion.circle
                   cx={C}
                   r={4}
-                  fill={q.ok ? "#d5e0da" : "#d9b48a"}
+                  fill={q.ok ? "#ffffff" : "none"}
+                  stroke={q.ok ? "none" : "rgb(255 255 255 / 0.8)"}
+                  strokeWidth={1.2}
                   initial={{ cy: 0, opacity: 0 }}
                   animate={{
                     cy: q.ok ? [0, C - R_OUT, C - R_OUT, C - R_IN - 6] : [0, C - R_OUT - 4, C - R_OUT - 4, C - R_OUT - 14],
@@ -129,16 +131,16 @@ export function SecurityHero() {
           ))}
 
           {/* Layer labels */}
-          <g className="font-mono" style={{ fontSize: 9.5, letterSpacing: "0.08em" }}>
-            <text x={C} y={C - R_OUT - 14} textAnchor="middle" className="fill-paper/70">PERMISSION-AWARE ACCESS</text>
-            <text x={C} y={C - R_MID + 26} textAnchor="middle" className="fill-lake-300">ENCRYPTED IN TRANSIT</text>
-            <text x={C} y={C + R_IN + 22} textAnchor="middle" className="fill-paper/55">CLIENT ISOLATION</text>
+          <g style={{ fontSize: 12, fontWeight: 500 }}>
+            <text x={C} y={C - R_OUT - 14} textAnchor="middle" fill="rgb(255 255 255 / 0.8)">Permission-aware access</text>
+            <text x={C} y={C - R_MID + 26} textAnchor="middle" fill="rgb(255 255 255 / 0.75)">Encrypted in transit</text>
+            <text x={C} y={C + R_IN + 22} textAnchor="middle" fill="rgb(255 255 255 / 0.7)">Client isolation</text>
           </g>
         </svg>
 
         <div className="pointer-events-none absolute bottom-3 left-4 flex flex-wrap gap-x-4 gap-y-1 sm:bottom-5 sm:left-6">
-          <span className="t-ui flex items-center gap-1.5 text-[9.5px] text-paper/60"><span className="h-1.5 w-1.5 rounded-full bg-[#d5e0da]" />Permitted</span>
-          <span className="t-ui flex items-center gap-1.5 text-[9.5px] text-paper/60"><span className="h-1.5 w-1.5 rounded-full bg-[#d9b48a]" />Outside entitlements</span>
+          <span className="flex items-center gap-1.5 text-[12px] text-white/70"><span className="h-1.5 w-1.5 rounded-full bg-white" />Permitted</span>
+          <span className="flex items-center gap-1.5 text-[12px] text-white/70"><span className="h-2 w-2 rounded-full border border-white/80" />Outside entitlements</span>
         </div>
       </div>
     </Stage>

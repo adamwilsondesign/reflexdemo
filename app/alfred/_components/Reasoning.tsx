@@ -3,7 +3,7 @@
 import { motion, useInView, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
-import { AlfredGlyph, ImpactPathway } from "@/components/product/ui";
+import { CardHeader, ImpactPathway } from "@/components/product/ui";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -28,25 +28,18 @@ export function ReasoningPipeline() {
   }, [a, inView, reduce]);
 
   return (
-    <div ref={ref} className="relative">
-      <ol className="relative grid gap-3 md:grid-cols-5 md:gap-0">
+    <div ref={ref} className="pui relative">
+      <ol className="relative grid gap-0 md:grid-cols-5 md:gap-4">
         {STAGES.map((s, i) => {
           const on = i <= a && a < STAGES.length;
           const cur = i === a;
           return (
-            <li key={s.k} className="relative md:px-2 md:first:pl-0 md:last:pr-0">
-              <div className={clsx("relative h-full rounded-[12px] border p-4 transition-[border-color,background-color] duration-500", cur ? "border-paper/50 bg-white/[0.08]" : on ? "border-white/20 bg-white/[0.04]" : "border-white/10 bg-transparent")}>
-                <div className="flex items-center gap-2">
-                  <span className={clsx("flex h-5 w-5 items-center justify-center rounded-full border font-mono text-[9.5px] transition-colors duration-500", on ? "border-paper bg-paper text-ink" : "border-white/30 text-paper/60")}>{i + 1}</span>
-                  <span className="t-ui text-[10.5px] text-paper/80">{s.k}</span>
-                </div>
-                <p className={clsx("mt-3 text-[13px] leading-snug transition-colors duration-500", on ? "text-paper/85" : "text-paper/45")}>{s.v}</p>
+            <li key={s.k} className={clsx("relative border-t py-4 transition-colors duration-500", cur ? "border-white" : on ? "border-white/40" : "border-white/15")}>
+              <div className="flex items-center gap-2 text-[13px]">
+                <span className="tabular-nums text-white/50">{i + 1}</span>
+                <span className={clsx("transition-colors duration-500", cur ? "font-semibold text-white" : "font-medium text-white/75")}>{s.k}</span>
               </div>
-              {i < STAGES.length - 1 && (
-                <span aria-hidden="true" className="absolute -right-[7px] top-1/2 z-10 hidden h-[2px] w-[14px] -translate-y-1/2 overflow-hidden bg-white/15 md:block">
-                  <motion.span className="block h-full bg-paper" initial={false} animate={{ width: i < a && a < STAGES.length ? "100%" : "0%" }} transition={{ duration: 0.5, ease: EASE }} />
-                </span>
-              )}
+              <p className={clsx("mt-1.5 text-[13px] leading-snug transition-colors duration-500", on ? "text-white/80" : "text-white/45")}>{s.v}</p>
             </li>
           );
         })}
@@ -69,26 +62,17 @@ export function ImpactCard() {
     return () => clearInterval(iv);
   }, [inView, reduce]);
   return (
-    <div ref={ref} className="grain field-lake relative isolate overflow-hidden rounded-[18px] p-4 sm:p-8">
-      <div className="ui-card p-5 sm:p-6">
-        <div className="flex items-start justify-between gap-3">
-          <span className="flex items-center gap-3">
-            <AlfredGlyph className="h-6 w-6 text-lake-700" />
-            <span>
-              <span className="block font-display text-[15px] font-semibold text-ink">Alfred</span>
-              <span className="block font-mono text-[10px] uppercase tracking-[0.05em] text-ink/45">Knowledge Graph / Amazon</span>
-            </span>
-          </span>
-          <span className="flex items-center gap-1.5 rounded-full bg-ink/[0.05] px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.04em] text-ink/60"><span className="h-1.5 w-1.5 rounded-full bg-pine-500" />Relationship view</span>
-        </div>
-        <p className="mt-6 font-display text-[24px] font-semibold leading-tight tracking-[-0.01em] text-ink sm:text-[28px]">Impact pathways</p>
-        <p className="mt-1 text-[14px] text-ink/55">Following demand through the AI supply chain</p>
+    <div ref={ref} className="pui grain field-lake relative isolate overflow-hidden rounded-[18px] p-4 sm:p-8">
+      <div className="ui-card p-4 sm:p-5">
+        <CardHeader trail={["Amazon"]} />
+        <p className="mt-4 text-[24px] font-semibold leading-tight text-[#0d0d0d]">Impact pathways</p>
+        <p className="mt-1 text-[13px] text-[#5d5d5d]">Following demand through the AI supply chain</p>
         {seen || reduce ? <ImpactPathway key={k} className="mt-4 h-[260px] sm:h-[280px]" /> : <div className="mt-4 h-[260px] sm:h-[280px]" />}
       </div>
-      <motion.div initial={reduce ? false : { opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.6, ease: EASE }} className="ui-card mt-3 p-5">
-        <p className="t-ui text-ink/45">Second-order effect</p>
-        <p className="mt-2 font-display text-[17px] font-semibold text-ink">From cloud demand to chip manufacturing</p>
-        <p className="mt-1.5 text-[13px] leading-relaxed text-ink/65">AWS capacity expansion can increase demand for NVIDIA GPUs, which in turn can raise demand for advanced chips from TSMC.</p>
+      <motion.div initial={reduce ? false : { opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.6, ease: EASE }} className="ui-card mt-3 p-4">
+        <p className="text-[13px] text-[#8f8f8f]">Second-order effect</p>
+        <p className="mt-1 text-[16px] font-semibold text-[#0d0d0d]">From cloud demand to chip manufacturing</p>
+        <p className="mt-1.5 text-[13px] leading-relaxed text-[#5d5d5d]">AWS capacity expansion can increase demand for NVIDIA GPUs, which in turn can raise demand for advanced chips from TSMC.</p>
       </motion.div>
     </div>
   );

@@ -5,7 +5,7 @@ import { motion, useInView, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { Arrow } from "@/components/ui/Button";
-import { AlfredGlyph, Pill, useTypewriter } from "@/components/product/ui";
+import { CardHeader, useTypewriter } from "@/components/product/ui";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -32,19 +32,13 @@ function OpenInAlfred() {
   const inView = useInView(ref, { once: true, amount: 0.5 });
   const typed = useTypewriter("Which of these names has the most exposure to US grid interconnect delays?", { start: inView, speed: 28, delay: 500 });
   return (
-    <div ref={ref} className="flex h-full flex-col justify-center gap-2.5">
-      <div className="ui-card px-3.5 py-2.5 opacity-80">
-        <span className="font-mono text-[9.5px] uppercase tracking-[0.05em] text-ink/45">Market catalyst</span>
-        <p className="font-display text-[13px] font-semibold leading-snug text-ink">AI data center power buildout accelerates</p>
-      </div>
-      <div className="ui-card p-3.5">
-        <span className="flex items-center gap-2 font-display text-[12.5px] font-semibold text-ink">
-          <AlfredGlyph className="h-3.5 w-3.5 text-lake-700" /> Ask Alfred
-          <span className="font-mono text-[9.5px] font-normal uppercase tracking-[0.05em] text-ink/40">· context attached</span>
-        </span>
-        <p className="mt-2 min-h-[3.2em] text-[12.5px] leading-snug text-ink/80">
+    <div ref={ref} className="pui flex h-full flex-col justify-center">
+      <div className="ui-card p-4">
+        <CardHeader title="Ask Alfred" trail={["Context attached"]} />
+        <p className="mt-2 truncate text-[12px] text-[#8f8f8f]">From: AI data center power buildout accelerates</p>
+        <p className="mt-2 min-h-[2.9em] text-[14px] leading-snug text-[#0d0d0d]">
           {typed}
-          <span className="animate-blink ml-0.5 inline-block h-[0.95em] w-[2px] translate-y-[2px] bg-lake-700" />
+          <span className="animate-blink ml-0.5 inline-block h-[0.95em] w-px translate-y-[2px] bg-[#0d0d0d]" />
         </p>
       </div>
     </div>
@@ -64,28 +58,25 @@ function Schedule() {
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
   const lit = reduce ? 5 : (runs % 6);
   return (
-    <div ref={ref} className="flex h-full flex-col justify-center">
+    <div ref={ref} className="pui flex h-full flex-col justify-center">
       <div className="ui-card p-4">
-        <div className="flex items-center justify-between">
-          <span className="font-display text-[13px] font-semibold text-ink">Data center power · refresh</span>
-          <Pill tone="lake">Scheduled</Pill>
-        </div>
-        <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.05em] text-ink/45">Weekdays · 07:00 · your time zone</p>
-        <div className="mt-4 grid grid-cols-5 gap-1.5">
+        <span className="block text-[14px] font-semibold">Data center power refresh</span>
+        <p className="mt-0.5 text-[12px] text-[#8f8f8f]">Weekdays, 07:00 your time</p>
+        <div className="mt-3 grid grid-cols-5 border-t border-black/10 pt-3">
           {days.map((d, i) => (
-            <div key={d} className="text-center">
-              <div className={clsx("flex h-9 items-center justify-center rounded-md border transition-colors duration-500", i < lit ? "border-pine-300 bg-pine-100 text-pine-700" : "border-ink/10 bg-white/60 text-ink/30")}>
+            <div key={d} className={clsx("flex flex-col items-center gap-1 text-[12px] transition-colors duration-500", i < lit ? "text-[#0d0d0d]" : "text-[#8f8f8f]")}>
+              <span className="flex h-4 items-center">
                 {i < lit ? (
-                  <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5" /></svg>
+                  <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5" /></svg>
                 ) : (
                   <span className="h-1 w-1 rounded-full bg-current" />
                 )}
-              </div>
-              <span className="mt-1 block font-mono text-[9.5px] uppercase text-ink/45">{d}</span>
+              </span>
+              {d}
             </div>
           ))}
         </div>
-        <p className="mt-3 text-[11.5px] text-ink/55">{lit === 0 ? "Next refresh queued" : `${lit} refresh${lit === 1 ? "" : "es"} delivered this week`}</p>
+        <p className="mt-3 text-[12px] text-[#5d5d5d]">{lit === 0 ? "Next refresh queued" : `${lit} refresh${lit === 1 ? "" : "es"} delivered this week`}</p>
       </div>
     </div>
   );
@@ -94,33 +85,32 @@ function Schedule() {
 function Workspace() {
   const reduce = useReducedMotion();
   const tiles = [
-    { t: "Sanofi settles Regeneron dispute", k: "Company catalyst" },
-    { t: "Guidance overshadowed a mixed Nike quarter", k: "Earnings recap" },
-    { t: "AI data center power buildout", k: "Market catalyst" },
-    { t: "Eli Lilly: recession probability", k: "Scenario pattern" },
+    "Sanofi settles Regeneron dispute",
+    "Guidance overshadowed a mixed Nike quarter",
+    "AI data center power buildout",
+    "Eli Lilly: recession probability",
   ];
   return (
-    <div className="flex h-full flex-col justify-center">
-      <div className="ui-card p-3.5">
+    <div className="pui flex h-full flex-col justify-center">
+      <div className="ui-card p-4">
         <div className="flex items-center justify-between">
-          <span className="font-display text-[13px] font-semibold text-ink">Healthcare &amp; consumer book</span>
-          <span className="font-mono text-[9.5px] uppercase tracking-[0.05em] text-ink/40">Workspace</span>
+          <span className="text-[14px] font-semibold">Healthcare &amp; consumer book</span>
+          <span className="text-[12px] text-[#8f8f8f]">Pinned</span>
         </div>
-        <div className="mt-3 grid grid-cols-2 gap-1.5">
-          {tiles.map((x, i) => (
-            <motion.div
-              key={x.t}
-              initial={reduce ? false : { opacity: 0, scale: 0.92 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+        <ul className="mt-2 divide-y divide-black/10 border-t border-black/10">
+          {tiles.map((t, i) => (
+            <motion.li
+              key={t}
+              initial={reduce ? false : { opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.6 }}
               transition={{ duration: 0.6, delay: 0.2 + i * 0.15, ease: EASE }}
-              className="rounded-md border border-ink/8 bg-white/80 p-2"
+              className="truncate py-1.5 text-[13px] text-[#0d0d0d]"
             >
-              <span className="block font-mono text-[8.5px] uppercase tracking-[0.05em] text-ink/40">{x.k}</span>
-              <span className="mt-0.5 block text-[11px] font-medium leading-snug text-ink">{x.t}</span>
-            </motion.div>
+              {t}
+            </motion.li>
           ))}
-        </div>
+        </ul>
       </div>
     </div>
   );
