@@ -126,7 +126,7 @@ export default function NewsPage() {
             title="Writing about AI in markets?"
             lead="Reach our communications team for interviews, commentary from our leadership, company information and brand assets."
             rows={[
-              { label: "Contact the press team", href: "/contact?topic=press", note: "Interviews, commentary and brand assets." },
+              { label: "Contact the press team", href: "/contact?topic=press", note: "Interviews, commentary and brand assets.", cta: "news-press" },
               { label: "About Reflexivity", href: "/about", note: "Who we are, our leadership, and why we built the platform." },
               { label: "Read the blog", href: "/blog", note: "Perspectives and product thinking from the team." },
             ]}

@@ -153,7 +153,7 @@ export function PromptWorkbench() {
             </div>
           </div>
         </div>
-        <p className="t-ui mt-3 text-ink/45">Illustrative example. Outputs, names and counts vary with the data available at the time of the run.</p>
+        <p className="t-small mt-3 text-ink/50">Illustrative example. Outputs, names and counts vary with the data available at the time of the run.</p>
       </div>
     </div>
   );

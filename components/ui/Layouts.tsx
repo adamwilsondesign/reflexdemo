@@ -95,7 +95,7 @@ export function LinkRowsBlock({
 }: {
   title: string;
   lead?: React.ReactNode;
-  rows: { label: string; href: string; note?: string }[];
+  rows: { label: string; href: string; note?: string; cta?: string }[];
   onDark?: boolean;
   className?: string;
 }) {
@@ -114,13 +114,14 @@ export function LinkRowsBlock({
   );
 }
 
-export function LinkRows({ rows, onDark = false, numbered = false, className }: { rows: { label: string; href: string; note?: string }[]; onDark?: boolean; numbered?: boolean; className?: string }) {
+export function LinkRows({ rows, onDark = false, numbered = false, className }: { rows: { label: string; href: string; note?: string; cta?: string }[]; onDark?: boolean; numbered?: boolean; className?: string }) {
   return (
     <Stagger as="ul" className={clsx("border-t", onDark ? "border-white/20" : "border-ink/15", className)}>
       {rows.map((r, i) => (
         <StaggerItem as="li" key={r.label}>
           <Link
             href={r.href}
+            data-cta={r.cta}
             className={clsx(
               "group grid grid-cols-[1fr_auto] items-center gap-x-6 gap-y-1 border-b py-5 transition-colors duration-300 md:py-6",
               numbered ? "md:grid-cols-[48px_1fr_1fr_auto]" : r.note ? "md:grid-cols-[1fr_1fr_auto]" : "",
