@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
-import { Arrow } from "@/components/ui/Button";
+import { SplitFeature, TextLink } from "@/components/ui/Layouts";
+import { ExposurePolar } from "@/components/graphics/Cartography";
 import { CTABand, FeatureGrid } from "@/components/ui/Blocks";
 import { CountUp } from "@/components/ui/CountUp";
 import { Audiences, Contrast, IllustrativeNote, RelatedUseCases } from "../_components/Shared";
-import { VennRings } from "../_components/LineArt";
 import { ThemeRadar } from "./_components/ThemeRadar";
 import { DirectionToggle } from "./_components/DirectionToggle";
 import { ConstituentExplorer } from "./_components/ConstituentExplorer";
@@ -38,12 +37,11 @@ export default function ThematicExposurePage() {
       />
 
       {/* The old workflow */}
-      <Section surface="mist" className="border-t border-ink/8">
+      <Section surface="mist">
         <div className="container-x">
           <SectionHeader
-            eyebrow="The old workflow"
+            align="split"
             title="Implicit model knowledge is not a map."
-            maxW="max-w-[860px]"
             lead="A strong model can name related companies. It cannot give a stable, evidence-backed map that means the same thing on Tuesday as on Monday."
           />
           <Contrast
@@ -75,14 +73,12 @@ export default function ThematicExposurePage() {
         <div className="container-x grid gap-14 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
             <SectionHeader
-              eyebrow="How Reflexivity does it"
+              className="lg:max-w-none!"
               title="Theme to company is not company to theme."
               lead="Whether a theme matters to a company is not the same as whether that company is a tradable expression of the theme. Eligibility and evidence sit behind the baskets desks actually want."
             />
             <Reveal delay={0.2} className="mt-8">
-              <Link href="/knowledge-graph" className="group inline-flex items-center gap-2 font-display text-[15px] font-medium">
-                <span className="link-underline">Methodology: how the Graph scores exposure</span> <Arrow />
-              </Link>
+              <TextLink href="/knowledge-graph">Methodology: how the Graph scores exposure</TextLink>
             </Reveal>
           </div>
           <Reveal delay={0.1} className="lg:col-span-7">
@@ -96,7 +92,6 @@ export default function ThematicExposurePage() {
         <div className="pointer-events-none absolute inset-0 -z-10 bg-chart-dark opacity-50" />
         <div className="container-x">
           <SectionHeader
-            eyebrow="How teams use it"
             title="A relationship layer on top of your data."
             align="split"
             lead="The Graph unlocks a new class of relationship models for the thematic work teams already do."
@@ -119,7 +114,6 @@ export default function ThematicExposurePage() {
       <Section surface="mist">
         <div className="container-x">
           <SectionHeader
-            eyebrow="Worked example"
             title="A theme everyone thinks they know."
             align="split"
             lead="Industrial Automation: the obvious robot makers, the suppliers inside the robots, and the names exposed as a risk. Select a company to inspect its rationale."
@@ -133,48 +127,46 @@ export default function ThematicExposurePage() {
         </div>
       </Section>
 
-      {/* Numbers */}
-      <Section surface="lake" className="overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-chart-dark opacity-40" />
-        <div className="container-x grid items-center gap-14 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-7">
-            <SectionHeader eyebrow="Coverage" title="Broader coverage, stronger conviction." lead="A global investment universe spanning securities, markets, and hundreds of thousands of mapped relationships." />
-            <Stagger className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-[14px] bg-white/10">
-              {STATS.map((st) => (
-                <StaggerItem key={st.label} className="bg-lake-900 p-6 md:p-8">
-                  <div className="font-display text-[34px] font-semibold leading-none tracking-[-0.03em] sm:text-[44px] xl:text-[56px]">
-                    <CountUp to={st.to} suffix={st.suffix} />
-                  </div>
-                  <p className="t-ui mt-4 text-paper/60">{st.label}</p>
-                </StaggerItem>
-              ))}
-            </Stagger>
-          </div>
-          <Reveal delay={0.15} className="hidden lg:col-span-5 lg:block">
-            <div className="mx-auto aspect-[560/580] max-w-[440px] text-paper/70">
-              <VennRings />
-            </div>
-          </Reveal>
-        </div>
-      </Section>
+      {/* Coverage: concept block with stats */}
+      <SplitFeature
+        surface="pine"
+        title="Broader coverage, stronger conviction."
+        lead="A global investment universe spanning securities, markets, and hundreds of thousands of mapped relationships."
+        link={{ label: "Explore the Knowledge Graph", href: "/knowledge-graph" }}
+        visual={<ExposurePolar accent="#f4f3f1" />}
+      >
+        <Stagger as="ul" className="mt-10 grid max-w-[520px] grid-cols-2 border-t border-white/20">
+          {STATS.map((st) => (
+            <StaggerItem as="li" key={st.label} className="border-b border-white/20 py-6 pr-4">
+              <div className="font-display text-[28px] font-semibold leading-none tracking-[-0.025em] md:text-[36px]">
+                <CountUp to={st.to} suffix={st.suffix} />
+              </div>
+              <p className="t-ui mt-3 text-paper/65">{st.label}</p>
+            </StaggerItem>
+          ))}
+        </Stagger>
+      </SplitFeature>
 
       {/* Who it is for */}
       <Section surface="paper">
         <div className="container-x">
-          <SectionHeader eyebrow="Who it’s for" title="For teams that build and defend thematic universes." align="split" lead="From a PM’s idea list to an index desk’s basket, with the evidence to back each name." />
-          <div className="mt-14 md:mt-16">
-            <Audiences
-              items={[
-                { name: "Hedge Funds", body: "Find the second-order names before the theme is crowded, and size them with evidence.", href: "/customers#hedge-funds" },
-                { name: "Asset Managers", body: "Build and maintain thematic products with constituent lists you can explain.", href: "/customers#asset-managers" },
-                { name: "Financial Institutions", body: "Power baskets, indices and research products with the Graph through API or feeds.", href: "/customers#financial-institutions" },
-                { name: "Wealth Managers", body: "Show clients which holdings a theme really touches, beyond the fund label.", href: "/customers#wealth-managers" },
-              ]}
-            />
-          </div>
-          <div className="mt-20 md:mt-28">
-            <RelatedUseCases current="thematic-exposure" />
-          </div>
+          <Audiences
+            title="For teams that build and defend thematic universes."
+            lead="From a PM’s idea list to an index desk’s basket, with the evidence to back each name."
+            items={[
+              { name: "Hedge Funds", body: "Find the second-order names before the theme is crowded, and size them with evidence.", href: "/customers#hedge-funds" },
+              { name: "Asset Managers", body: "Build and maintain thematic products with constituent lists you can explain.", href: "/customers#asset-managers" },
+              { name: "Financial Institutions", body: "Power baskets, indices and research products with the Graph through API or feeds.", href: "/customers#financial-institutions" },
+              { name: "Wealth Managers", body: "Show clients which holdings a theme really touches, beyond the fund label.", href: "/customers#wealth-managers" },
+            ]}
+          />
+        </div>
+      </Section>
+
+      {/* Related workflows */}
+      <Section surface="mist">
+        <div className="container-x">
+          <RelatedUseCases current="thematic-exposure" />
         </div>
       </Section>
 

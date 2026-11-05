@@ -3,9 +3,10 @@ import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
+import { SplitText } from "@/components/ui/SplitText";
 import { CTABand, FeatureGrid, TESTIMONIALS, Testimonials } from "@/components/ui/Blocks";
-import { Eyebrow } from "@/components/ui/Eyebrow";
-import { PrecisionIcon } from "@/components/ui/PrecisionIcon";
+import { SplitFeature } from "@/components/ui/Layouts";
+import { SignalField } from "@/components/graphics/Cartography";
 import { Stage } from "@/components/product/ui";
 import { DailyBrief } from "@/components/product/visuals";
 import { Audiences, Contrast, IllustrativeNote, RelatedUseCases } from "../_components/Shared";
@@ -40,17 +41,16 @@ export default function PortfolioMonitoringPage() {
           {["Catalysts", "Anomalies", "Earnings", "Second-order read-throughs"].map((t) => (
             <li key={t} className="rounded-full border border-ink/12 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.04em] text-ink/65">{t}</li>
           ))}
-          <li className="basis-full pt-2 text-[14px] text-ink/60">Each with an explicit reason it appeared.</li>
+          <li className="t-small basis-full pt-2 text-ink/60">Each with an explicit reason it appeared.</li>
         </ul>
       </PageHero>
 
       {/* The old workflow */}
-      <Section surface="mist" className="border-t border-ink/8">
+      <Section surface="mist">
         <div className="container-x">
           <SectionHeader
-            eyebrow="The old workflow"
+            align="split"
             title="Access to information is becoming easier. Understanding what matters is not."
-            maxW="max-w-[900px]"
             lead="Terminals and news feeds tell you what moved. Analysts still stitch together who else is affected, and whether it matters."
           />
           <Contrast
@@ -81,7 +81,7 @@ export default function PortfolioMonitoringPage() {
       <Section surface="lake" className="overflow-hidden">
         <div className="pointer-events-none absolute inset-0 -z-10 bg-chart-dark opacity-50" />
         <div className="container-x">
-          <SectionHeader eyebrow="How Reflexivity does it" title="From market signal to a reason to act." align="split" lead="Every development is framed for the companies and themes you follow, and arrives in your daily brief, on the Alfred dashboard and as Insight alerts." />
+          <SectionHeader title="From market signal to a reason to act." align="split" lead="Every development is framed for the companies and themes you follow, and arrives in your daily brief, on the Alfred dashboard and as Insight alerts." />
           <FeatureGrid
             onDark
             cols={4}
@@ -94,14 +94,11 @@ export default function PortfolioMonitoringPage() {
             ]}
           />
           <div className="mt-20 border-t border-white/12 pt-12 md:mt-28 md:pt-16">
-            <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-6 md:mb-12">
-              <div>
-                <Eyebrow className="text-paper">A morning, step by step</Eyebrow>
-                <h3 className="t-h2 mt-4 max-w-[640px]">From a development to the follow-up, in minutes.</h3>
-              </div>
-              <IllustrativeNote onDark className="max-w-[340px]">Illustrative example of an earnings read-through on a watchlist name.</IllustrativeNote>
-            </Reveal>
+            <div className="mb-10 grid gap-6 md:mb-12 lg:grid-cols-2 lg:gap-16">
+              <SplitText as="h3" text="From a development to the follow-up, in minutes." className="t-h2 max-w-[560px]" />
+            </div>
             <MorningWorkflow />
+            <IllustrativeNote onDark className="mt-8 max-w-[520px]">Illustrative example of an earnings read-through on a watchlist name.</IllustrativeNote>
           </div>
         </div>
       </Section>
@@ -110,22 +107,21 @@ export default function PortfolioMonitoringPage() {
       <Section surface="paper">
         <div className="container-x grid items-center gap-14 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-6">
-            <SectionHeader eyebrow="Your morning read" title="Already prepared when you sit down." lead="Start each day with a briefing on the companies and themes you follow, so you know where to focus your research." />
+            <SectionHeader className="lg:max-w-none!" title="Already prepared when you sit down." lead="Start each day with a briefing on the companies and themes you follow, so you know where to focus your research." />
             <Reveal delay={0.1} className="mt-10">
               <dl className="divide-y divide-ink/10 border-y border-ink/10">
                 {DELIVERY.map((d) => (
                   <div key={d.name} className="grid gap-1 py-4 sm:grid-cols-[180px_1fr] sm:gap-6">
-                    <dt className="font-display text-[16px] font-semibold">{d.name}</dt>
+                    <dt className="font-display text-[17px] font-semibold">{d.name}</dt>
                     <dd className="t-body text-ink/65">{d.body}</dd>
                   </div>
                 ))}
               </dl>
             </Reveal>
             <Reveal delay={0.2} className="mt-8">
-              <div className="flex gap-4 rounded-[14px] border border-lake-300/50 bg-lake-100/50 p-5 md:p-6">
-                <PrecisionIcon name="stack" className="mt-0.5 h-7 w-7 shrink-0 text-lake-700" />
+              <div className="border-l-2 border-pine-500 py-1 pl-5 md:pl-6">
                 <div>
-                  <h3 className="font-display text-[17px] font-semibold">Watchlist or holdings?</h3>
+                  <h3 className="t-h3">Watchlist or holdings?</h3>
                   <p className="t-small mt-1.5 text-ink/70">
                     Monitoring runs on a watchlist: the companies and themes you choose to follow. Many teams mirror their holdings or coverage universe there. It doesn’t need a connection to your portfolio system or your position sizes to be useful from day one.{" "}
                     <Link href="/deployment" className="link-underline font-medium text-ink">Integration options</Link>
@@ -145,10 +141,19 @@ export default function PortfolioMonitoringPage() {
         </div>
       </Section>
 
+      {/* Concept: why it reached you */}
+      <SplitFeature
+        surface="pine"
+        title="Signal, with the reason attached."
+        lead="Every development is read against the companies and themes you follow, so it arrives with the relationship that makes it relevant, not just the headline."
+        link={{ label: "See how Insights work", href: "/insights" }}
+        visual={<SignalField accent="#f4f3f1" />}
+      />
+
       {/* Worked example */}
-      <Section surface="mist" className="border-t border-ink/8">
+      <Section surface="mist">
         <div className="container-x">
-          <SectionHeader eyebrow="Worked example" title="See the ripple effects in action." lead="The headline only names the obvious. Here’s how Reflexivity takes one company catalyst further." />
+          <SectionHeader align="split" title="See the ripple effects in action." lead="The headline only names the obvious. Here’s how Reflexivity takes one company catalyst further." />
           <div className="mt-12 md:mt-16">
             <RippleExample />
           </div>
@@ -168,9 +173,9 @@ export default function PortfolioMonitoringPage() {
       {/* Who it is for */}
       <Section surface="paper">
         <div className="container-x">
-          <SectionHeader eyebrow="Who it’s for" title="Core for funds. Client-ready for wealth." align="split" lead="Hedge funds and asset managers watch the book with it. The same monitoring becomes client commentary for wealth teams." />
-          <div className="mt-14 md:mt-16">
-            <Audiences
+          <Audiences
+              title="Core for funds. Client-ready for wealth."
+              lead="Hedge funds and asset managers watch the book with it. The same monitoring becomes client commentary for wealth teams."
               items={[
                 { name: "Hedge Funds", body: "Catch the second-order move before it shows up in the P&L, with the reason it matters to your book.", href: "/customers#hedge-funds" },
                 { name: "Asset Managers", body: "Cover more names without more alerts: one brief across the companies and themes your team follows.", href: "/customers#asset-managers" },
@@ -178,10 +183,13 @@ export default function PortfolioMonitoringPage() {
                 { name: "Financial Institutions", body: "Deliver the same monitoring to clients inside platforms you already distribute.", href: "/customers#financial-institutions" },
               ]}
             />
-          </div>
-          <div className="mt-20 md:mt-28">
-            <RelatedUseCases current="portfolio-monitoring" />
-          </div>
+        </div>
+      </Section>
+
+      {/* Related workflows */}
+      <Section surface="mist">
+        <div className="container-x">
+          <RelatedUseCases current="portfolio-monitoring" />
         </div>
       </Section>
 

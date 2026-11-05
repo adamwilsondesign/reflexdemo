@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
 import { Section, SectionHeader } from "@/components/ui/Section";
-import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
-import { CTABand } from "@/components/ui/Blocks";
-import { PrecisionIcon, type IconName } from "@/components/ui/PrecisionIcon";
+import { Reveal } from "@/components/ui/Reveal";
+import { CTABand, FeatureGrid } from "@/components/ui/Blocks";
+import type { IconName } from "@/components/ui/PrecisionIcon";
+import { SplitFeature } from "@/components/ui/Layouts";
+import { ScenarioFan } from "@/components/graphics/Cartography";
 import { DataSourceLogos } from "@/components/ui/LogoStrip";
 import { CodeBlock, MissingData, Pill, Stage } from "@/components/product/ui";
 import { Audiences, Contrast, IllustrativeNote, RelatedUseCases } from "../_components/Shared";
-import { ShockRings } from "../_components/LineArt";
 import { FanChart } from "./_components/FanChart";
 import { ScenarioResult } from "./_components/ScenarioResult";
 
@@ -43,12 +44,11 @@ export default function ScenarioStressTestingPage() {
       />
 
       {/* The old workflow */}
-      <Section surface="mist" className="border-t border-ink/8">
+      <Section surface="mist">
         <div className="container-x">
           <SectionHeader
-            eyebrow="The old workflow"
+            align="split"
             title="Terminals look up history. General models narrate a scenario."
-            maxW="max-w-[900px]"
             lead="Neither reliably runs the calculation, shows the code, and keeps the analysis alive as conditions change."
           />
           <Contrast
@@ -80,18 +80,7 @@ export default function ScenarioStressTestingPage() {
         <div className="pointer-events-none absolute inset-0 -z-10 bg-chart-dark opacity-50" />
         <div className="container-x grid items-center gap-14 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-6">
-            <SectionHeader eyebrow="How Reflexivity does it" title="Simulations you can check and run again." />
-            <Stagger as="ul" className="mt-12 space-y-px overflow-hidden rounded-[14px] bg-white/10">
-              {HOW.map((x) => (
-                <StaggerItem as="li" key={x.title} className="group flex gap-5 bg-lake-900 p-6 md:p-7">
-                  <PrecisionIcon name={x.icon} className="h-9 w-9 shrink-0 text-paper transition-transform duration-700 ease-[var(--ease-out-expo)]" />
-                  <div>
-                    <h3 className="t-h3">{x.title}</h3>
-                    <p className="t-body mt-2 text-paper/70">{x.body}</p>
-                  </div>
-                </StaggerItem>
-              ))}
-            </Stagger>
+            <SectionHeader className="lg:max-w-none!" title="Simulations you can check and run again." lead="Scenarios are defined in plain language and executed in code, so every figure can be inspected, questioned and re-run." />
           </div>
           <Reveal delay={0.15} className="lg:col-span-6">
             <Stage field="ink" className="p-5 sm:p-8">
@@ -120,37 +109,44 @@ export default function ScenarioStressTestingPage() {
             <IllustrativeNote onDark className="mt-4">Simplified code shown for illustration.</IllustrativeNote>
           </Reveal>
         </div>
+        <div className="container-x">
+          <FeatureGrid onDark className="mt-16 md:mt-20" items={HOW} />
+        </div>
       </Section>
 
       {/* Three ways to test an idea */}
       <Section surface="paper">
-        <div className="container-x grid gap-14 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-4">
-            <SectionHeader eyebrow="How teams use it" title="Three ways to test an idea." lead="Each answers a different question. All three run on the same code-backed engine." />
-            <Reveal delay={0.2} className="mx-auto mt-12 hidden aspect-[560/620] max-w-[320px] text-lake-700/60 lg:block">
-              <ShockRings />
-            </Reveal>
-          </div>
-          <Stagger className="grid gap-4 lg:col-span-8">
-            {JOBS.map((j) => (
-              <StaggerItem key={j.name} className="group grid gap-5 rounded-[16px] border border-ink/10 bg-white/60 p-6 transition-colors duration-500 hover:bg-white sm:grid-cols-[56px_1fr] md:p-8">
-                <PrecisionIcon name={j.icon} className="h-11 w-11 text-ink transition-transform duration-700 ease-[var(--ease-out-expo)]" />
-                <div>
-                  <p className="font-mono text-[11px] uppercase tracking-[0.05em] text-lake-700">“{j.question}”</p>
-                  <h3 className="t-h2 mt-3 text-[28px] md:text-[32px]">{j.name}</h3>
-                  <p className="t-body mt-3 max-w-[560px] text-ink/65">{j.body}</p>
-                </div>
-              </StaggerItem>
-            ))}
-          </Stagger>
+        <div className="container-x">
+          <SectionHeader title="Three ways to test an idea." align="split" lead="Each answers a different question. All three run on the same code-backed engine." />
+          <FeatureGrid
+            className="mt-14 md:mt-16"
+            items={JOBS.map((j) => ({
+              icon: j.icon,
+              title: j.name,
+              body: (
+                <>
+                  <span className="block italic text-ink/85">“{j.question}”</span>
+                  <span className="mt-2 block">{j.body}</span>
+                </>
+              ),
+            }))}
+          />
         </div>
       </Section>
 
+      {/* Concept: a distribution of outcomes */}
+      <SplitFeature
+        surface="pine"
+        title="One starting point, a range of outcomes."
+        lead="A scenario is a distribution, not a single number. Every episode runs in code, and the spread around the median stays visible, so you can see how wide the outcomes were."
+        link={{ label: "See the worked example", href: "#worked-example" }}
+        visual={<ScenarioFan accent="#f4f3f1" />}
+      />
+
       {/* Worked example */}
-      <Section surface="mist" id="worked-example" className="scroll-mt-[var(--header-h)] border-t border-ink/8">
+      <Section surface="mist" id="worked-example" className="scroll-mt-[var(--header-h)]">
         <div className="container-x">
           <SectionHeader
-            eyebrow="Worked example"
             title="What followed a rise in Treasury yields?"
             align="split"
             lead="A scenario across S&P 1500 stocks: what happened when 10-year Treasuries sold off sharply, with yields up 0.5 percentage points in three months. Change the horizon or the threshold to explore."
@@ -180,21 +176,24 @@ export default function ScenarioStressTestingPage() {
           </p>
 
           <div className="mt-20 md:mt-28">
-            <SectionHeader eyebrow="Who it’s for" title="For conviction before capital is committed." align="split" lead="Bring the scenario you would otherwise build in a spreadsheet." />
-            <div className="mt-14 md:mt-16">
-              <Audiences
-                items={[
-                  { name: "Hedge Funds", body: "Test the macro view behind a trade, and see which names historically moved with it.", href: "/customers#hedge-funds" },
-                  { name: "Asset Managers", body: "Stress portfolios against rate, supply and earnings shocks before the committee asks.", href: "/customers#asset-managers" },
-                  { name: "Financial Institutions", body: "Offer scenario analysis to clients and desks inside the tools they already use.", href: "/customers#financial-institutions" },
-                  { name: "Wealth Managers", body: "Show clients how their holdings behaved in past shocks, with the method stated plainly.", href: "/customers#wealth-managers" },
-                ]}
-              />
-            </div>
+            <Audiences
+              title="For conviction before capital is committed."
+              lead="Bring the scenario you would otherwise build in a spreadsheet."
+              items={[
+                { name: "Hedge Funds", body: "Test the macro view behind a trade, and see which names historically moved with it.", href: "/customers#hedge-funds" },
+                { name: "Asset Managers", body: "Stress portfolios against rate, supply and earnings shocks before the committee asks.", href: "/customers#asset-managers" },
+                { name: "Financial Institutions", body: "Offer scenario analysis to clients and desks inside the tools they already use.", href: "/customers#financial-institutions" },
+                { name: "Wealth Managers", body: "Show clients how their holdings behaved in past shocks, with the method stated plainly.", href: "/customers#wealth-managers" },
+              ]}
+            />
           </div>
-          <div className="mt-20 md:mt-28">
-            <RelatedUseCases current="scenario-stress-testing" />
-          </div>
+        </div>
+      </Section>
+
+      {/* Related workflows */}
+      <Section surface="mist">
+        <div className="container-x">
+          <RelatedUseCases current="scenario-stress-testing" />
         </div>
       </Section>
 

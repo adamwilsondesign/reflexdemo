@@ -134,14 +134,14 @@ export function SourceToAnswer() {
               <span
                 className={clsx(
                   "absolute left-1/2 top-[-33px] hidden h-[11px] w-[11px] -translate-x-1/2 rounded-full border transition-colors duration-500 md:block",
-                  done ? "border-paper bg-paper" : "border-white/30 bg-lake-900",
+                  done ? "border-paper bg-paper" : "border-white/30 bg-pine-500",
                 )}
                 aria-hidden="true"
               />
               <motion.div
                 animate={{ y: active ? -4 : 0 }}
                 transition={{ duration: 0.6, ease: EASE }}
-                className={clsx("h-[248px] transition-opacity duration-700", active ? "md:opacity-100" : "md:opacity-50")}
+                className={clsx("h-[248px] transition-opacity duration-700", active ? "md:opacity-100" : "md:opacity-60")}
               >
                 {i === 0 && <DocPanel on={active} />}
                 {i === 1 && <CalcPanel on={active} ran={all || t === 3 || step === 2} />}

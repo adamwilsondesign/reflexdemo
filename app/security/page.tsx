@@ -7,7 +7,7 @@ import { SplitText } from "@/components/ui/SplitText";
 import { type IconName } from "@/components/ui/PrecisionIcon";
 import { FeatureGrid } from "@/components/ui/Blocks";
 import { LinkRowsBlock, SplitFeature, TextLink } from "@/components/ui/Layouts";
-import { RadialSystem } from "@/components/graphics/Cartography";
+import { IsolationViz } from "./_components/IsolationViz";
 import { PropagationField } from "@/components/graphics/RippleRings";
 import { SecurityHero } from "./_components/SecurityHero";
 import { DataProtection } from "./_components/DataProtection";
@@ -85,7 +85,7 @@ export default function SecurityPage() {
         title="One environment per client."
         lead="Access is checked at the edge, data is encrypted in transit, and each firm’s research, documents and connected sources sit in their own environment. Nothing is shared between clients."
         link={{ label: "Request a Security Overview", href: SECURITY_HREF }}
-        visual={<RadialSystem accent="#f4f3f1" label="Your environment" />}
+        visual={<IsolationViz />}
       />
 
       {/* Security portal + cross-link */}

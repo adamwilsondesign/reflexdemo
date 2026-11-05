@@ -103,7 +103,7 @@ export function SectionHeader({
     );
   }
   return (
-    <div className={clsx("max-w-[640px] lg:max-w-[50%]", align === "center" && "mx-auto text-center", className)}>
+    <div className={clsx("max-w-[640px] lg:max-w-[calc(50%-2rem)]", align === "center" && "mx-auto text-center", className)}>
       <SplitText text={title} className={size === "h1" ? "t-h1" : "t-h2"} />
       {lead && (
         <Reveal delay={0.15} className="t-lead mt-5 opacity-75">

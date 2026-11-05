@@ -216,7 +216,6 @@ export function DataProtection() {
   const icon = (n: Parameters<typeof PrecisionIcon>[0]["name"]) => <PrecisionIcon name={n} className="h-6 w-6" />;
   return (
     <StateTabs idPrefix="protect" frameClassName="h-[470px] sm:h-auto sm:aspect-[4/3]"
-      onDark
       interval={6500}
       items={[
         { title: "Client isolation", icon: icon("cube"), body: "Customer data and research remain isolated from other client environments.", visual: <Isolation /> },
