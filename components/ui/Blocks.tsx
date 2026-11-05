@@ -189,7 +189,7 @@ export function StatRow({ items, onDark = false }: { items: { value: React.React
 /** Numbered process steps (e.g. implementation sequence). Numbers here are sequence, not decoration. */
 export function Steps({ items, onDark = false }: { items: { title: string; body: string }[]; onDark?: boolean }) {
   return (
-    <Stagger as="ol" className="grid gap-px md:grid-cols-5">
+    <Stagger as="ol" className="grid gap-10 md:grid-cols-5 md:gap-px">
       {items.map((s, i) => (
         <StaggerItem key={s.title} as="li" className={clsx("relative border-t pt-6 md:pr-6", onDark ? "border-white/15" : "border-ink/15")}>
           <span className={clsx("absolute -top-[5px] left-0 h-[9px] w-[9px] rounded-full", onDark ? "bg-paper" : "bg-ink")} />

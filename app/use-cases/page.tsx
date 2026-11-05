@@ -146,7 +146,7 @@ export default function UseCasesPage() {
           />
           <Reveal className="mt-14 md:mt-16">
             <div className="overflow-hidden rounded-[16px] border border-ink/10 bg-white/50">
-              <div className="grid grid-cols-5 border-b border-ink/10 bg-mist-100">
+              <div className="hidden grid-cols-5 border-b border-ink/10 bg-mist-100 sm:grid">
                 {JOBS.map((j) => (
                   <div key={j} className="relative border-r border-ink/8 px-2 py-3.5 text-center font-mono text-[10px] uppercase tracking-[0.04em] text-ink/60 last:border-r-0 sm:text-[11px]">
                     {j}

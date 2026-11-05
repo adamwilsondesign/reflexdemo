@@ -42,7 +42,7 @@ export function PromptToMemo() {
     <Stage field="lake" className="p-4 sm:p-8">
       <div ref={ref} className="mx-auto flex min-h-[470px] max-w-[500px] flex-col gap-3 sm:min-h-[500px]">
         <div className="ui-card p-4 sm:p-5">
-          <CardHeader trail={["Deep research", "AMZN"]} right={<Pill tone="lake">Cite sources · on</Pill>} />
+          <CardHeader trail={["Deep research", "AMZN"]} right={<Pill tone="lake" className="hidden sm:inline-flex">Cite sources · on</Pill>} />
           <p className="mt-3.5 min-h-[4.2em] text-[13.5px] leading-relaxed text-ink/85 sm:text-[14px]">
             {promptText}
             {shown === 0 && promptText.length < PROMPT.length && <span className="animate-blink ml-0.5 inline-block h-[1em] w-[2px] translate-y-[2px] bg-lake-700" />}

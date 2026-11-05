@@ -11,7 +11,7 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 function Frame({ children }: { children: React.ReactNode }) {
   return (
     <Stage field="pine" image="/figma/n915.png" className="flex h-full w-full items-center justify-center p-4 sm:p-10">
-      <div className="w-full max-w-[440px]">{children}</div>
+      <div className="w-[420px] max-w-none shrink-0 scale-[0.64] sm:w-full sm:max-w-[440px] sm:shrink sm:scale-100">{children}</div>
     </Stage>
   );
 }
