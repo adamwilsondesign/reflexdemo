@@ -122,7 +122,7 @@ export function Header() {
           "relative transition-[background-color,color,box-shadow] duration-500 ease-[var(--ease-out-expo)]",
           dark
             ? "bg-[rgb(20,20,24)]/[0.92] text-chrome-text"
-            : "bg-paper/[0.86] text-ink shadow-[0_1px_0_rgb(23_25_28/0.08)]",
+            : "bg-paper/[0.97] text-ink shadow-[0_1px_0_rgb(23_25_28/0.08)]",
           "backdrop-blur-xl backdrop-saturate-150",
         )}
       >
