@@ -229,25 +229,26 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  /* Glass product card */
+  /* ------------------------------------------------------------------
+     Product UI illustrations — "graphite ink on warm paper" (DESIGN_1.md).
+     Applies ONLY to the interface elements inside product illustrations
+     (`.pui` scope and `.ui-card` panels), never to the site or the gradient
+     stages behind them. Achromatic, flat (hairline, no shadow), system font,
+     10px radius, compact 6/10/16 rhythm, type 13–24px, weights 400/500/600.
+     ------------------------------------------------------------------ */
   .ui-card {
-    background: rgb(247 246 244 / 0.92);
-    border: 1px solid rgb(255 255 255 / 0.7);
-    border-radius: 14px;
-    box-shadow:
-      0 1px 0 rgb(255 255 255 / 0.8) inset,
-      0 1px 2px rgb(23 25 28 / 0.06),
-      0 12px 32px -8px rgb(23 25 28 / 0.22),
-      0 32px 64px -24px rgb(23 25 28 / 0.25);
-    backdrop-filter: blur(14px) saturate(1.1);
-    -webkit-backdrop-filter: blur(14px) saturate(1.1);
+    background: #ffffff;
+    color: #0d0d0d;
+    border: 1px solid rgb(0 0 0 / 0.1);
+    border-radius: 10px;
+    box-shadow: none;
   }
   .ui-card-dark {
-    background: rgb(28 30 35 / 0.85);
-    border: 1px solid rgb(255 255 255 / 0.08);
-    border-radius: 14px;
-    box-shadow: 0 24px 64px -24px rgb(0 0 0 / 0.6);
-    backdrop-filter: blur(14px);
+    background: #0d0d0d;
+    color: #ffffff;
+    border: 1px solid rgb(255 255 255 / 0.12);
+    border-radius: 10px;
+    box-shadow: none;
   }
 
   .hairline { border-color: rgb(23 25 28 / 0.12); }
@@ -305,3 +306,22 @@
 }
 
 @keyframes viz-travel { from { stroke-dashoffset: 6; } to { stroke-dashoffset: -94; } }
+
+/* ---- Product UI scope (see DESIGN.md › Product illustrations) ---- */
+@layer utilities {
+  :is(.pui, .ui-card, .ui-card-dark),
+  :is(.pui, .ui-card, .ui-card-dark) :is(.font-display, .font-serif, .font-sans, .font-mono, .t-ui, .t-label, .t-small, .t-body, .t-h3, .t-lead) {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Roboto, sans-serif;
+    letter-spacing: 0;
+  }
+  :is(.pui, .ui-card, .ui-card-dark) :is(.font-mono, .t-ui, .uppercase) { text-transform: none; }
+  :is(.pui, .ui-card, .ui-card-dark) { -webkit-font-smoothing: antialiased; }
+  :is(.pui, .ui-card) :is([class*="shadow-"], .ui-card) { box-shadow: none !important; }
+  :is(.pui, .ui-card) [class*="backdrop-blur"] { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+  /* achromatic: lake / pine / warm accents collapse to the graphite scale */
+  :is(.pui, .ui-card) :is([class*="text-lake"], [class*="text-pine"], [class*="text-[#7a5326]"], [class*="text-[#5a3d1c]"], [class*="text-[#9a4b3c]"]) { color: #5d5d5d !important; }
+  :is(.pui, .ui-card) :is([class*="bg-lake-1"], [class*="bg-pine-1"], [class*="bg-[#f3e6d6]"], [class*="bg-[#f7efe4]"], [class*="bg-[#ecd9c0]"], [class*="bg-mist"]) { background-color: #f9f9f9 !important; }
+  :is(.pui, .ui-card) :is([class*="bg-lake-3"], [class*="bg-lake-5"], [class*="bg-lake-7"], [class*="bg-lake-9"], [class*="bg-pine-3"], [class*="bg-pine-5"], [class*="bg-pine-7"], [class*="bg-pine-9"]) { background-color: #0d0d0d !important; }
+  :is(.pui, .ui-card) :is([class*="border-lake"], [class*="border-pine"], [class*="border-[#b88a55]"]) { border-color: rgb(0 0 0 / 0.1) !important; }
+  :is(.pui, .ui-card) [class*="ring-lake"] { --tw-ring-color: rgb(0 0 0 / 0.15) !important; }
+}

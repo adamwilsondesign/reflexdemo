@@ -46,6 +46,16 @@ Unified, considered, enterprise-grade. Take from the cartography boards:
 - Blog, News, About and Careers heroes have no CTA (`PageHero actions={null}`).
 - Footer: award badges row (from reflexivity.com) + X / LinkedIn links.
 
+## Product illustrations (UI inside the product images) — DESIGN_1 style
+Applies ONLY to the interface elements drawn inside product images/animations — not the site, not the gradient stages behind them.
+- **Panels**: `.ui-card` — white `#ffffff`, 1px hairline `rgba(0,0,0,.1)`, radius 10px, **no shadow, no blur**.
+- **Colour**: achromatic only. Text `#0d0d0d` (primary), `#5d5d5d` (secondary), `#8f8f8f` (muted). Fills `#f9f9f9` (badges, inputs, code). Hover veil `rgba(0,0,0,.05)`. No lake/pine/warm accents in UI elements (status = weight, position, a small `#0d0d0d` dot).
+- **Type**: system font (applied automatically inside `.pui` / `.ui-card`). Sizes 12–16px, one 18–24px display line max per panel. Weights 400/500/600. Sentence case — no uppercase mono labels, no letter-spacing.
+- **Shapes**: buttons 10px radius, outline (`border-black/10`, white) — no filled colour CTAs; badges square (0 radius) on `#f9f9f9`; dots/avatars round.
+- **Rhythm**: compact 6/10/16 spacing; hairline dividers (`divide-black/10`) instead of boxes-in-boxes.
+- **Simplify**: one idea per panel, 3–4 rows max, no decorative chips, no icon tiles, no progress-bar ornaments, charts as a single thin graphite line.
+- **Kit**: `components/product/ui.tsx` implements these (`CardHeader`, `PromptCard`, `Pill`=badge, `Cite`, `SourceRow`, `MissingData`, `CodeBlock`, `Sparkline`, `StepList`, `MetricRow`, `TakeawayList`, `ImpactPathway`). Wrap custom mockups in `className="pui"` (Stage does this for its children).
+
 ## Component rules
 - **Eyebrows only in heroes.** No eyebrow/kicker labels above section headings or card titles anywhere else (`SectionHeader` ignores `eyebrow`). Labels *inside product UI mockups* are fine; "Illustrative" disclaimers go below a visual, not above a heading.
 - **Headline + subhead ≤ half the desktop grid** (6 of 12 cols). `SectionHeader` enforces it; `align="split"` = headline left half / subhead right half.
