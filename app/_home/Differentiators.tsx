@@ -24,7 +24,7 @@ export function Differentiators() {
           visual: (
             <Stage field="ink" className="h-full w-full">
               <KnowledgeGraph tone="dark" minor={60} />
-              <p className="t-ui pointer-events-none absolute right-4 top-4 text-paper/50">Hover a node</p>
+              <p className="pointer-events-none absolute right-4 top-4 text-[12px] text-white/50">Hover a node</p>
             </Stage>
           ),
         },
