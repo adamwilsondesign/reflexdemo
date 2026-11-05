@@ -46,9 +46,9 @@ export function BlogHeroVisual({ posts }: { posts: BlogPost[] }) {
                 }}
                 transition={{ duration: 0.8, ease: EASE }}
               >
-                <motion.span animate={{ rotate: i === activeIdx ? 30 : 0 }} transition={{ duration: 1.2, ease: EASE }} className="flex">
+                <span className="flex">
                   <PrecisionIcon name={name} className="h-7 w-7" />
-                </motion.span>
+                </span>
               </motion.span>
             ))}
           </div>
@@ -81,11 +81,11 @@ export function BlogHeroVisual({ posts }: { posts: BlogPost[] }) {
                     style={{ zIndex: 3 - depth, transformOrigin: "50% 0%" }}
                     initial={{ opacity: 0, y: -60, scale: 0.86 }}
                     animate={{ opacity: depth === 2 ? 0.6 : 1, y: -depth * 18, scale: 1 - depth * 0.06 }}
-                    exit={{ opacity: 0, y: 70, rotate: -4, transition: { duration: 0.7, ease: EASE } }}
+                    exit={{ opacity: 0, y: 70, transition: { duration: 0.7, ease: EASE } }}
                     transition={{ duration: 0.9, ease: EASE }}
                     aria-hidden={depth !== 0}
                   >
-                    <BlogCover post={p} size="sm" showLabel={false} className="h-[150px]" sizes="380px" />
+                    <BlogCover post={p} size="sm" className="h-[150px]" sizes="380px" />
                     <div className="p-4 md:p-5">
                       <p className="t-ui text-[10px] text-ink/55">
                         {p.category} · {p.readingTime} min read

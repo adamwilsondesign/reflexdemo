@@ -3,7 +3,7 @@
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useId, useMemo, useState } from "react";
 import clsx from "clsx";
-import { Arrow } from "@/components/ui/Button";
+import { ArrowNE } from "@/components/ui/Layouts";
 import { ROLES, applyHref } from "./roles";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -65,30 +65,29 @@ export function OpenRoles() {
         {list.length} open {list.length === 1 ? "role" : "roles"}
       </p>
 
-      <ul className="mt-4 border-b border-ink/12">
+      <ul className="mt-4 border-t border-ink/15">
         <AnimatePresence initial={false}>
           {list.map((r) => (
             <motion.li
               key={`${r.title}-${r.city}`}
               layout={!reduce}
-              initial={reduce ? false : { opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={reduce ? false : { opacity: 0 }}
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0, transition: { duration: 0.2 } }}
               transition={{ duration: 0.5, ease: EASE }}
-              className="border-t border-ink/12"
             >
               <a
                 href={applyHref(`Application: ${r.title} (${r.city})`)}
-                className="group grid items-center gap-2 py-5 transition-colors duration-300 hover:bg-white/60 md:grid-cols-12 md:gap-6 md:px-3 md:py-6"
+                className="group grid grid-cols-[1fr_auto] items-center gap-x-6 gap-y-1 border-b border-ink/15 py-5 transition-colors duration-300 hover:border-ink md:grid-cols-[1fr_1fr_auto] md:py-6"
               >
-                <span className="md:col-span-6">
-                  <span className="t-h3 block">{r.title}</span>
+                <span className="font-display text-[19px] font-medium tracking-[-0.01em] md:text-[21px]">
+                  <span className="sr-only">Apply: </span>
+                  {r.title}
                 </span>
-                <span className="t-ui text-ink/55 md:col-span-2">{r.team}</span>
-                <span className="t-small text-ink/60 md:col-span-3">{r.location}</span>
-                <span className="mt-2 inline-flex items-center gap-2 font-display text-[15px] font-medium md:col-span-1 md:mt-0 md:justify-end">
-                  Apply <Arrow />
+                <span className="t-small col-span-2 row-start-2 text-ink/60 md:col-span-1 md:row-start-auto">
+                  {r.team} · {r.location}
                 </span>
+                <ArrowNE className="col-start-2 row-start-1 justify-self-end md:col-start-3" />
               </a>
             </motion.li>
           ))}

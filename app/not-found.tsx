@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { Arrow, Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
+import { LinkRows } from "@/components/ui/Layouts";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { SplitText } from "@/components/ui/SplitText";
 import { Reveal } from "@/components/ui/Reveal";
@@ -50,19 +50,7 @@ export default function NotFound() {
           </div>
         </div>
         <nav aria-label="Popular pages" className="lg:col-span-6 lg:row-start-2">
-          <ul className="grid max-w-[560px] border-t border-ink/12 sm:grid-cols-2">
-            {LINKS.map((l) => (
-              <li key={l.href} className="border-b border-ink/12">
-                <Link href={l.href} className="group flex items-center justify-between gap-4 py-4 pr-4">
-                  <span>
-                    <span className="block font-display text-[16px] font-semibold">{l.label}</span>
-                    <span className="block text-[14px] text-ink/55">{l.body}</span>
-                  </span>
-                  <Arrow />
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <LinkRows className="max-w-[560px]" rows={LINKS.map((l) => ({ label: l.label, href: l.href, note: l.body }))} />
         </nav>
       </div>
     </section>

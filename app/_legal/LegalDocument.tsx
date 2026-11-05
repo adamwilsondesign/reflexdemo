@@ -141,7 +141,7 @@ export function LegalDocument({ doc, children }: { doc: LegalDoc; children?: Rea
 
       <article className="min-w-0 lg:col-span-8 lg:col-start-5">
         <div className="max-w-[720px]">
-          {doc.subtitle && <p className="t-ui mb-8 text-ink/55">{doc.subtitle}</p>}
+          {doc.subtitle && <p className="t-small mb-8 text-ink/55">{doc.subtitle}</p>}
           {doc.blocks.map((b, i) => (
             <Block key={i} b={b} first={i === 0} />
           ))}
@@ -186,14 +186,14 @@ function Block({ b, first }: { b: LegalBlock; first: boolean }) {
       );
     case "h4":
       return (
-        <h4 id={b.id} className="group/h mt-8 scroll-mt-[calc(var(--header-h)+24px)] font-mono text-[12.5px] font-medium uppercase tracking-[0.06em] text-ink/70 focus:outline-none">
+        <h4 id={b.id} className="group/h mt-8 scroll-mt-[calc(var(--header-h)+24px)] font-display text-[17px] font-semibold leading-snug tracking-[-0.005em] text-ink/85 focus:outline-none">
           {b.text}
           <Anchor id={b.id} label={b.text} />
         </h4>
       );
     case "p":
       return (
-        <p className={clsx("mt-5 text-[16.5px] leading-[1.75] text-ink/80", first && "mt-0 text-[18px] text-ink/85")}>
+        <p className={clsx(first ? "t-lead mt-0 text-ink/85" : "t-body mt-5 !leading-[1.7] text-ink/80")}>
           <Linkify text={b.text} />
         </p>
       );
@@ -201,7 +201,7 @@ function Block({ b, first }: { b: LegalBlock; first: boolean }) {
       return (
         <ul className="mt-5 space-y-3 pl-1">
           {b.items.map((it, i) => (
-            <li key={i} className="relative pl-6 text-[16.5px] leading-[1.75] text-ink/80">
+            <li key={i} className="t-body relative pl-6 !leading-[1.7] text-ink/80">
               <span className="absolute left-0 top-[0.8em] h-[5px] w-[5px] rounded-full bg-lake-500" aria-hidden="true" />
               <Linkify text={it} />
             </li>

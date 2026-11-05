@@ -1,12 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { motion, useInView, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { AlfredGlyph, Pill, useTypewriter } from "@/components/product/ui";
-import { PrecisionIcon } from "@/components/ui/PrecisionIcon";
-import { Arrow } from "@/components/ui/Button";
+import { TextLink } from "@/components/ui/Layouts";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -74,7 +72,6 @@ function BuildVisual() {
 
 const CARDS = [
   {
-    icon: "eye" as const,
     title: "Explore in Reflexivity",
     body: "Research exposures and investigate opportunities through Alfred. Receive portfolio-relevant Insights as alerts.",
     links: [
@@ -85,7 +82,6 @@ const CARDS = [
     dark: false,
   },
   {
-    icon: "cube" as const,
     title: "Build with the Graph",
     body: "Bring structured relationship intelligence into your own models and applications through data feeds, API, or MCP. Suited to systematic teams and thematic basket construction.",
     links: [{ label: "Data feeds, API and MCP", href: "/deployment#knowledge-feeds" }],
@@ -105,18 +101,15 @@ export function ExploreBuild() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.9, ease: EASE, delay: i * 0.1 }}
-          className={clsx("flex flex-col overflow-hidden rounded-[16px]", c.dark ? "bg-ink text-paper" : "bg-paper text-ink")}
+          className={clsx("flex flex-col overflow-hidden rounded-[16px]", c.dark ? "bg-ink text-paper" : "border border-ink/12 bg-white text-ink")}
         >
           <div className={clsx("min-h-[250px]", c.dark ? "field-ink" : "field-mist")}>{c.visual}</div>
           <div className="flex flex-1 flex-col p-6 md:p-9">
-            <PrecisionIcon name={c.icon} className="h-10 w-10" />
-            <h3 className="t-h2 mt-8">{c.title}</h3>
+            <h3 className="t-h2">{c.title}</h3>
             <p className={clsx("t-body mt-3 max-w-[480px]", c.dark ? "text-paper/70" : "text-ink/70")}>{c.body}</p>
             <div className="mt-auto flex flex-wrap gap-x-7 gap-y-3 pt-8">
               {c.links.map((l) => (
-                <Link key={l.href} href={l.href} className="group inline-flex items-center gap-2 font-display text-[15px] font-medium">
-                  <span className="link-underline">{l.label}</span> <Arrow />
-                </Link>
+                <TextLink key={l.href} href={l.href}>{l.label}</TextLink>
               ))}
             </div>
           </div>

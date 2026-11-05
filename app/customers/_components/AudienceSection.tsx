@@ -1,10 +1,9 @@
-import Link from "next/link";
 import clsx from "clsx";
 import { Section, SectionHeader, type Surface } from "@/components/ui/Section";
 import { AutoTabs } from "@/components/ui/AutoTabs";
 import { Reveal } from "@/components/ui/Reveal";
-import { Arrow, DemoActions } from "@/components/ui/Button";
-import { Eyebrow } from "@/components/ui/Eyebrow";
+import { DemoActions } from "@/components/ui/Button";
+import { TextLink } from "@/components/ui/Layouts";
 import { PrecisionIcon } from "@/components/ui/PrecisionIcon";
 import { OutputCard } from "./OutputCard";
 import type { Audience } from "./data";
@@ -28,19 +27,14 @@ export function AudienceSection({
 
   return (
     <Section id={a.id} surface={surface} className={clsx("scroll-mt-[var(--header-h)] overflow-hidden", className)}>
-      {dark && <div className="pointer-events-none absolute inset-0 -z-10 bg-chart-dark opacity-40" />}
       <div className="container-x">
         <SectionHeader
-          eyebrow={
-            <Eyebrow trail={[{ label: "Solutions" }, { label: a.name }]} />
-          }
           title={a.hero}
           align="split"
           lead={a.lead}
         />
 
         <div className="mt-14 md:mt-20">
-          <p className={clsx("t-ui mb-2", dark ? "text-paper/50" : "text-ink/50")}>Workflows</p>
           <AutoTabs
             onDark={dark}
             interval={7000}
@@ -69,15 +63,12 @@ export function AudienceSection({
 
         <div className={clsx("mt-20 grid gap-10 border-t pt-12 md:mt-28 lg:grid-cols-12 lg:gap-16", rule)}>
           <Reveal className="lg:col-span-6">
-            <p className={clsx("t-ui", dark ? "text-paper/50" : "text-ink/50")}>Why {a.name}</p>
-            <p className="mt-5 font-display text-[22px] font-medium leading-[1.3] tracking-[-0.015em] md:text-[28px]">{a.why.title}</p>
+            <h3 className="t-statement">{a.why.title}</h3>
             <p className={clsx("t-body mt-5 max-w-[560px]", muted)}>{a.why.body}</p>
             <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
               {a.links.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="group inline-flex items-center gap-2 font-display text-[15px] font-medium">
-                    <span className="link-underline">{l.label}</span> <Arrow />
-                  </Link>
+                  <TextLink href={l.href}>{l.label}</TextLink>
                 </li>
               ))}
             </ul>
@@ -87,8 +78,8 @@ export function AudienceSection({
             <div className={clsx("flex h-full flex-col rounded-[16px] p-6 md:p-9", dark ? "bg-white/[0.06] ring-1 ring-white/10" : "bg-white ring-1 ring-ink/8")}>
               {quote ? (
                 <figure className={clsx("mb-8 border-b pb-8", rule)}>
-                  <blockquote className="font-serif text-[19px] leading-[1.45] md:text-[21px]">&ldquo;{quote.quote}&rdquo;</blockquote>
-                  <figcaption className={clsx("mt-5 text-[14px]", muted)}>
+                  <blockquote className="t-statement">&ldquo;{quote.quote}&rdquo;</blockquote>
+                  <figcaption className={clsx("t-label mt-5", muted)}>
                     <span className="font-display font-semibold opacity-100">{quote.name}</span> · {quote.org}
                   </figcaption>
                 </figure>

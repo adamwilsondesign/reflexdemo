@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { useRef } from "react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { SplitText } from "@/components/ui/SplitText";
@@ -15,8 +15,6 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 export function ArticleHeader({ post }: { post: BlogPost }) {
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const coverY = useTransform(scrollYProgress, [0, 1], [0, 60]);
   const fade = (delay: number) => ({
     initial: reduce ? false : { opacity: 0, y: 14 },
     animate: { opacity: 1, y: 0 },
@@ -46,10 +44,10 @@ export function ArticleHeader({ post }: { post: BlogPost }) {
                 <Initials name={post.author.name} className="h-10 w-10 bg-ink/[0.07] text-[13px]" />
                 <span>
                   <span className="block font-display text-[15px] font-semibold">{post.author.name}</span>
-                  {post.author.role && <span className="block text-[13px] text-ink/55">{post.author.role}</span>}
+                  {post.author.role && <span className="block font-display text-[13px] text-ink/55">{post.author.role}</span>}
                 </span>
               </span>
-              <dl className="flex gap-8 text-[14px]">
+              <dl className="flex gap-8 font-display text-[14px]">
                 <div>
                   <dt className="t-ui text-[10.5px] text-ink/45">Published</dt>
                   <dd className="mt-0.5 text-ink/80">
@@ -74,14 +72,12 @@ export function ArticleHeader({ post }: { post: BlogPost }) {
         transition={{ duration: 1.2, ease: EASE, delay: 0.45 }}
       >
         <motion.div
-          className="overflow-hidden rounded-[18px]"
+          className="max-w-[940px] overflow-hidden rounded-[18px]"
           initial={reduce ? false : { clipPath: "inset(0 0 100% 0 round 18px)" }}
           animate={{ clipPath: "inset(0 0 0% 0 round 18px)" }}
           transition={{ duration: 1.3, ease: EASE, delay: 0.5 }}
         >
-          <motion.div style={{ y: reduce ? 0 : coverY }} className="scale-[1.08]">
-            <BlogCover post={post} size="lg" priority showLabel={false} className="aspect-[16/10] sm:aspect-[21/9]" sizes="(min-width:1440px) 1216px, 100vw" />
-          </motion.div>
+          <BlogCover post={post} size="lg" priority className="aspect-[16/10] sm:aspect-[21/9]" sizes="(min-width:1024px) 940px, 100vw" />
         </motion.div>
       </motion.div>
     </section>

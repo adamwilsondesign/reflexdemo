@@ -31,8 +31,7 @@ export default function BlogPage() {
         cta="blog-hero"
       />
 
-      <Section surface="lake" tight className="overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-chart-dark opacity-50" />
+      <Section surface="lake" tight>
         <div className="container-x">
           <FeaturedPost post={featured} />
         </div>
@@ -40,18 +39,14 @@ export default function BlogPage() {
 
       <Section surface="paper">
         <div className="container-x">
-          <SectionHeader eyebrow="All articles" title="Perspectives, product notes and research." align="split" lead="Written by the people building the platform. Quality over cadence." />
+          <SectionHeader title="Perspectives, product notes and research." align="split" lead="Written by the people building the platform. Quality over cadence." />
           <Reveal className="mt-12 md:mt-16" amount={0.05}>
             <BlogIndex posts={rest} />
           </Reveal>
         </div>
       </Section>
 
-      <Section surface="mist" tight className="border-t border-ink/8">
-        <div className="container-x">
-          <NewsletterModule />
-        </div>
-      </Section>
+      <NewsletterModule />
 
       <CTABand
         title="See the thinking in the product."

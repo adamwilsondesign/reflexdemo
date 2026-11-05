@@ -36,15 +36,15 @@ export function ExamplePrompts() {
       {EXAMPLES.map((e) => (
         <StaggerItem key={e.prompt} className="h-full">
           <article className="group flex h-full flex-col rounded-[16px] border border-ink/10 bg-white/70 p-6 transition-[border-color,background-color] duration-500 hover:border-ink/25 hover:bg-white md:p-7">
-            <div className="flex items-center justify-between gap-4">
-              <p className="t-ui text-ink/50">{e.who}</p>
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white ring-1 ring-ink/8">
-                <AlfredGlyph className="h-4 w-4 text-lake-700" />
-              </span>
-            </div>
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white ring-1 ring-ink/8">
+              <AlfredGlyph className="h-4 w-4 text-lake-700" />
+            </span>
             <h3 className="mt-6 font-display text-[19px] font-medium leading-snug tracking-[-0.01em] text-ink md:text-[21px]">&ldquo;{e.prompt}&rdquo;</h3>
             <div className="mt-auto flex flex-wrap items-center justify-between gap-4 pt-8">
-              <span className="font-mono text-[11px] uppercase tracking-[0.04em] text-ink/45">{e.shows}</span>
+              <span className="t-small text-ink/55">
+                For {e.who.toLowerCase().replace("ria", "RIA")}
+                <span className="block font-display text-[12px] font-medium tracking-[0.01em] text-ink/45">{e.shows}</span>
+              </span>
               <button
                 type="button"
                 onClick={() => use(e.prompt)}

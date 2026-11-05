@@ -138,7 +138,7 @@ export default function DataNoticesPage() {
 
       <Section surface="paper" className="border-t border-ink/8">
         <div className="container-x">
-          <SectionHeader eyebrow="Providers" title="Attributions by provider." align="split" lead="Each provider’s data and content is used under license. Where a provider requires specific attribution wording, it appears below." />
+          <SectionHeader title="Attributions by provider." align="split" lead="Each provider’s data and content is used under license. Where a provider requires specific attribution wording, it appears below." />
           <Stagger as="ul" className="mt-14 grid gap-px overflow-hidden rounded-[16px] border border-ink/10 bg-ink/10 md:mt-16 md:grid-cols-2 lg:grid-cols-3">
             {PROVIDERS.map((p) => {
               const l = logo(p.logoName);
@@ -165,7 +165,7 @@ export default function DataNoticesPage() {
       <Section surface="mist" className="border-t border-ink/8">
         <div className="container-x grid gap-12 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-4">
-            <SectionHeader eyebrow="Applies to all providers" title="General notices." />
+            <SectionHeader title="General notices." />
             <Reveal delay={0.2} className="mt-8">
               <p className="t-body max-w-[340px] text-ink/65">
                 Questions about these notices? Contact our legal team at{" "}

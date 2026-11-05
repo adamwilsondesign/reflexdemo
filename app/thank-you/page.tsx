@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
 import { Section, SectionHeader } from "@/components/ui/Section";
-import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
+import { Reveal } from "@/components/ui/Reveal";
 import { SplitText } from "@/components/ui/SplitText";
 import { Button } from "@/components/ui/Button";
-import { LinkCard } from "@/components/ui/Blocks";
-import { PrecisionIcon } from "@/components/ui/PrecisionIcon";
+import { FeatureGrid } from "@/components/ui/Blocks";
+import { LinkRowsBlock } from "@/components/ui/Layouts";
 import { Stage } from "@/components/product/ui";
 import { PropagationField } from "@/components/graphics/RippleRings";
 import { INTERESTS } from "../book-a-demo/_components/options";
@@ -77,55 +77,35 @@ export default async function ThankYouPage({ searchParams }: { searchParams: Pro
         }
       />
 
-      <Section surface="lake" className="overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-chart-dark opacity-60" />
-        <div className="container-x grid gap-14 lg:grid-cols-12 lg:gap-10">
-          <div className="lg:col-span-5">
-            <SectionHeader
-              eyebrow="Who you’ll meet"
-              title="A product specialist who knows the workflow."
-              lead="Your walkthrough is led by a Reflexivity product specialist. They’ll run your question live in Alfred and the Knowledge Graph, open the sources behind each answer, and leave time for your team’s questions."
-            />
-          </div>
-          <div className="lg:col-span-6 lg:col-start-7">
-            <Reveal>
-              <h3 className="t-ui text-paper/55">How to prepare (optional)</h3>
-            </Reveal>
-            <Stagger as="ul" className="mt-5 grid gap-px overflow-hidden rounded-[14px] bg-white/10">
-              {PREP.map((p) => (
-                <StaggerItem key={p.title} as="li" className="flex gap-5 bg-lake-900 p-6 md:p-7">
-                  <PrecisionIcon name={p.icon} className="h-9 w-9 shrink-0 text-lake-300" />
-                  <div>
-                    <p className="t-h3">{p.title}</p>
-                    <p className="t-body mt-1.5 text-paper/70">{p.body}</p>
-                  </div>
-                </StaggerItem>
-              ))}
-            </Stagger>
-            <Reveal delay={0.2}>
-              <p className="t-small mt-5 text-paper/55">Nothing to hand? That&rsquo;s fine. We&rsquo;ll bring a worked example.</p>
-            </Reveal>
-          </div>
+      <Section surface="pine">
+        <div className="container-x">
+          <SectionHeader
+            align="split"
+            title="A product specialist who knows the workflow."
+            lead="Your walkthrough is led by a Reflexivity product specialist. They’ll run your question live in Alfred and the Knowledge Graph, open the sources behind each answer, and leave time for your team’s questions."
+          />
+          <Reveal className="mt-16 md:mt-20">
+            <h3 className="t-h3">How to prepare (optional)</h3>
+          </Reveal>
+          <FeatureGrid items={PREP} cols={3} onDark className="mt-8" />
+          <Reveal delay={0.2}>
+            <p className="t-small mt-6 text-paper/65">Nothing to hand? That&rsquo;s fine. We&rsquo;ll bring a worked example.</p>
+          </Reveal>
         </div>
       </Section>
 
       <Section surface="paper">
         <div className="container-x">
-          <SectionHeader eyebrow="While you wait" title="Explore what you’ll see in the walkthrough." align="split" lead="A few places to start, if you’d like context before the call." />
-          <Stagger className="mt-14 grid gap-4 md:mt-16 md:grid-cols-2 lg:grid-cols-4">
-            <StaggerItem className="h-full">
-              <LinkCard href="/platform" icon="stack" eyebrow="Platform" title="How Reflexivity fits together" body="Alfred, the Knowledge Graph, Insights and integrated data in one environment." />
-            </StaggerItem>
-            <StaggerItem className="h-full">
-              <LinkCard href="/knowledge-graph" icon="rings" eyebrow="Knowledge Graph" title="See how markets connect" body="The relationship layer underneath every answer, including the non-obvious links." />
-            </StaggerItem>
-            <StaggerItem className="h-full">
-              <LinkCard href="/alfred" icon="lattice" eyebrow="Alfred" title="Meet your AI analyst" body="Ask a research question and get a cited answer you can inspect and re-run." />
-            </StaggerItem>
-            <StaggerItem className="h-full">
-              <LinkCard href="/blog/the-sharpe-ratio" icon="signal" eyebrow="From the blog" title="Better Sharpe Ratio is a plumbing problem" body="Jan Szilagyi on why returns depend on how many times you can afford to place a bet." />
-            </StaggerItem>
-          </Stagger>
+          <LinkRowsBlock
+            title="Explore what you’ll see in the walkthrough."
+            lead="A few places to start, if you’d like context before the call."
+            rows={[
+              { label: "How Reflexivity fits together", href: "/platform", note: "Alfred, the Knowledge Graph, Insights and integrated data in one environment." },
+              { label: "See how markets connect", href: "/knowledge-graph", note: "The relationship layer underneath every answer, including the non-obvious links." },
+              { label: "Meet your AI analyst", href: "/alfred", note: "Ask a research question and get a cited answer you can inspect and re-run." },
+              { label: "Better Sharpe Ratio is a plumbing problem", href: "/blog/the-sharpe-ratio", note: "Jan Szilagyi on why returns depend on how many times you can afford to place a bet." },
+            ]}
+          />
         </div>
       </Section>
 

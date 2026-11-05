@@ -67,7 +67,7 @@ export function FirmRouter() {
           <span className="t-ui flex items-center gap-2">
             <AlfredGlyph className="h-3.5 w-3.5" /> One platform
           </span>
-          <span className="t-ui">Four ways of working</span>
+          <span className="t-ui hidden sm:inline">Four ways of working</span>
         </div>
 
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-4" role="tablist" aria-label="Firm types">

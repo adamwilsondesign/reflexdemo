@@ -9,7 +9,7 @@ import type { Block } from "@/lib/blog";
 export function ArticleBody({ blocks, leadFirst }: { blocks: Block[]; leadFirst: boolean }) {
   const firstP = leadFirst ? blocks.findIndex((b) => b.type === "p") : -1;
   return (
-    <div className="max-w-[68ch] font-serif text-ink/85">
+    <div className="max-w-[68ch] font-serif text-ink/85 [text-wrap:pretty]">
       {blocks.map((b, i) => {
         switch (b.type) {
           case "h2":

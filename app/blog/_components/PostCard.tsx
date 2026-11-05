@@ -1,6 +1,5 @@
 import Link from "next/link";
 import clsx from "clsx";
-import { Arrow } from "@/components/ui/Button";
 import { formatDate, type BlogPost } from "@/lib/blog";
 import { BlogCover } from "./BlogCover";
 
@@ -17,7 +16,7 @@ export function Initials({ name, className }: { name: string; className?: string
 
 export function PostMeta({ post, onDark = false, className }: { post: BlogPost; onDark?: boolean; className?: string }) {
   return (
-    <p className={clsx("t-ui flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px]", onDark ? "text-paper/60" : "text-ink/55", className)}>
+    <p className={clsx("t-label flex flex-wrap items-center gap-x-2 gap-y-1 text-[13px]", onDark ? "text-paper/60" : "text-ink/55", className)}>
       <span className={onDark ? "text-paper/85" : "text-ink/80"}>{post.category}</span>
       <span aria-hidden="true">·</span>
       <time dateTime={post.date}>{formatDate(post.date)}</time>
@@ -40,17 +39,14 @@ export function PostCard({ post, headingLevel = "h3", wide = false }: { post: Bl
     >
       <BlogCover post={post} className={clsx("aspect-[16/10]", wide && "lg:aspect-auto lg:h-full")} sizes={wide ? "(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" : undefined} />
       <div className={clsx("flex flex-1 flex-col p-6 md:p-7", wide && "lg:p-9")}>
-        <PostMeta post={post} />
-        <H className={clsx("t-h3 mt-3.5 text-balance", wide && "lg:text-[26px] lg:leading-[1.2]")}>{post.title}</H>
+        <H className={clsx("t-h3 text-balance", wide && "lg:text-[26px] lg:leading-[1.2]")}>{post.title}</H>
         <p className="t-small mt-3 line-clamp-3 text-ink/65">{post.excerpt}</p>
-        <div className="mt-auto flex items-center justify-between gap-4 pt-7">
-          <span className="flex items-center gap-2.5">
+        <div className="mt-auto flex flex-col gap-3 pt-7">
+          <span className="flex min-w-0 items-center gap-2.5">
             <Initials name={post.author.name} />
-            <span className="text-[14px] font-medium text-ink/80">{post.author.name}</span>
+            <span className="truncate font-display text-[14px] font-medium text-ink/80">{post.author.name}</span>
           </span>
-          <span className="flex items-center gap-2 font-display text-[14px] font-medium">
-            Read <Arrow />
-          </span>
+          <PostMeta post={post} className="border-t border-ink/8 pt-3" />
         </div>
       </div>
     </Link>

@@ -152,7 +152,7 @@ export function GraphMaps() {
             </AnimatePresence>
           </div>
         </div>
-        <p className="t-ui mt-3 text-ink/45">Illustrative relationships and weights.</p>
+        <p className="t-small mt-3 text-ink/50">Illustrative relationships and weights.</p>
       </div>
     </div>
   );

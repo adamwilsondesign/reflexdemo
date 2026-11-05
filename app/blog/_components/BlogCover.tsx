@@ -27,14 +27,12 @@ export function BlogCover({
   className,
   sizes = "(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw",
   priority = false,
-  showLabel = true,
 }: {
   post: Pick<BlogPost, "slug" | "cover" | "category">;
   size?: "sm" | "md" | "lg";
   className?: string;
   sizes?: string;
   priority?: boolean;
-  showLabel?: boolean;
 }) {
   const { cover } = post;
   const h = hash(post.slug);
@@ -58,7 +56,7 @@ export function BlogCover({
             fill
             priority={priority}
             sizes={sizes}
-            className="-z-10 object-cover saturate-[0.8] transition-transform duration-[1.4s] ease-[var(--ease-out-expo)] group-hover:scale-[1.06]"
+            className="-z-10 object-cover saturate-[0.8]"
           />
           <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t from-ink/55 via-ink/10 to-ink/5" />
         </>
@@ -69,16 +67,10 @@ export function BlogCover({
             className="pointer-events-none absolute inset-0 -z-10 bg-chart-dark opacity-80"
             style={{ maskImage: "radial-gradient(70% 70% at 50% 50%, #000 10%, transparent 75%)", WebkitMaskImage: "radial-gradient(70% 70% at 50% 50%, #000 10%, transparent 75%)" }}
           />
-          <div className="pointer-events-none absolute -right-[20%] -top-[30%] -z-10 h-[90%] w-[70%] rounded-full bg-white/10 blur-3xl transition-transform duration-[1.6s] ease-[var(--ease-out-expo)] group-hover:translate-x-[-8%]" />
+          <div className="pointer-events-none absolute -right-[20%] -top-[30%] -z-10 h-[90%] w-[70%] rounded-full bg-white/10 blur-3xl" />
         </>
       )}
 
-      {/* precision hairline frame */}
-      <div className="pointer-events-none absolute inset-3 rounded-[6px] border border-white/15 md:inset-4" />
-
-      {showLabel && size !== "sm" && (
-        <span className="t-ui absolute left-6 top-6 text-[10.5px] text-white/75 md:left-7 md:top-7">{post.category}</span>
-      )}
 
       <div
         className={clsx(
@@ -91,7 +83,7 @@ export function BlogCover({
       >
         <PrecisionIcon
           name={cover.icon}
-          className={clsx(iconSize, "drop-shadow-[0_2px_12px_rgb(0_0_0/0.25)] transition-transform duration-[1.2s] ease-[var(--ease-out-expo)]")}
+          className={clsx(iconSize, "drop-shadow-[0_2px_12px_rgb(0_0_0/0.25)]")}
         />
       </div>
     </div>

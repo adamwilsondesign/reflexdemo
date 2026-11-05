@@ -5,9 +5,9 @@ import { ExamplePrompts } from "./_components/ExamplePrompts";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { Accordion } from "@/components/ui/Accordion";
 import { Reveal } from "@/components/ui/Reveal";
-import { SplitText } from "@/components/ui/SplitText";
 import { Button } from "@/components/ui/Button";
-import { PropagationField } from "@/components/graphics/RippleRings";
+import { SplitFeature } from "@/components/ui/Layouts";
+import { BranchLines } from "@/components/graphics/Cartography";
 import { HELP_URL } from "@/lib/nav";
 
 export const metadata: Metadata = {
@@ -73,7 +73,6 @@ export default function BookADemoPage() {
       <Section surface="paper">
         <div className="container-x">
           <SectionHeader
-            eyebrow="Bring your own question"
             title="Start from real work, or borrow one of ours."
             align="split"
             lead="The walkthrough is built around a question you actually have. If you don’t have one to hand, pick an example and we’ll run it live."
@@ -88,7 +87,7 @@ export default function BookADemoPage() {
       <Section surface="mist" className="border-t border-ink/8">
         <div className="container-x grid gap-12 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-4">
-            <SectionHeader eyebrow="Before you request" title="Questions, answered." />
+            <SectionHeader title="Questions, answered." />
             <Reveal delay={0.2} className="mt-8">
               <p className="t-body max-w-[340px] text-ink/65">
                 Want the detail first? Read how{" "}
@@ -103,28 +102,21 @@ export default function BookADemoPage() {
         </div>
       </Section>
 
-      <Section surface="ink" className="overflow-hidden" tight>
-        <div className="pointer-events-none absolute inset-0 -z-10 field-ink" />
-        <div className="pointer-events-none absolute inset-y-0 right-[-20%] -z-10 w-[120%] opacity-70 md:right-[-10%] md:w-[80%]">
-          <PropagationField />
+      <SplitFeature
+        surface="pine"
+        title="See what Reflexivity finds in your own coverage."
+        lead="Five quick fields, a follow-up within one business day, and a walkthrough shaped around how you work."
+        visual={<BranchLines origin="Your question" branches={["Sources", "Exposures", "Answer"]} accent="#c9d8cf" className="text-paper" />}
+      >
+        <div className="mt-10 flex flex-wrap items-center gap-3">
+          <Button href="#demo-form" variant="light" arrow cta="demo-closing">
+            Request a Demo
+          </Button>
+          <Button href="/security" variant="outline-light">
+            Review Security
+          </Button>
         </div>
-        <div className="container-x py-10 md:py-16">
-          <div className="max-w-[760px]">
-            <SplitText text="See what Reflexivity finds in your own coverage." className="t-h1" />
-            <Reveal delay={0.15}>
-              <p className="t-lead mt-6 max-w-[560px] text-paper/70">Five quick fields, a follow-up within one business day, and a walkthrough shaped around how you work.</p>
-            </Reveal>
-            <Reveal delay={0.25} className="mt-10 flex flex-wrap items-center gap-3">
-              <Button href="#demo-form" variant="light" arrow cta="demo-closing">
-                Request a Demo
-              </Button>
-              <Button href="/security" variant="outline-light">
-                Review Security
-              </Button>
-            </Reveal>
-          </div>
-        </div>
-      </Section>
+      </SplitFeature>
     </>
   );
 }

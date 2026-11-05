@@ -3,9 +3,8 @@ import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
-import { Arrow } from "@/components/ui/Button";
+import { LinkRows, TextLink } from "@/components/ui/Layouts";
 import { CTABand, FeatureGrid } from "@/components/ui/Blocks";
-import { PrecisionIcon } from "@/components/ui/PrecisionIcon";
 import { Stage } from "@/components/product/ui";
 import { SubscribeForm } from "./_components/SubscribeForm";
 import { IssuePreview } from "./_components/IssuePreview";
@@ -83,10 +82,9 @@ export default function NewsletterPage() {
         }
       />
 
-      <Section surface="lake" className="overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-chart-dark opacity-60" />
+      <Section surface="pine">
         <div className="container-x">
-          <SectionHeader eyebrow="What you’ll receive" title="Four things, every issue." align="split" lead="Built for investors who want signal, not volume. Each section is short and links to the full analysis." />
+          <SectionHeader title="Four things, every issue." align="split" lead="Built for investors who want signal, not volume. Each section is short and links to the full analysis." />
           <FeatureGrid onDark cols={4} className="mt-14 md:mt-20" items={RECEIVE} />
         </div>
       </Section>
@@ -94,11 +92,11 @@ export default function NewsletterPage() {
       <Section surface="paper">
         <div className="container-x grid gap-14 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-5">
-            <SectionHeader eyebrow="Our promise" title="Respectful of your inbox." />
+            <SectionHeader title="Respectful of your inbox." />
             <Stagger as="ul" className="mt-10 border-b border-ink/12">
               {PROMISES.map((p) => (
                 <StaggerItem key={p.k} as="li" className="grid grid-cols-[110px_1fr] gap-4 border-t border-ink/12 py-5">
-                  <span className="t-ui pt-1 text-ink/50">{p.k}</span>
+                  <span className="t-label pt-0.5 text-ink/50">{p.k}</span>
                   <span>
                     <span className="block font-display text-[17px] font-semibold">{p.v}</span>
                     <span className="t-small mt-1 block text-ink/60">{p.note}</span>
@@ -116,29 +114,11 @@ export default function NewsletterPage() {
           </div>
           <div className="lg:col-span-6 lg:col-start-7">
             <Reveal>
-              <p className="t-ui text-ink/50">Recently from the blog</p>
+              <h3 className="t-h3">Recently from the blog</h3>
             </Reveal>
-            <Stagger as="ul" className="mt-5 border-b border-ink/12">
-              {RECENT.map((r) => (
-                <StaggerItem key={r.href} as="li" className="border-t border-ink/12">
-                  <Link href={r.href} className="group flex items-start justify-between gap-6 py-6">
-                    <span>
-                      <span className="t-ui block text-ink/45">{r.tag}</span>
-                      <span className="t-h3 mt-2 block transition-colors group-hover:text-lake-700">{r.title}</span>
-                    </span>
-                    <span className="mt-8 shrink-0">
-                      <Arrow />
-                    </span>
-                  </Link>
-                </StaggerItem>
-              ))}
-            </Stagger>
+            <LinkRows className="mt-6" rows={RECENT.map((r) => ({ label: r.title, href: r.href, note: r.tag }))} />
             <Reveal delay={0.2}>
-              <Link href="/blog" className="group mt-8 inline-flex items-center gap-3 font-display text-[15px] font-medium">
-                <PrecisionIcon name="lattice" className="h-6 w-6" />
-                <span className="link-underline">Browse all articles</span>
-                <Arrow />
-              </Link>
+              <TextLink href="/blog" className="mt-8">Browse all articles</TextLink>
             </Reveal>
           </div>
         </div>

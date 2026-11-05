@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
-import { Arrow, Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
+import { LinkRowsBlock } from "@/components/ui/Layouts";
 import { CTABand } from "@/components/ui/Blocks";
 import { PrecisionIcon, type IconName } from "@/components/ui/PrecisionIcon";
 import { ANNOUNCEMENTS, PRESS, formatNewsDate, type Announcement } from "./_components/data";
@@ -72,39 +72,35 @@ export default function NewsPage() {
       </section>
 
       {/* Company announcements */}
-      <Section surface="lake" id="announcements" className="scroll-mt-24 overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-chart-dark opacity-50" />
+      <Section surface="pine" id="announcements" className="scroll-mt-24">
         <div className="container-x">
-          <SectionHeader eyebrow="Company announcements" title="Official updates from Reflexivity." align="split" lead="Partnerships, product launches, recognition and funding, from the source." />
-          <div className="mt-14 grid gap-4 md:mt-16 lg:grid-cols-12">
-            <Reveal className="lg:col-span-7">
-              <article className="group relative flex h-full flex-col overflow-hidden rounded-[18px] border border-white/10 bg-white/[0.04] p-7 md:p-10">
-                <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-lake-500/30 blur-3xl" />
-                <div className="relative flex items-start justify-between gap-6">
-                  <p className="t-ui text-paper/60">
-                    Latest · {lead.tag} · <time dateTime={lead.date}>{formatNewsDate(lead.date)}</time>
-                  </p>
-                  <PrecisionIcon name={TAG_ICON[lead.tag]} className="h-14 w-14 shrink-0 text-paper transition-transform duration-[1.2s] ease-[var(--ease-out-expo)]" />
-                </div>
-                <h3 className="t-h2 relative mt-10 max-w-[620px] text-balance md:mt-16">{lead.title}</h3>
-                <p className="t-body relative mt-5 max-w-[600px] text-paper/72">{lead.summary}</p>
-                <div className="relative mt-auto flex flex-wrap gap-3 pt-10">
+          <SectionHeader title="Official updates from Reflexivity." align="split" lead="Partnerships, product launches, recognition and funding, from the source." />
+          <div className="mt-14 grid border-l border-t border-white/15 md:mt-16 lg:grid-cols-12">
+            <Reveal className="border-b border-r border-white/15 lg:col-span-7">
+              <article className="flex h-full flex-col p-7 md:p-10">
+                <PrecisionIcon name={TAG_ICON[lead.tag]} className="h-12 w-12 text-paper md:h-14 md:w-14" />
+                <h3 className="t-h2 mt-12 max-w-[620px] text-balance md:mt-20">{lead.title}</h3>
+                <p className="t-label mt-4 text-paper/60">
+                  {lead.tag} · <time dateTime={lead.date}>{formatNewsDate(lead.date)}</time>
+                </p>
+                <p className="t-body mt-5 max-w-[600px] text-paper/75">{lead.summary}</p>
+                <div className="mt-auto flex flex-wrap gap-3 pt-10">
                   <Button href="/deployment#platform" variant="light" arrow>
                     See Microsoft 365 access
                   </Button>
                 </div>
               </article>
             </Reveal>
-            <Stagger className="flex flex-col gap-4 lg:col-span-5">
+            <Stagger className="flex flex-col lg:col-span-5">
               {rest.map((a) => (
-                <StaggerItem key={a.title} as="article" className="group flex gap-5 rounded-[14px] border border-white/10 bg-white/[0.03] p-6 transition-colors duration-500 hover:bg-white/[0.06]">
-                  <PrecisionIcon name={TAG_ICON[a.tag]} className="h-9 w-9 shrink-0 text-paper/90 transition-transform duration-700 ease-[var(--ease-out-expo)]" />
+                <StaggerItem key={a.title} as="article" className="flex flex-1 gap-5 border-b border-r border-white/15 p-6 md:p-7">
+                  <PrecisionIcon name={TAG_ICON[a.tag]} className="h-9 w-9 shrink-0 text-paper/90" />
                   <div>
-                    <p className="t-ui text-[11px] text-paper/50">
+                    <h3 className="font-display text-[17px] font-semibold leading-[1.3]">{a.title}</h3>
+                    <p className="t-label mt-1.5 text-[13px] text-paper/55">
                       {a.tag} · <time dateTime={a.date}>{formatNewsDate(a.date)}</time>
                     </p>
-                    <h3 className="mt-2 font-display text-[17px] font-semibold leading-[1.3]">{a.title}</h3>
-                    <p className="t-small mt-2 text-paper/62">{a.summary}</p>
+                    <p className="t-small mt-3 text-paper/70">{a.summary}</p>
                   </div>
                 </StaggerItem>
               ))}
@@ -116,7 +112,7 @@ export default function NewsPage() {
       {/* In the press */}
       <Section surface="paper" id="press" className="scroll-mt-24">
         <div className="container-x">
-          <SectionHeader eyebrow="In the press" title="Coverage and commentary." align="split" lead="Our team’s views on markets and AI, as featured on CNBC, Bloomberg, Reuters, Barron’s and more." />
+          <SectionHeader title="Coverage and commentary." align="split" lead="Our team’s views on markets and AI, as featured on CNBC, Bloomberg, Reuters, Barron’s and more." />
           <Reveal className="mt-12 md:mt-16" amount={0.05}>
             <PressFeed />
           </Reveal>
@@ -124,44 +120,17 @@ export default function NewsPage() {
       </Section>
 
       {/* Press contact */}
-      <Section surface="mist" id="press-contact" tight className="scroll-mt-24 border-t border-ink/8">
+      <Section surface="mist" id="press-contact" className="scroll-mt-24">
         <div className="container-x">
-          <div className="grid gap-4 lg:grid-cols-12">
-            <Reveal className="lg:col-span-7">
-              <div className="relative flex h-full flex-col overflow-hidden rounded-[18px] bg-ink p-7 text-paper md:p-10" data-tone="dark">
-                <div className="pointer-events-none absolute inset-0 field-ink" />
-                <div className="relative flex items-start justify-between gap-6">
-                  <p className="t-ui text-paper/55">Press contact</p>
-                  <PrecisionIcon name="signal" className="h-12 w-12 text-paper" />
-                </div>
-                <h2 className="t-h2 relative mt-10 max-w-[520px]">Writing about AI in markets?</h2>
-                <p className="t-body relative mt-4 max-w-[520px] text-paper/70">
-                  Reach our communications team for interviews, commentary from our leadership, company information and brand assets.
-                </p>
-                <div className="relative mt-9 flex flex-wrap gap-3">
-                  <Button href="/contact?topic=press" variant="light" arrow cta="news-press">
-                    Contact the press team
-                  </Button>
-                </div>
-              </div>
-            </Reveal>
-            <Stagger className="grid gap-4 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1">
-              {[
-                { href: "/about", title: "About Reflexivity", body: "Who we are, our leadership, and why we built the platform." },
-                { href: "/blog", title: "Read the blog", body: "Perspectives and product thinking from the team." },
-              ].map((l) => (
-                <StaggerItem key={l.href}>
-                  <Link href={l.href} className="group flex h-full flex-col rounded-[14px] border border-ink/10 bg-white/60 p-6 transition-[border-color,background-color,transform] duration-500 ease-[var(--ease-out-expo)] hover:border-ink/25 hover:bg-white md:p-7">
-                    <h3 className="t-h3">{l.title}</h3>
-                    <p className="t-small mt-2 text-ink/62">{l.body}</p>
-                    <span className="mt-auto flex items-center gap-2 pt-6 font-display text-[15px] font-medium">
-                      Explore <Arrow />
-                    </span>
-                  </Link>
-                </StaggerItem>
-              ))}
-            </Stagger>
-          </div>
+          <LinkRowsBlock
+            title="Writing about AI in markets?"
+            lead="Reach our communications team for interviews, commentary from our leadership, company information and brand assets."
+            rows={[
+              { label: "Contact the press team", href: "/contact?topic=press", note: "Interviews, commentary and brand assets." },
+              { label: "About Reflexivity", href: "/about", note: "Who we are, our leadership, and why we built the platform." },
+              { label: "Read the blog", href: "/blog", note: "Perspectives and product thinking from the team." },
+            ]}
+          />
         </div>
       </Section>
 

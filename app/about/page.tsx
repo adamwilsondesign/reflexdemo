@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
-import { Arrow, Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { CTABand, FeatureGrid } from "@/components/ui/Blocks";
-import { WordmarkStrip } from "@/components/ui/LogoStrip";
+import { TextLink } from "@/components/ui/Layouts";
 import { SplitText } from "@/components/ui/SplitText";
 import { INVESTORS } from "@/lib/logos";
 import { DurableOrbit } from "./_components/DurableOrbit";
@@ -106,28 +105,18 @@ export default function AboutPage() {
       </PageHero>
 
       {/* Origin */}
-      <Section surface="lake" className="overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-chart-dark opacity-50" />
-        <div className="container-x grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-4">
-            <Reveal>
-              <p className="t-ui text-paper/60">Why we built it</p>
-            </Reveal>
-          </div>
-          <div className="lg:col-span-8">
-            <SplitText
-              text="Reflexivity is the market platform our CEO wished he’d had while managing a $15B global macro book."
-              className="font-display text-[30px] font-medium leading-[1.2] tracking-[-0.02em] md:text-[44px]"
-            />
-            <Reveal delay={0.2}>
-              <p className="t-lead mt-8 max-w-[640px] text-paper/70">
-                One place to see how a development connects across a book, test the idea behind it, and check every step of the work. The team has run money, built research tools and shipped products at institutions where that work has to stand up to scrutiny.
-              </p>
-              <Link href="/platform" className="group mt-8 inline-flex items-center gap-2 font-display text-[15px] font-medium">
-                <span className="link-underline">See what we built</span> <Arrow />
-              </Link>
-            </Reveal>
-          </div>
+      <Section surface="ink">
+        <div className="container-x grid gap-10 lg:grid-cols-2 lg:gap-16">
+          <SplitText
+            text="Reflexivity is the market platform our CEO wished he’d had while managing a $15B global macro book."
+            className="t-h2"
+          />
+          <Reveal delay={0.2} className="lg:pt-2">
+            <p className="t-lead text-paper/75">
+              One place to see how a development connects across a book, test the idea behind it, and check every step of the work. The team has run money, built research tools and shipped products at institutions where that work has to stand up to scrutiny.
+            </p>
+            <TextLink href="/platform" className="mt-8">See what we built</TextLink>
+          </Reveal>
         </div>
       </Section>
 
@@ -135,7 +124,6 @@ export default function AboutPage() {
       <Section surface="paper" id="team" className="scroll-mt-[var(--header-h)]">
         <div className="container-x">
           <SectionHeader
-            eyebrow="Leadership"
             title="Built by investors, for investors."
             align="split"
             lead="Led by former portfolio managers and technologists from leading financial institutions."
@@ -149,11 +137,11 @@ export default function AboutPage() {
                     alt={`Portrait of ${p.name}`}
                     fill
                     sizes="(min-width:1024px) 20vw, (min-width:768px) 33vw, 50vw"
-                    className="object-cover grayscale transition-[filter,transform] duration-[1.2s] ease-[var(--ease-out-expo)] group-hover:scale-[1.04] group-hover:grayscale-0"
+                    className="object-cover grayscale transition-[filter] duration-700 group-hover:grayscale-0"
                   />
                 </div>
                 <h3 className="t-h3 mt-5">{p.name}</h3>
-                <p className="t-ui mt-1.5 text-ink/55">{p.role}</p>
+                <p className="t-label mt-1 text-ink/55">{p.role}</p>
                 <p className="t-small mt-3 text-ink/65">{p.bio}</p>
               </StaggerItem>
             ))}
@@ -162,43 +150,28 @@ export default function AboutPage() {
       </Section>
 
       {/* What we believe */}
-      <Section surface="ink" className="overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 -z-10 field-ink" />
+      <Section surface="pine">
         <div className="container-x">
           <SectionHeader
-            eyebrow="What we believe"
             title="Models will keep improving, so we build what lasts around them."
+            align="split"
             lead="The durable work is the data, the Knowledge Graph, the monitoring and the audit trail around the model. That’s where we put our effort."
-            maxW="max-w-[880px]"
           />
           <FeatureGrid items={BELIEFS} cols={4} onDark className="mt-14 md:mt-20" />
         </div>
       </Section>
 
-      {/* Investors */}
-      <Section surface="paper" tight className="border-b border-ink/8">
-        <div className="container-x">
-          <Reveal>
-            <div className="flex flex-col gap-6 md:flex-row md:items-center md:gap-10">
-              <p className="t-ui shrink-0 text-ink/50 md:max-w-[200px]">Supported by world-class investors</p>
-              <WordmarkStrip names={INVESTORS} className="w-full min-w-0" />
-            </div>
-          </Reveal>
-        </div>
-      </Section>
-
       {/* Offices */}
-      <Section surface="mist">
+      <Section surface="paper">
         <div className="container-x">
           <SectionHeader
-            eyebrow="Offices"
             title="New York, London and Tokyo."
             align="split"
             lead="A distributed team with hubs in three financial centres."
             actions={
-              <Link href="/contact" className="group inline-flex items-center gap-2 font-display text-[15px] font-medium">
-                <span className="link-underline">Contact us</span> <Arrow />
-              </Link>
+              <div>
+                <TextLink href="/contact">Contact us</TextLink>
+              </div>
             }
           />
           <Reveal className="mt-12 md:mt-16">
@@ -207,21 +180,41 @@ export default function AboutPage() {
         </div>
       </Section>
 
+      {/* Investors */}
+      <Section surface="lake">
+        <div className="container-x grid gap-10 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <SplitText text="Supported by world-class investors." className="t-h2 max-w-[460px]" />
+          </div>
+          <Stagger as="ul" className="grid grid-cols-2 border-t border-white/20">
+            {INVESTORS.map((n) => (
+              <StaggerItem
+                as="li"
+                key={n}
+                className="border-b border-white/20 py-5 pr-4 font-display text-[18px] font-medium tracking-[-0.01em] text-paper/85 odd:border-r odd:border-white/20 even:pl-5 md:py-6 md:text-[21px] md:even:pl-8"
+              >
+                {n}
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </div>
+      </Section>
+
       {/* Careers link (detail lives on /careers) */}
-      <Section surface="paper" tight>
+      <Section surface="paper">
         <div className="container-x">
-          <Reveal>
-            <div className="flex flex-col gap-6 rounded-[18px] border border-ink/10 bg-white p-7 md:flex-row md:items-center md:justify-between md:p-10">
+          <SectionHeader
+            title="Help build institutional market infrastructure."
+            align="split"
+            lead="We’re hiring across engineering, machine learning and product in New York and London."
+            actions={
               <div>
-                <p className="t-ui text-ink/50">Careers</p>
-                <h2 className="t-h2 mt-3">Help build institutional market infrastructure.</h2>
-                <p className="t-body mt-3 max-w-[560px] text-ink/65">We’re hiring across engineering, machine learning and product in New York and London.</p>
+                <Button href="/careers" variant="secondary" arrow>
+                  See open roles
+                </Button>
               </div>
-              <Button href="/careers" variant="secondary" arrow className="shrink-0">
-                See open roles
-              </Button>
-            </div>
-          </Reveal>
+            }
+          />
         </div>
       </Section>
 

@@ -110,7 +110,7 @@ export function DemoHero() {
               <PrecisionIcon name="cube" className="h-7 w-7 shrink-0 text-paper/80" />
               <span>
                 <span className="block font-display text-[15px] font-semibold">Security review?</span>
-                <span className="block text-[14px] text-paper/60">Controls, data handling and deployment, in one place.</span>
+                <span className="t-small block text-paper/60">Controls, data handling and deployment, in one place.</span>
               </span>
             </span>
             <Arrow />

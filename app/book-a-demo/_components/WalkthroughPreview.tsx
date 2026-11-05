@@ -64,7 +64,7 @@ export function WhatYoullSee() {
                   />
                 </span>
                 <span className={clsx("block font-display text-[16px] font-semibold transition-colors duration-500", on ? "text-paper" : "text-paper/55 group-hover:text-paper/80")}>{s.title}</span>
-                <span className={clsx("mt-1.5 block text-[14px] leading-relaxed transition-colors duration-500", on ? "text-paper/72" : "text-paper/45")}>{s.body}</span>
+                <span className={clsx("t-small mt-1.5 block transition-colors duration-500", on ? "text-paper/72" : "text-paper/45")}>{s.body}</span>
               </button>
             </li>
           );

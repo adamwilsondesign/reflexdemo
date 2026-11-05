@@ -1,16 +1,14 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import Link from "next/link";
-import { PrecisionIcon, type IconName } from "@/components/ui/PrecisionIcon";
-import { Arrow } from "@/components/ui/Button";
+import type { IconName } from "@/components/ui/PrecisionIcon";
+import { FeatureGrid } from "@/components/ui/Blocks";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-const MODES: { icon: IconName; kicker: string; title: string; body: string; href: string; link: string }[] = [
+const MODES: { icon: IconName; title: string; body: string; href: string; link: string }[] = [
   {
     icon: "crosshair",
-    kicker: "You ask",
     title: "On-demand research",
     body: "Ask Alfred to investigate a company, analyze a portfolio, or pressure-test a thesis. Get comprehensive, source-backed analysis in minutes.",
     href: "#on-demand",
@@ -18,7 +16,6 @@ const MODES: { icon: IconName; kicker: string; title: string; body: string; href
   },
   {
     icon: "signal",
-    kicker: "Alfred watches",
     title: "Always-on intelligence",
     body: "Alfred monitors your coverage universe, alerting you to relevant catalysts and their potential implications, even when you haven’t asked.",
     href: "#always-on",
@@ -33,29 +30,7 @@ export function TwoModes() {
   const reduce = useReducedMotion();
   return (
     <div className="relative">
-      <div className="grid gap-px overflow-hidden rounded-[16px] bg-white/10 md:grid-cols-2">
-        {MODES.map((m, i) => (
-          <motion.div
-            key={m.title}
-            initial={reduce ? false : { opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.9, ease: EASE, delay: i * 0.1 }}
-            className="group flex flex-col bg-lake-900 p-7 md:p-10"
-          >
-            <div className="flex items-start justify-between">
-              <span className="t-ui text-paper/50">{m.kicker}</span>
-              <PrecisionIcon name={m.icon} className="h-11 w-11 text-paper transition-transform duration-[1.2s] ease-[var(--ease-out-expo)]" />
-            </div>
-            <h3 className="t-h2 mt-14 md:mt-20">{m.title}</h3>
-            <p className="t-body mt-4 max-w-[460px] text-paper/70">{m.body}</p>
-            <Link href={m.href} className="group/l mt-8 inline-flex items-center gap-2 font-display text-[15px] font-medium text-paper">
-              <span className="link-underline">{m.link}</span>
-              <Arrow />
-            </Link>
-          </motion.div>
-        ))}
-      </div>
+      <FeatureGrid onDark cols={2} items={MODES.map(({ icon, title, body, href, link }) => ({ icon, title, body, href, linkLabel: link }))} />
 
       {/* connectors */}
       <svg viewBox="0 0 1000 60" preserveAspectRatio="none" className="hidden h-[60px] w-full md:block" aria-hidden="true">
@@ -81,8 +56,7 @@ export function TwoModes() {
       >
         <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
           <div>
-            <p className="t-ui text-paper/50">Shared underneath both modes</p>
-            <p className="mt-2 font-display text-[20px] font-semibold leading-snug md:text-[22px]">Two modes. Same context.</p>
+            <p className="font-display text-[20px] font-semibold leading-snug md:text-[22px]">Two modes. Same context.</p>
           </div>
           <ul className="flex flex-wrap gap-2">
             {SHARED.map((s) => (

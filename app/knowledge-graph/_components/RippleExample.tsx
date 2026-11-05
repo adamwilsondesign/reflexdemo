@@ -162,7 +162,7 @@ export function RippleExample() {
           </div>
         </div>
       </div>
-      <p className="t-ui mt-3 text-paper/45">Illustrative example. Rankings show relationship exposure, not a forecast or recommendation.</p>
+      <p className="t-small mt-3 text-paper/55">Illustrative example. Rankings show relationship exposure, not a forecast or recommendation.</p>
     </div>
   );
 }

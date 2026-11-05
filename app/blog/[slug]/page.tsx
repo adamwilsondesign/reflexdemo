@@ -96,9 +96,11 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               <div className="flex gap-4">
                 <Initials name={post.author.name} className="h-12 w-12 bg-ink/[0.07] text-[14px]" />
                 <div>
-                  <p className="t-ui text-ink/45">Written by</p>
-                  <p className="mt-1 font-display text-[17px] font-semibold">{post.author.name}</p>
-                  {post.author.role && <p className="text-[14px] text-ink/60">{post.author.role}, Reflexivity</p>}
+                  <p className="font-display text-[17px] font-semibold">
+                    <span className="font-normal text-ink/55">Written by </span>
+                    {post.author.name}
+                  </p>
+                  {post.author.role && <p className="mt-0.5 font-display text-[14px] text-ink/60">{post.author.role}, Reflexivity</p>}
                   {post.author.bio && <p className="t-small mt-2 max-w-[420px] text-ink/60">{post.author.bio}</p>}
                 </div>
               </div>
@@ -113,8 +115,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           {/* right rail: quiet conversion card (xl) */}
           <aside className="hidden xl:block" aria-label="Request a demo">
             <div className="sticky top-32 ml-auto max-w-[240px] rounded-[14px] border border-ink/10 bg-white/60 p-6">
-              <p className="t-ui text-ink/50">Reflexivity</p>
-              <p className="mt-3 font-display text-[17px] font-semibold leading-[1.3]">AI investment research you can check.</p>
+              <p className="font-display text-[17px] font-semibold leading-[1.3]">AI investment research you can check.</p>
               <p className="t-small mt-2 text-ink/60">See Alfred, the Knowledge Graph and Insights on a question of your own.</p>
               <Link href="/book-a-demo" data-cta="article-rail" className="group mt-5 inline-flex items-center gap-2 font-display text-[15px] font-medium">
                 <span className="link-underline">Request a Demo</span>
@@ -128,7 +129,6 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       <Section surface="mist" className="border-t border-ink/8">
         <div className="container-x">
           <SectionHeader
-            eyebrow="Keep reading"
             title="More from the Reflexivity blog."
             align="split"
             actions={

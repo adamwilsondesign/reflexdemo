@@ -8,6 +8,7 @@ import clsx from "clsx";
 import { AlfredGlyph, Pill } from "@/components/product/ui";
 import { DailyBrief } from "@/components/product/visuals";
 import { Arrow } from "@/components/ui/Button";
+import { Stagger, StaggerItem } from "@/components/ui/Reveal";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -134,24 +135,26 @@ const CARDS = [
   { title: "Your own environment.", body: "Put Alfred in a system you already run, through an API or a custom integration.", href: "/deployment#api-mcp", link: "API and custom integration", visual: <EnvVisual />, dark: false },
 ];
 
+/** Three ways in, on the shared hairline grid; each cell carries a coded product view. Hover = tint only. */
 export function WorksWhere() {
-  const reduce = useReducedMotion();
   return (
-    <div className="grid gap-4 md:grid-cols-3">
-      {CARDS.map((c, i) => (
-        <motion.div key={c.title} initial={reduce ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.9, ease: EASE, delay: i * 0.08 }}>
-          <Link href={c.href} className={clsx("group flex h-full flex-col overflow-hidden rounded-[16px] border transition-[transform,border-color] duration-500 ease-[var(--ease-out-expo)]", c.dark ? "border-transparent bg-ink text-paper" : "border-ink/10 bg-white text-ink hover:border-ink/25")}>
-            <div className={clsx("h-[240px]", c.dark ? "field-ink" : "bg-mist-100 bg-dots")}>{c.visual}</div>
-            <div className="flex flex-1 flex-col p-6 md:p-7">
+    <Stagger className="grid border-l border-t border-ink/12 md:grid-cols-3">
+      {CARDS.map((c) => (
+        <StaggerItem key={c.title} className="h-full">
+          <Link href={c.href} className="group flex h-full flex-col border-b border-r border-ink/12 transition-colors duration-500 hover:bg-ink/[0.035]">
+            <div className="p-3 pb-0 md:p-4 md:pb-0">
+              <div className={clsx("grain relative isolate h-[240px] overflow-hidden rounded-[12px]", c.dark ? "field-ink" : "field-mist")} aria-hidden="true">{c.visual}</div>
+            </div>
+            <div className="flex flex-1 flex-col p-6 md:p-8">
               <h3 className="t-h3">{c.title}</h3>
-              <p className={clsx("t-body mt-2.5", c.dark ? "text-paper/70" : "text-ink/65")}>{c.body}</p>
-              <span className="mt-auto flex items-center gap-2 pt-6 font-display text-[15px] font-medium">
+              <p className="t-small mt-2.5 text-ink/70">{c.body}</p>
+              <span className="mt-auto flex items-center gap-2 pt-7 font-display text-[15px] font-medium">
                 <span className="link-underline">{c.link}</span> <Arrow />
               </span>
             </div>
           </Link>
-        </motion.div>
+        </StaggerItem>
       ))}
-    </div>
+    </Stagger>
   );
 }

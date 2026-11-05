@@ -79,9 +79,7 @@ export function PressWire() {
         >
           <div className="flex items-center justify-between gap-4">
             <p className="t-ui text-[10px] text-paper/55">Company announcement · {formatNewsDate(latest.date)}</p>
-            <motion.span animate={reduce ? undefined : { rotate: 360 }} transition={{ duration: 24, repeat: Infinity, ease: "linear" }} className="flex">
-              <PrecisionIcon name="orbit" className="h-6 w-6 text-paper" />
-            </motion.span>
+            <PrecisionIcon name="orbit" className="h-6 w-6 shrink-0 text-paper" />
           </div>
           <p className="mt-2.5 line-clamp-2 font-display text-[15px] font-semibold leading-[1.3]">{latest.title}</p>
         </motion.div>

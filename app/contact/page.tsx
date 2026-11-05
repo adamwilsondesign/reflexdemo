@@ -4,9 +4,9 @@ import { Suspense } from "react";
 import { PageHero } from "@/components/ui/PageHero";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
-import { Arrow } from "@/components/ui/Button";
+import { SplitText } from "@/components/ui/SplitText";
+import { ArrowNE } from "@/components/ui/Layouts";
 import { CTABand } from "@/components/ui/Blocks";
-import { PrecisionIcon, type IconName } from "@/components/ui/PrecisionIcon";
 import { HELP_URL } from "@/lib/nav";
 import { RouteVisual } from "./_components/RouteVisual";
 import { ContactForm } from "./_components/ContactForm";
@@ -17,17 +17,14 @@ export const metadata: Metadata = {
     "Get in touch with Reflexivity about partnerships, technical integrations, security reviews, press or customer support. Request a demo to see the platform on your own work.",
 };
 
-const ROUTES: { icon: IconName; k: string; title: string; body: string; links: { label: string; href: string }[]; primary?: boolean }[] = [
+const ROUTES: { k: string; title: string; body: string; links: { label: string; href: string }[]; }[] = [
   {
-    icon: "crosshair",
     k: "Sales",
     title: "See the product on your work",
     body: "A walkthrough tailored to your portfolio, watchlist or research workflow.",
     links: [{ label: "Request a Demo", href: "/book-a-demo" }],
-    primary: true,
   },
   {
-    icon: "knot",
     k: "Partnerships",
     title: "Embed or distribute Reflexivity",
     body: "Platform, data and distribution partnerships, including embedded and white-label setups.",
@@ -37,14 +34,12 @@ const ROUTES: { icon: IconName; k: string; title: string; body: string; links: {
     ],
   },
   {
-    icon: "loop",
     k: "Support",
     title: "Help for existing customers",
     body: "Guides, answers and a direct line to our support team.",
     links: [{ label: "Visit the Help Center", href: HELP_URL }],
   },
   {
-    icon: "signal",
     k: "Press",
     title: "Media and interview requests",
     body: "Announcements, coverage and commentary from our team.",
@@ -54,7 +49,6 @@ const ROUTES: { icon: IconName; k: string; title: string; body: string; links: {
     ],
   },
   {
-    icon: "chain",
     k: "Security",
     title: "Security review and due diligence",
     body: "Questionnaires, documentation requests and security conversations.",
@@ -80,50 +74,41 @@ export default function ContactPage() {
       />
 
       {/* Routes */}
-      <Section surface="paper" tight className="border-t border-ink/8">
-        <div className="container-x">
-          <Reveal>
-            <p className="t-ui text-ink/50">Choose the right route</p>
-          </Reveal>
-          <Stagger className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+      <Section surface="pine">
+        <div className="container-x grid gap-10 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <SplitText text="Choose the right route." className="t-h2 max-w-[520px]" />
+            <Reveal delay={0.15}>
+              <p className="t-lead mt-5 max-w-[460px] text-paper/72">Each enquiry goes straight to the team that handles it.</p>
+            </Reveal>
+          </div>
+          <Stagger as="ul" className="border-t border-white/20">
             {ROUTES.map((r) => (
-              <StaggerItem
-                key={r.k}
-                className={
-                  "group flex h-full flex-col rounded-[16px] p-6 transition-transform duration-500 ease-[var(--ease-out-expo)] " +
-                  (r.primary ? "bg-lake-900 text-paper" : "border border-ink/10 bg-white/60")
-                }
-              >
-                <div className="flex items-center justify-between">
-                  <span className={"t-ui " + (r.primary ? "text-paper/60" : "text-ink/50")}>{r.k}</span>
-                  <PrecisionIcon name={r.icon} className="h-8 w-8 transition-transform duration-700 ease-[var(--ease-out-expo)]" />
+              <StaggerItem as="li" key={r.k} className="grid gap-x-6 gap-y-2 border-b border-white/20 py-6 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:py-7">
+                <h3 className="font-display text-[19px] font-medium tracking-[-0.01em] md:text-[21px]">{r.k}</h3>
+                <div>
+                  <p className="font-display text-[16px] font-semibold">{r.title}</p>
+                  <p className="t-small mt-1 text-paper/70">{r.body}</p>
+                  <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-3">
+                    {r.links.map((l) => {
+                      const ext = l.href.startsWith("http") || l.href.startsWith("mailto:");
+                      const cls = "group inline-flex items-center gap-2 border-b border-current/40 pb-0.5 font-display text-[14.5px] font-medium transition-colors hover:border-current";
+                      return (
+                        <li key={l.href}>
+                          {ext ? (
+                            <a href={l.href} className={cls}>
+                              {l.label} <ArrowNE />
+                            </a>
+                          ) : (
+                            <Link href={l.href} className={cls}>
+                              {l.label} <ArrowNE />
+                            </Link>
+                          )}
+                        </li>
+                      );
+                    })}
+                  </ul>
                 </div>
-                <h2 className="mt-10 font-display text-[19px] font-semibold leading-snug tracking-[-0.01em]">{r.title}</h2>
-                <p className={"t-small mt-2 " + (r.primary ? "text-paper/70" : "text-ink/60")}>{r.body}</p>
-                <ul className="mt-auto space-y-2 pt-6">
-                  {r.links.map((l) => {
-                    const ext = l.href.startsWith("http") || l.href.startsWith("mailto:");
-                    const inner = (
-                      <>
-                        <span className="link-underline">{l.label}</span> <Arrow className="shrink-0" />
-                      </>
-                    );
-                    const cls = "group/l inline-flex items-center gap-2 font-display text-[14.5px] font-medium";
-                    return (
-                      <li key={l.href}>
-                        {ext ? (
-                          <a href={l.href} className={cls}>
-                            {inner}
-                          </a>
-                        ) : (
-                          <Link href={l.href} className={cls}>
-                            {inner}
-                          </Link>
-                        )}
-                      </li>
-                    );
-                  })}
-                </ul>
               </StaggerItem>
             ))}
           </Stagger>
@@ -131,12 +116,12 @@ export default function ContactPage() {
       </Section>
 
       {/* Form + offices */}
-      <Section surface="mist" id="form" className="scroll-mt-[var(--header-h)] border-t border-ink/8">
+      <Section surface="paper" id="form" className="scroll-mt-[var(--header-h)]">
         <div className="container-x grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-4">
             <SectionHeader
-              eyebrow="Send a message"
               title="Tell us what you need."
+              className="lg:max-w-none"
               lead="Pick a topic and we’ll route your note to the right team. Product interest is fastest through a demo request."
             />
             <Reveal delay={0.2} className="hidden lg:block">
@@ -167,7 +152,7 @@ export default function ContactPage() {
 function OfficeList() {
   return (
     <div className="border-t border-ink/12 pt-8 lg:mt-12">
-      <p className="t-ui text-ink/50">Offices</p>
+      <h3 className="t-h3">Offices</h3>
       <ul className="mt-4 space-y-3">
         {OFFICES.map((o) => (
           <li key={o} className="flex items-center justify-between border-b border-ink/8 pb-3">
