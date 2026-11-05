@@ -315,11 +315,11 @@ export function MissingData({ label = "Regional revenue breakdown", reason = "No
 
 export function CodeBlock({ lines, className }: { lines: string[]; className?: string }) {
   return (
-    <pre className={clsx("overflow-hidden rounded-lg bg-[#1b1e23] p-3 font-mono text-[11px] leading-[1.65] text-paper/85", className)}>
+    <pre className={clsx("no-scrollbar overflow-x-auto rounded-lg bg-[#1b1e23] p-3 font-mono text-[11px] leading-[1.65] text-paper/85", className)}>
       {lines.map((l, i) => (
         <div key={i} className="flex gap-3">
           <span className="w-4 shrink-0 select-none text-right text-paper/25">{i + 1}</span>
-          <span dangerouslySetInnerHTML={{ __html: l }} />
+          <span className="whitespace-pre" dangerouslySetInnerHTML={{ __html: l }} />
         </div>
       ))}
     </pre>

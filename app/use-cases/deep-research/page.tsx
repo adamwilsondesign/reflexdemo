@@ -15,7 +15,7 @@ import { ResearchMemo } from "./_components/ResearchMemo";
 import { AMZN_ASKS, AMZN_PROMPT } from "./_components/amzn";
 
 export const metadata: Metadata = {
-  title: "Deep Research | Reflexivity",
+  title: "Deep Research",
   description:
     "Turn one prompt into a cited research memo: thesis, valuation, catalysts, risks and related names, with sources linked, calculations shown and missing data flagged.",
 };

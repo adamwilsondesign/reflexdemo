@@ -13,7 +13,7 @@ import { FanChart } from "./_components/FanChart";
 import { ScenarioResult } from "./_components/ScenarioResult";
 
 export const metadata: Metadata = {
-  title: "Scenario & Stress Testing | Reflexivity",
+  title: "Scenario & Stress Testing",
   description:
     "Test a hypothesis before you commit capital: historical backtests across 50+ years of market data, custom scenarios, and stress tests of portfolios and positions, with code-backed calculations you can check and re-run.",
 };

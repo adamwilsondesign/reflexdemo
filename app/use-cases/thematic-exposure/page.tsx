@@ -13,7 +13,7 @@ import { DirectionToggle } from "./_components/DirectionToggle";
 import { ConstituentExplorer } from "./_components/ConstituentExplorer";
 
 export const metadata: Metadata = {
-  title: "Thematic Exposure | Reflexivity",
+  title: "Thematic Exposure",
   description:
     "Find every company a theme moves, including the ones no headline will name. Build, validate and maintain thematic universes with evidence-backed exposure mapping from the Reflexivity Knowledge Graph.",
 };

@@ -14,7 +14,7 @@ import { MorningWorkflow } from "./_components/MorningWorkflow";
 import { RippleExample } from "./_components/RippleExample";
 
 export const metadata: Metadata = {
-  title: "Portfolio Monitoring | Reflexivity",
+  title: "Portfolio Monitoring",
   description:
     "Watch the book without living in alert noise. Reflexivity surfaces catalysts, earnings and second-order read-throughs across the companies and themes you follow, with the reason each item reached you.",
 };

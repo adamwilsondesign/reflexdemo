@@ -12,7 +12,7 @@ import { ConnectedLoop } from "./_components/ConnectedLoop";
 import { Audiences } from "./_components/Shared";
 
 export const metadata: Metadata = {
-  title: "Use Cases | Reflexivity",
+  title: "Use Cases",
   description:
     "Portfolio monitoring, deep research, thematic exposure, scenario and stress testing, and idea generation: see how one engine supports the jobs institutional investors need to finish.",
 };

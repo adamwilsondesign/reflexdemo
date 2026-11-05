@@ -103,7 +103,7 @@ export function AutoTabs({
       </div>
 
       <div className={clsx("relative lg:col-span-7", visualFirst && "lg:order-1", visualClassName)} role="tabpanel" aria-labelledby={`tab-${items[active].title}`}>
-        <div className="relative aspect-[4/3.2] w-full sm:aspect-[4/3]">
+        <div className="relative aspect-[4/4.6] w-full sm:aspect-[4/3]">
           <AnimatePresence mode="popLayout" initial={false}>
             <motion.div
               key={active}
