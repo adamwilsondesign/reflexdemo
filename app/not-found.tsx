@@ -26,8 +26,8 @@ export default function NotFound() {
         className="pointer-events-none absolute inset-0 -z-10 bg-chart"
         style={{ maskImage: "radial-gradient(90% 80% at 70% 40%, #000 20%, transparent 70%)", WebkitMaskImage: "radial-gradient(90% 80% at 70% 40%, #000 20%, transparent 70%)" }}
       />
-      <div className="container-x grid items-center gap-12 lg:grid-cols-12 lg:gap-10">
-        <div className="lg:col-span-6">
+      <div className="container-x grid gap-x-10 gap-y-12 lg:grid-cols-12">
+        <div className="lg:col-span-6 lg:row-start-1">
           <Eyebrow>Error 404</Eyebrow>
           <SplitText as="h1" text="This link doesn’t resolve." trigger="mount" delay={0.1} className="t-display mt-6 max-w-[640px]" />
           <Reveal delay={0.4}>
@@ -43,7 +43,14 @@ export default function NotFound() {
               Request a Demo
             </Button>
           </Reveal>
-          <ul className="mt-14 grid max-w-[560px] border-t border-ink/12 sm:grid-cols-2">
+        </div>
+        <div className="text-lake-900 lg:col-span-6 lg:col-start-7 lg:row-span-2 lg:row-start-1 lg:self-center">
+          <div className="mx-auto max-w-[420px] lg:max-w-[560px]">
+            <BrokenGraph />
+          </div>
+        </div>
+        <nav aria-label="Popular pages" className="lg:col-span-6 lg:row-start-2">
+          <ul className="grid max-w-[560px] border-t border-ink/12 sm:grid-cols-2">
             {LINKS.map((l) => (
               <li key={l.href} className="border-b border-ink/12">
                 <Link href={l.href} className="group flex items-center justify-between gap-4 py-4 pr-4">
@@ -56,12 +63,7 @@ export default function NotFound() {
               </li>
             ))}
           </ul>
-        </div>
-        <div className="text-lake-900 lg:col-span-6">
-          <div className="mx-auto max-w-[560px]">
-            <BrokenGraph />
-          </div>
-        </div>
+        </nav>
       </div>
     </section>
   );

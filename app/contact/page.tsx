@@ -32,7 +32,7 @@ const ROUTES: { icon: IconName; k: string; title: string; body: string; links: {
     title: "Embed or distribute Reflexivity",
     body: "Platform, data and distribution partnerships, including embedded and white-label setups.",
     links: [
-      { label: "partnerships@reflexivity.com", href: "mailto:partnerships@reflexivity.com" },
+      { label: "Email partnerships", href: "mailto:partnerships@reflexivity.com" },
       { label: "Use the form", href: "/contact?topic=partnerships#form" },
     ],
   },
@@ -49,7 +49,7 @@ const ROUTES: { icon: IconName; k: string; title: string; body: string; links: {
     title: "Media and interview requests",
     body: "Announcements, coverage and commentary from our team.",
     links: [
-      { label: "Contact communications", href: "/contact?topic=press#form" },
+      { label: "Press enquiry", href: "/contact?topic=press#form" },
       { label: "News & Press", href: "/news" },
     ],
   },
@@ -105,7 +105,7 @@ export default function ContactPage() {
                     const ext = l.href.startsWith("http") || l.href.startsWith("mailto:");
                     const inner = (
                       <>
-                        <span className="link-underline break-all">{l.label}</span> <Arrow className="shrink-0" />
+                        <span className="link-underline">{l.label}</span> <Arrow className="shrink-0" />
                       </>
                     );
                     const cls = "group/l inline-flex items-center gap-2 font-display text-[14.5px] font-medium";
