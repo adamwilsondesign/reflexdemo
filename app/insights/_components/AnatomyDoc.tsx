@@ -29,10 +29,16 @@ const RIPPLE = [
 export function AnatomyDoc({ step }: { step: number }) {
   const reduce = useReducedMotion();
   const refs = useRef<(HTMLDivElement | null)[]>([]);
+  const frame = useRef<HTMLDivElement>(null);
+  const doc = useRef<HTMLDivElement>(null);
   const [offsets, setOffsets] = useState<number[]>([0, 0, 0, 0]);
+  const [maxY, setMaxY] = useState(0);
 
   useLayoutEffect(() => {
-    const measure = () => setOffsets(refs.current.map((el) => (el ? el.offsetTop : 0)));
+    const measure = () => {
+      setOffsets(refs.current.map((el) => (el ? el.offsetTop : 0)));
+      setMaxY(Math.max(0, (doc.current?.offsetHeight ?? 0) - (frame.current?.offsetHeight ?? 0)));
+    };
     measure();
     window.addEventListener("resize", measure);
     return () => window.removeEventListener("resize", measure);
@@ -42,10 +48,11 @@ export function AnatomyDoc({ step }: { step: number }) {
 
   return (
     <Stage field="pine" className="h-full w-full">
-      <div className="absolute inset-x-4 top-4 bottom-0 overflow-hidden sm:inset-x-10 sm:top-8">
+      <div ref={frame} className="absolute inset-x-4 top-4 bottom-0 overflow-hidden sm:inset-x-10 sm:top-8">
         <motion.div
+          ref={doc}
           className="ui-card rounded-b-none p-5 sm:p-6"
-          animate={{ y: -Math.max(0, (offsets[step] ?? 0) - 20) }}
+          animate={{ y: -Math.min(maxY, Math.max(0, (offsets[step] ?? 0) - 20)) }}
           transition={reduce ? { duration: 0 } : { duration: 0.9, ease: EASE }}
         >
           {/* Headline */}
@@ -115,7 +122,7 @@ export function AnatomyDoc({ step }: { step: number }) {
               <li className="flex justify-between rounded-md border border-ink/8 bg-white/60 px-3 py-2">Compare utility capex plans for 2026 <span aria-hidden="true">→</span></li>
               <li className="flex justify-between rounded-md border border-ink/8 bg-white/60 px-3 py-2">Summarize regional exposure for the cohort <span aria-hidden="true">→</span></li>
             </ul>
-            <div className="h-40" />
+            <div className="h-6" />
           </div>
         </motion.div>
       </div>
