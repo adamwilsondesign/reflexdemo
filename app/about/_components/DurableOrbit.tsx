@@ -46,8 +46,7 @@ export function DurableOrbit() {
               r={r}
               stroke="currentColor"
               strokeWidth={0.6}
-              vectorEffect="non-scaling-stroke"
-              initial={reduce ? false : { pathLength: 0, opacity: 0 }}
+                initial={reduce ? false : { pathLength: 0, opacity: 0 }}
               animate={{ pathLength: 1, opacity: 0.12 + (i % 4 === 0 ? 0.12 : 0) }}
               transition={{ duration: 1.6, ease: EASE, delay: 0.2 + i * 0.03 }}
             />
@@ -62,7 +61,6 @@ export function DurableOrbit() {
             r={l.r}
             stroke="currentColor"
             strokeWidth={1.2}
-            vectorEffect="non-scaling-stroke"
             initial={reduce ? false : { pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 0.7 }}
             transition={{ duration: 1.8, ease: EASE, delay: 0.5 + i * 0.15 }}
@@ -76,7 +74,6 @@ export function DurableOrbit() {
             cy={C}
             stroke="var(--color-lake-500)"
             strokeWidth={1.2}
-            vectorEffect="non-scaling-stroke"
             initial={{ r: 34, opacity: 0.9 }}
             animate={{ r: 220, opacity: 0 }}
             transition={{ duration: 2.6, ease: [0.2, 0.6, 0.3, 1] }}

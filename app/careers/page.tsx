@@ -69,7 +69,7 @@ export default function CareersPage() {
           </Reveal>
           <div className="lg:col-span-8">
             <SplitText
-              text="We’re big on trust, and low on ego. We want people who want to build a category-defining company."
+              text="We’re big on trust and low on ego, and we’re looking for people who want to build a category-defining company."
               className="font-display text-[30px] font-medium leading-[1.2] tracking-[-0.02em] md:text-[44px]"
             />
             <Reveal delay={0.2}>
@@ -160,7 +160,7 @@ export default function CareersPage() {
           <Reveal delay={0.1} className="lg:col-span-5">
             <div className="flex h-full flex-col rounded-[18px] border border-ink/10 bg-white p-7 md:p-10">
               <p className="t-ui text-ink/50">How to apply</p>
-              <Stagger as="ol" className="mt-6 space-y-5">
+              <Stagger as="ol" className="mb-8 mt-6 space-y-5">
                 {[
                   ["Choose a role", "Or send a general application if nothing fits yet."],
                   ["Email us", "Include your CV or LinkedIn, and links to work you’re proud of."],

@@ -184,7 +184,6 @@ export function DoorsDiagram() {
               fill="none"
               stroke="#fff"
               strokeWidth="1.6"
-              vectorEffect="non-scaling-stroke"
               initial={{ pathLength: 0, opacity: 1 }}
               animate={{ pathLength: 1, opacity: 1 }}
               transition={{ duration: 1.1, ease: EASE }}

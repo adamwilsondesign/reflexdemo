@@ -163,7 +163,7 @@ export function AlfredHero() {
               className="absolute inset-x-2 top-16 z-20 sm:inset-x-8"
               role="status"
             >
-              <div className="ui-card p-4 shadow-[0_30px_60px_-20px_rgb(15_25_40/0.55)] sm:p-5">
+              <div className="ui-card bg-[#f6f5f3] p-4 shadow-[0_30px_60px_-20px_rgb(15_25_40/0.55)] backdrop-blur-none sm:p-5">
                 <div className="flex items-center justify-between gap-2">
                   <span className="flex items-center gap-2">
                     <AlfredGlyph className="h-4 w-4 text-pine-500" />

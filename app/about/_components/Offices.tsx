@@ -25,7 +25,7 @@ export function Offices({ onDark = false }: { onDark?: boolean }) {
         const hour = now ? Number(new Intl.DateTimeFormat("en-GB", { hour: "numeric", hour12: false, timeZone: o.tz }).format(now)) : 12;
         const open = hour >= 8 && hour < 19;
         return (
-          <li key={o.city} className={clsx("flex flex-col p-6 md:p-8", onDark ? "bg-lake-900" : "bg-paper")}>
+          <li key={o.city} className={clsx("flex flex-col p-6 md:p-8", onDark ? "bg-lake-900" : "bg-white")}>
             <div className="flex items-center justify-between">
               <span className={clsx("t-ui", onDark ? "text-paper/50" : "text-ink/50")}>{o.region}</span>
               <span className={clsx("flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.05em]", onDark ? "text-paper/60" : "text-ink/55")}>

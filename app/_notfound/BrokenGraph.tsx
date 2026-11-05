@@ -13,7 +13,7 @@ const NODES = [
   { id: "blog", x: 18, y: 70, label: "Blog", r: 2.4 },
   { id: "demo", x: 58, y: 82, label: "Request a Demo", r: 2.8 },
 ] as const;
-const LOST = { x: 86, y: 70 };
+const LOST = { x: 92, y: 62 };
 const EDGES: [string, string][] = [
   ["home", "platform"],
   ["platform", "alfred"],
@@ -105,7 +105,7 @@ export function BrokenGraph() {
           <motion.g key={n.id} initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.15 + i * 0.08 }}>
             <circle cx={n.x} cy={n.y} r={n.r} fill="var(--color-paper)" stroke="currentColor" strokeWidth={0.4} />
             <circle cx={n.x} cy={n.y} r={n.r * 0.38} fill="currentColor" />
-            <text x={n.x} y={n.y + n.r + 3.6} textAnchor="middle" className="fill-current font-mono" style={{ fontSize: 2.3, letterSpacing: "0.04em", textTransform: "uppercase", opacity: 0.6 }}>
+            <text x={n.x} y={n.id === "alfred" || n.id === "platform" ? n.y - n.r - 1.6 : n.y + n.r + 3.6} textAnchor="middle" className="fill-current font-mono" style={{ fontSize: 2.3, letterSpacing: "0.04em", textTransform: "uppercase", opacity: 0.6, paintOrder: "stroke", stroke: "var(--color-paper)", strokeWidth: 1.4, strokeLinejoin: "round" }}>
               {n.label}
             </text>
           </motion.g>
