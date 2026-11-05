@@ -143,7 +143,7 @@ export default function PlatformPage() {
             </p>
             <p className="t-small text-ink/60">
               <span className="font-display font-semibold text-ink">Decision-grade by design.</span> Cited outputs, explicit missing-data behaviour and code-backed calculations are built in, not added later.{" "}
-              <Link href="/auditability-data" className="link-underline text-ink">Auditability &amp; Data</Link>
+              <Link href="/alfred#trust" className="link-underline text-ink">How Alfred shows its work</Link>
             </p>
           </Reveal>
         </div>

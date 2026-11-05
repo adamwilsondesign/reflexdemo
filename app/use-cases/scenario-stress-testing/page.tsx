@@ -172,7 +172,7 @@ export default function ScenarioStressTestingPage() {
           </div>
           <p className="t-small mt-6 max-w-[620px] text-ink/55">
             Feed coverage and timeliness depend on your entitlements.{" "}
-            <Link href="/auditability-data" className="link-underline text-ink">How data and entitlements work</Link>
+            <Link href="/alfred#trust" className="link-underline text-ink">How data and entitlements work</Link>
           </p>
 
           <div className="mt-20 md:mt-28">
@@ -200,7 +200,7 @@ export default function ScenarioStressTestingPage() {
       <CTABand
         title="Bring the scenario you’d otherwise build in a spreadsheet."
         lead="A supply shock, a rate path or an earnings miss. We’ll run it through your names live."
-        secondary={{ label: "How auditability works", href: "/auditability-data" }}
+        secondary={{ label: "How auditability works", href: "/alfred#trust" }}
         cta="sst-final"
       />
     </>

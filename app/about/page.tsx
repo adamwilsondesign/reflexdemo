@@ -76,8 +76,8 @@ const BELIEFS = [
     icon: "chain" as const,
     title: "The audit trail",
     body: "Sources and code stay when the model changes. Claims link to their sources, and missing data is flagged rather than filled.",
-    href: "/auditability-data",
-    linkLabel: "Auditability & Data",
+    href: "/alfred#trust",
+    linkLabel: "How Alfred shows its work",
   },
 ];
 
@@ -85,11 +85,10 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
+        actions={null}
         trail={[{ label: "Company" }, { label: "About" }]}
         title="A team that has worked inside the firms Reflexivity is built for."
         lead="Reflexivity’s leadership has managed global macro investing, founded fintech companies and led product at Kensho, so the platform starts from how investment research gets done."
-        secondary={{ label: "Meet the team", href: "#team" }}
-        cta="about-hero"
         visual={<DurableOrbit />}
       >
         <div className="mt-12 border-t border-ink/12 pt-6">

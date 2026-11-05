@@ -56,7 +56,7 @@ export default function Home() {
             </div>
             <p className="t-small mt-6 max-w-[620px] text-ink/60">
               Natively integrated data from LSEG, S&amp;P Global, Cboe, Dow Jones, Nasdaq, Quartr, and more.{" "}
-              <Link href="/auditability-data" className="link-underline text-ink">How sourcing works</Link>
+              <Link href="/alfred#trust" className="link-underline text-ink">How sourcing works</Link>
             </p>
           </div>
         </div>

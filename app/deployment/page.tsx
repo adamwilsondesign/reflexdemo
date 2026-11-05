@@ -341,7 +341,7 @@ export default function DeploymentPage() {
         surface="lake"
         title="Two doors, not two products."
         lead="Whichever way you deploy, you’re working from the same Knowledge Graph, the same integrated data and the same approach to sourcing."
-        link={{ label: "How sourcing and auditability work", href: "/auditability-data" }}
+        link={{ label: "How sourcing and auditability work", href: "/alfred#trust" }}
         visual={<BranchLines origin="Knowledge Graph" branches={["Platform", "API & MCP", "Knowledge feeds", "Embedded"]} accent="#a9c4b6" />}
       >
         <dl className="mt-10 max-w-[520px] border-t border-white/20">

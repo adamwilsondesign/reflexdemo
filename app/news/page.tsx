@@ -27,20 +27,11 @@ export default function NewsPage() {
   return (
     <>
       <PageHero
+        actions={null}
         trail={[{ label: "Resources" }, { label: "News & Press" }]}
         title="Press & Media"
         lead="The latest news and announcements from Reflexivity: company updates, partnerships and product launches, alongside coverage and commentary from our team."
         visual={<PressWire />}
-        actions={
-          <div className="flex flex-wrap items-center gap-3">
-            <Button href="/book-a-demo" arrow cta="news-hero">
-              Request a Demo
-            </Button>
-            <Button href="/contact?topic=press" variant="secondary">
-              Press enquiries
-            </Button>
-          </div>
-        }
       >
         <nav aria-label="On this page" className="mt-10 flex flex-wrap gap-x-6 gap-y-2 border-t border-ink/12 pt-6">
           <a href="#announcements" className="group/a inline-flex items-center gap-2 font-display text-[15px] font-medium">

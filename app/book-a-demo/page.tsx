@@ -1,3 +1,4 @@
+import { CTABand } from "@/components/ui/Blocks";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { DemoHero } from "./_components/DemoHero";
@@ -6,8 +7,6 @@ import { Section, SectionHeader } from "@/components/ui/Section";
 import { Accordion } from "@/components/ui/Accordion";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
-import { SplitFeature } from "@/components/ui/Layouts";
-import { BranchLines } from "@/components/graphics/Cartography";
 import { HELP_URL } from "@/lib/nav";
 
 export const metadata: Metadata = {
@@ -91,7 +90,7 @@ export default function BookADemoPage() {
             <Reveal delay={0.2} className="mt-8">
               <p className="t-body max-w-[340px] text-ink/65">
                 Want the detail first? Read how{" "}
-                <Link href="/auditability-data" className={linkCls}>sourcing and auditability</Link> work, or explore the{" "}
+                <Link href="/alfred#trust" className={linkCls}>sourcing and auditability</Link> work, or explore the{" "}
                 <Link href="/platform" className={linkCls}>platform</Link>.
               </p>
             </Reveal>
@@ -102,21 +101,21 @@ export default function BookADemoPage() {
         </div>
       </Section>
 
-      <SplitFeature
-        surface="pine"
+<CTABand
         title="See what Reflexivity finds in your own coverage."
         lead="Five quick fields, a follow-up within one business day, and a walkthrough shaped around how you work."
-        visual={<BranchLines origin="Your question" branches={["Sources", "Exposures", "Answer"]} accent="#c9d8cf" className="text-paper" />}
-      >
-        <div className="mt-10 flex flex-wrap items-center gap-3">
-          <Button href="#demo-form" variant="light" arrow cta="demo-closing">
-            Request a Demo
-          </Button>
-          <Button href="/security" variant="outline-light">
-            Review Security
-          </Button>
-        </div>
-      </SplitFeature>
+        note={null}
+        actions={
+          <div className="flex flex-wrap items-center gap-3">
+            <Button href="#demo-form" variant="light" arrow cta="demo-closing">
+              Request a Demo
+            </Button>
+            <Button href="/security" variant="outline-light">
+              Review Security
+            </Button>
+          </div>
+        }
+      />
     </>
   );
 }

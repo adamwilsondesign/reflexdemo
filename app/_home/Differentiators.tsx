@@ -45,7 +45,7 @@ export function Differentiators() {
           body: (
             <>
               Research grounded in institutional data, with traceable sources and code-backed calculations.{" "}
-              <Link href="/auditability-data" className="link-underline font-medium text-ink">How auditability works</Link>
+              <Link href="/alfred#trust" className="link-underline font-medium text-ink">How auditability works</Link>
             </>
           ),
           visual: <AuditTrace />,

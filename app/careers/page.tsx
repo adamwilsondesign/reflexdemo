@@ -13,7 +13,7 @@ import { CAREERS_EMAIL, applyHref } from "./_components/roles";
 export const metadata: Metadata = {
   title: "Careers: Help Build the Future of Finance",
   description:
-    "Join Reflexivity’s distributed team in New York and London. Open roles across engineering, machine learning and product, unlimited PTO with PTO³, and a clear way to apply.",
+    "Join Reflexivity’s distributed team in New York and London. Open roles across engineering, machine learning and product, unlimited paid time off with an incentive to take it, and a clear way to apply.",
 };
 
 const VALUES = [
@@ -25,7 +25,7 @@ const VALUES = [
   {
     icon: "loop" as const,
     title: "Balance",
-    body: "Unlimited paid time off, and an incentive to actually take it. We call it PTO³.",
+    body: "Unlimited paid time off, and an incentive to actually take it.",
   },
   {
     icon: "eye" as const,
@@ -46,16 +46,7 @@ export default function CareersPage() {
         trail={[{ label: "Company" }, { label: "Careers" }]}
         title="Help build the future of finance."
         lead="Join a distributed team building the research infrastructure institutional investors rely on. Shape the future of investing, and your career, with technology at the edge of what’s possible."
-        actions={
-          <div className="flex flex-wrap items-center gap-3">
-            <Button href="#roles" arrow cta="careers-hero">
-              See open roles
-            </Button>
-            <Button href="#apply" variant="secondary">
-              How to apply
-            </Button>
-          </div>
-        }
+        actions={null}
         visual={<TeamNetwork />}
       />
 
@@ -75,18 +66,16 @@ export default function CareersPage() {
         </div>
       </Section>
 
-      {/* PTO³ */}
+      {/* PTO */}
       <Section surface="paper">
         <div className="container-x grid gap-12 lg:grid-cols-2 lg:gap-16">
           <SectionHeader
             title="We’ll give you $2,000 to actually use your unlimited paid time off."
-            lead="Paid time off? Unlimited PTO? Paid, unlimited PTO? We call it PTO³: get $2,000 in cash, or $10,000 in stock options, when you take real, sustained time away from work."
+            lead="Paid time off? Unlimited PTO? Paid, unlimited PTO? Get $2,000 in cash, or $10,000 in stock options, when you take real, sustained time away from work."
             className="lg:max-w-none"
           />
           <Reveal delay={0.1} className="lg:pt-2">
-            <p className="t-h1" aria-label="PTO cubed">
-              PTO<sup className="align-super text-[0.5em]">3</sup>
-            </p>
+            <p className="t-h1">PTO</p>
             <dl className="mt-8 grid grid-cols-2 border-t border-ink/15">
               <div className="border-b border-r border-ink/15 py-6 pr-6">
                 <dt className="t-label text-ink/60">Cash</dt>

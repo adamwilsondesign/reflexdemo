@@ -46,7 +46,8 @@ export function PageHero({
   layout?: "split" | "stacked" | "text";
   /** Solid hero colour. Product pages each own one brand colour, matched by their demo. */
   surface?: HeroSurface;
-  actions?: React.ReactNode;
+  /** custom buttons; pass `null` for a hero without any CTA */
+  actions?: React.ReactNode | null;
   secondary?: { label: string; href: string };
   cta?: string;
   className?: string;
@@ -91,9 +92,11 @@ export function PageHero({
               {lead}
             </motion.div>
           )}
-          <motion.div {...fade(0.6)} className={clsx("mt-9", layout === "stacked" && "flex justify-center")}>
-            {actions ?? <DemoActions onDark={dark} secondary={secondary} cta={cta} />}
-          </motion.div>
+          {actions !== null && (
+            <motion.div {...fade(0.6)} className={clsx("mt-9", layout === "stacked" && "flex justify-center")}>
+              {actions ?? <DemoActions onDark={dark} secondary={secondary} cta={cta} />}
+            </motion.div>
+          )}
           {children}
         </div>
 

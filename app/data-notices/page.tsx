@@ -121,7 +121,7 @@ export default function DataNoticesPage() {
         }
         actions={
           <div className="flex flex-wrap items-center gap-3">
-            <Button href="/auditability-data" variant="primary" arrow>
+            <Button href="/alfred#trust" variant="primary" arrow>
               How sourcing works
             </Button>
             <Button href="/terms#data-provider-notices" variant="secondary">
@@ -201,7 +201,7 @@ export default function DataNoticesPage() {
       <CTABand
         title="See how sources show up in an answer."
         lead="Alfred cites by default and flags missing data, so you can open the source behind each claim."
-        secondary={{ label: "How sourcing works", href: "/auditability-data" }}
+        secondary={{ label: "How sourcing works", href: "/alfred#trust" }}
         cta="data-notices-final"
       />
     </>

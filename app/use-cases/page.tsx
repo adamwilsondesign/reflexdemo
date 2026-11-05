@@ -64,7 +64,7 @@ const ENGINE = [
   { name: "Knowledge Graph", body: "The relationship layer: how companies, products, themes and markets connect, weighted by evidence.", href: "/knowledge-graph", icon: "triad" as IconName },
   { name: "Alfred", body: "The AI analyst that researches, calculates and answers follow-ups, on demand.", href: "/alfred", icon: "star" as IconName },
   { name: "Insights", body: "Always-on monitoring that surfaces relevant developments without waiting for a prompt.", href: "/insights", icon: "signal" as IconName },
-  { name: "Auditable analysis", body: "Cited sources, visible code-backed calculations, and missing data flagged rather than estimated.", href: "/auditability-data", icon: "eye" as IconName },
+  { name: "Auditable analysis", body: "Cited sources, visible code-backed calculations, and missing data flagged rather than estimated.", href: "/alfred#trust", icon: "eye" as IconName },
 ];
 
 export default function UseCasesPage() {

@@ -20,7 +20,6 @@ export const NAV: NavGroup[] = [
       ],
       [
         { label: "Insights", href: "/insights", description: "Intelligence before you ask" },
-        { label: "Auditability & Data", href: "/auditability-data", description: "Cited, sourced and re-runnable" },
         { label: "Security", href: "/security", description: "Built for institutional diligence" },
       ],
     ],
@@ -57,7 +56,6 @@ export const NAV: NavGroup[] = [
     columns: [
       [
         { label: "Blog", href: "/blog", description: "Analysis and product thinking" },
-        { label: "Customer Stories", href: "/customers", description: "Real institutional use, in detail" },
       ],
       [
         { label: "News & Press", href: "/news", description: "Announcements and coverage" },
@@ -91,7 +89,6 @@ export const FOOTER: { title: string; links: (NavLink & { external?: boolean; co
       { label: "Alfred", href: "/alfred" },
       { label: "Knowledge Graph", href: "/knowledge-graph" },
       { label: "Insights", href: "/insights" },
-      { label: "Auditability & Data", href: "/auditability-data" },
       { label: "Security", href: "/security" },
       { label: "Deployment", href: "/deployment" },
     ],
@@ -108,7 +105,6 @@ export const FOOTER: { title: string; links: (NavLink & { external?: boolean; co
     title: "Resources",
     links: [
       { label: "Blog", href: "/blog" },
-      { label: "Customer Stories", href: "/customers" },
       { label: "News & Press", href: "/news" },
       { label: "Newsletter", href: "/newsletter" },
     ],

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
+import { CTABand } from "@/components/ui/Blocks";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
@@ -8,7 +9,6 @@ import { type IconName } from "@/components/ui/PrecisionIcon";
 import { FeatureGrid } from "@/components/ui/Blocks";
 import { LinkRowsBlock, SplitFeature, TextLink } from "@/components/ui/Layouts";
 import { IsolationViz } from "./_components/IsolationViz";
-import { CartoViz } from "@/components/graphics/Cartography";
 import { SecurityHero } from "./_components/SecurityHero";
 import { DataProtection } from "./_components/DataProtection";
 
@@ -100,39 +100,29 @@ export default function SecurityPage() {
           <Reveal className="mt-20 grid gap-6 border-t border-ink/15 pt-10 md:mt-28 lg:grid-cols-2 lg:gap-16">
             <h3 className="t-h3 max-w-[460px]">Checking the research, not protecting the data?</h3>
             <div>
-              <p className="t-body max-w-[520px] text-ink/70">Security covers how your data is protected. Auditability covers how analysis can be inspected: sources, calculations and missing-data flags.</p>
-              <TextLink href="/auditability-data" className="mt-6">How auditability works</TextLink>
+              <p className="t-body max-w-[520px] text-ink/70">Security covers how your data is protected. How analysis can be inspected (sources, calculations and missing-data flags) is part of how Alfred works.</p>
+              <TextLink href="/alfred#trust" className="mt-6">How Alfred shows its work</TextLink>
             </div>
           </Reveal>
         </div>
       </Section>
 
       {/* CTA: security review */}
-      <section data-tone="dark" data-bg="#17191c" className="relative isolate overflow-hidden bg-ink py-16 text-paper md:py-20">
-        <div className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-1/2 items-center justify-center text-paper/80 lg:flex">
-          <div className="aspect-square w-[min(520px,90%)]">
-            <CartoViz name="orbit" accent="#f4f3f1" />
+      <CTABand
+        title="Start a security review with our team."
+        lead="Request a security overview, discuss your firm’s requirements, or begin a due diligence review with our team."
+        note={null}
+        actions={
+          <div className="flex flex-wrap items-center gap-3">
+            <Button href={SECURITY_HREF} variant="light" arrow cta="security-final-overview">
+              Request a Security Overview
+            </Button>
+            <Button href="/book-a-demo" variant="outline-light" cta="security-final-demo">
+              Request a Demo
+            </Button>
           </div>
-        </div>
-        <div className="container-x py-10 md:py-16">
-          <div className="max-w-[760px]">
-            <SplitText text="Start a security review with our team." className="t-h1" />
-            <Reveal delay={0.15}>
-              <p className="t-lead mt-6 max-w-[560px] text-paper/70">
-                Request a security overview, discuss your firm&rsquo;s requirements, or begin a due diligence review with our team.
-              </p>
-            </Reveal>
-            <Reveal delay={0.25} className="mt-10 flex flex-wrap items-center gap-3">
-              <Button href={SECURITY_HREF} variant="light" arrow cta="security-final-overview">
-                Request a Security Overview
-              </Button>
-              <Button href="/book-a-demo" variant="outline-light" cta="security-final-demo">
-                Request a Demo
-              </Button>
-            </Reveal>
-          </div>
-        </div>
-      </section>
+        }
+      />
     </>
   );
 }

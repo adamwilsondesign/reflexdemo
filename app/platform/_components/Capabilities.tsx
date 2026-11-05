@@ -168,14 +168,6 @@ const CAPS: { title: string; body: string; href: string; link: string; visual: R
     field: "field-pine",
   },
   {
-    title: "Auditability & Data",
-    body: "Institutional data with citations by default, missing data flagged, and calculations you can inspect.",
-    href: "/auditability-data",
-    link: "How auditability works",
-    visual: <AuditMini />,
-    field: "field-mist",
-  },
-  {
     title: "Security",
     body: "Independently audited controls, encryption and permission-aware access to connected sources.",
     href: "/security",

@@ -57,7 +57,7 @@ const CTAS: Record<string, Cta> = {
   "the-model-upgrade-problem": {
     title: "Analysis you can re-run, whatever the model underneath.",
     body: "See how Reflexivity keeps outputs cited, sourced and re-runnable, and why each component is re-validated when the models underneath change.",
-    href: "/auditability-data",
+    href: "/alfred#trust",
     label: "See auditability and data",
     icon: "stack",
     points: ["Cited outputs", "Execution trace", "Re-runnable"],
@@ -65,7 +65,7 @@ const CTAS: Record<string, Cta> = {
   "how-do-you-make-ai-predictable-without-making-it-dumb": {
     title: "Reliability you can inspect.",
     body: "Every answer carries its sources and execution path, and the system says where it hit a limit instead of guessing.",
-    href: "/auditability-data",
+    href: "/alfred#trust",
     label: "See auditability and data",
     icon: "pentagon",
     points: ["Flags missing data", "Execution trace", "Structured evaluations"],

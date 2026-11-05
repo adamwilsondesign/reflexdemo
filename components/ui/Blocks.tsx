@@ -5,8 +5,7 @@ import { Reveal, Stagger, StaggerItem } from "./Reveal";
 import { SplitText } from "./SplitText";
 import { DemoActions, Arrow } from "./Button";
 import { PrecisionIcon, type IconName } from "./PrecisionIcon";
-import { CartoViz } from "@/components/graphics/Cartography";
-import { vizFor, type VizName } from "@/lib/viz";
+import { PropagationField } from "@/components/graphics/RippleRings";
 import { Section } from "./Section";
 
 export const TESTIMONIALS = [
@@ -54,29 +53,32 @@ export function Testimonials({ items = TESTIMONIALS, onDark = false, title }: { 
   );
 }
 
-/** Final conversion band. One focused action; optional reassurance line. */
+/**
+ * Final conversion band — identical on every page (ink, propagation rings).
+ * Pages vary only the copy; `actions` replaces the default demo buttons when a page needs it.
+ */
 export function CTABand({
   title,
   lead,
   secondary,
   note = "Bring a question, watchlist, or example, or we’ll provide one. No confidential holdings required.",
   cta,
-  viz,
+  actions,
 }: {
   title: string;
   lead?: string;
   secondary?: { label: string; href: string };
   note?: string | null;
   cta?: string;
-  /** cartography chart on the right (desktop); defaults to one chosen from the title */
-  viz?: VizName;
+  actions?: React.ReactNode;
+  /** @deprecated kept for compatibility; the band no longer varies its visual */
+  viz?: unknown;
 }) {
   return (
     <Section surface="ink" className="overflow-hidden" tight>
-      <div className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-1/2 items-center justify-center text-paper/80 lg:flex">
-        <div className="aspect-square w-[min(520px,90%)]">
-          <CartoViz name={viz ?? vizFor(title, ["flow", "wave", "orbit", "radial"])} accent="#f4f3f1" />
-        </div>
+      <div className="pointer-events-none absolute inset-0 -z-10 field-ink" />
+      <div className="pointer-events-none absolute inset-y-0 right-[-20%] -z-10 w-[120%] opacity-70 md:right-[-10%] md:w-[80%]">
+        <PropagationField />
       </div>
       <div className="container-x py-10 md:py-16">
         <div className="max-w-[760px]">
@@ -87,7 +89,7 @@ export function CTABand({
             </Reveal>
           )}
           <Reveal delay={0.25} className="mt-10">
-            <DemoActions onDark secondary={secondary} cta={cta} />
+            {actions ?? <DemoActions onDark secondary={secondary} cta={cta} />}
             {note && <p className="t-small mt-5 max-w-[460px] text-paper/50">{note}</p>}
           </Reveal>
         </div>

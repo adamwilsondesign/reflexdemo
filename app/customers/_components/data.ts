@@ -277,7 +277,7 @@ export const AUDIENCES: Audience[] = [
     },
     links: [
       { label: "Thematic Exposure", href: "/use-cases/thematic-exposure" },
-      { label: "Auditability & Data", href: "/auditability-data" },
+      { label: "Alfred", href: "/alfred" },
     ],
   },
   {
@@ -379,6 +379,6 @@ export const AUDIENCES: Audience[] = [
 export const ROLES = [
   { role: "Portfolio managers", body: "Monitor the book and pressure-test conviction before sizing.", href: "/use-cases/portfolio-monitoring", link: "Portfolio Monitoring" },
   { role: "Analysts", body: "Go from a question to a cited, re-runnable answer.", href: "/use-cases/deep-research", link: "Deep Research" },
-  { role: "Research leaders", body: "Keep work consistent, auditable and shareable across the team.", href: "/auditability-data", link: "Auditability & Data" },
+  { role: "Research leaders", body: "Keep work consistent, auditable and shareable across the team.", href: "/alfred#trust", link: "How Alfred shows its work" },
   { role: "Platform & data teams", body: "Bring the Graph and Alfred into the systems you run.", href: "/deployment#api-mcp", link: "API & MCP" },
 ];

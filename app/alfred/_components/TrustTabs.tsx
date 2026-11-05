@@ -99,8 +99,7 @@ export function TrustTabs() {
           icon: <PrecisionIcon name="cube" className="h-6 w-6" />,
           body: (
             <>
-              Check the inputs and code used to produce a result.{" "}
-              <Link href="/auditability-data" className="link-underline font-medium text-ink">How auditability works</Link>
+              Check the inputs and code used to produce a result.
             </>
           ),
           visual: <OneAnswer focus={2} />,

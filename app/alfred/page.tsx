@@ -169,7 +169,7 @@ export default function AlfredPage() {
                 ))}
                 <li className="flex h-[68px] items-center justify-center bg-mist-200 px-4 font-display text-[12px] uppercase tracking-[0.05em] text-ink/50">+ more sources</li>
               </ul>
-              <TextLink href="/auditability-data" className="mt-6">How sourcing works</TextLink>
+              <TextLink href="/alfred#trust" className="mt-6">How sourcing works</TextLink>
             </Reveal>
           </div>
         </div>
@@ -189,7 +189,7 @@ export default function AlfredPage() {
       </Section>
 
       {/* 7 · Trust every output */}
-      <Section surface="mist" className="border-t border-ink/8">
+      <Section surface="mist" id="trust" className="scroll-mt-[var(--header-h)] border-t border-ink/8">
         <div className="container-x">
           <SectionHeader
             title="Built so you don’t have to second-guess."

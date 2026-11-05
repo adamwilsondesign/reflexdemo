@@ -23,6 +23,7 @@ export default function BlogPage() {
   return (
     <>
       <PageHero
+        actions={null}
         trail={[{ label: "Resources" }, { label: "Blog" }]}
         title="A closer look at what moves markets."
         lead="Perspectives, product notes and research from the team building Reflexivity: how AI changes investment research, and where the decision should stay with you."

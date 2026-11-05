@@ -1,3 +1,4 @@
+import { CTABand } from "@/components/ui/Blocks";
 import type { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
 import { Section, SectionHeader } from "@/components/ui/Section";
@@ -7,7 +8,6 @@ import { Button } from "@/components/ui/Button";
 import { FeatureGrid } from "@/components/ui/Blocks";
 import { LinkRowsBlock } from "@/components/ui/Layouts";
 import { Stage } from "@/components/product/ui";
-import { CartoViz } from "@/components/graphics/Cartography";
 import { INTERESTS } from "../book-a-demo/_components/options";
 import { NextSteps } from "./_components/NextSteps";
 
@@ -109,31 +109,21 @@ export default async function ThankYouPage({ searchParams }: { searchParams: Pro
         </div>
       </Section>
 
-      <Section surface="ink" className="overflow-hidden" tight>
-        <div className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-1/2 items-center justify-center text-paper/80 lg:flex">
-          <div className="aspect-square w-[min(520px,90%)]">
-            <CartoViz name="wave" accent="#f4f3f1" />
+      <CTABand
+        title="Running diligence in parallel?"
+        lead="Share our security overview and deployment options with your team now, so the review keeps pace with the evaluation."
+        note={null}
+        actions={
+          <div className="flex flex-wrap items-center gap-3">
+            <Button href="/security" variant="light" arrow cta="thanks-security">
+              Review Security
+            </Button>
+            <Button href="/deployment" variant="outline-light">
+              Explore Deployment Options
+            </Button>
           </div>
-        </div>
-        <div className="container-x py-10 md:py-16">
-          <div className="max-w-[760px]">
-            <SplitText text="Running diligence in parallel?" className="t-h1" />
-            <Reveal delay={0.15}>
-              <p className="t-lead mt-6 max-w-[560px] text-paper/70">
-                Share our security overview and deployment options with your team now, so the review keeps pace with the evaluation.
-              </p>
-            </Reveal>
-            <Reveal delay={0.25} className="mt-10 flex flex-wrap items-center gap-3">
-              <Button href="/security" variant="light" arrow cta="thanks-security">
-                Review Security
-              </Button>
-              <Button href="/deployment" variant="outline-light">
-                Explore Deployment Options
-              </Button>
-            </Reveal>
-          </div>
-        </div>
-      </Section>
+        }
+      />
     </>
   );
 }

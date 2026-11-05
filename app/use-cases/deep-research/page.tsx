@@ -37,7 +37,7 @@ const DIFFS: { icon: IconName; title: string; body: React.ReactNode }[] = [
     body: (
       <>
         Answers show their reasoning and link claims to their sources. Deep Research is built to avoid guesswork and flags proactively when data is unavailable.{" "}
-        <Link href="/auditability-data" className="link-underline text-paper">How auditability works</Link>
+        <Link href="/alfred#trust" className="link-underline text-paper">How auditability works</Link>
       </>
     ),
   },
@@ -47,7 +47,7 @@ const DIFFS: { icon: IconName; title: string; body: React.ReactNode }[] = [
     body: (
       <>
         Filings, transcripts, estimates and market data are built in, with no separate data contracts required for core coverage.{" "}
-        <Link href="/auditability-data" className="link-underline text-paper">See data sources</Link>
+        <Link href="/alfred#trust" className="link-underline text-paper">See data sources</Link>
       </>
     ),
   },
@@ -206,7 +206,7 @@ export default function DeepResearchPage() {
           </div>
           <p className="t-small mt-6 max-w-[620px] text-ink/55">
             Coverage depends on your entitlements.{" "}
-            <Link href="/auditability-data" className="link-underline text-ink">How sourcing and entitlements work</Link>
+            <Link href="/alfred#trust" className="link-underline text-ink">How sourcing and entitlements work</Link>
           </p>
 
           <div className="mt-20 md:mt-28">

@@ -37,8 +37,14 @@ Unified, considered, enterprise-grade. Take from the cartography boards:
 - **No grid / dot textures anywhere** (the `bg-chart*` / `bg-dots*` utilities are intentionally blank).
 - **Product page heroes own a brand colour**, and the hero demo sits directly on it (transparent `Stage field="none"`): Platform `graphite`, Alfred `pine`, Insights `lake`, Auditability & Data `lake700`, Security `pine900`, Knowledge Graph `ink` (`PageHero surface=…`).
 - **Vertical stacks of interactive cards (AutoTabs and local variants) have no icons beside titles.**
-- **More cartography**: every `CTABand` and `LinkRowsBlock` carries a chart (chosen from the title via `lib/viz.ts`, overridable with `viz`). New charts: `WaveField`, `OrbitField`; use `<CartoViz name=… />`.
+- **Closing CTA is identical on every page**: `CTABand` (ink + propagation rings). Pages vary only copy; use `actions` for page-specific buttons.
+- **More cartography**: every `LinkRowsBlock` carries a chart (chosen from the title via `lib/viz.ts`, overridable with `viz`). New charts: `WaveField`, `OrbitField`; use `<CartoViz name=… />`.
 - **Header hides on scroll down, reappears on scroll up**; sticky elements offset with `var(--header-live)`.
+
+## Round-4 changes
+- Auditability & Data page cut (redirects to `/alfred#trust`); Customer Stories cut from nav/footer and the Customers page.
+- Blog, News, About and Careers heroes have no CTA (`PageHero actions={null}`).
+- Footer: award badges row (from reflexivity.com) + X / LinkedIn links.
 
 ## Component rules
 - **Eyebrows only in heroes.** No eyebrow/kicker labels above section headings or card titles anywhere else (`SectionHeader` ignores `eyebrow`). Labels *inside product UI mockups* are fine; "Illustrative" disclaimers go below a visual, not above a heading.
