@@ -127,10 +127,12 @@ export function LinkRows({ rows, onDark = false, numbered = false, className }: 
               onDark ? "border-white/20 hover:border-paper" : "border-ink/15 hover:border-ink",
             )}
           >
-            {numbered && <span className={clsx("t-ui hidden md:block", onDark ? "text-paper/50" : "text-ink/45")}>{String(i + 1).padStart(2, "0")}</span>}
-            <span className="font-display text-[19px] font-medium tracking-[-0.01em] md:text-[21px]">{r.label}</span>
-            {r.note && <span className={clsx("t-small col-span-2 row-start-2 md:col-span-1 md:row-start-auto", onDark ? "text-paper/65" : "text-ink/60")}>{r.note}</span>}
-            <ArrowNE className={clsx("row-start-1 justify-self-end", numbered ? "md:col-start-4" : r.note ? "md:col-start-3" : "col-start-2")} />
+            {numbered && <span className={clsx("t-ui hidden md:col-start-1 md:row-start-1 md:block", onDark ? "text-paper/50" : "text-ink/45")}>{String(i + 1).padStart(2, "0")}</span>}
+            <span className={clsx("col-start-1 row-start-1 font-display text-[19px] font-medium tracking-[-0.01em] md:text-[21px]", numbered && "md:col-start-2")}>{r.label}</span>
+            {r.note && (
+              <span className={clsx("t-small col-span-2 col-start-1 row-start-2 md:col-span-1 md:row-start-1", numbered ? "md:col-start-3" : "md:col-start-2", onDark ? "text-paper/65" : "text-ink/60")}>{r.note}</span>
+            )}
+            <ArrowNE className={clsx("col-start-2 row-start-1 justify-self-end", numbered ? "md:col-start-4" : r.note ? "md:col-start-3" : "")} />
           </Link>
         </StaggerItem>
       ))}
