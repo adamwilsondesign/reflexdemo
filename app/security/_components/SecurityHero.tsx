@@ -49,7 +49,7 @@ export function SecurityHero() {
   });
 
   return (
-    <Stage field="ink" className="w-full">
+    <Stage field="none" className="w-full">
       <div ref={ref} className="relative mx-auto aspect-square w-full max-w-[560px] p-3 sm:p-6">
         <svg viewBox="0 0 520 520" className="h-full w-full" role="img" aria-label="Diagram: requests pass a permission layer, travel encrypted, and reach an isolated client environment.">
           <defs>

@@ -33,6 +33,13 @@ Unified, considered, enterprise-grade. Take from the cartography boards:
   | Label / UI 12–14 | Archivo Medium | `t-ui` (uppercase), `t-label` |
   Rules: Archivo for headings, buttons, labels, nav, and product-UI mockups. Source Serif 4 for paragraphs and quotes. **Never** Archivo for long paragraphs; **never** serif on buttons/nav. One voice per line. Quotes use the serif.
 
+## Round-3 rules
+- **No grid / dot textures anywhere** (the `bg-chart*` / `bg-dots*` utilities are intentionally blank).
+- **Product page heroes own a brand colour**, and the hero demo sits directly on it (transparent `Stage field="none"`): Platform `graphite`, Alfred `pine`, Insights `lake`, Auditability & Data `lake700`, Security `pine900`, Knowledge Graph `ink` (`PageHero surface=…`).
+- **Vertical stacks of interactive cards (AutoTabs and local variants) have no icons beside titles.**
+- **More cartography**: every `CTABand` and `LinkRowsBlock` carries a chart (chosen from the title via `lib/viz.ts`, overridable with `viz`). New charts: `WaveField`, `OrbitField`; use `<CartoViz name=… />`.
+- **Header hides on scroll down, reappears on scroll up**; sticky elements offset with `var(--header-live)`.
+
 ## Component rules
 - **Eyebrows only in heroes.** No eyebrow/kicker labels above section headings or card titles anywhere else (`SectionHeader` ignores `eyebrow`). Labels *inside product UI mockups* are fine; "Illustrative" disclaimers go below a visual, not above a heading.
 - **Headline + subhead ≤ half the desktop grid** (6 of 12 cols). `SectionHeader` enforces it; `align="split"` = headline left half / subhead right half.

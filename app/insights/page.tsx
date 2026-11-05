@@ -65,6 +65,7 @@ export default function InsightsPage() {
   return (
     <>
       <PageHero
+        surface="lake"
         trail={[{ label: "Product" }, { label: "Insights" }]}
         title="Intelligence that arrives before you ask."
         lead="Insights surface relevant market developments, earnings intelligence, and second-order effects across the companies and themes you follow, each with the reason it reached you."

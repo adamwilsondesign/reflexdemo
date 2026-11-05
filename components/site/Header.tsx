@@ -59,6 +59,43 @@ function useHeaderTone(headerRef: React.RefObject<HTMLElement | null>) {
   return tone;
 }
 
+/**
+ * Hide the header while scrolling down, reveal it on any scroll up (or keyboard focus,
+ * or near the top of the page). Never hides while a menu is open.
+ */
+function useHideOnScroll(locked: boolean) {
+  const [hidden, setHidden] = useState(false);
+  useEffect(() => {
+    let last = window.scrollY;
+    let raf = 0;
+    const read = () => {
+      raf = 0;
+      const y = window.scrollY;
+      const dy = y - last;
+      if (y < 140) setHidden(false);
+      else if (dy > 6) setHidden(true);
+      else if (dy < -6) setHidden(false);
+      if (Math.abs(dy) > 6) last = y;
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(read);
+    };
+    const show = () => setHidden(false);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("rfx:show-header", show);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("rfx:show-header", show);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+  const value = hidden && !locked;
+  useEffect(() => {
+    document.documentElement.dataset.header = value ? "hidden" : "shown";
+  }, [value]);
+  return value;
+}
+
 export function Header() {
   const headerRef = useRef<HTMLElement>(null);
   const toneFromScroll = useHeaderTone(headerRef);
@@ -69,6 +106,7 @@ export function Header() {
 
   // Any open menu forces the dark chrome (matches Framer).
   const tone: Tone = open || mobileOpen ? "dark" : toneFromScroll;
+  const hidden = useHideOnScroll(!!open || mobileOpen);
   const dark = tone === "dark";
 
   useEffect(() => {
@@ -112,8 +150,12 @@ export function Header() {
   return (
     <header
       ref={headerRef}
-      className="fixed inset-x-0 top-0 z-50"
+      className={clsx(
+        "fixed inset-x-0 top-0 z-50 transition-transform duration-500 ease-[var(--ease-out-expo)] motion-reduce:transition-none",
+        hidden && "-translate-y-full",
+      )}
       onMouseLeave={leave}
+      onFocusCapture={() => window.dispatchEvent(new Event("rfx:show-header"))}
     >
       <AnnouncementBar dark={dark} />
 

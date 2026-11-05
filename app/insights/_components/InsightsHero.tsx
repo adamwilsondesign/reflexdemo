@@ -83,7 +83,7 @@ export function InsightsHero() {
   const visible = [0, 1, 2].map((k) => ({ ...ITEMS[(((head - k) % ITEMS.length) + ITEMS.length) % ITEMS.length], key: head - k }));
 
   return (
-    <Stage field="lake" className="w-full p-4 sm:p-7">
+    <Stage field="none" className="w-full p-1 sm:p-2">
       <div ref={ref} className="relative mx-auto flex max-w-[500px] flex-col">
         {/* Coverage panel */}
         <div className="rounded-[12px] border border-white/15 bg-white/[0.07] p-3.5 backdrop-blur-md sm:p-4">

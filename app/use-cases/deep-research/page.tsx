@@ -140,7 +140,7 @@ export default function DeepResearchPage() {
 
           <div className="mt-14 grid gap-6 md:mt-16 lg:grid-cols-12">
             <Reveal className="lg:col-span-4">
-              <div className="rounded-[18px] bg-lake-900 p-6 text-paper md:p-7 lg:sticky lg:top-[calc(var(--header-h)+24px)]">
+              <div className="rounded-[18px] bg-lake-900 p-6 text-paper md:p-7 lg:sticky lg:top-[calc(var(--header-live)+24px)]">
                 <div className="flex items-center gap-2.5">
                   <AlfredGlyph className="h-4 w-4 text-lake-300" />
                   <span className="t-ui text-[10.5px] text-paper/60">The prompt</span>

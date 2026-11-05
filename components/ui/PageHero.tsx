@@ -9,6 +9,17 @@ import { DemoActions } from "./Button";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
+export type HeroSurface = "paper" | "ink" | "lake" | "pine" | "lake700" | "graphite" | "pine900";
+export const HERO_BG: Record<HeroSurface, string> = {
+  paper: "#f4f3f1",
+  ink: "#17191c",
+  lake: "#243244",
+  pine: "#3e5c50",
+  lake700: "#3e5368",
+  graphite: "#3c3f44",
+  pine900: "#1c332c",
+};
+
 /**
  * Inner-page hero. Every hero animates: breadcrumb eyebrow, word-rise headline, lead,
  * actions, then the visual slot (pass an animated product visual). No photography in heroes.
@@ -33,7 +44,8 @@ export function PageHero({
   lead?: React.ReactNode;
   visual?: React.ReactNode;
   layout?: "split" | "stacked" | "text";
-  surface?: "paper" | "ink" | "lake";
+  /** Solid hero colour. Product pages each own one brand colour, matched by their demo. */
+  surface?: HeroSurface;
   actions?: React.ReactNode;
   secondary?: { label: string; href: string };
   cta?: string;
@@ -56,18 +68,15 @@ export function PageHero({
     <section
       ref={ref}
       data-tone={dark ? "dark" : "light"}
-      data-bg={surface === "paper" ? "#f4f3f1" : surface === "ink" ? "#17191c" : "#243244"}
+      data-bg={HERO_BG[surface]}
+      style={{ backgroundColor: HERO_BG[surface] }}
       className={clsx(
         "relative isolate overflow-hidden pt-[calc(var(--header-h)+56px)] md:pt-[calc(var(--header-h)+80px)]",
         layout === "stacked" ? "pb-0" : "pb-20 md:pb-28",
-        surface === "paper" && "bg-paper text-ink",
-        surface === "ink" && "bg-ink text-paper",
-        surface === "lake" && "bg-lake-900 text-paper",
+        dark ? "text-paper" : "text-ink",
         className,
       )}
     >
-      <div className={clsx("pointer-events-none absolute inset-0 -z-10 mask-fade-b", dark ? "bg-chart-dark" : "bg-chart")} style={{ maskImage: "radial-gradient(120% 70% at 30% 0%, #000 30%, transparent 75%)", WebkitMaskImage: "radial-gradient(120% 70% at 30% 0%, #000 30%, transparent 75%)" }} />
-      {dark && <div className="pointer-events-none absolute inset-0 -z-20 field-ink opacity-90" />}
 
       <div className={clsx("container-x", layout === "split" && "grid items-center gap-14 lg:grid-cols-12 lg:gap-12")}>
         <div className={clsx(layout === "split" ? "lg:col-span-6" : "max-w-[920px]", layout === "stacked" && "mx-auto text-center")}>

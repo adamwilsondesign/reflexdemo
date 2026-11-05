@@ -96,7 +96,6 @@ export function GraphMaps() {
             >
               <span aria-hidden="true" className="absolute -top-px left-0 h-px bg-ink" style={{ width: on ? "100%" : "0%", transition: on && running ? `width ${INTERVAL}ms linear` : "width 300ms ease" }} />
               <span className="flex items-start gap-4">
-                <PrecisionIcon name={it.icon} className={clsx("mt-0.5 h-6 w-6 shrink-0 transition-opacity duration-500", on ? "opacity-100" : "opacity-40")} />
                 <span className="block">
                   <span className={clsx("t-h3 block transition-opacity duration-500", on ? "opacity-100" : "opacity-45 group-hover:opacity-75")}>{it.title}</span>
                   <AnimatePresence initial={false}>

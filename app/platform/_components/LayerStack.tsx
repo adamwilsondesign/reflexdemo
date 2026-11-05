@@ -38,7 +38,7 @@ export function LayerStack() {
   });
 
   return (
-    <div ref={ref} className="grain field-lake relative isolate overflow-hidden rounded-[18px] p-4 sm:p-7">
+    <div ref={ref} className="relative isolate overflow-hidden rounded-[18px] p-1 sm:p-2">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-chart-dark opacity-40" />
 
       {/* Your workflow */}

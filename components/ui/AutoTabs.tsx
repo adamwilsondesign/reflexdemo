@@ -79,7 +79,6 @@ export function AutoTabs({
                 }}
               />
               <span className="flex items-start gap-4">
-                {it.icon && <span className={clsx("mt-0.5 shrink-0 transition-opacity duration-500", on ? "opacity-100" : "opacity-40")}>{it.icon}</span>}
                 <span className="block">
                   <span className={clsx("t-h3 block transition-opacity duration-500", on ? "opacity-100" : "opacity-45 group-hover:opacity-75")}>{it.title}</span>
                   <AnimatePresence initial={false}>

@@ -63,6 +63,7 @@
     --gutter: clamp(20px, 7.8vw, 112px);
     --maxw: 1440px;
     --header-h: 104px;
+    --header-live: var(--header-h); /* 0 while the header is hidden on scroll */
     color-scheme: light;
   }
   @media (max-width: 1023px) {
@@ -81,6 +82,7 @@
   .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 
   /* scroll colour swap (see components/site/ScrollField.tsx) */
+  html[data-header="hidden"] { --header-live: 0px; }
   html.js-field body { background: transparent; }
   html.js-field [data-bg] { background-color: transparent !important; }
   html.js-field [data-bg] > * { transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -185,26 +187,10 @@
   }
 
   /* Charting-paper ground (Observable reference) */
-  .bg-chart {
-    background-image:
-      linear-gradient(to right, rgb(23 25 28 / 0.055) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(23 25 28 / 0.055) 1px, transparent 1px);
-    background-size: 24px 24px;
-  }
-  .bg-chart-dark {
-    background-image:
-      linear-gradient(to right, rgb(255 255 255 / 0.045) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(255 255 255 / 0.045) 1px, transparent 1px);
-    background-size: 24px 24px;
-  }
-  .bg-dots {
-    background-image: radial-gradient(rgb(23 25 28 / 0.14) 1px, transparent 1.2px);
-    background-size: 18px 18px;
-  }
-  .bg-dots-dark {
-    background-image: radial-gradient(rgb(255 255 255 / 0.12) 1px, transparent 1.2px);
-    background-size: 18px 18px;
-  }
+  .bg-chart { background-image: none; }
+  .bg-chart-dark { background-image: none; }
+  .bg-dots { background-image: none; }
+  .bg-dots-dark { background-image: none; }
 
   /* Gradient fields (brand gradients) */
   .field-lake {

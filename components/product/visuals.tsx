@@ -199,7 +199,7 @@ export function ScrollStory({
         ))}
       </div>
       <div className="hidden lg:col-span-7 lg:block">
-        <div className="sticky top-[calc(var(--header-h)+48px)] aspect-[4/3.6] w-full">
+        <div className="sticky top-[calc(var(--header-live)+48px)] aspect-[4/3.6] w-full">
           <AnimatePresence mode="popLayout">
             <motion.div key={active} className="absolute inset-0" initial={{ opacity: 0, y: 30, filter: "blur(8px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} exit={{ opacity: 0, y: -20, filter: "blur(6px)" }} transition={{ duration: 0.8, ease: EASE }}>
               {steps[active].visual}

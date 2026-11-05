@@ -69,7 +69,7 @@ export function AlfredHero() {
   const others = [PROMPTS[(i + 1) % PROMPTS.length], PROMPTS[(i + 2) % PROMPTS.length]];
 
   return (
-    <div ref={ref} className="grain field-lake relative isolate overflow-hidden rounded-[18px] p-4 sm:p-7 md:p-9">
+    <div ref={ref} className="relative isolate overflow-hidden rounded-[18px] p-1 sm:p-2">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-chart-dark opacity-40" />
       {/* mode switch */}
       <div className="mb-5 flex items-center justify-between gap-3">

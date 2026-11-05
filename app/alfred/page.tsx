@@ -46,6 +46,7 @@ export default function AlfredPage() {
     <>
       {/* 1 · Hero */}
       <PageHero
+        surface="pine"
         trail={[{ label: "Product", href: "/platform" }, { label: "Alfred" }]}
         title="Run the research. Stay ahead of the market. Meet Alfred."
         lead="Alfred is Reflexivity’s AI analyst. Ask it to build a company note, map a portfolio’s exposures or pressure-test a thesis, and get a cited workup in minutes. Step away, and Alfred keeps watching the companies and themes you follow."
@@ -54,7 +55,7 @@ export default function AlfredPage() {
         visual={
           <>
             <AlfredHero />
-            <p className="t-small mt-4 text-ink/50">Illustrative example of Alfred’s two modes.</p>
+            <p className="t-small mt-4 text-paper/55">Illustrative example of Alfred’s two modes.</p>
           </>
         }
       />

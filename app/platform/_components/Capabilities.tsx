@@ -209,7 +209,7 @@ export function Capabilities() {
   const c = CAPS[active];
   return (
     <div ref={ref} className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
-      <div className="lg:sticky lg:top-[calc(var(--header-h)+32px)]">
+      <div className="lg:sticky lg:top-[calc(var(--header-live)+32px)]">
         <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[16px] border border-white/10" aria-hidden="true">
           <AnimatePresence initial={false}>
             <motion.div

@@ -44,7 +44,7 @@ export function AuditHero() {
   const on = (i: number) => !reduce && k === i;
 
   return (
-    <Stage field="mist" className="w-full p-4 sm:p-7">
+    <Stage field="none" className="w-full p-1 sm:p-2">
       <div ref={ref} className="mx-auto max-w-[520px]">
         <div className="ui-card p-4 sm:p-5">
           <CardHeader trail={["Research", "Illustrative"]} right={<Pill tone="lake">Cited</Pill>} />
@@ -88,7 +88,7 @@ export function AuditHero() {
             );
           })}
         </ul>
-        <p className="t-ui mt-3 text-right text-[10px] text-ink/40">Illustrative figures</p>
+        <p className="t-ui mt-3 text-right text-[10px] text-paper/50">Illustrative figures</p>
       </div>
     </Stage>
   );

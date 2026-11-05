@@ -8,7 +8,7 @@ import { type IconName } from "@/components/ui/PrecisionIcon";
 import { FeatureGrid } from "@/components/ui/Blocks";
 import { LinkRowsBlock, SplitFeature, TextLink } from "@/components/ui/Layouts";
 import { IsolationViz } from "./_components/IsolationViz";
-import { PropagationField } from "@/components/graphics/RippleRings";
+import { CartoViz } from "@/components/graphics/Cartography";
 import { SecurityHero } from "./_components/SecurityHero";
 import { DataProtection } from "./_components/DataProtection";
 
@@ -37,16 +37,17 @@ export default function SecurityPage() {
   return (
     <>
       <PageHero
+        surface="pine900"
         trail={[{ label: "Product" }, { label: "Security" }]}
         title="Security built for institutional research."
         lead="Reflexivity protects sensitive research and connected data through independently audited controls, encryption, and permission-aware access."
         cta="security-hero"
         actions={
           <div className="flex flex-wrap items-center gap-3">
-            <Button href={SECURITY_HREF} arrow cta="security-hero-overview">
+            <Button href={SECURITY_HREF} variant="light" arrow cta="security-hero-overview">
               Request a Security Overview
             </Button>
-            <Button href="/book-a-demo" variant="secondary" cta="security-hero-demo">
+            <Button href="/book-a-demo" variant="outline-light" cta="security-hero-demo">
               Request a Demo
             </Button>
           </div>
@@ -108,9 +109,10 @@ export default function SecurityPage() {
 
       {/* CTA: security review */}
       <section data-tone="dark" data-bg="#17191c" className="relative isolate overflow-hidden bg-ink py-16 text-paper md:py-20">
-        <div className="pointer-events-none absolute inset-0 -z-10 field-ink" />
-        <div className="pointer-events-none absolute inset-y-0 right-[-20%] -z-10 w-[120%] opacity-70 md:right-[-10%] md:w-[80%]">
-          <PropagationField />
+        <div className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-1/2 items-center justify-center text-paper/80 lg:flex">
+          <div className="aspect-square w-[min(520px,90%)]">
+            <CartoViz name="orbit" accent="#f4f3f1" />
+          </div>
         </div>
         <div className="container-x py-10 md:py-16">
           <div className="max-w-[760px]">

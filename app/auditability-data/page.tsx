@@ -38,6 +38,7 @@ export default function AuditabilityPage() {
   return (
     <>
       <PageHero
+        surface="lake700"
         trail={[{ label: "Product" }, { label: "Auditability & Data" }]}
         title="Analysis an investment committee can use."
         lead="Institutional data, visible sourcing, and calculations that can be re-run, so your team can check the work and stand behind it."

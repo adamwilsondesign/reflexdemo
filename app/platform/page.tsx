@@ -54,19 +54,20 @@ export default function PlatformPage() {
     <>
       {/* 1 · Hero */}
       <PageHero
+        surface="graphite"
         trail={[{ label: "Product" }, { label: "Platform" }]}
         title="The investment intelligence layer for your research workflow."
         lead="Reflexivity brings an AI analyst, a market-wide Knowledge Graph, always-on Insights and institutional data together in one maintained platform, or into the tools your team already runs."
         actions={
           <div className="flex flex-wrap items-center gap-3">
-            <Button href="/book-a-demo" arrow cta="platform-hero">Request a Demo</Button>
-            <Button href="/contact?topic=partnerships" variant="secondary">Explore partnerships</Button>
+            <Button href="/book-a-demo" variant="light" arrow cta="platform-hero">Request a Demo</Button>
+            <Button href="/contact?topic=partnerships" variant="outline-light">Explore partnerships</Button>
           </div>
         }
         visual={
           <>
             <LayerStack />
-            <p className="t-small mt-4 text-ink/50">How Reflexivity sits between institutional data and your workflow.</p>
+            <p className="t-small mt-4 text-paper/55">How Reflexivity sits between institutional data and your workflow.</p>
           </>
         }
       />

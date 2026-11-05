@@ -30,7 +30,8 @@ export function Stage({
   parallax = true,
 }: {
   children: React.ReactNode;
-  field?: "lake" | "pine" | "mist" | "ink";
+  /** "none" = transparent: the visual sits directly on its section colour */
+  field?: "lake" | "pine" | "mist" | "ink" | "none";
   className?: string;
   image?: string;
   parallax?: boolean;
@@ -40,7 +41,7 @@ export function Stage({
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
   return (
-    <div ref={ref} className={clsx("grain relative isolate overflow-hidden rounded-[18px]", `field-${field}`, className)}>
+    <div ref={ref} className={clsx("relative isolate overflow-hidden rounded-[18px]", field !== "none" && ["grain", `field-${field}`], className)}>
       {image && (
         <motion.div className="absolute inset-[-8%] -z-10 bg-cover bg-center opacity-90" style={{ backgroundImage: `url(${image})`, y: parallax && !reduce ? y : 0 }} />
       )}

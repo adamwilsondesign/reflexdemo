@@ -105,14 +105,14 @@ export default function AboutPage() {
       </PageHero>
 
       {/* Origin */}
-      <Section surface="ink">
+      <Section surface="mist">
         <div className="container-x grid gap-10 lg:grid-cols-2 lg:gap-16">
           <SplitText
             text="Reflexivity is the market platform our CEO wished he’d had while managing a $15B global macro book."
             className="t-h2"
           />
           <Reveal delay={0.2} className="lg:pt-2">
-            <p className="t-lead text-paper/75">
+            <p className="t-lead text-ink/72">
               One place to see how a development connects across a book, test the idea behind it, and check every step of the work. The team has run money, built research tools and shipped products at institutions where that work has to stand up to scrutiny.
             </p>
             <TextLink href="/platform" className="mt-8">See what we built</TextLink>
@@ -121,7 +121,7 @@ export default function AboutPage() {
       </Section>
 
       {/* Team */}
-      <Section surface="paper" id="team" className="scroll-mt-[var(--header-h)]">
+      <Section surface="ink" id="team" className="scroll-mt-[var(--header-h)]">
         <div className="container-x">
           <SectionHeader
             title="Built by investors, for investors."
@@ -131,7 +131,7 @@ export default function AboutPage() {
           <Stagger className="mt-14 grid grid-cols-2 gap-x-4 gap-y-10 md:mt-16 md:grid-cols-3 lg:grid-cols-5">
             {TEAM.map((p) => (
               <StaggerItem key={p.name} as="article" className="group">
-                <div className="relative aspect-[4/5] overflow-hidden rounded-[14px] bg-mist-200">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[14px] bg-graphite">
                   <Image
                     src={p.img}
                     alt={`Portrait of ${p.name}`}
@@ -141,8 +141,8 @@ export default function AboutPage() {
                   />
                 </div>
                 <h3 className="t-h3 mt-5">{p.name}</h3>
-                <p className="t-label mt-1 text-ink/55">{p.role}</p>
-                <p className="t-small mt-3 text-ink/65">{p.bio}</p>
+                <p className="t-label mt-1 text-paper/55">{p.role}</p>
+                <p className="t-small mt-3 text-paper/68">{p.bio}</p>
               </StaggerItem>
             ))}
           </Stagger>

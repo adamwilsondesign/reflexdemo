@@ -31,7 +31,7 @@ export function AnchorNav({ items }: { items: { id: string; label: string }[] })
   }, [items]);
 
   return (
-    <nav aria-label="Deployment options" data-tone="light" className="sticky top-[var(--header-h)] z-30 border-y border-ink/10 bg-paper/90 backdrop-blur-md">
+    <nav aria-label="Deployment options" data-tone="light" className="sticky top-[var(--header-live)] z-30 border-y border-ink/10 bg-paper/90 backdrop-blur-md">
       <div className="container-x">
         <ul className="no-scrollbar -mx-1 flex gap-1 overflow-x-auto py-2.5">
           {items.map((it) => (

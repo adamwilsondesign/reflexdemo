@@ -131,7 +131,7 @@ export function LegalDocument({ doc, children }: { doc: LegalDoc; children?: Rea
         </details>
 
         {/* Desktop: sticky */}
-        <nav aria-label="Table of contents" className="hidden lg:sticky lg:top-[calc(var(--header-h)+32px)] lg:block">
+        <nav aria-label="Table of contents" className="hidden lg:sticky lg:top-[calc(var(--header-live)+32px)] lg:block">
           <p className="t-ui mb-4 text-ink/45">On this page</p>
           <div className="max-h-[calc(100vh-var(--header-h)-120px)] overflow-y-auto pr-2 no-scrollbar" data-lenis-prevent>
             <TocList />

@@ -68,7 +68,7 @@ export function DemoHero() {
           transition={{ duration: 1.1, ease: EASE, delay: 0.3 }}
           className="lg:col-span-6 lg:col-start-7 lg:row-span-2 lg:row-start-1"
         >
-          <div className="lg:sticky lg:top-[calc(var(--header-h)+20px)]">
+          <div className="lg:sticky lg:top-[calc(var(--header-live)+20px)]">
             <DemoForm />
           </div>
         </motion.div>

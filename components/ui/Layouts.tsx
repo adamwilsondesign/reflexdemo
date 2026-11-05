@@ -3,6 +3,8 @@ import clsx from "clsx";
 import { Reveal, Stagger, StaggerItem } from "./Reveal";
 import { SplitText } from "./SplitText";
 import { SURFACES, type Surface } from "./Section";
+import { CartoViz } from "@/components/graphics/Cartography";
+import { vizFor, type VizName } from "@/lib/viz";
 
 /* ==================================================================
    Market-cartography layouts (50/50). Reusable across pages.
@@ -92,20 +94,29 @@ export function LinkRowsBlock({
   rows,
   onDark = false,
   className,
+  viz,
 }: {
   title: string;
   lead?: React.ReactNode;
   rows: { label: string; href: string; note?: string; cta?: string }[];
   onDark?: boolean;
   className?: string;
+  /** cartography chart under the headline (desktop); `false` to omit */
+  viz?: VizName | false;
 }) {
+  const chart = viz === false ? null : (viz ?? vizFor(title, ["branch", "orbit", "flow", "wave", "exposure", "radial"]));
   return (
     <div className={clsx("grid gap-10 lg:grid-cols-2 lg:gap-16", className)}>
-      <div>
+      <div className="flex flex-col">
         <SplitText text={title} className="t-h2 max-w-[520px]" />
         {lead && (
           <Reveal delay={0.15}>
             <div className={clsx("t-lead mt-5 max-w-[460px]", onDark ? "text-paper/72" : "text-ink/72")}>{lead}</div>
+          </Reveal>
+        )}
+        {chart && (
+          <Reveal delay={0.2} className={clsx("mt-12 hidden aspect-[4/3] w-full max-w-[380px] lg:block", onDark ? "text-paper/70" : "text-ink/60")}>
+            <CartoViz name={chart} accent={onDark ? "#f4f3f1" : "#3e5c50"} />
           </Reveal>
         )}
       </div>

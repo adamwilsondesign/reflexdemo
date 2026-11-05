@@ -1,5 +1,8 @@
 "use client";
 
+import type { VizName } from "@/lib/viz";
+export type { VizName } from "@/lib/viz";
+
 import { motion, useInView, useReducedMotion } from "motion/react";
 import { useRef } from "react";
 import clsx from "clsx";
@@ -231,4 +234,81 @@ export function SignalField({ className, accent = "currentColor", series = 4 }: 
       <motion.circle cx={240} cy={18} r={4} fill={accent} {...pop(seen, reduce, 1.6)} />
     </svg>
   );
+}
+
+/* ---------------- Wave field: layered flowing lines, continuously drifting ---------------- */
+export function WaveField({ className, accent = "currentColor", lines = 9 }: { className?: string; accent?: string; lines?: number }) {
+  const { ref, seen, reduce, live } = useViz();
+  const mk = (i: number) => {
+    const amp = 18 + i * 3;
+    const y = 50 + i * 22;
+    const ph = i * 0.6;
+    const pts: string[] = [];
+    for (let x = 0; x <= 440; x += 20) pts.push(`${x === 0 ? "M" : "L"}${x},${r2(y + Math.sin(x / 70 + ph) * amp * 0.5 + Math.sin(x / 31 + ph * 2) * 4)}`);
+    return pts.join(" ");
+  };
+  return (
+    <svg ref={ref} viewBox="0 0 440 300" className={clsx("h-full w-full overflow-visible", className)} fill="none" aria-hidden="true">
+      {Array.from({ length: lines }, (_, i) => {
+        const d = mk(i);
+        const hot = i === Math.floor(lines / 2);
+        return (
+          <motion.g key={i} animate={live ? { x: [0, -12, 0] } : undefined} transition={{ duration: 9 + i, repeat: Infinity, ease: "easeInOut" }}>
+            <motion.path d={d} stroke={hot ? accent : "currentColor"} strokeOpacity={hot ? 1 : 0.18 + (i % 3) * 0.08} strokeWidth={hot ? 1.6 : 1} {...draw(seen, reduce, i * 0.08, 1.8)} />
+            {hot && <Pulse d={d} live={live} dur={4} color={accent} width={2.2} />}
+          </motion.g>
+        );
+      })}
+      <motion.circle cx={300} cy={r2(50 + Math.floor(lines / 2) * 22 + Math.sin(300 / 70 + Math.floor(lines / 2) * 0.6) * (18 + Math.floor(lines / 2) * 3) * 0.5 + Math.sin(300 / 31 + Math.floor(lines / 2) * 1.2) * 4)} r={5} fill={accent} {...pop(seen, reduce, 1.6)} />
+    </svg>
+  );
+}
+
+/* ---------------- Orbit field: nodes travelling on concentric orbits ---------------- */
+export function OrbitField({ className, accent = "currentColor" }: { className?: string; accent?: string }) {
+  const { ref, seen, reduce, live } = useViz();
+  const C = 200;
+  const orbits = [
+    { r: 70, n: 3, dur: 40 },
+    { r: 120, n: 5, dur: 70 },
+    { r: 170, n: 7, dur: 110 },
+  ];
+  return (
+    <svg ref={ref} viewBox="0 0 400 400" className={clsx("h-full w-full overflow-visible", className)} fill="none" aria-hidden="true">
+      {orbits.map((o, oi) => (
+        <g key={o.r}>
+          <motion.circle cx={C} cy={C} r={o.r} stroke="currentColor" strokeOpacity={0.22} strokeDasharray={oi === 1 ? "2 5" : undefined} {...draw(seen, reduce, oi * 0.2, 1.8)} />
+          <motion.g style={{ originX: "200px", originY: "200px" }} animate={live ? { rotate: oi % 2 ? -360 : 360 } : undefined} transition={{ duration: o.dur, repeat: Infinity, ease: "linear" }}>
+            {Array.from({ length: o.n }, (_, k) => {
+              const a = (k / o.n) * Math.PI * 2 + oi;
+              const x = r2(C + Math.cos(a) * o.r), y = r2(C + Math.sin(a) * o.r);
+              const hot = k === 0;
+              return (
+                <g key={k}>
+                  {hot && <motion.line x1={C} y1={C} x2={x} y2={y} stroke={accent} strokeOpacity={0.5} {...draw(seen, reduce, 1 + oi * 0.2, 1)} />}
+                  <motion.circle cx={x} cy={y} r={hot ? 4.5 : 2.5} fill={hot ? accent : "currentColor"} fillOpacity={hot ? 1 : 0.75} {...pop(seen, reduce, 0.8 + oi * 0.2 + k * 0.05)} />
+                </g>
+              );
+            })}
+          </motion.g>
+        </g>
+      ))}
+      <circle cx={C} cy={C} r={6} fill={accent} />
+      {live && <circle cx={C} cy={C} r={6} stroke={accent} className="animate-pulse-ring" style={{ transformOrigin: "200px 200px" }} />}
+    </svg>
+  );
+}
+
+/* ---------------- Picker: one of the set, chosen by name or deterministically by seed ---------------- */
+export function CartoViz({ name, className, accent }: { name: VizName; className?: string; accent?: string }) {
+  switch (name) {
+    case "flow": return <FlowLines className={className} accent={accent} />;
+    case "radial": return <RadialSystem className={className} accent={accent} />;
+    case "branch": return <BranchLines className={className} accent={accent} origin="" branches={["", "", "", ""]} />;
+    case "exposure": return <ExposurePolar className={className} accent={accent} />;
+    case "fan": return <ScenarioFan className={className} accent={accent} labels={["", "", ""]} />;
+    case "signal": return <SignalField className={className} accent={accent} />;
+    case "wave": return <WaveField className={className} accent={accent} />;
+    case "orbit": return <OrbitField className={className} accent={accent} />;
+  }
 }

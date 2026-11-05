@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { FeatureGrid } from "@/components/ui/Blocks";
 import { LinkRowsBlock } from "@/components/ui/Layouts";
 import { Stage } from "@/components/product/ui";
-import { PropagationField } from "@/components/graphics/RippleRings";
+import { CartoViz } from "@/components/graphics/Cartography";
 import { INTERESTS } from "../book-a-demo/_components/options";
 import { NextSteps } from "./_components/NextSteps";
 
@@ -110,9 +110,10 @@ export default async function ThankYouPage({ searchParams }: { searchParams: Pro
       </Section>
 
       <Section surface="ink" className="overflow-hidden" tight>
-        <div className="pointer-events-none absolute inset-0 -z-10 field-ink" />
-        <div className="pointer-events-none absolute inset-y-0 right-[-20%] -z-10 w-[120%] opacity-70 md:right-[-10%] md:w-[80%]">
-          <PropagationField />
+        <div className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-1/2 items-center justify-center text-paper/80 lg:flex">
+          <div className="aspect-square w-[min(520px,90%)]">
+            <CartoViz name="wave" accent="#f4f3f1" />
+          </div>
         </div>
         <div className="container-x py-10 md:py-16">
           <div className="max-w-[760px]">
