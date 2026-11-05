@@ -216,7 +216,7 @@ export function KnowledgeGraph({
     const ctx = canvas.getContext("2d")!;
     const pal = PALETTES[tone];
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const monoFont = getComputedStyle(document.documentElement).getPropertyValue("--font-plex-mono").trim() || "monospace";
+    const monoFont = getComputedStyle(document.documentElement).getPropertyValue("--font-archivo").trim() || "monospace";
     const { nodes, edges, adj, idx } = build(window.innerWidth < 640 ? Math.round(minor * 0.5) : minor);
 
     let W = 0, H = 0, dpr = 1, scale = 1;

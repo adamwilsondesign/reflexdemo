@@ -139,7 +139,7 @@ export default function DeepResearchPage() {
           <Stagger className="mt-14 grid gap-px overflow-hidden rounded-[16px] bg-white/10 md:mt-16 lg:grid-cols-3">
             {DIFFS.map((d) => (
               <StaggerItem key={d.title} className="group bg-lake-900 p-7 md:p-9">
-                <PrecisionIcon name={d.icon} className="h-11 w-11 text-paper transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:rotate-[20deg]" />
+                <PrecisionIcon name={d.icon} className="h-11 w-11 text-paper transition-transform duration-700 ease-[var(--ease-out-expo)]" />
                 <h3 className="t-h3 mt-10">{d.title}</h3>
                 <p className="t-body mt-3 text-paper/70">{d.body}</p>
               </StaggerItem>
@@ -201,7 +201,7 @@ export default function DeepResearchPage() {
           <Stagger className="mt-14 grid gap-px overflow-hidden rounded-[16px] bg-ink/10 sm:grid-cols-2 lg:grid-cols-5 md:mt-16">
             {TYPES.map((t) => (
               <StaggerItem key={t.title} className="group flex flex-col bg-paper p-6 md:p-7">
-                <PrecisionIcon name={t.icon} className="h-10 w-10 text-ink transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:rotate-[20deg]" />
+                <PrecisionIcon name={t.icon} className="h-10 w-10 text-ink transition-transform duration-700 ease-[var(--ease-out-expo)]" />
                 <h3 className="mt-10 font-display text-[18px] font-semibold leading-snug">{t.title}</h3>
                 <p className="t-small mt-2 text-ink/65">{t.body}</p>
               </StaggerItem>

@@ -18,7 +18,7 @@ export function KGHero() {
   const f = (d: number) => ({ initial: reduce ? false : { opacity: 0, y: 16 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.9, ease: EASE, delay: d } });
 
   return (
-    <section data-tone="dark" className="relative isolate overflow-hidden bg-ink pt-[calc(var(--header-h)+48px)] text-paper md:pt-[calc(var(--header-h)+72px)]">
+    <section data-tone="dark" data-bg="#17191c" className="relative isolate overflow-hidden bg-ink pt-[calc(var(--header-h)+48px)] text-paper md:pt-[calc(var(--header-h)+72px)]">
       <div className="pointer-events-none absolute inset-0 -z-20 field-ink opacity-90" />
       <div className="pointer-events-none absolute inset-0 -z-10 bg-chart-dark opacity-50" style={{ maskImage: "radial-gradient(90% 70% at 20% 10%, #000 20%, transparent 70%)", WebkitMaskImage: "radial-gradient(90% 70% at 20% 10%, #000 20%, transparent 70%)" }} />
 

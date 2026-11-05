@@ -65,7 +65,7 @@ export default function SecurityPage() {
           <Stagger className="mt-14 grid gap-px overflow-hidden rounded-[16px] bg-white/10 md:mt-20 md:grid-cols-3">
             {CONTROLS.map((c) => (
               <StaggerItem key={c.title} as="article" className="group flex flex-col bg-lake-900 p-7 transition-colors duration-500 hover:bg-[#2a3a4f] md:p-9">
-                <PrecisionIcon name={c.icon} className="h-12 w-12 text-paper transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover:rotate-[30deg]" />
+                <PrecisionIcon name={c.icon} className="h-12 w-12 text-paper transition-transform duration-[1.2s] ease-[var(--ease-out-expo)]" />
                 <h3 className="t-h3 mt-14 text-[24px] md:mt-20 md:text-[26px]">{c.title}</h3>
                 <p className="t-body mt-3 max-w-[320px] text-paper/70">{c.body}</p>
               </StaggerItem>
@@ -95,11 +95,11 @@ export default function SecurityPage() {
           <Reveal className="lg:col-span-8">
             <Link
               href={SECURITY_HREF}
-              className="group relative flex h-full flex-col overflow-hidden rounded-[18px] bg-lake-900 p-7 text-paper transition-transform duration-700 ease-[var(--ease-out-expo)] hover:-translate-y-1 md:p-10"
+              className="group relative flex h-full flex-col overflow-hidden rounded-[18px] bg-lake-900 p-7 text-paper transition-transform duration-700 ease-[var(--ease-out-expo)] md:p-10"
             >
               <div className="pointer-events-none absolute inset-0 bg-chart-dark opacity-60" />
               <div className="pointer-events-none absolute -right-24 -top-24 h-[360px] w-[360px] opacity-[0.14] md:-right-10">
-                <PrecisionIcon name="rings" className="h-full w-full text-lake-300 transition-transform duration-[2s] ease-[var(--ease-out-expo)] group-hover:rotate-45" />
+                <PrecisionIcon name="rings" className="h-full w-full text-lake-300 transition-transform duration-[2s] ease-[var(--ease-out-expo)]" />
               </div>
               <p className="t-ui relative text-paper/60">Security portal</p>
               <h2 className="t-h2 relative mt-6 max-w-[520px]">Trust portal &amp; DDQ</h2>
@@ -122,7 +122,7 @@ export default function SecurityPage() {
           </Reveal>
           <Reveal className="lg:col-span-4" delay={0.1}>
             <Link href="/auditability-data" className="group flex h-full flex-col rounded-[18px] border border-ink/10 bg-white/60 p-7 transition-[border-color,background-color] duration-500 hover:border-ink/25 hover:bg-white md:p-8">
-              <PrecisionIcon name="eye" className="h-10 w-10 text-ink transition-transform duration-700 group-hover:scale-110" />
+              <PrecisionIcon name="eye" className="h-10 w-10 text-ink transition-transform duration-700" />
               <p className="t-ui mt-10 text-ink/50">Related · Auditability &amp; Data</p>
               <h3 className="t-h3 mt-3">Checking the research, not protecting the data?</h3>
               <p className="t-body mt-3 text-ink/65">Security covers how your data is protected. Auditability covers how analysis can be inspected: sources, calculations and missing-data flags.</p>
@@ -136,7 +136,7 @@ export default function SecurityPage() {
       </Section>
 
       {/* CTA: security review */}
-      <section data-tone="dark" className="relative isolate overflow-hidden bg-ink py-16 text-paper md:py-20">
+      <section data-tone="dark" data-bg="#17191c" className="relative isolate overflow-hidden bg-ink py-16 text-paper md:py-20">
         <div className="pointer-events-none absolute inset-0 -z-10 field-ink" />
         <div className="pointer-events-none absolute inset-y-0 right-[-20%] -z-10 w-[120%] opacity-70 md:right-[-10%] md:w-[80%]">
           <PropagationField />

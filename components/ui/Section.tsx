@@ -1,23 +1,26 @@
 import clsx from "clsx";
-import { Eyebrow } from "./Eyebrow";
 import { Reveal } from "./Reveal";
 import { SplitText } from "./SplitText";
 
 export type Surface = "paper" | "mist" | "white" | "ink" | "lake" | "pine" | "graphite";
 
-const surfaces: Record<Surface, { cls: string; tone: "light" | "dark" }> = {
-  paper: { cls: "bg-paper text-ink", tone: "light" },
-  mist: { cls: "bg-mist-100 text-ink", tone: "light" },
-  white: { cls: "bg-white text-ink", tone: "light" },
-  ink: { cls: "bg-ink text-paper", tone: "dark" },
-  graphite: { cls: "bg-[#1f2226] text-paper", tone: "dark" },
-  lake: { cls: "bg-lake-900 text-paper", tone: "dark" },
-  pine: { cls: "bg-pine-900 text-paper", tone: "dark" },
+/**
+ * Colour blocks. `bg` feeds the scroll colour field (blends between blocks on scroll);
+ * `tone` tells the header which way to invert.
+ * Pine (#3E5C50) is the brand colour block; lake-900 the deep blue; ink the charcoal.
+ */
+export const SURFACES: Record<Surface, { cls: string; bg: string; tone: "light" | "dark" }> = {
+  paper: { cls: "bg-paper text-ink", bg: "#f4f3f1", tone: "light" },
+  mist: { cls: "bg-mist-200 text-ink", bg: "#e6e4df", tone: "light" },
+  white: { cls: "bg-mist-100 text-ink", bg: "#f7f6f4", tone: "light" },
+  ink: { cls: "bg-ink text-paper", bg: "#17191c", tone: "dark" },
+  graphite: { cls: "bg-[#1f2226] text-paper", bg: "#1f2226", tone: "dark" },
+  lake: { cls: "bg-lake-900 text-paper", bg: "#243244", tone: "dark" },
+  pine: { cls: "bg-pine-500 text-paper", bg: "#3e5c50", tone: "dark" },
 };
 
 /**
- * Page section. `surface` sets colour and the `data-tone` the header reads to invert itself.
- * Spacing: default generous vertical rhythm; `tight` for denser bands.
+ * Page section. Spacing: generous default rhythm; `tight` for denser bands.
  */
 export function Section({
   children,
@@ -37,12 +40,13 @@ export function Section({
   /** optional background texture */
   grid?: "chart" | "dots";
 }) {
-  const s = surfaces[surface];
+  const s = SURFACES[surface];
   const dark = s.tone === "dark";
   return (
     <section
       id={id}
       data-tone={s.tone}
+      data-bg={s.bg}
       className={clsx(
         "relative isolate",
         s.cls,
@@ -61,16 +65,19 @@ export function Container({ children, className }: { children: React.ReactNode; 
   return <div className={clsx("container-x", className)}>{children}</div>;
 }
 
-/** Eyebrow + title + lead. Title animates word-by-word. */
+/**
+ * Section title + optional subhead. Rules (art direction):
+ * - No eyebrows outside heroes (the `eyebrow` prop is accepted for compatibility and ignored).
+ * - A headline with its subhead never exceeds half the desktop grid (6 of 12 columns).
+ * - `split`: headline in the left half, subhead + actions in the right half (50/50).
+ */
 export function SectionHeader({
-  eyebrow,
   title,
   lead,
   align = "left",
   className,
   actions,
   size = "h2",
-  maxW = "max-w-[760px]",
 }: {
   eyebrow?: React.ReactNode;
   title: string;
@@ -79,17 +86,15 @@ export function SectionHeader({
   className?: string;
   actions?: React.ReactNode;
   size?: "h1" | "h2";
+  /** deprecated: width is fixed to half the grid */
   maxW?: string;
 }) {
   if (align === "split") {
     return (
-      <div className={clsx("grid gap-6 lg:grid-cols-12 lg:gap-10", className)}>
-        <div className="lg:col-span-7">
-          {eyebrow && <Reveal className="mb-5">{typeof eyebrow === "string" ? <Eyebrow>{eyebrow}</Eyebrow> : eyebrow}</Reveal>}
-          <SplitText text={title} className={size === "h1" ? "t-h1" : "t-h2"} />
-        </div>
+      <div className={clsx("grid gap-6 lg:grid-cols-2 lg:gap-16", className)}>
+        <SplitText text={title} className={size === "h1" ? "t-h1" : "t-h2"} />
         {(lead || actions) && (
-          <Reveal delay={0.15} className="flex flex-col justify-end gap-6 lg:col-span-5 lg:pb-1">
+          <Reveal delay={0.15} className="flex flex-col justify-end gap-6 lg:pb-1">
             {lead && <div className="t-lead opacity-75">{lead}</div>}
             {actions}
           </Reveal>
@@ -98,15 +103,10 @@ export function SectionHeader({
     );
   }
   return (
-    <div className={clsx(maxW, align === "center" && "mx-auto text-center", className)}>
-      {eyebrow && (
-        <Reveal className={clsx("mb-5", align === "center" && "flex justify-center")}>
-          {typeof eyebrow === "string" ? <Eyebrow>{eyebrow}</Eyebrow> : eyebrow}
-        </Reveal>
-      )}
+    <div className={clsx("max-w-[640px] lg:max-w-[50%]", align === "center" && "mx-auto text-center", className)}>
       <SplitText text={title} className={size === "h1" ? "t-h1" : "t-h2"} />
       {lead && (
-        <Reveal delay={0.15} className={clsx("t-lead mt-5 opacity-75", align === "center" && "mx-auto max-w-[620px]")}>
+        <Reveal delay={0.15} className="t-lead mt-5 opacity-75">
           {lead}
         </Reveal>
       )}

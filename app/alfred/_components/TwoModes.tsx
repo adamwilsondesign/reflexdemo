@@ -45,7 +45,7 @@ export function TwoModes() {
           >
             <div className="flex items-start justify-between">
               <span className="t-ui text-paper/50">{m.kicker}</span>
-              <PrecisionIcon name={m.icon} className="h-11 w-11 text-paper transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover:rotate-[30deg]" />
+              <PrecisionIcon name={m.icon} className="h-11 w-11 text-paper transition-transform duration-[1.2s] ease-[var(--ease-out-expo)]" />
             </div>
             <h3 className="t-h2 mt-14 md:mt-20">{m.title}</h3>
             <p className="t-body mt-4 max-w-[460px] text-paper/70">{m.body}</p>

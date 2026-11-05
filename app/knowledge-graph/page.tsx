@@ -24,7 +24,7 @@ export default function KnowledgeGraphPage() {
       <KGHero />
 
       {/* 1a · Proofpoint */}
-      <section data-tone="light" className="border-b border-ink/10 bg-paper py-12 md:py-16">
+      <section data-tone="light" data-bg="#f4f3f1" className="border-b border-ink/10 bg-paper py-12 md:py-16">
         <div className="container-x">
           <Reveal className="flex flex-col gap-6 md:flex-row md:items-center md:gap-10">
             <PrecisionIcon name="star" className="h-10 w-10 shrink-0 text-lake-700" />

@@ -87,7 +87,7 @@ export function AudienceSection({
             <div className={clsx("flex h-full flex-col rounded-[16px] p-6 md:p-9", dark ? "bg-white/[0.06] ring-1 ring-white/10" : "bg-white ring-1 ring-ink/8")}>
               {quote ? (
                 <figure className={clsx("mb-8 border-b pb-8", rule)}>
-                  <blockquote className="font-display text-[18px] font-medium leading-[1.45] tracking-[-0.01em] md:text-[20px]">&ldquo;{quote.quote}&rdquo;</blockquote>
+                  <blockquote className="font-serif text-[19px] leading-[1.45] md:text-[21px]">&ldquo;{quote.quote}&rdquo;</blockquote>
                   <figcaption className={clsx("mt-5 text-[14px]", muted)}>
                     <span className="font-display font-semibold opacity-100">{quote.name}</span> · {quote.org}
                   </figcaption>

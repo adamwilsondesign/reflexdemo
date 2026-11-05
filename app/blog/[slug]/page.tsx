@@ -55,7 +55,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       <ReadingProgress targetId="article-body" />
       <ArticleHeader post={post} />
 
-      <section data-tone="light" className="relative bg-paper pb-20 pt-14 md:pb-28 md:pt-20">
+      <section data-tone="light" data-bg="#f4f3f1" className="relative bg-paper pb-20 pt-14 md:pb-28 md:pt-20">
         <div className="container-x grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,68ch)_minmax(0,1fr)] lg:gap-14">
           {/* left rail: TOC + share (desktop) */}
           <aside className="hidden lg:block">

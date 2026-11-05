@@ -94,7 +94,7 @@ export default function PlatformPage() {
           <Stagger className="mt-14 grid gap-px overflow-hidden rounded-[14px] bg-ink/10 md:mt-16 md:grid-cols-2">
             {MODES.map((m) => (
               <StaggerItem key={m.title} className="group flex flex-col bg-paper p-7 md:p-10">
-                <PrecisionIcon name={m.icon} className="h-11 w-11 text-ink transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:rotate-[25deg]" />
+                <PrecisionIcon name={m.icon} className="h-11 w-11 text-ink transition-transform duration-700 ease-[var(--ease-out-expo)]" />
                 <h3 className="t-h2 mt-12">{m.title}</h3>
                 <p className="t-body mt-3 max-w-[460px] text-ink/70">{m.body}</p>
                 <Link href={m.href} className="mt-8 inline-flex items-center gap-2 font-display text-[15px] font-medium">

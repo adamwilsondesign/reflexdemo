@@ -21,7 +21,7 @@ const LINKS = [
 
 export default function NotFound() {
   return (
-    <section data-tone="light" className="relative isolate overflow-hidden bg-paper pb-20 pt-[calc(var(--header-h)+48px)] text-ink md:pb-28 md:pt-[calc(var(--header-h)+80px)]">
+    <section data-tone="light" data-bg="#f4f3f1" className="relative isolate overflow-hidden bg-paper pb-20 pt-[calc(var(--header-h)+48px)] text-ink md:pb-28 md:pt-[calc(var(--header-h)+80px)]">
       <div
         className="pointer-events-none absolute inset-0 -z-10 bg-chart"
         style={{ maskImage: "radial-gradient(90% 80% at 70% 40%, #000 20%, transparent 70%)", WebkitMaskImage: "radial-gradient(90% 80% at 70% 40%, #000 20%, transparent 70%)" }}

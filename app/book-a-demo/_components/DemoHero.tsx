@@ -30,7 +30,7 @@ export function DemoHero() {
   const quote = TESTIMONIALS[0];
 
   return (
-    <section data-tone="dark" className="relative isolate overflow-clip bg-lake-900 pb-16 pt-[calc(var(--header-h)+40px)] text-paper md:pb-24 md:pt-[calc(var(--header-h)+64px)]">
+    <section data-tone="dark" data-bg="#243244" className="relative isolate overflow-clip bg-lake-900 pb-16 pt-[calc(var(--header-h)+40px)] text-paper md:pb-24 md:pt-[calc(var(--header-h)+64px)]">
       <div className="pointer-events-none absolute inset-0 -z-20 field-ink opacity-40" />
       <div
         className="pointer-events-none absolute inset-0 -z-10 bg-chart-dark"
@@ -93,7 +93,7 @@ export function DemoHero() {
           </dl>
 
           <figure className="mt-10 border-l border-white/20 pl-5">
-            <blockquote className="font-display text-[17px] font-medium leading-[1.5] tracking-[-0.005em] text-paper/90 md:text-[18px]">&ldquo;{quote.quote}&rdquo;</blockquote>
+            <blockquote className="font-serif text-[18px] leading-[1.5] text-paper/90 md:text-[19px]">&ldquo;{quote.quote}&rdquo;</blockquote>
             <figcaption className="mt-4 flex items-center gap-3">
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 font-display text-[13px] font-semibold">
                 {quote.name.split(" ").map((s) => s[0]).join("")}

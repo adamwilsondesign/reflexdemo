@@ -75,7 +75,7 @@ function GraphMini() {
         {N.map((n) => (
           <g key={n.id}>
             {n.theme ? <circle cx={n.x} cy={n.y} r="7" fill="none" stroke="#7d978c" strokeWidth="2.2" /> : <circle cx={n.x} cy={n.y} r="6" fill="#f4f3f1" />}
-            <text x={n.x + 11} y={n.y + 4} fill="rgba(244,243,241,0.85)" fontSize="11" fontFamily="var(--font-plex-mono)">{n.id}</text>
+            <text x={n.x + 11} y={n.y + 4} fill="rgba(244,243,241,0.85)" fontSize="11" fontFamily="var(--font-archivo)">{n.id}</text>
           </g>
         ))}
       </svg>
@@ -214,12 +214,12 @@ export function Capabilities() {
           transition={{ duration: 0.9, ease: EASE, delay: (i % 3) * 0.08 }}
           className={clsx(c.span, i === 0 && "md:col-span-2 lg:col-span-3")}
         >
-          <Link href={c.href} className="group flex h-full flex-col overflow-hidden rounded-[16px] border border-white/10 bg-white/[0.03] transition-[border-color,background-color,transform] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 hover:border-white/25 hover:bg-white/[0.06]">
+          <Link href={c.href} className="group flex h-full flex-col overflow-hidden rounded-[16px] border border-white/10 bg-white/[0.03] transition-[border-color,background-color,transform] duration-500 ease-[var(--ease-out-expo)] hover:border-white/25 hover:bg-white/[0.06]">
             <div className={clsx("grain relative isolate m-2 overflow-hidden rounded-[12px]", c.field, i < 2 ? "h-[240px] md:h-[260px]" : "h-[220px]")}>{c.visual}</div>
             <div className="flex flex-1 flex-col p-6 pt-5 md:p-7 md:pt-6">
               <div className="flex items-center justify-between gap-3">
                 <span className="t-ui text-paper/50">{c.kicker}</span>
-                <PrecisionIcon name={c.icon} className="h-7 w-7 text-paper/80 transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:rotate-[30deg]" />
+                <PrecisionIcon name={c.icon} className="h-7 w-7 text-paper/80 transition-transform duration-700 ease-[var(--ease-out-expo)]" />
               </div>
               <h3 className="t-h2 mt-4 text-[28px] md:text-[32px]">{c.title}</h3>
               <p className="t-body mt-3 max-w-[520px] text-paper/70">{c.body}</p>

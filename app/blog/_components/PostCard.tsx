@@ -34,7 +34,7 @@ export function PostCard({ post, headingLevel = "h3", wide = false }: { post: Bl
     <Link
       href={`/blog/${post.slug}`}
       className={clsx(
-        "group flex h-full flex-col overflow-hidden rounded-[14px] border border-ink/10 bg-white/60 transition-[border-color,background-color,transform,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 hover:border-ink/20 hover:bg-white hover:shadow-[0_24px_48px_-28px_rgb(23_25_28/0.35)]",
+        "group flex h-full flex-col overflow-hidden rounded-[14px] border border-ink/10 bg-white/60 transition-[border-color,background-color,transform,box-shadow] duration-500 ease-[var(--ease-out-expo)] hover:border-ink/20 hover:bg-white hover:shadow-[0_24px_48px_-28px_rgb(23_25_28/0.35)]",
         wide && "lg:grid lg:grid-cols-2",
       )}
     >

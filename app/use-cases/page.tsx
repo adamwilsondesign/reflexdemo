@@ -98,13 +98,13 @@ export default function UseCasesPage() {
                 <Link
                   href={c.href}
                   className={clsx(
-                    "group relative flex h-full flex-col overflow-hidden rounded-[16px] border p-7 transition-[border-color,background-color,transform] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 md:p-8",
+                    "group relative flex h-full flex-col overflow-hidden rounded-[16px] border p-7 transition-[border-color,background-color,transform] duration-500 ease-[var(--ease-out-expo)] md:p-8",
                     c.big ? "min-h-[320px] border-transparent bg-lake-900 text-paper" : "min-h-[300px] border-ink/10 bg-white/60 hover:border-ink/25 hover:bg-white",
                   )}
                 >
                   {c.big && <div className="pointer-events-none absolute inset-0 bg-chart-dark opacity-60" />}
                   <div className="relative flex items-start justify-between gap-4">
-                    <PrecisionIcon name={c.icon} className="h-11 w-11 transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover:rotate-[30deg]" />
+                    <PrecisionIcon name={c.icon} className="h-11 w-11 transition-transform duration-[1.2s] ease-[var(--ease-out-expo)]" />
                     <span className={clsx("rounded-full px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.04em]", c.big ? "bg-white/10 text-paper/70" : "bg-ink/[0.05] text-ink/55")}>{c.output}</span>
                   </div>
                   <h3 className={clsx("relative mt-auto pt-12", c.big ? "t-h2" : "t-h3")}>{c.name}</h3>
@@ -159,7 +159,7 @@ export default function UseCasesPage() {
                   href={e.href}
                   className={clsx("group relative grid items-center gap-4 px-5 py-6 transition-colors duration-500 hover:bg-white sm:grid-cols-[56px_220px_1fr_auto] md:px-8", i > 0 && "border-t border-ink/8")}
                 >
-                  <PrecisionIcon name={e.icon} className="hidden h-9 w-9 text-ink transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:rotate-[20deg] sm:block" />
+                  <PrecisionIcon name={e.icon} className="hidden h-9 w-9 text-ink transition-transform duration-700 ease-[var(--ease-out-expo)] sm:block" />
                   <h3 className="t-h3">{e.name}</h3>
                   <p className="t-body text-ink/65">{e.body}</p>
                   <span className="flex items-center gap-2 font-display text-[14px] font-medium text-ink/70 group-hover:text-ink">

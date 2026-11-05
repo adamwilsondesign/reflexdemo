@@ -56,6 +56,7 @@ export function PageHero({
     <section
       ref={ref}
       data-tone={dark ? "dark" : "light"}
+      data-bg={surface === "paper" ? "#f4f3f1" : surface === "ink" ? "#17191c" : "#243244"}
       className={clsx(
         "relative isolate overflow-hidden pt-[calc(var(--header-h)+56px)] md:pt-[calc(var(--header-h)+80px)]",
         layout === "stacked" ? "pb-0" : "pb-20 md:pb-28",

@@ -90,13 +90,13 @@ export default function ContactPage() {
               <StaggerItem
                 key={r.k}
                 className={
-                  "group flex h-full flex-col rounded-[16px] p-6 transition-transform duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 " +
+                  "group flex h-full flex-col rounded-[16px] p-6 transition-transform duration-500 ease-[var(--ease-out-expo)] " +
                   (r.primary ? "bg-lake-900 text-paper" : "border border-ink/10 bg-white/60")
                 }
               >
                 <div className="flex items-center justify-between">
                   <span className={"t-ui " + (r.primary ? "text-paper/60" : "text-ink/50")}>{r.k}</span>
-                  <PrecisionIcon name={r.icon} className="h-8 w-8 transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:rotate-[20deg]" />
+                  <PrecisionIcon name={r.icon} className="h-8 w-8 transition-transform duration-700 ease-[var(--ease-out-expo)]" />
                 </div>
                 <h2 className="mt-10 font-display text-[19px] font-semibold leading-snug tracking-[-0.01em]">{r.title}</h2>
                 <p className={"t-small mt-2 " + (r.primary ? "text-paper/70" : "text-ink/60")}>{r.body}</p>

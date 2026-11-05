@@ -21,7 +21,7 @@ export function HomeHero() {
   const f = (d: number) => ({ initial: reduce ? false : { opacity: 0, y: 16 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.9, ease: EASE, delay: d } });
 
   return (
-    <section ref={ref} data-tone="light" className="relative isolate overflow-hidden bg-paper pb-16 pt-[calc(var(--header-h)+48px)] md:pb-24 md:pt-[calc(var(--header-h)+72px)]">
+    <section ref={ref} data-tone="light" data-bg="#f4f3f1" className="relative isolate overflow-hidden bg-paper pb-16 pt-[calc(var(--header-h)+48px)] md:pb-24 md:pt-[calc(var(--header-h)+72px)]">
       <div
         className="pointer-events-none absolute inset-0 -z-10 bg-chart"
         style={{ maskImage: "radial-gradient(90% 80% at 70% 30%, #000 20%, transparent 70%)", WebkitMaskImage: "radial-gradient(90% 80% at 70% 30%, #000 20%, transparent 70%)" }}

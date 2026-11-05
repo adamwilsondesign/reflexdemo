@@ -58,7 +58,7 @@ export default function NewsPage() {
       </PageHero>
 
       {/* Outlet strip */}
-      <section data-tone="light" className="border-y border-ink/10 bg-paper py-8">
+      <section data-tone="light" data-bg="#f4f3f1" className="border-y border-ink/10 bg-paper py-8">
         <div className="container-x flex flex-col gap-5 md:flex-row md:items-center md:gap-10">
           <p className="t-ui shrink-0 text-ink/50">As covered in</p>
           <ul className="flex flex-wrap items-center gap-x-9 gap-y-4 text-ink/70">
@@ -84,7 +84,7 @@ export default function NewsPage() {
                   <p className="t-ui text-paper/60">
                     Latest · {lead.tag} · <time dateTime={lead.date}>{formatNewsDate(lead.date)}</time>
                   </p>
-                  <PrecisionIcon name={TAG_ICON[lead.tag]} className="h-14 w-14 shrink-0 text-paper transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover:rotate-[30deg]" />
+                  <PrecisionIcon name={TAG_ICON[lead.tag]} className="h-14 w-14 shrink-0 text-paper transition-transform duration-[1.2s] ease-[var(--ease-out-expo)]" />
                 </div>
                 <h3 className="t-h2 relative mt-10 max-w-[620px] text-balance md:mt-16">{lead.title}</h3>
                 <p className="t-body relative mt-5 max-w-[600px] text-paper/72">{lead.summary}</p>
@@ -98,7 +98,7 @@ export default function NewsPage() {
             <Stagger className="flex flex-col gap-4 lg:col-span-5">
               {rest.map((a) => (
                 <StaggerItem key={a.title} as="article" className="group flex gap-5 rounded-[14px] border border-white/10 bg-white/[0.03] p-6 transition-colors duration-500 hover:bg-white/[0.06]">
-                  <PrecisionIcon name={TAG_ICON[a.tag]} className="h-9 w-9 shrink-0 text-paper/90 transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:rotate-[24deg]" />
+                  <PrecisionIcon name={TAG_ICON[a.tag]} className="h-9 w-9 shrink-0 text-paper/90 transition-transform duration-700 ease-[var(--ease-out-expo)]" />
                   <div>
                     <p className="t-ui text-[11px] text-paper/50">
                       {a.tag} · <time dateTime={a.date}>{formatNewsDate(a.date)}</time>
@@ -151,7 +151,7 @@ export default function NewsPage() {
                 { href: "/blog", title: "Read the blog", body: "Perspectives and product thinking from the team." },
               ].map((l) => (
                 <StaggerItem key={l.href}>
-                  <Link href={l.href} className="group flex h-full flex-col rounded-[14px] border border-ink/10 bg-white/60 p-6 transition-[border-color,background-color,transform] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 hover:border-ink/25 hover:bg-white md:p-7">
+                  <Link href={l.href} className="group flex h-full flex-col rounded-[14px] border border-ink/10 bg-white/60 p-6 transition-[border-color,background-color,transform] duration-500 ease-[var(--ease-out-expo)] hover:border-ink/25 hover:bg-white md:p-7">
                     <h3 className="t-h3">{l.title}</h3>
                     <p className="t-small mt-2 text-ink/62">{l.body}</p>
                     <span className="mt-auto flex items-center gap-2 pt-6 font-display text-[15px] font-medium">

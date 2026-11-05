@@ -102,8 +102,8 @@ export function RelatedUseCases({ current, extra }: { current: string; extra?: {
       <Stagger className={clsx("mt-8 grid gap-4 sm:grid-cols-2", list.length === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3")}>
         {list.map((u) => (
           <StaggerItem key={u.href}>
-            <Link href={u.href} className="group flex h-full items-start gap-4 rounded-[14px] border border-ink/10 bg-white/50 p-5 transition-[border-color,background-color,transform] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-0.5 hover:border-ink/25 hover:bg-white">
-              <PrecisionIcon name={u.icon} className="h-9 w-9 shrink-0 text-ink transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:rotate-[20deg]" />
+            <Link href={u.href} className="group flex h-full items-start gap-4 rounded-[14px] border border-ink/10 bg-white/50 p-5 transition-[border-color,background-color,transform] duration-500 ease-[var(--ease-out-expo)] hover:border-ink/25 hover:bg-white">
+              <PrecisionIcon name={u.icon} className="h-9 w-9 shrink-0 text-ink transition-transform duration-700 ease-[var(--ease-out-expo)]" />
               <span className="min-w-0">
                 <span className="flex items-center gap-2 font-display text-[16px] font-semibold">
                   {u.name} <Arrow />

@@ -91,7 +91,7 @@ export function BlogCover({
       >
         <PrecisionIcon
           name={cover.icon}
-          className={clsx(iconSize, "drop-shadow-[0_2px_12px_rgb(0_0_0/0.25)] transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover:rotate-[30deg]")}
+          className={clsx(iconSize, "drop-shadow-[0_2px_12px_rgb(0_0_0/0.25)] transition-transform duration-[1.2s] ease-[var(--ease-out-expo)]")}
         />
       </div>
     </div>

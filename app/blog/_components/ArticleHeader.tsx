@@ -24,7 +24,7 @@ export function ArticleHeader({ post }: { post: BlogPost }) {
   });
 
   return (
-    <section ref={ref} data-tone="light" className="relative isolate overflow-hidden bg-paper pt-[calc(var(--header-h)+40px)] md:pt-[calc(var(--header-h)+72px)]">
+    <section ref={ref} data-tone="light" data-bg="#f4f3f1" className="relative isolate overflow-hidden bg-paper pt-[calc(var(--header-h)+40px)] md:pt-[calc(var(--header-h)+72px)]">
       <div
         className="pointer-events-none absolute inset-0 -z-10 bg-chart"
         style={{ maskImage: "radial-gradient(100% 60% at 20% 0%, #000 25%, transparent 70%)", WebkitMaskImage: "radial-gradient(100% 60% at 20% 0%, #000 25%, transparent 70%)" }}

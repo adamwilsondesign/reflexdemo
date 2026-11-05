@@ -84,7 +84,7 @@ export default function ScenarioStressTestingPage() {
             <Stagger as="ul" className="mt-12 space-y-px overflow-hidden rounded-[14px] bg-white/10">
               {HOW.map((x) => (
                 <StaggerItem as="li" key={x.title} className="group flex gap-5 bg-lake-900 p-6 md:p-7">
-                  <PrecisionIcon name={x.icon} className="h-9 w-9 shrink-0 text-paper transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:rotate-[20deg]" />
+                  <PrecisionIcon name={x.icon} className="h-9 w-9 shrink-0 text-paper transition-transform duration-700 ease-[var(--ease-out-expo)]" />
                   <div>
                     <h3 className="t-h3">{x.title}</h3>
                     <p className="t-body mt-2 text-paper/70">{x.body}</p>
@@ -134,7 +134,7 @@ export default function ScenarioStressTestingPage() {
           <Stagger className="grid gap-4 lg:col-span-8">
             {JOBS.map((j) => (
               <StaggerItem key={j.name} className="group grid gap-5 rounded-[16px] border border-ink/10 bg-white/60 p-6 transition-colors duration-500 hover:bg-white sm:grid-cols-[56px_1fr] md:p-8">
-                <PrecisionIcon name={j.icon} className="h-11 w-11 text-ink transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:rotate-[20deg]" />
+                <PrecisionIcon name={j.icon} className="h-11 w-11 text-ink transition-transform duration-700 ease-[var(--ease-out-expo)]" />
                 <div>
                   <p className="font-mono text-[11px] uppercase tracking-[0.05em] text-lake-700">“{j.question}”</p>
                   <h3 className="t-h2 mt-3 text-[28px] md:text-[32px]">{j.name}</h3>

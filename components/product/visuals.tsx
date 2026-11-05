@@ -218,8 +218,7 @@ function StoryStep({ kicker, title, body, visual, index, onActive, active }: { k
   return (
     <div ref={ref} className="flex min-h-[auto] flex-col justify-center py-8 lg:min-h-[72vh] lg:py-0">
       <div className={clsx("transition-opacity duration-700", active ? "opacity-100" : "lg:opacity-30")}>
-        <p className="t-ui text-ink/50">{kicker}</p>
-        <h3 className="t-h2 mt-4">{title}</h3>
+        <h3 className="t-h2">{title}</h3>
         <p className="t-lead mt-4 text-ink/70">{body}</p>
       </div>
       <div className="mt-8 aspect-[4/3.6] w-full lg:hidden">{visual}</div>

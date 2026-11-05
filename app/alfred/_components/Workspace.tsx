@@ -140,7 +140,7 @@ export function WorksWhere() {
     <div className="grid gap-4 md:grid-cols-3">
       {CARDS.map((c, i) => (
         <motion.div key={c.title} initial={reduce ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.9, ease: EASE, delay: i * 0.08 }}>
-          <Link href={c.href} className={clsx("group flex h-full flex-col overflow-hidden rounded-[16px] border transition-[transform,border-color] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1", c.dark ? "border-transparent bg-ink text-paper" : "border-ink/10 bg-white text-ink hover:border-ink/25")}>
+          <Link href={c.href} className={clsx("group flex h-full flex-col overflow-hidden rounded-[16px] border transition-[transform,border-color] duration-500 ease-[var(--ease-out-expo)]", c.dark ? "border-transparent bg-ink text-paper" : "border-ink/10 bg-white text-ink hover:border-ink/25")}>
             <div className={clsx("h-[240px]", c.dark ? "field-ink" : "bg-mist-100 bg-dots")}>{c.visual}</div>
             <div className="flex flex-1 flex-col p-6 md:p-7">
               <h3 className="t-h3">{c.title}</h3>

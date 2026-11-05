@@ -14,18 +14,30 @@ Never ship placeholders ("Supporting line", "graphic coming soon", "data feds", 
 Avoid absolute claims ("every claim", "zero hallucination", "real-time" as a blanket). Prefer "cited by default", "flags missing data", etc.
 Reflexivity = the platform. Alfred = its AI analyst. Knowledge Graph = the relationship-intelligence layer. Insights = always-on monitoring.
 
-## Brand (Exploration E — Charcoal Field, grey first)
-- Colors (Tailwind tokens): `paper #F4F3F1`, `ink #17191C`, `graphite #3C3F44`, neutral/mist scales, **lake** (`lake-900 #243244` … `lake-100`) and **pine** (`pine-900` … `pine-100`) are restricted accents — muted and rare. Client wants **more dark blue (lake-900)** in section blocking.
-- Type: Archivo (headlines, `font-display`), IBM Plex Sans (reading, default), IBM Plex Mono (UI labels, `font-mono`). Classes: `t-display`, `t-h1`, `t-h2`, `t-h3`, `t-lead`, `t-body`, `t-small`, `t-ui`. Do not invent new type roles.
-- Source Serif is used **only** in the nav/footer (kept 1:1 with Framer).
+## Art direction — "Market Cartography" (agreed)
+Unified, considered, enterprise-grade. Take from the cartography boards:
+- **Big colour blocks** — Pine `#3E5C50` (`surface="pine"`) is the signature block; lake-900 (deep blue), ink (charcoal), paper/mist for light. Blocks **blend into each other** (no hard edges): the colour-seam system (`components/site/ScrollField.tsx`) paints a gradient in the incoming block's top padding. Every top-level block must carry `data-bg` + `data-tone` (`Section`, `SplitFeature`, `PageHero` do this). Don't stack identical dark blocks; alternate light/dark.
+- **Abstract, animated faux data-viz** to explain concepts (`@/components/graphics/Cartography`): `RadialSystem` (a market as a system), `ExposurePolar` (weighted exposure), `BranchLines` (a question branching to evidence), `FlowLines` (signals routing), `ScenarioFan` (distribution of outcomes), `SignalField` (series + event marker). Thin lines, nodes, slow motion.
+- **50/50 layouts** (`@/components/ui/Layouts`): `SplitFeature` (copy | viz on a colour block), `LinkRowsBlock` / `LinkRows` (headline | rows with ↗), `TwoWays` (two columns on a dotted rule), `TextLink` (underlined link with ↗).
+- **Do not use**: big photography, topographic maps, huge number callouts (stats max ~40px), huge type callouts, corner framing lines on cards, numbered decorative eyebrows.
 
-## Visual rules (from client feedback — important)
-- **No imagery in heroes.** Every hero is animated with a *product representation* (coded UI, graph, diagram).
-- Reduce reliance on photography; favour product UI mockups, diagrams and **precision iconography** (`<PrecisionIcon name=… />`).
-- If photography is used: abstract light fields, water/ripple refraction, micro stone, architectural details. Never people, offices/chairs, skylines, forests, cityscapes, manufacturing. No blue overlay on photos. No full-bleed photos on scroll.
-- No numbered eyebrows on content blocks ("01", "02" decoration). Eyebrows = short mono labels; on inner pages use breadcrumb trails (`Product / Alfred`).
-- Avoid Palantir-like "target" motifs and heavy topographic meshes.
-- Make buyer types prominent where listed.
+## Brand
+- Colours: `paper #F4F3F1`, `ink #17191C`, `graphite`, mist scale; accents **pine** (`pine-500 #3E5C50` block colour) and **lake** (`lake-900 #243244`). Muted, never bright.
+- **Type (Typography Draft 1)** — Archivo + Source Serif 4. No other faces (code samples use the system monospace automatically inside `pre`/`code`).
+  | Role | Face | Class |
+  |---|---|---|
+  | Display 56–72 | Archivo Bold | `t-display`, `t-h1` |
+  | Heading 24–40 | Archivo Semibold | `t-h2`, `t-h3` |
+  | Statement 22–28 | Source Serif 4 | `t-statement` (pull quotes, testimonials, big leads) |
+  | Body 16–18 | Source Serif 4 | `t-lead`, `t-body`, `t-small` |
+  | Label / UI 12–14 | Archivo Medium | `t-ui` (uppercase), `t-label` |
+  Rules: Archivo for headings, buttons, labels, nav, and product-UI mockups. Source Serif 4 for paragraphs and quotes. **Never** Archivo for long paragraphs; **never** serif on buttons/nav. One voice per line. Quotes use the serif.
+
+## Component rules
+- **Eyebrows only in heroes.** No eyebrow/kicker labels above section headings or card titles anywhere else (`SectionHeader` ignores `eyebrow`). Labels *inside product UI mockups* are fine; "Illustrative" disclaimers go below a visual, not above a heading.
+- **Headline + subhead ≤ half the desktop grid** (6 of 12 cols). `SectionHeader` enforces it; `align="split"` = headline left half / subhead right half.
+- **Icon + copy cards: one pattern** — `FeatureGrid` / `IconCard` from `Blocks` (hairline grid, hover = background tint only).
+- **No hover movement**: cards never shift, lift or scale on hover; icons never rotate. Hover = colour/tint, underline, arrow nudge only.
 
 ## Layout
 - `container-x` = max 1440 with 112px gutters at desktop (matches Framer).

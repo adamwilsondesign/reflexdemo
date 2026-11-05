@@ -37,7 +37,7 @@ export function NewsletterModule({ id = "subscribe" }: { id?: string }) {
         <Stagger as="ul" className="flex flex-col gap-px overflow-hidden rounded-[12px] bg-white/10 lg:col-span-6">
           {GETS.map((g) => (
             <StaggerItem as="li" key={g.title} className="group flex gap-5 bg-pine-900/80 p-6 md:p-7">
-              <PrecisionIcon name={g.icon} className="h-9 w-9 shrink-0 text-paper transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:rotate-[24deg]" />
+              <PrecisionIcon name={g.icon} className="h-9 w-9 shrink-0 text-paper transition-transform duration-700 ease-[var(--ease-out-expo)]" />
               <div>
                 <h3 className="font-display text-[17px] font-semibold">{g.title}</h3>
                 <p className="t-small mt-1.5 text-paper/65">{g.body}</p>

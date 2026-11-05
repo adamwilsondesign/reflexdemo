@@ -108,7 +108,7 @@ export function RippleExample() {
                   <g key={t.label} opacity={show(1) ? 1 : 0} style={{ transition: `opacity .8s ${k * 0.15}s` }}>
                     <line x1={C.x} y1={C.y} x2={x} y2={y} stroke="rgba(213,222,230,0.6)" strokeWidth="1.2" />
                     <circle cx={x} cy={y} r="9" fill="none" stroke="#7d978c" strokeWidth="2.4" />
-                    <text x={x} y={y + (t.a < 0 ? -18 : 26)} textAnchor="middle" fill="rgba(244,243,241,0.85)" fontSize="11" fontFamily="var(--font-plex-mono)">{t.label}</text>
+                    <text x={x} y={y + (t.a < 0 ? -18 : 26)} textAnchor="middle" fill="rgba(244,243,241,0.85)" fontSize="11" fontFamily="var(--font-archivo)">{t.label}</text>
                   </g>
                 );
               })}
@@ -120,13 +120,13 @@ export function RippleExample() {
                   <g key={c.tk} opacity={show(2) ? 1 : 0} style={{ transition: `opacity .7s ${0.1 + k * 0.12}s` }}>
                     <line x1={tx} y1={ty} x2={x} y2={y} stroke="rgba(213,222,230,0.35)" strokeWidth="1" />
                     <circle cx={x} cy={y} r="5.5" fill="#f4f3f1" />
-                    <text x={x} y={y - 11} textAnchor="middle" fill="rgba(244,243,241,0.9)" fontSize="11" fontFamily="var(--font-plex-mono)">{c.tk}</text>
+                    <text x={x} y={y - 11} textAnchor="middle" fill="rgba(244,243,241,0.9)" fontSize="11" fontFamily="var(--font-archivo)">{c.tk}</text>
                   </g>
                 );
               })}
               <circle cx={C.x} cy={C.y} r="13" fill="#f4f3f1" />
               <circle cx={C.x} cy={C.y} r="22" fill="none" stroke="rgba(244,243,241,0.4)" />
-              <text x={C.x} y={C.y + 40} textAnchor="middle" fill="rgba(244,243,241,0.7)" fontSize="10.5" fontFamily="var(--font-plex-mono)">US FLASH PMI</text>
+              <text x={C.x} y={C.y + 40} textAnchor="middle" fill="rgba(244,243,241,0.7)" fontSize="10.5" fontFamily="var(--font-archivo)">US FLASH PMI</text>
             </svg>
           </div>
 

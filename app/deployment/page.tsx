@@ -402,7 +402,7 @@ export default function DeploymentPage() {
           <Stagger className="mt-14 grid gap-px overflow-hidden rounded-[14px] bg-white/10 md:mt-16 md:grid-cols-3">
             {FOUNDATION.map((f) => (
               <StaggerItem key={f.title} className="group bg-lake-900 p-7 md:p-9">
-                <PrecisionIcon name={f.icon} className="h-11 w-11 text-paper transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover:rotate-[30deg]" />
+                <PrecisionIcon name={f.icon} className="h-11 w-11 text-paper transition-transform duration-[1.2s] ease-[var(--ease-out-expo)]" />
                 <h3 className="t-h3 mt-10 md:mt-14">{f.title}</h3>
                 <p className="t-body mt-3 text-paper/70">{f.body}</p>
               </StaggerItem>

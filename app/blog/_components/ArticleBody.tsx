@@ -3,13 +3,13 @@ import clsx from "clsx";
 import type { Block } from "@/lib/blog";
 
 /**
- * Long-form renderer. Plex Sans body at ~68ch, Archivo headings, hanging pull quotes,
+ * Long-form renderer. Source Serif 4 body at ~68ch, Archivo headings, hanging pull quotes,
  * figures in a mist frame. The first paragraph is set as the lede when there is no standfirst.
  */
 export function ArticleBody({ blocks, leadFirst }: { blocks: Block[]; leadFirst: boolean }) {
   const firstP = leadFirst ? blocks.findIndex((b) => b.type === "p") : -1;
   return (
-    <div className="max-w-[68ch] font-sans text-ink/85">
+    <div className="max-w-[68ch] font-serif text-ink/85">
       {blocks.map((b, i) => {
         switch (b.type) {
           case "h2":
@@ -63,7 +63,7 @@ export function ArticleBody({ blocks, leadFirst }: { blocks: Block[]; leadFirst:
                   <svg viewBox="0 0 32 24" className="h-5 w-7 text-lake-500" fill="currentColor" aria-hidden="true">
                     <path d="M0 24V14C0 6 4 1.5 12 0l1.5 3C9 4.5 7 7.5 7 11h5v13H0zm19 0V14c0-8 4-12.5 12-14l1 3c-4.5 1.5-6.5 4.5-6.5 8H31v13H19z" />
                   </svg>
-                  <blockquote className="mt-5 text-balance font-display text-[26px] font-semibold leading-[1.22] tracking-[-0.02em] text-ink md:text-[34px]">{b.text}</blockquote>
+                  <blockquote className="mt-5 text-balance font-serif text-[24px] font-normal leading-[1.32] tracking-[-0.01em] text-ink md:text-[30px]">{b.text}</blockquote>
                 </figure>
               );
             return (

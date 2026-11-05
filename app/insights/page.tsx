@@ -146,7 +146,7 @@ export default function InsightsPage() {
               <StaggerItem key={t.name} as="article" className="group flex flex-col bg-[#1b1e23] p-7 transition-colors duration-500 hover:bg-[#20252c] md:p-10">
                 <div className="flex items-start justify-between gap-6">
                   <h3 className="t-h3 text-[24px] md:text-[26px]">{t.name}</h3>
-                  <PrecisionIcon name={t.icon} className="h-11 w-11 shrink-0 text-paper/85 transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover:rotate-[30deg]" />
+                  <PrecisionIcon name={t.icon} className="h-11 w-11 shrink-0 text-paper/85 transition-transform duration-[1.2s] ease-[var(--ease-out-expo)]" />
                 </div>
                 <p className="mt-6 border-l-2 border-lake-300/60 pl-4 font-display text-[17px] font-medium leading-snug text-paper md:text-[18px]">
                   <span className="t-ui mb-1.5 block text-[10.5px] text-lake-300">Helps answer</span>

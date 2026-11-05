@@ -44,12 +44,12 @@ export default function CustomersPage() {
             <StaggerItem className="lg:row-span-3">
               <Link
                 href={`#${HF.id}`}
-                className="group relative flex h-full min-h-[420px] flex-col overflow-hidden rounded-[18px] bg-lake-900 p-7 text-paper transition-transform duration-700 ease-[var(--ease-out-expo)] hover:-translate-y-1 md:p-10"
+                className="group relative flex h-full min-h-[420px] flex-col overflow-hidden rounded-[18px] bg-lake-900 p-7 text-paper transition-transform duration-700 ease-[var(--ease-out-expo)] md:p-10"
               >
                 <div className="pointer-events-none absolute inset-0 bg-chart-dark opacity-60" />
                 <div className="relative flex items-start justify-between">
                   <span className="t-ui rounded-full bg-white/10 px-3 py-1 text-paper/80">Our core audience</span>
-                  <PrecisionIcon name={HF.icon} className="h-14 w-14 transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover:rotate-45" />
+                  <PrecisionIcon name={HF.icon} className="h-14 w-14 transition-transform duration-[1.2s] ease-[var(--ease-out-expo)]" />
                 </div>
                 <h3 className="t-h1 relative mt-auto pt-16">{HF.name}</h3>
                 <p className="t-lead relative mt-4 max-w-[520px] text-paper/75">{HF.card}</p>
@@ -69,9 +69,9 @@ export default function CustomersPage() {
               <StaggerItem key={a.id}>
                 <Link
                   href={`#${a.id}`}
-                  className="group flex h-full items-start gap-5 rounded-[16px] border border-ink/10 bg-white/60 p-6 transition-[border-color,background-color,transform] duration-500 ease-[var(--ease-out-expo)] hover:-translate-y-1 hover:border-ink/25 hover:bg-white md:p-7"
+                  className="group flex h-full items-start gap-5 rounded-[16px] border border-ink/10 bg-white/60 p-6 transition-[border-color,background-color,transform] duration-500 ease-[var(--ease-out-expo)] hover:border-ink/25 hover:bg-white md:p-7"
                 >
-                  <PrecisionIcon name={a.icon} className="h-10 w-10 shrink-0 text-ink transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:rotate-[20deg]" />
+                  <PrecisionIcon name={a.icon} className="h-10 w-10 shrink-0 text-ink transition-transform duration-700 ease-[var(--ease-out-expo)]" />
                   <span className="block">
                     <span className="t-h3 block">{a.name}</span>
                     <span className="t-body mt-2 block text-ink/65">{a.card}</span>
