@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
 import { Section, SectionHeader } from "@/components/ui/Section";
-import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
-import { Arrow, Button } from "@/components/ui/Button";
+import { Reveal } from "@/components/ui/Reveal";
+import { Button } from "@/components/ui/Button";
 import { SplitText } from "@/components/ui/SplitText";
-import { PrecisionIcon, type IconName } from "@/components/ui/PrecisionIcon";
+import { type IconName } from "@/components/ui/PrecisionIcon";
+import { FeatureGrid } from "@/components/ui/Blocks";
+import { LinkRowsBlock, SplitFeature, TextLink } from "@/components/ui/Layouts";
+import { RadialSystem } from "@/components/graphics/Cartography";
 import { PropagationField } from "@/components/graphics/RippleRings";
 import { SecurityHero } from "./_components/SecurityHero";
 import { DataProtection } from "./_components/DataProtection";
@@ -53,33 +55,21 @@ export default function SecurityPage() {
       />
 
       {/* Enterprise controls */}
-      <Section surface="lake" className="overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-chart-dark opacity-50" />
+      <Section surface="lake">
         <div className="container-x">
           <SectionHeader
-            eyebrow="Diligence essentials"
             title="Enterprise controls"
             align="split"
             lead="Answers to the first questions on most due-diligence questionnaires, up front. Governance can vary by deployment, and we’ll walk through yours."
           />
-          <Stagger className="mt-14 grid gap-px overflow-hidden rounded-[16px] bg-white/10 md:mt-20 md:grid-cols-3">
-            {CONTROLS.map((c) => (
-              <StaggerItem key={c.title} as="article" className="group flex flex-col bg-lake-900 p-7 transition-colors duration-500 hover:bg-[#2a3a4f] md:p-9">
-                <PrecisionIcon name={c.icon} className="h-12 w-12 text-paper transition-transform duration-[1.2s] ease-[var(--ease-out-expo)]" />
-                <h3 className="t-h3 mt-14 text-[24px] md:mt-20 md:text-[26px]">{c.title}</h3>
-                <p className="t-body mt-3 max-w-[320px] text-paper/70">{c.body}</p>
-              </StaggerItem>
-            ))}
-          </Stagger>
+          <FeatureGrid onDark className="mt-14 md:mt-20" items={CONTROLS} />
         </div>
       </Section>
 
       {/* Your data, protected */}
-      <Section surface="ink" className="overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 -z-10 field-ink" />
+      <Section surface="paper">
         <div className="container-x">
           <SectionHeader
-            eyebrow="Data handling"
             title="Your data, protected."
             lead="Clear statements on isolation, connected-source access, retention and model training, so there is no ambiguity about what is stored and who can see it."
           />
@@ -89,48 +79,29 @@ export default function SecurityPage() {
         </div>
       </Section>
 
+      {/* Concept: isolation layers */}
+      <SplitFeature
+        surface="pine"
+        title="One environment per client."
+        lead="Access is checked at the edge, data is encrypted in transit, and each firm’s research, documents and connected sources sit in their own environment. Nothing is shared between clients."
+        link={{ label: "Request a Security Overview", href: SECURITY_HREF }}
+        visual={<RadialSystem accent="#f4f3f1" label="Your environment" />}
+      />
+
       {/* Security portal + cross-link */}
-      <Section surface="paper">
-        <div className="container-x grid gap-4 lg:grid-cols-12">
-          <Reveal className="lg:col-span-8">
-            <Link
-              href={SECURITY_HREF}
-              className="group relative flex h-full flex-col overflow-hidden rounded-[18px] bg-lake-900 p-7 text-paper transition-transform duration-700 ease-[var(--ease-out-expo)] md:p-10"
-            >
-              <div className="pointer-events-none absolute inset-0 bg-chart-dark opacity-60" />
-              <div className="pointer-events-none absolute -right-24 -top-24 h-[360px] w-[360px] opacity-[0.14] md:-right-10">
-                <PrecisionIcon name="rings" className="h-full w-full text-lake-300 transition-transform duration-[2s] ease-[var(--ease-out-expo)]" />
-              </div>
-              <p className="t-ui relative text-paper/60">Security portal</p>
-              <h2 className="t-h2 relative mt-6 max-w-[520px]">Trust portal &amp; DDQ</h2>
-              <p className="t-lead relative mt-4 max-w-[560px] text-paper/72">
-                Request our security documentation, get support with your due-diligence questionnaire, or set up a review with our security team.
-              </p>
-              <ul className="relative mt-8 grid gap-2 sm:grid-cols-2">
-                {PORTAL.map((p) => (
-                  <li key={p} className="flex items-center gap-3 rounded-[10px] border border-white/12 bg-white/[0.04] px-4 py-3 text-[14px] text-paper/85">
-                    <svg viewBox="0 0 16 16" className="h-4 w-4 shrink-0 text-pine-300" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5" /></svg>
-                    {p}
-                  </li>
-                ))}
-              </ul>
-              <span className="relative mt-10 inline-flex items-center gap-2 font-display text-[16px] font-medium">
-                <span className="link-underline">Contact the security team</span>
-                <Arrow />
-              </span>
-            </Link>
-          </Reveal>
-          <Reveal className="lg:col-span-4" delay={0.1}>
-            <Link href="/auditability-data" className="group flex h-full flex-col rounded-[18px] border border-ink/10 bg-white/60 p-7 transition-[border-color,background-color] duration-500 hover:border-ink/25 hover:bg-white md:p-8">
-              <PrecisionIcon name="eye" className="h-10 w-10 text-ink transition-transform duration-700" />
-              <p className="t-ui mt-10 text-ink/50">Related · Auditability &amp; Data</p>
-              <h3 className="t-h3 mt-3">Checking the research, not protecting the data?</h3>
-              <p className="t-body mt-3 text-ink/65">Security covers how your data is protected. Auditability covers how analysis can be inspected: sources, calculations and missing-data flags.</p>
-              <span className="mt-auto flex items-center gap-2 pt-8 font-display text-[15px] font-medium">
-                <span className="link-underline">How auditability works</span>
-                <Arrow />
-              </span>
-            </Link>
+      <Section surface="mist">
+        <div className="container-x">
+          <LinkRowsBlock
+            title="Trust portal & DDQ"
+            lead="Request our security documentation, get support with your due-diligence questionnaire, or set up a review with our security team."
+            rows={PORTAL.map((p) => ({ label: p, href: SECURITY_HREF }))}
+          />
+          <Reveal className="mt-20 grid gap-6 border-t border-ink/15 pt-10 md:mt-28 lg:grid-cols-2 lg:gap-16">
+            <h3 className="t-h3 max-w-[460px]">Checking the research, not protecting the data?</h3>
+            <div>
+              <p className="t-body max-w-[520px] text-ink/70">Security covers how your data is protected. Auditability covers how analysis can be inspected: sources, calculations and missing-data flags.</p>
+              <TextLink href="/auditability-data" className="mt-6">How auditability works</TextLink>
+            </div>
           </Reveal>
         </div>
       </Section>

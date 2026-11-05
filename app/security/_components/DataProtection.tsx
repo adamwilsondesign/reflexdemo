@@ -17,10 +17,19 @@ function fade(reduce: boolean | null, delay = 0) {
   } as const;
 }
 
-function Board({ image, children }: { image: string; children: React.ReactNode }) {
+/** Colour-field board with faint concentric guides (cartography), no photography. */
+function Board({ field, children }: { field: "lake" | "pine" | "ink"; children: React.ReactNode }) {
   return (
-    <Stage field="ink" image={image} className="h-full w-full p-5 sm:p-8">
-      <div className="absolute inset-0 -z-[5] bg-ink/25" />
+    <Stage field={field} className="h-full w-full p-5 sm:p-8">
+      <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" className="pointer-events-none absolute inset-0 -z-[5] h-full w-full text-white" fill="none" aria-hidden="true">
+        {[70, 120, 170, 220, 270].map((r, i) => (
+          <circle key={r} cx={330} cy={70} r={r} stroke="currentColor" strokeOpacity={0.12} strokeDasharray={i % 2 ? "2 5" : undefined} vectorEffect="non-scaling-stroke" />
+        ))}
+        {[200, 225, 250].map((a) => {
+          const t = (a * Math.PI) / 180;
+          return <line key={a} x1={330} y1={70} x2={330 + Math.cos(t) * 300} y2={70 + Math.sin(t) * 300} stroke="currentColor" strokeOpacity={0.08} vectorEffect="non-scaling-stroke" />;
+        })}
+      </svg>
       <div className="mx-auto flex h-full max-w-[440px] flex-col justify-center">{children}</div>
     </Stage>
   );
@@ -30,7 +39,7 @@ function Isolation() {
   const reduce = useReducedMotion();
   const items = ["Research & saved work", "Uploaded documents", "Connected sources", "Prompts & outputs"];
   return (
-    <Board image="/framer/iP8mTb1QSzeAVENo5P6e0Vbu4U.jpg">
+    <Board field="lake">
       <motion.div {...fade(reduce)} className="ui-card relative p-5">
         <div className="flex items-center justify-between">
           <span>
@@ -78,7 +87,7 @@ function Connections() {
     { n: "CRM", s: "Not connected", on: false },
   ];
   return (
-    <Board image="/framer/0YSwPZaQBlUH7CSqYIAlebekASw.jpg">
+    <Board field="pine">
       <motion.div ref={ref} {...fade(reduce)} className="ui-card p-5">
         <div className="flex items-center justify-between">
           <span className="font-display text-[16px] font-semibold text-ink">Connected sources</span>
@@ -122,7 +131,7 @@ function Retention() {
   }, [inView, reduce, s]);
   const steps = ["Request received", "Processed for your query", "Response delivered", "Client data not persisted"];
   return (
-    <Board image="/framer/eI9b30EAvoTRnOQLycd9dJZatfQ.jpg">
+    <Board field="ink">
       <motion.div ref={ref} {...fade(reduce)} className="ui-card p-5">
         <div className="flex items-center justify-between">
           <span className="font-display text-[16px] font-semibold text-ink">Data lifecycle</span>
@@ -163,7 +172,7 @@ function NeverTrained() {
   const reduce = useReducedMotion();
   const inputs = ["Prompts", "Documents", "Connected data", "Outputs"];
   return (
-    <Board image="/framer/vq1sLaQ1xkz3KG6dfXMcXxodvVE.jpg">
+    <Board field="lake">
       <motion.div {...fade(reduce)} className="ui-card p-5">
         <span className="font-mono text-[9.5px] uppercase tracking-[0.05em] text-ink/45">Your firm&rsquo;s data</span>
         <div className="mt-3 grid grid-cols-2 gap-1.5">
