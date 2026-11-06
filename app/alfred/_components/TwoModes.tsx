@@ -6,62 +6,63 @@ import { FeatureGrid } from "@/components/ui/Blocks";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-const MODES: { icon: IconName; title: string; body: string; href: string; link: string }[] = [
+const MODES: { icon: IconName; title: string; body: string; href: string; linkLabel: string }[] = [
   {
     icon: "crosshair",
     title: "On-demand research",
     body: "Ask Alfred to investigate a company, analyze a portfolio, or pressure-test a thesis. Get comprehensive, source-backed analysis in minutes.",
     href: "#on-demand",
-    link: "See sample questions",
+    linkLabel: "See sample questions",
   },
   {
     icon: "signal",
     title: "Always-on intelligence",
     body: "Alfred monitors your coverage universe, alerting you to relevant catalysts and their potential implications, even when you haven’t asked.",
     href: "#always-on",
-    link: "See what arrives unprompted",
+    linkLabel: "See what arrives unprompted",
   },
 ];
 
-const SHARED = ["Knowledge Graph", "Institutional data", "Your watchlists and coverage"];
+/**
+ * Connector: two drops from the card centres (25% / 75%), a bar joining them, one drop to the shared box.
+ * Plain hairline boxes (no SVG path scaling), so every segment always renders in full.
+ */
+function Connector() {
+  const reduce = useReducedMotion();
+  const draw = (axis: "x" | "y", delay: number) => ({
+    initial: reduce ? false : axis === "x" ? { scaleX: 0 } : { scaleY: 0 },
+    whileInView: axis === "x" ? { scaleX: 1 } : { scaleY: 1 },
+    viewport: { once: true, amount: 1 },
+    transition: { duration: 0.6, ease: EASE, delay },
+  });
+  return (
+    <div className="relative hidden h-12 md:block" aria-hidden="true">
+      <motion.span {...draw("y", 0.2)} className="absolute left-1/4 top-0 h-6 w-px origin-top bg-white/40" />
+      <motion.span {...draw("y", 0.2)} className="absolute left-3/4 top-0 h-6 w-px origin-top bg-white/40" />
+      <motion.span {...draw("x", 0.7)} className="absolute left-1/4 top-6 h-px w-1/2 origin-center bg-white/40" />
+      <motion.span {...draw("y", 1.2)} className="absolute left-1/2 top-6 h-6 w-px origin-top bg-white/40" />
+    </div>
+  );
+}
 
 /** One analyst, two modes: both modes draw on the same context underneath. */
 export function TwoModes() {
   const reduce = useReducedMotion();
   return (
-    <div className="relative">
-      <FeatureGrid onDark cols={2} items={MODES.map(({ icon, title, body, href, link }) => ({ icon, title, body, href, linkLabel: link }))} />
-
-      {/* connectors */}
-      <svg viewBox="0 0 1000 60" preserveAspectRatio="none" className="hidden h-[60px] w-full md:block" aria-hidden="true">
-        {[250, 750].map((x, i) => (
-          <g key={x}>
-            <motion.path d={`M${x} 0 C ${x} 40, 500 20, 500 60`} fill="none" stroke="rgba(213,222,230,0.35)" strokeWidth="1.2" vectorEffect="non-scaling-stroke" initial={reduce ? false : { pathLength: 0 }} whileInView={{ pathLength: 1 }} viewport={{ once: true }} transition={{ duration: 1.2, ease: EASE, delay: 0.4 + i * 0.15 }} />
-            {!reduce && (
-              <circle r="3" fill="#d5dee6">
-                <animateMotion dur="2.8s" repeatCount="indefinite" begin={`${i * 1.4}s`} path={`M${x} 0 C ${x} 40, 500 20, 500 60`} />
-              </circle>
-            )}
-          </g>
-        ))}
-      </svg>
+    <div>
+      <FeatureGrid onDark cols={2} items={MODES} />
+      <Connector />
       <div className="h-6 md:hidden" />
-
       <motion.div
         initial={reduce ? false : { opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.9, ease: EASE, delay: 0.3 }}
-        className="rounded-[16px] border border-white/12 bg-white/[0.04] p-6 md:p-8"
+        className="border border-white/15 p-6 text-center md:p-8"
       >
-        <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
-          <div>
-            <p className="font-display text-[20px] font-semibold leading-snug md:text-[22px]">Two modes. Same context.</p>
-          </div>
-          <p className="t-small text-paper/75">{SHARED.join(" · ")}</p>
-        </div>
-        <p className="t-small mt-5 max-w-[720px] text-paper/60">
-          Alfred runs on our proprietary Knowledge Graph and institutional-grade data sources. They are not two products: an alert can open straight into an on-demand follow-up, with the same entities and context in place.
+        <p className="t-h3">Two modes. Same context.</p>
+        <p className="t-small mx-auto mt-2 max-w-[560px] text-paper/70">
+          Alfred runs on our proprietary Knowledge Graph and institutional-grade data sources.
         </p>
       </motion.div>
     </div>
