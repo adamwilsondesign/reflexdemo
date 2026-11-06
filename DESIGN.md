@@ -120,3 +120,14 @@ Product mock references (Figma exports) live in `public/figma/n*.png` — use th
 - Route: `app/<route>/page.tsx` exporting `metadata` (unique title + description).
 - Page-specific components: `app/<route>/_components/*.tsx` (client components need `"use client"`).
 - Don't edit shared components; if you need a variant, build it in your page's `_components`.
+
+## Product illustration v2 (draft, in review at /lab)
+
+Replaces the DESIGN_1 flat style for product graphics once a direction is chosen. Refinement level taken from the team's reference set; the brand voice is our own.
+
+- **Kit**: `components/visual/kit.tsx`, styles under `.rx` in `app/globals.css`.
+- **Cards**: white, 14px radius, layered soft shadow (cool, lake-tinted). Focal card gets `rx-card-lift`.
+- **Type**: Archivo for UI (11–15px), Source Serif 4 for titles inside UI, mono for numbers and tickers.
+- **Brand vocabulary**: Knowledge Graph entity glyphs (circle company, pill theme, square geography, diamond product); amber `--rx-signal` for the traced path and active citations only; pine for positive, rust for negative. Hatching marks data that isn't disclosed.
+- **Composition**: one focal card; context cards cropped off the frame and masked out. Fixed design canvas (560×480) scaled to fit.
+- **Motion**: a phase timeline (`useTimeline`) acted out by the UI: a cursor moves and clicks, steps check off, rows arrive, a path draws, a toast lands. No visible state controls. Loops with a soft fade; reduced motion holds the most informative phase.

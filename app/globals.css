@@ -333,3 +333,49 @@
   :is(.pui, .ui-card) :is([class*="border-lake"], [class*="border-pine"], [class*="border-[#b88a55]"]) { border-color: rgb(0 0 0 / 0.1) !important; }
   :is(.pui, .ui-card) [class*="ring-lake"] { --tw-ring-color: rgb(0 0 0 / 0.15) !important; }
 }
+
+/* ==================================================================
+   RX visual kit (v2 product illustrations). See DESIGN.md › Product
+   illustration v2. Lives OUTSIDE the .pui scope so shadows and brand
+   colour survive. Brand-specific choices: Archivo UI type, Source Serif
+   titles, mono numerals, KG entity glyphs, amber "signal" path accent.
+   ================================================================== */
+.rx {
+  --rx-ink: #17191c;
+  --rx-2: #5b6068;
+  --rx-3: #959aa1;
+  --rx-line: rgb(23 25 28 / 0.08);
+  --rx-well: #f4f3f0;
+  --rx-signal: #e9a93a;
+  --rx-signal-soft: rgb(233 169 58 / 0.16);
+  --rx-up: #2f7457;
+  --rx-down: #a6503a;
+  color: var(--rx-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss01", "cv11";
+}
+.rx-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow:
+    0 0 0 1px rgb(23 32 44 / 0.06),
+    0 1px 2px rgb(23 32 44 / 0.05),
+    0 6px 14px -4px rgb(23 32 44 / 0.08),
+    0 24px 48px -16px rgb(23 32 44 / 0.22);
+}
+.rx-card-lift {
+  box-shadow:
+    0 0 0 1px rgb(23 32 44 / 0.06),
+    0 2px 4px rgb(23 32 44 / 0.06),
+    0 12px 24px -6px rgb(23 32 44 / 0.12),
+    0 40px 80px -20px rgb(23 32 44 / 0.32);
+}
+.rx-serif { font-family: var(--font-serif); letter-spacing: -0.01em; }
+.rx-num { font-family: var(--font-code); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.rx-fade-x { mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent); }
+.rx-fade-b { mask-image: linear-gradient(180deg, #000 55%, transparent); }
+.rx-fade-t { mask-image: linear-gradient(0deg, #000 55%, transparent); }
+.rx-hatch {
+  background-image: repeating-linear-gradient(135deg, rgb(47 116 87 / 0.22) 0 1px, transparent 1px 5px);
+}
