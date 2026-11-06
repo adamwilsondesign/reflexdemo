@@ -7,7 +7,7 @@ import { SplitText } from "@/components/ui/SplitText";
 import { Button } from "@/components/ui/Button";
 import { FeatureGrid } from "@/components/ui/Blocks";
 import { LinkRowsBlock } from "@/components/ui/Layouts";
-import { Stage } from "@/components/product/ui";
+import { Field } from "@/components/visual/kit";
 import { INTERESTS } from "../book-a-demo/_components/options";
 import { NextSteps } from "./_components/NextSteps";
 
@@ -69,11 +69,9 @@ export default async function ThankYouPage({ searchParams }: { searchParams: Pro
           </div>
         }
         visual={
-          <Stage field="lake" className="p-4 sm:p-8 md:p-10">
-            <div className="mx-auto max-w-[480px]">
-              <NextSteps interests={interests} />
-            </div>
-          </Stage>
+          <Field field="lake">
+            <NextSteps interests={interests} />
+          </Field>
         }
       />
 

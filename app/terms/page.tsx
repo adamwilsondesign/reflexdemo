@@ -3,7 +3,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { CTABand } from "@/components/ui/Blocks";
-import { Stage } from "@/components/product/ui";
+import { Field } from "@/components/visual/kit";
 import { TERMS } from "@/lib/legal";
 import { LegalDocument } from "../_legal/LegalDocument";
 import { LegalIndex } from "../_legal/LegalIndex";
@@ -31,9 +31,9 @@ export default function TermsPage() {
           </LegalMeta>
         }
         visual={
-          <Stage field="mist" className="p-4 sm:p-8 md:p-10">
+          <Field field="mist" className="md:p-10">
             <LegalIndex title="Reflexivity Service Agreement" kicker="Knabble, Inc. · RSA" sections={sections} icon="chain" footer="Governed by the laws of the State of New York" />
-          </Stage>
+          </Field>
         }
       />
       <Section surface="paper" className="border-t border-ink/8 !pt-14 md:!pt-20">

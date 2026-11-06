@@ -3,7 +3,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { CTABand } from "@/components/ui/Blocks";
-import { Stage } from "@/components/product/ui";
+import { Field } from "@/components/visual/kit";
 import { PRIVACY } from "@/lib/legal";
 import { LegalDocument } from "../_legal/LegalDocument";
 import { LegalIndex } from "../_legal/LegalIndex";
@@ -31,9 +31,9 @@ export default function PrivacyPage() {
           </LegalMeta>
         }
         visual={
-          <Stage field="mist" className="p-4 sm:p-8 md:p-10">
+          <Field field="mist" className="md:p-10">
             <LegalIndex title={PRIVACY.title} kicker="Knabble, Inc. · Reflexivity" sections={sections} icon="eye" footer="Applies to reflexivity.com, reflexivity.ai, toggle.global and toggle.ai" />
-          </Stage>
+          </Field>
         }
       />
       <Section surface="paper" className="border-t border-ink/8 !pt-14 md:!pt-20">

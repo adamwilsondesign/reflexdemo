@@ -5,7 +5,7 @@ import { Section, SectionHeader } from "@/components/ui/Section";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { LinkRows, TextLink } from "@/components/ui/Layouts";
 import { CTABand, FeatureGrid } from "@/components/ui/Blocks";
-import { Stage } from "@/components/product/ui";
+import { Field } from "@/components/visual/kit";
 import { SubscribeForm } from "./_components/SubscribeForm";
 import { IssuePreview } from "./_components/IssuePreview";
 
@@ -76,9 +76,9 @@ export default function NewsletterPage() {
           </div>
         }
         visual={
-          <Stage field="lake" className="p-4 sm:p-8 md:p-10">
+          <Field field="lake">
             <IssuePreview />
-          </Stage>
+          </Field>
         }
       />
 

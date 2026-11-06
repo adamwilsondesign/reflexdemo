@@ -7,7 +7,7 @@ import { OFFICE_PHOTO_CREDITS } from "@/lib/credits";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { CTABand } from "@/components/ui/Blocks";
-import { Stage } from "@/components/product/ui";
+import { Field } from "@/components/visual/kit";
 import { DATA_SOURCES } from "@/lib/logos";
 import { SourceMap } from "./_components/SourceMap";
 
@@ -131,9 +131,9 @@ export default function DataNoticesPage() {
           </div>
         }
         visual={
-          <Stage field="lake" className="p-4 sm:p-8 md:p-10">
+          <Field field="lake">
             <SourceMap />
-          </Stage>
+          </Field>
         }
       />
 
