@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { DirB } from "./_components/DirB";
-import { DirC } from "./_components/DirC";
-import { AlertRoll } from "./_components/AlertRoll";
-import { InsightDoc } from "./_components/InsightDoc";
-import { RankTable } from "./_components/RankTable";
-import { ScenarioDash } from "./_components/ScenarioDash";
-import { ThemeDrivers } from "./_components/ThemeDrivers";
-import { MemoTrace } from "./_components/MemoTrace";
-import { Controls } from "./_components/Controls";
+import { DeepGraph as DirB } from "@/components/visual/scenes/DeepGraph";
+import { LayeredStack as DirC } from "@/components/visual/scenes/LayeredStack";
+import { AlertRoll } from "@/components/visual/scenes/AlertRoll";
+import { InsightDoc } from "@/components/visual/scenes/InsightDoc";
+import { RankTable } from "@/components/visual/scenes/RankTable";
+import { ScenarioDash } from "@/components/visual/scenes/ScenarioDash";
+import { ThemeDrivers } from "@/components/visual/scenes/ThemeDrivers";
+import { MemoTrace } from "@/components/visual/scenes/MemoTrace";
+import { Controls } from "@/components/visual/scenes/Controls";
 
 export const metadata: Metadata = {
   title: "Graphics lab",

@@ -18,7 +18,7 @@ const BARS = [
 // 0 back · 1 evidence · 2 answer · 3 move · 4 press · 5 toast · 6 out
 const D = [700, 2300, 1700, 1000, 450, 3600, 700];
 
-export function DirC() {
+export function LayeredStack() {
   const { p, ref, cycle } = useTimeline(D, { still: 5 });
   const out = p === 6;
   const following = p >= 4 && p < 6;

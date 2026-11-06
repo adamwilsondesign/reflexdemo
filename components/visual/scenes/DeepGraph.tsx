@@ -66,7 +66,7 @@ const TAGS = [
 
 const CYCLE = 9000; // per path: 0–1.2s calm, 1.2–3.6s signal travels, 3.6–8s hold, 8–9s release
 
-export function DirB() {
+export function DeepGraph() {
   const wrap = useRef<HTMLDivElement>(null);
   const cv = useRef<HTMLCanvasElement>(null);
   const tagRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -164,14 +164,14 @@ export function DirB() {
           if (f <= 0) break;
           const a = proj[path[h]], b = proj[path[h + 1]];
           const ex = a.x + (b.x - a.x) * f, ey = a.y + (b.y - a.y) * f;
-          ctx.strokeStyle = "rgba(233,169,58,0.22)";
+          ctx.strokeStyle = "rgba(185,205,226,0.22)";
           ctx.lineWidth = 7;
           ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(ex, ey); ctx.stroke();
-          ctx.strokeStyle = "#e9a93a";
-          ctx.lineWidth = 2;
+          ctx.strokeStyle = "#e6edf4";
+          ctx.lineWidth = 1.6;
           ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(ex, ey); ctx.stroke();
           if (f < 1) {
-            ctx.fillStyle = "#ffd88a";
+            ctx.fillStyle = "#ffffff";
             ctx.beginPath(); ctx.arc(ex, ey, 3.2, 0, Math.PI * 2); ctx.fill();
           }
         }
@@ -179,9 +179,9 @@ export function DirB() {
           if (hop < h) break;
           const p = proj[path[h]];
           const age = Math.min(1, (hop - h) * 3 + (h === 0 ? 1 : 0));
-          ctx.fillStyle = "#e9a93a";
+          ctx.fillStyle = "#e6edf4";
           ctx.beginPath(); ctx.arc(p.x, p.y, h === 0 ? 10 : 4.5, 0, Math.PI * 2); ctx.fill();
-          ctx.strokeStyle = `rgba(233,169,58,${0.5 * (1 - age) + 0.25})`;
+          ctx.strokeStyle = `rgba(185,205,226,${0.5 * (1 - age) + 0.3})`;
           ctx.lineWidth = 1.2;
           ctx.beginPath(); ctx.arc(p.x, p.y, (h === 0 ? 16 : 9) + 10 * (1 - age), 0, Math.PI * 2); ctx.stroke();
         }

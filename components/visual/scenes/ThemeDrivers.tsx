@@ -39,7 +39,7 @@ export function ThemeDrivers() {
           </div>
 
           <div className="relative mt-3 h-[176px] overflow-hidden">
-            <AnimatePresence initial={false} mode="popLayout">
+            <AnimatePresence initial={false}>
               <motion.div key={side} className="absolute inset-0" initial={{ opacity: 0, x: side === "head" ? 24 : -24 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: side === "head" ? -24 : 24 }} transition={{ duration: 0.55, ease: RX_EASE }}>
                 {DRIVERS[side].map(([name, s], i) => (
                   <div key={name} className="flex h-11 items-center gap-3 border-b border-[var(--rx-line)] last:border-b-0">

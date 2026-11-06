@@ -18,25 +18,40 @@ export const RX_SPRING = { type: "spring", stiffness: 260, damping: 30, mass: 0.
 
 const useIso = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
-/** Fixed design canvas (w×h) scaled to the container width. */
-export function Canvas({ w, h, children, className }: { w: number; h: number; children: React.ReactNode; className?: string }) {
+/**
+ * Fixed design canvas (w×h) scaled to the container width.
+ * On narrow screens the scale never drops below `minScale` (keeps UI text legible);
+ * the canvas is then cropped horizontally around `focusX` (0 = left, 1 = right).
+ */
+export function Canvas({ w, h, children, className, minScale = 0.74, focusX = 0.5 }: { w: number; h: number; children: React.ReactNode; className?: string; minScale?: number; focusX?: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [s, setS] = useState<number | null>(null);
+  const [m, setM] = useState<{ s: number; cw: number } | null>(null);
   useIso(() => {
     const el = ref.current;
     if (!el) return;
-    const ro = new ResizeObserver(() => setS(el.clientWidth / w));
+    const measure = () => { const cw = el.clientWidth; setM({ s: Math.max(cw / w, Math.min(minScale, 1)), cw }); };
+    const ro = new ResizeObserver(measure);
     ro.observe(el);
-    setS(el.clientWidth / w);
+    measure();
     return () => ro.disconnect();
-  }, [w]);
+  }, [w, minScale]);
+  const s = m?.s ?? 1;
+  const dx = m ? Math.min(0, -(w * s - m.cw) * focusX) : 0;
   return (
-    <div ref={ref} className={clsx("rx relative w-full", className)} style={{ aspectRatio: `${w} / ${h}` }}>
-      <div className="absolute left-0 top-0 origin-top-left" style={{ width: w, height: h, transform: `scale(${s ?? 1})`, opacity: s === null ? 0 : 1 }}>
+    <div ref={ref} className={clsx("rx relative w-full", m && w * s > m.cw + 1 && "overflow-hidden", className)} style={{ height: m ? h * s : undefined, aspectRatio: m ? undefined : `${w} / ${h}` }}>
+      <div className="absolute left-0 top-0 origin-top-left" style={{ width: w, height: h, transform: `translateX(${dx}px) scale(${s})`, opacity: m === null ? 0 : 1 }}>
         {children}
       </div>
     </div>
   );
+}
+
+/**
+ * Brand gradient field that v2 illustrations sit on. Same gradients as the
+ * legacy Stage, but outside the `.pui` scope so card shadows and brand colour survive.
+ */
+export function Field({ field = "lake", className, children }: { field?: "lake" | "pine" | "mist" | "ink"; className?: string; children: React.ReactNode }) {
+  return <div className={clsx("grain relative isolate overflow-hidden rounded-[18px] p-5 sm:p-8", `field-${field}`, className)}>{children}</div>;
 }
 
 /**
