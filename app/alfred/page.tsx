@@ -7,7 +7,9 @@ import { SplitFeature } from "@/components/ui/Layouts";
 import { CTABand, FeatureGrid, Testimonials, TESTIMONIALS } from "@/components/ui/Blocks";
 import { DataSourceLogos } from "@/components/ui/LogoStrip";
 import { Illustrative } from "@/components/ui/Illustrative";
-import { InsightStream, RelationshipPanel } from "@/components/product/visuals";
+import { Field } from "@/components/visual/kit";
+import { AlertRoll } from "@/components/visual/scenes/AlertRoll";
+import { ImpactTree } from "@/components/visual/scenes/ImpactTree";
 import { ColHeader } from "./_components/ColHeader";
 import { AlfredHero } from "./_components/AlfredHero";
 import { TwoModes } from "./_components/TwoModes";
@@ -81,7 +83,9 @@ export default function AlfredPage() {
             </Reveal>
           </div>
           <Reveal className="col-span-12 lg:col-span-6 lg:col-start-7" delay={0.1}>
-            <InsightStream field="pine" className="min-h-[400px]" />
+            <Field field="pine">
+              <AlertRoll />
+            </Field>
           </Reveal>
         </div>
       </Section>
@@ -92,7 +96,7 @@ export default function AlfredPage() {
         title="Trace market impact faster with built-in relationship intelligence."
         lead="Alfred reasons across a proprietary Knowledge Graph to reveal hidden exposures and second-order effects across companies and markets."
         link={{ label: "Explore the Knowledge Graph", href: "/knowledge-graph" }}
-        visual={<RelationshipPanel field="lake" />}
+        visual={<Field field="lake"><ImpactTree /></Field>}
       />
 
       {/* 6 · Use cases (Figma copy, no CTA) */}

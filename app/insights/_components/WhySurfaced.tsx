@@ -1,10 +1,10 @@
 "use client";
 
-import { AnimatePresence, motion, useInView, useReducedMotion } from "motion/react";
+import { useInView, useReducedMotion } from "motion/react";
+import { Field } from "@/components/visual/kit";
+import { WhyPopover } from "@/components/visual/scenes/WhyPopover";
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
-
-const EASE = [0.16, 1, 0.3, 1] as const;
 
 const ROUTES = [
   {
@@ -87,60 +87,13 @@ export function WhySurfaced() {
       </div>
 
       <div id="why-panel" role="tabpanel" aria-labelledby={`why-tab-${r.key}`} className="lg:col-span-7">
-        <div className="pui field-mist grain relative overflow-hidden rounded-[18px] border border-ink/8 p-5 sm:p-8">
-          <div className="h-[560px] sm:h-[248px]">
-          <AnimatePresence mode="wait">
-            <motion.div key={r.key} initial={reduce ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.55, ease: EASE }}>
-              {/* Path */}
-              <ol className="flex flex-col gap-0 sm:flex-row sm:items-stretch" aria-label="Relevance path">
-                {r.chain.map((c, i) => (
-                  <li key={c.v} className="flex flex-col sm:flex-1 sm:flex-row sm:items-center">
-                    <motion.div
-                      initial={reduce ? false : { opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: 0.15 + i * 0.35, ease: EASE }}
-                      className={clsx("ui-card px-3 py-2.5 sm:flex-1", i === r.chain.length - 1 && "border-black/30")}
-                    >
-                      <span className="block text-[12px] text-[#8f8f8f]">{c.k}</span>
-                      <span className="mt-0.5 block text-[14px] font-semibold leading-tight text-[#0d0d0d]">{c.v}</span>
-                      <span className="mt-0.5 block text-[12px] text-[#5d5d5d]">{c.sub}</span>
-                    </motion.div>
-                    {i < r.chain.length - 1 && (
-                      <span className="relative mx-auto block h-6 w-px bg-black/10 sm:mx-0 sm:h-px sm:w-6 sm:shrink-0" aria-hidden="true">
-                        <motion.span
-                          className="absolute left-0 top-0 block bg-[#0d0d0d] sm:h-px"
-                          initial={reduce ? false : { scaleX: 0, scaleY: 0 }}
-                          animate={{ scaleX: 1, scaleY: 1 }}
-                          style={{ width: "100%", height: "100%", transformOrigin: "left top" }}
-                          transition={{ duration: 0.4, delay: 0.4 + i * 0.35, ease: EASE }}
-                        />
-                      </span>
-                    )}
-                  </li>
-                ))}
-              </ol>
-
-              {/* Resulting Insight */}
-              <motion.div
-                initial={reduce ? false : { opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.25 + r.chain.length * 0.35, ease: EASE }}
-                className="ui-card mt-6 p-4"
-              >
-                <div className="flex items-center justify-between gap-2 text-[12px] text-[#8f8f8f]">
-                  <span>{r.insight.type}</span>
-                  <span>In your Insights feed</span>
-                </div>
-                <p className="mt-1 text-[18px] font-semibold leading-snug text-[#0d0d0d]">{r.insight.title}</p>
-                <p className="mt-3 rounded-[10px] bg-[#f9f9f9] px-3 py-2 text-[13px] leading-snug text-[#5d5d5d]">
-                  <span className="font-medium text-[#0d0d0d]">Why you&rsquo;re seeing this.</span> {r.why}
-                </p>
-              </motion.div>
-            </motion.div>
-          </AnimatePresence>
+        <Field field="ink">
+          <p className="sr-only">{`${r.insight.title}. Why you’re seeing this: ${r.why}`}</p>
+          <div aria-hidden="true">
+            <WhyPopover key={r.key} route={active} />
           </div>
-          <p className="mt-4 text-[12px] text-[#5d5d5d]">Illustrative example.</p>
-        </div>
+        </Field>
+        <p className="mt-3 text-[12px] text-ink/55">Illustrative example.</p>
       </div>
     </div>
   );

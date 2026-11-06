@@ -3,7 +3,6 @@ import { PageHero } from "@/components/ui/PageHero";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { SplitText } from "@/components/ui/SplitText";
-import { AutoTabs } from "@/components/ui/AutoTabs";
 import { Button } from "@/components/ui/Button";
 import { CTABand, FeatureGrid } from "@/components/ui/Blocks";
 import { type IconName } from "@/components/ui/PrecisionIcon";
@@ -21,13 +20,6 @@ export const metadata: Metadata = {
   description:
     "Reflexivity Insights surface company and market catalysts, earnings previews and recaps, and historical pattern signals for the names and themes you follow, with the reason each one reached you.",
 };
-
-const ANATOMY = [
-  { title: "Headline", body: "Each Insight opens with the catalyst, its direction and the theme it moves." },
-  { title: "Top 5 takeaways", body: "The five points that matter most, each tagged to the themes it affects." },
-  { title: "Graph ripple effects", body: "The Knowledge Graph ranks the companies connected to the catalyst by role, event link and what to watch." },
-  { title: "Ask Alfred", body: "See which countries and regions are exposed, then ask Alfred follow-up questions about the cohort." },
-];
 
 const TYPES: { icon: IconName; name: string; body: string }[] = [
   {
@@ -101,14 +93,7 @@ export default function InsightsPage() {
             }
           />
           <div className="mt-14 md:mt-20">
-            <AutoTabs
-              interval={6000}
-              items={ANATOMY.map((a, i) => ({
-                title: a.title,
-                body: a.body,
-                visual: <AnatomyDoc step={i} />,
-              }))}
-            />
+            <AnatomyDoc />
           </div>
         </div>
       </Section>
