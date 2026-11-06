@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Stage } from "@/components/product/ui";
-import { MOTION_EASE, MockPanel, StepDots, useCycle } from "@/components/product/motion";
+import { MOTION_EASE, MockPanel, useCycle } from "@/components/product/motion";
 
 const W = 400;
 const H = 120;
@@ -62,7 +62,6 @@ export function FanChart() {
             </div>
           </div>
         </MockPanel>
-        <StepDots count={READS.length} active={i} onDark={false} onSelect={setI} />
       </div>
     </Stage>
   );

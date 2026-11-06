@@ -1,7 +1,7 @@
 "use client";
 
 import { Cite, MissingData, Stage } from "@/components/product/ui";
-import { MockPanel, Row, StepDots, useCycle } from "@/components/product/motion";
+import { MockPanel, Row, useCycle } from "@/components/product/motion";
 
 /** One memo section per state. Each state: a label, one finding, one or two supporting rows. */
 const STATES: { label: string; finding: React.ReactNode; rows: React.ReactNode }[] = [
@@ -50,7 +50,6 @@ export function ResearchMemo() {
             <div className="mt-auto">{s.rows}</div>
           </div>
         </MockPanel>
-        <StepDots count={STATES.length} active={i} onDark={false} onSelect={setI} />
       </div>
     </Stage>
   );

@@ -17,7 +17,14 @@ export const metadata: Metadata = {
     "Reflexivity is built by operators from Duquesne, Brevan Howard, Fortress and Kensho. Meet the leadership team, see what we believe, and find our offices in New York, London and Tokyo.",
 };
 
-const CREDENTIALS = ["Duquesne", "Brevan Howard", "Fortress", "Kensho"];
+/* Official artwork from each firm's site (Kensho cropped to the wordmark). Duquesne Capital has no
+   public logo, so it is set as a matching wordmark. Rendered monochrome ink. */
+const CREDENTIALS = [
+  { name: "Duquesne" },
+  { name: "Brevan Howard", src: "/operators/brevan-howard.svg", w: 168, h: 10 },
+  { name: "Fortress", src: "/operators/fortress.svg", w: 100, h: 25 },
+  { name: "Kensho", src: "/operators/kensho.png", w: 92, h: 16 },
+] as const;
 
 const TEAM = [
   {
@@ -93,10 +100,15 @@ export default function AboutPage() {
       >
         <div className="mt-12 border-t border-ink/12 pt-6">
           <p className="t-ui text-ink/50">Built by operators from</p>
-          <ul className="mt-4 flex flex-wrap gap-x-8 gap-y-2">
+          <ul className="mt-5 flex flex-wrap items-center gap-x-8 gap-y-5">
             {CREDENTIALS.map((c) => (
-              <li key={c} className="font-display text-[19px] font-semibold tracking-[-0.02em] text-ink/70">
-                {c}
+              <li key={c.name} className="flex h-8 items-center">
+                {"src" in c ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={c.src} alt={c.name} width={c.w} height={c.h} className="block opacity-70 [filter:brightness(0)]" style={{ width: c.w, height: "auto" }} />
+                ) : (
+                  <span className="font-serif text-[15px] uppercase tracking-[0.22em] text-ink/70">{c.name}</span>
+                )}
               </li>
             ))}
           </ul>

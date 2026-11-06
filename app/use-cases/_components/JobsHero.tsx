@@ -1,7 +1,7 @@
 "use client";
 
 import { Stage } from "@/components/product/ui";
-import { MockPanel, Row, StepDots, useCycle } from "@/components/product/motion";
+import { MockPanel, Row, useCycle } from "@/components/product/motion";
 
 /** One job per state: the workflow name, the output it returns, three rows of it. */
 const JOBS: { job: string; title: string; rows: [string, string][] }[] = [
@@ -28,7 +28,6 @@ export function JobsHero() {
             </div>
           </div>
         </MockPanel>
-        <StepDots count={JOBS.length} active={i} onSelect={setI} />
       </div>
     </Stage>
   );

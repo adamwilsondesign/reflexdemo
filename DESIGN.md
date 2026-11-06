@@ -69,7 +69,7 @@ The scalable style, set on the homepage. Every product animation follows it:
 - **Slow**: each state holds ≥ 4.5s (`useCycle`, default 4.8s); 0.6s fade/8px rise between states.
 - **Little text**: ≤ ~12 new words per state; one heading line max; rows via `Row`.
 - **One motion idea per visual**: a chain draws in (`Chain`), a notification arrives, a value is revealed — not several at once.
-- **Position, not labels**: `StepDots` under the panel instead of tab labels.
+- **No visible state controls**: no dots, tabs or toggles under a panel. State changes are driven by in-UI cues (a cursor, a menu opening, a row checking off).
 - Pauses off-screen; reduced motion shows the most informative state.
 - Reference implementations: `HeroWorkflow`, `InsightStream`, `AuditTrace`, `RelationshipPanel`.
 

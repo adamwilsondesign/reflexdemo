@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import { AlfredGlyph, Cite, useTypewriter } from "./ui";
-import { Chain, MockPanel, Row, StepDots, useCycle } from "./motion";
+import { Chain, MockPanel, Row, useCycle } from "./motion";
 
 const PROMPT = "Find the hidden beneficiaries of Apple’s supply chain.";
 
@@ -47,7 +47,6 @@ export function HeroWorkflow({ className }: { className?: string }) {
           </div>
         )}
       </MockPanel>
-      <StepDots count={3} active={i} onSelect={setI} />
     </div>
   );
 }

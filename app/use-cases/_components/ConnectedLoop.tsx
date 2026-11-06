@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { Chain, MockPanel, Row, StepDots, useCycle } from "@/components/product/motion";
+import { Chain, MockPanel, Row, useCycle } from "@/components/product/motion";
 
 const STEPS = [
   { label: "Monitor", sub: "An Insight flags CoreWeave’s Rubin rollout." },
@@ -64,7 +64,6 @@ export function ConnectedLoop() {
             </div>
           )}
         </MockPanel>
-        <StepDots count={STEPS.length} active={i} onSelect={setI} />
       </div>
     </div>
   );

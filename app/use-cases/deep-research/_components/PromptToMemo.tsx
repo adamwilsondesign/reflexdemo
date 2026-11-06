@@ -1,7 +1,7 @@
 "use client";
 
 import { AlfredGlyph, Cite, Stage, useTypewriter } from "@/components/product/ui";
-import { Chain, MockPanel, Row, StepDots, useCycle } from "@/components/product/motion";
+import { Chain, MockPanel, Row, useCycle } from "@/components/product/motion";
 
 const PROMPT = "I’m long Amazon after the selloff. Pressure-test my thesis.";
 
@@ -45,7 +45,6 @@ export function PromptToMemo() {
             </div>
           )}
         </MockPanel>
-        <StepDots count={3} active={i} onSelect={setI} />
       </div>
     </Stage>
   );

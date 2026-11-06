@@ -1,7 +1,7 @@
 "use client";
 
 import { Stage } from "@/components/product/ui";
-import { MockPanel, Row, StepDots, useCycle } from "@/components/product/motion";
+import { MockPanel, Row, useCycle } from "@/components/product/motion";
 import { THEME, TIERS } from "./data";
 
 /** Hero: one theme, one motion idea. Each state reveals the next ring of constituents. */
@@ -23,7 +23,6 @@ export function ThemeConstituents() {
             ))}
           </div>
         </MockPanel>
-        <StepDots count={TIERS.length} active={i} onSelect={setI} />
       </div>
     </Stage>
   );

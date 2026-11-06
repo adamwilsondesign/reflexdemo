@@ -62,23 +62,6 @@ export function MockPanel({
   );
 }
 
-/** Three quiet step dots under a panel (position, not labels). */
-export function StepDots({ count, active, onDark = true, onSelect }: { count: number; active: number; onDark?: boolean; onSelect?: (i: number) => void }) {
-  return (
-    <div className="mt-4 flex items-center justify-center gap-2" aria-hidden="true">
-      {Array.from({ length: count }, (_, i) => (
-        <button
-          key={i}
-          type="button"
-          tabIndex={-1}
-          onClick={() => onSelect?.(i)}
-          className={clsx("h-1.5 rounded-full transition-all duration-500", i === active ? "w-6" : "w-1.5", onDark ? (i === active ? "bg-white" : "bg-white/40") : i === active ? "bg-[#0d0d0d]" : "bg-black/20")}
-        />
-      ))}
-    </div>
-  );
-}
-
 /** A panel row: label left, quiet value right. */
 export function Row({ label, value, strong = false, dot = false }: { label: React.ReactNode; value?: React.ReactNode; strong?: boolean; dot?: boolean }) {
   return (

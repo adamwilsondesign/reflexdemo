@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import { Stage } from "@/components/product/ui";
-import { Chain, MockPanel, Row, StepDots, useCycle } from "@/components/product/motion";
+import { Chain, MockPanel, Row, useCycle } from "@/components/product/motion";
 import { Illustrative } from "@/components/ui/Illustrative";
 
 const STEPS = ["What happened", "Why it matters", "What else is affected", "The implication"];
@@ -78,7 +78,6 @@ export function RippleExample() {
                 )}
               </div>
             </MockPanel>
-            <StepDots count={STEPS.length} active={step} onSelect={setStep} />
           </div>
         </Stage>
         <Illustrative onDark className="mt-4">Illustrative example. Rankings show relationship exposure, not a forecast or recommendation.</Illustrative>

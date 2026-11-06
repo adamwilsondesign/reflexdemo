@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import { CodeBlock, MissingData, SourceRow, Stage } from "@/components/product/ui";
-import { MOTION_EASE, MockPanel, StepDots, useCycle } from "@/components/product/motion";
+import { MOTION_EASE, MockPanel, useCycle } from "@/components/product/motion";
 
 const STEPS = [
   { label: "Defined in plain language", body: <SourceRow n={1} title="US 10-year yield, +0.5pp in 3 months" meta="S&P 1500 · 50+ years" /> },
@@ -30,7 +30,6 @@ export function SimulationTrace() {
             </div>
           </div>
         </MockPanel>
-        <StepDots count={STEPS.length} active={i} onSelect={setI} />
       </div>
     </Stage>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import { AlfredGlyph, Cite, useTypewriter } from "@/components/product/ui";
-import { MockPanel, Row, StepDots, useCycle } from "@/components/product/motion";
+import { MockPanel, Row, useCycle } from "@/components/product/motion";
 
 const PROMPT = "What changed in Netflix’s tone on recent earnings calls?";
 
@@ -57,7 +57,6 @@ export function AlfredHero() {
           )}
         </div>
       </MockPanel>
-      <StepDots count={3} active={i} onSelect={setI} />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { Stage } from "@/components/product/ui";
-import { MockPanel, Row, StepDots, useCycle } from "@/components/product/motion";
+import { MockPanel, Row, useCycle } from "@/components/product/motion";
 
 const VIEWS = [
   {
@@ -41,7 +41,6 @@ export function MorningBrief() {
             ))}
           </div>
         </MockPanel>
-        <StepDots count={VIEWS.length} active={i} onSelect={setI} />
       </div>
     </Stage>
   );

@@ -1,12 +1,12 @@
 "use client";
 
 import { Stage } from "@/components/product/ui";
-import { MockPanel, Row, StepDots, useCycle } from "@/components/product/motion";
+import { MockPanel, Row, useCycle } from "@/components/product/motion";
 import { FIRMS } from "./firms";
 
 /**
  * Hero visual (motion system): one fixed panel, one question per firm type.
- * One motion idea: the panel cross-fades from firm to firm. Position shown with StepDots.
+ * One motion idea: the panel cross-fades from firm to firm.
  */
 export function FirmPanel() {
   const [i, ref, setI] = useCycle(FIRMS.length, { ms: 5200, finalForReduced: 0 });
@@ -22,7 +22,6 @@ export function FirmPanel() {
             <Row label="Sources cited" value={f.panel.sources} />
           </div>
         </MockPanel>
-        <StepDots count={FIRMS.length} active={i} onSelect={setI} />
       </div>
     </Stage>
   );

@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import { series } from "@/components/product/ui";
-import { MOTION_EASE, Row, StepDots, useCycle } from "@/components/product/motion";
+import { MOTION_EASE, Row, useCycle } from "@/components/product/motion";
 import { THEME, THEME_VIEWS } from "./data";
 
 const PTS = series(36, 7, 0.35, 1.6);
@@ -48,7 +48,6 @@ export function ThemePage() {
           </AnimatePresence>
         </div>
       </div>
-      <StepDots count={THEME_VIEWS.length} active={i} onSelect={setI} />
     </div>
   );
 }

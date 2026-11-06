@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import { StateTabs } from "./StateTabs";
 import { Pill, Stage } from "@/components/product/ui";
-import { Chain, MockPanel, Row, StepDots, useCycle } from "@/components/product/motion";
+import { Chain, MockPanel, Row, useCycle } from "@/components/product/motion";
 
 /** Every visual: one fixed-height panel, centred on its Stage. Same size across states and tabs. */
 const PANEL_H = 232;
@@ -57,7 +57,6 @@ function Connections() {
           </div>
           <p className={clsx("mt-3 text-[13px] text-[#5d5d5d] transition-opacity duration-500", revoked ? "opacity-100" : "opacity-0")}>Access revoked by your admin</p>
         </MockPanel>
-        <StepDots count={2} active={i} onSelect={set} />
       </div>
     </Board>
   );

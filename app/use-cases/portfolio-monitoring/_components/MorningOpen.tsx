@@ -1,7 +1,7 @@
 "use client";
 
 import { Stage } from "@/components/product/ui";
-import { MockPanel, Row, StepDots, useCycle } from "@/components/product/motion";
+import { MockPanel, Row, useCycle } from "@/components/product/motion";
 
 const NAMES = ["CoreWeave", "Nike", "Vertiv"];
 
@@ -35,7 +35,6 @@ export function MorningOpen() {
             </div>
           </div>
         </MockPanel>
-        <StepDots count={FEED.length} active={i} onSelect={setI} />
       </div>
     </Stage>
   );

@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import { Stage } from "@/components/product/ui";
-import { MOTION_EASE, MockPanel, StepDots, useCycle } from "@/components/product/motion";
+import { MOTION_EASE, MockPanel, useCycle } from "@/components/product/motion";
 
 const ITEMS = [
   { type: "Market catalyst", title: "AI data center power buildout accelerates", why: "You follow Vertiv" },
@@ -40,7 +40,6 @@ export function InsightsHero() {
             <p className="mt-1 truncate text-[14px] font-medium text-[#0d0d0d]">{prev.title}</p>
           </div>
         </MockPanel>
-        <StepDots count={ITEMS.length} active={i} onSelect={setI} />
       </div>
     </Stage>
   );
