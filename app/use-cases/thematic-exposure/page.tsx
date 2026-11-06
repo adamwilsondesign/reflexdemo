@@ -61,9 +61,9 @@ export default function ThematicExposurePage() {
         title="See what’s driving the theme."
         lead="Explore performance, the events shaping market sentiment, and related financial and macro themes, all in one view."
         visual={
-          <div className="flex h-full flex-col items-center justify-center">
+          <div className="flex min-h-full flex-col justify-center">
             <ThemePage />
-            <IllustrativeNote onDark className="mt-4 text-center">Illustrative Industrial Automation theme page.</IllustrativeNote>
+            <IllustrativeNote onDark className="mt-4 text-center">Illustrative AI infrastructure theme page.</IllustrativeNote>
           </div>
         }
       />
