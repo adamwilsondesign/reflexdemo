@@ -19,10 +19,10 @@ export function InsightDoc() {
 
   return (
     <div ref={ref}>
-      <Canvas w={560} h={480}>
-        <div className="rx-card rx-card-lift absolute left-[30px] top-[60px] flex h-[360px] w-[500px] overflow-hidden">
+      <Canvas w={560} h={480} focusX={0.25}>
+        <div className="rx-card rx-card-lift absolute left-[30px] top-[100px] flex h-[280px] w-[500px] overflow-hidden">
           <div className="relative flex-1 overflow-hidden">
-            <motion.div className="absolute inset-x-0 top-0 px-7" animate={{ y: 72 - p * SEC_H }} transition={{ duration: 1.1, ease: RX_EASE }}>
+            <motion.div className="absolute inset-x-0 top-0 px-7" animate={{ y: 56 - p * SEC_H }} transition={{ duration: 1.1, ease: RX_EASE }}>
               <Sec on={p === 0}>
                 <p className="flex items-center gap-1.5 text-[11px] font-medium text-[#3e5368]"><Spark size={10} />Market catalyst</p>
                 <p className="rx-serif mt-2 text-[22px] leading-[29px]">Flash PMI rekindles factory cost pressure</p>

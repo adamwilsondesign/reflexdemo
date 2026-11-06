@@ -26,7 +26,7 @@ export function LayeredStack() {
 
   return (
     <div ref={ref}>
-      <Canvas w={560} h={480}>
+      <Canvas w={560} h={480} focusX={0.25}>
         <motion.div key={cycle} className="absolute inset-0" animate={{ opacity: out ? 0 : 1 }} transition={{ duration: 0.6 }}>
           {/* question (back) */}
           <motion.div

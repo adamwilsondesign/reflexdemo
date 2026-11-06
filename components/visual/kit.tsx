@@ -20,23 +20,24 @@ const useIso = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 /**
  * Fixed design canvas (w×h) scaled to the container width.
- * On narrow screens the scale never drops below `minScale` (keeps UI text legible);
+ * Scale is capped at `maxScale` so UI type stays at its designed size in big slots (the canvas
+ * centres instead). On narrow screens the scale never drops below `minScale` (keeps UI text legible);
  * the canvas is then cropped horizontally around `focusX` (0 = left, 1 = right).
  */
-export function Canvas({ w, h, children, className, minScale = 0.74, focusX = 0.5 }: { w: number; h: number; children: React.ReactNode; className?: string; minScale?: number; focusX?: number }) {
+export function Canvas({ w, h, children, className, minScale = 0.74, maxScale = 1.12, focusX = 0.5 }: { w: number; h: number; children: React.ReactNode; className?: string; minScale?: number; maxScale?: number; focusX?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [m, setM] = useState<{ s: number; cw: number } | null>(null);
   useIso(() => {
     const el = ref.current;
     if (!el) return;
-    const measure = () => { const cw = el.clientWidth; setM({ s: Math.max(cw / w, Math.min(minScale, 1)), cw }); };
+    const measure = () => { const cw = el.clientWidth; setM({ s: Math.min(maxScale, Math.max(cw / w, Math.min(minScale, 1))), cw }); };
     const ro = new ResizeObserver(measure);
     ro.observe(el);
     measure();
     return () => ro.disconnect();
-  }, [w, minScale]);
+  }, [w, minScale, maxScale]);
   const s = m?.s ?? 1;
-  const dx = m ? Math.min(0, -(w * s - m.cw) * focusX) : 0;
+  const dx = m ? (w * s > m.cw ? -(w * s - m.cw) * focusX : (m.cw - w * s) / 2) : 0;
   return (
     <div ref={ref} className={clsx("rx relative w-full", m && w * s > m.cw + 1 && "overflow-hidden", className)} style={{ height: m ? h * s : undefined, aspectRatio: m ? undefined : `${w} / ${h}` }}>
       <div className="absolute left-0 top-0 origin-top-left" style={{ width: w, height: h, transform: `translateX(${dx}px) scale(${s})`, opacity: m === null ? 0 : 1 }}>

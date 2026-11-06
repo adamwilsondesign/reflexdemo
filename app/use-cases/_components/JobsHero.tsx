@@ -7,9 +7,8 @@ import { JobsBoard } from "@/components/visual/scenes/JobsBoard";
 export function JobsHero() {
   return (
     <Field field="lake">
-      <div className="mx-auto max-w-[920px]">
-        <div className="sm:hidden"><JobsBoard narrow /></div>
-        <div className="hidden sm:block"><JobsBoard /></div>
+      <div className="mx-auto max-w-[520px]">
+        <JobsBoard narrow />
       </div>
     </Field>
   );
