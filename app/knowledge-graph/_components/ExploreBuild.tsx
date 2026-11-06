@@ -1,63 +1,12 @@
 "use client";
 
-import { motion, useInView, useReducedMotion } from "motion/react";
-import { useRef } from "react";
-import { MockPanel, Row, useCycle } from "@/components/product/motion";
+import { motion, useReducedMotion } from "motion/react";
 import clsx from "clsx";
-import { CardHeader, useTypewriter } from "@/components/product/ui";
 import { TextLink } from "@/components/ui/Layouts";
+import { EntityComposer } from "@/components/visual/scenes/EntityComposer";
+import { GraphCall } from "@/components/visual/scenes/GraphCall";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
-
-function ExploreVisual() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { amount: 0.4 });
-  const typed = useTypewriter("Which of my holdings depend on TSMC?", { start: inView, speed: 40, delay: 300 });
-  return (
-    <div ref={ref} className="pui flex h-full items-center justify-center p-6">
-      <div className="w-full max-w-[400px]">
-        <MockPanel height={200}>
-          <div className="flex h-full flex-col">
-            <CardHeader />
-            <p className="mt-3 text-[16px] leading-6 text-[#0d0d0d]">{typed}</p>
-            <div className="mt-auto">
-              <Row strong dot label="NVIDIA" value="Supplier, 0.90" />
-              <Row strong dot label="Apple" value="Supplier, 0.88" />
-            </div>
-          </div>
-        </MockPanel>
-      </div>
-    </div>
-  );
-}
-
-const RECORD = [
-  `{`,
-  `  "source": "NVIDIA",`,
-  `  "target": "TSMC",`,
-  `  "relationship": "supplier",`,
-  `  "weight": 0.90`,
-  `}`,
-];
-const CHANNELS = ["Data feeds", "API", "MCP"];
-
-function BuildVisual() {
-  const [ch, ref] = useCycle(CHANNELS.length, { ms: 4800, finalForReduced: 0 });
-  return (
-    <div ref={ref} className="pui flex h-full items-center justify-center p-6">
-      <div className="w-full max-w-[400px]">
-        <MockPanel height={200}>
-          <div className="flex gap-4 text-[13px]">
-            {CHANNELS.map((c, k) => (
-              <span key={c} className={clsx("transition-colors duration-500", k === ch ? "font-medium text-[#0d0d0d]" : "text-[#8f8f8f]")}>{c}</span>
-            ))}
-          </div>
-          <pre className="mt-3 overflow-hidden rounded-[10px] border border-black/10 bg-[#f9f9f9] p-3 text-[12px] leading-5 text-[#0d0d0d]">{RECORD.join("\n")}</pre>
-        </MockPanel>
-      </div>
-    </div>
-  );
-}
 
 const CARDS = [
   {
@@ -67,14 +16,16 @@ const CARDS = [
       { label: "Meet Alfred", href: "/alfred" },
       { label: "See Insights", href: "/insights" },
     ],
-    visual: <ExploreVisual />,
+    visual: <EntityComposer />,
+    field: "field-mist",
     dark: false,
   },
   {
     title: "Build with the Graph",
     body: "Bring structured relationship intelligence into your own models and applications through data feeds, API, or MCP. Suited to systematic teams and thematic basket construction.",
     links: [{ label: "Data feeds, API and MCP", href: "/deployment#knowledge-feeds" }],
-    visual: <BuildVisual />,
+    visual: <GraphCall />,
+    field: "field-pine",
     dark: true,
   },
 ];
@@ -92,7 +43,7 @@ export function ExploreBuild() {
           transition={{ duration: 0.9, ease: EASE, delay: i * 0.1 }}
           className={clsx("flex flex-col overflow-hidden rounded-[16px]", c.dark ? "bg-ink text-paper" : "border border-ink/12 bg-white text-ink")}
         >
-          <div className={clsx("h-[296px] shrink-0", c.dark ? "field-ink" : "field-mist")}>{c.visual}</div>
+          <div className={clsx("grain relative isolate shrink-0 overflow-hidden p-4 sm:p-6", c.field)}>{c.visual}</div>
           <div className="flex flex-1 flex-col p-6 md:p-9">
             <h3 className="t-h2">{c.title}</h3>
             <p className={clsx("t-body mt-3 max-w-[480px]", c.dark ? "text-paper/70" : "text-ink/70")}>{c.body}</p>

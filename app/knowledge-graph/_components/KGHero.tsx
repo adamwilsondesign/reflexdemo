@@ -4,16 +4,13 @@ import { motion, useReducedMotion } from "motion/react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { SplitText } from "@/components/ui/SplitText";
 import { DemoActions } from "@/components/ui/Button";
-import { useCycle } from "@/components/product/motion";
-import { CalmGraph } from "./CalmGraph";
+import { DeepGraph } from "@/components/visual/scenes/DeepGraph";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
-const SEQUENCE = ["AMZN", "NVDA", "TSM", "PWR"];
 
-/** Dark hero: headline left half, a calm fixed-layout graph in the right half. */
+/** Dark hero: headline left half, the deep graph (approved v2 scene) in the right half, straight on the ink field. */
 export function KGHero() {
   const reduce = useReducedMotion();
-  const [i, ref] = useCycle(SEQUENCE.length, { ms: 5200, finalForReduced: 1 });
   const f = (d: number) => ({ initial: reduce ? false : { opacity: 0, y: 16 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.9, ease: EASE, delay: d } });
 
   return (
@@ -40,8 +37,8 @@ export function KGHero() {
           transition={{ duration: 1.2, ease: EASE, delay: 0.3 }}
           className="col-span-12 lg:col-span-6 lg:col-start-7"
         >
-          <div ref={ref} className="mx-auto aspect-[7/6] w-full max-w-[560px]">
-            <CalmGraph focus={SEQUENCE[i]} />
+          <div className="mx-auto w-full max-w-[560px]">
+            <DeepGraph />
           </div>
         </motion.div>
       </div>
