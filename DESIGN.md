@@ -56,6 +56,23 @@ Applies ONLY to the interface elements drawn inside product images/animations �
 - **Simplify**: one idea per panel, 3–4 rows max, no decorative chips, no icon tiles, no progress-bar ornaments, charts as a single thin graphite line.
 - **Kit**: `components/product/ui.tsx` implements these (`CardHeader`, `PromptCard`, `Pill`=badge, `Cite`, `SourceRow`, `MissingData`, `CodeBlock`, `Sparkline`, `StepList`, `MetricRow`, `TakeawayList`, `ImpactPathway`). Wrap custom mockups in `className="pui"` (Stage does this for its children).
 
+## Layout grid (round 6)
+- **12-column grid** (`.grid-12`: 12 cols, 32px gutters at lg). Halves = `col-span-12 lg:col-span-6`. Headline+subhead ≤ 6 columns.
+- **8dp baseline**: type line-heights are multiples of 8 (display 72/72, h1 56/64, h2 40/48, h3 24/32, statement 28/40, lead 20/32, body 17/24, small 15/24, ui 12/16). Spacing utilities use 8px steps (4px allowed only for fine detail).
+- **One hero CTA, always "Request a Demo" → /book-a-demo** (`PageHero` enforces; Blog/News/About/Careers have none).
+- Hero visuals never parallax/drift on scroll.
+- Illustrative notes: `<Illustrative>` / `IllustrativeNote` — 12px, sentence case, muted. Use sparingly.
+
+## Product animation system (round 6) — `components/product/motion.tsx`
+The scalable style, set on the homepage. Every product animation follows it:
+- **One fixed-size white panel** (`MockPanel`, height fixed) centred on its Stage — states never resize the frame.
+- **Slow**: each state holds ≥ 4.5s (`useCycle`, default 4.8s); 0.6s fade/8px rise between states.
+- **Little text**: ≤ ~12 new words per state; one heading line max; rows via `Row`.
+- **One motion idea per visual**: a chain draws in (`Chain`), a notification arrives, a value is revealed — not several at once.
+- **Position, not labels**: `StepDots` under the panel instead of tab labels.
+- Pauses off-screen; reduced motion shows the most informative state.
+- Reference implementations: `HeroWorkflow`, `InsightStream`, `AuditTrace`, `RelationshipPanel`.
+
 ## Component rules
 - **Eyebrows only in heroes.** No eyebrow/kicker labels above section headings or card titles anywhere else (`SectionHeader` ignores `eyebrow`). Labels *inside product UI mockups* are fine; "Illustrative" disclaimers go below a visual, not above a heading.
 - **Headline + subhead ≤ half the desktop grid** (6 of 12 cols). `SectionHeader` enforces it; `align="split"` = headline left half / subhead right half.

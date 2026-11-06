@@ -106,7 +106,7 @@ export default function BookADemoPage() {
         lead="Five quick fields, a follow-up within one business day, and a walkthrough shaped around how you work."
         note={null}
         actions={
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-4">
             <Button href="#demo-form" variant="light" arrow cta="demo-closing">
               Request a Demo
             </Button>

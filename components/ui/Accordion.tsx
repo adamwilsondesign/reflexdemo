@@ -39,7 +39,7 @@ export function Accordion({ items, onDark = false, defaultOpen = 0 }: { items: {
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                   className="overflow-hidden"
                 >
-                  <div className={clsx("t-body max-w-[720px] pb-7", onDark ? "text-paper/70" : "text-ink/70")}>{it.a}</div>
+                  <div className={clsx("t-body max-w-[720px] pb-8", onDark ? "text-paper/70" : "text-ink/70")}>{it.a}</div>
                 </motion.div>
               )}
             </AnimatePresence>

@@ -69,16 +69,16 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             {/* mobile TOC */}
             {toc.length > 1 && (
               <details className="group mb-10 rounded-[12px] border border-ink/12 bg-white/60 lg:hidden">
-                <summary className="flex cursor-pointer list-none items-center justify-between px-5 py-4">
+                <summary className="flex cursor-pointer list-none items-center justify-between px-6 py-4">
                   <span className="t-ui text-ink/60">On this page · {toc.length} sections</span>
                   <svg viewBox="0 0 12 12" className="h-3 w-3 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
                     <path d="M2 4.5l4 4 4-4" />
                   </svg>
                 </summary>
-                <ol className="flex flex-col gap-1 border-t border-ink/10 px-5 py-4">
+                <ol className="flex flex-col gap-1 border-t border-ink/10 px-6 py-4">
                   {toc.map((t) => (
                     <li key={t.id}>
-                      <a href={`#${t.id}`} className="block py-1.5 text-[15px] text-ink/75 hover:text-ink">
+                      <a href={`#${t.id}`} className="block py-2 text-[15px] text-ink/75 hover:text-ink">
                         {t.text}
                       </a>
                     </li>
@@ -117,7 +117,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             <div className="sticky top-32 ml-auto max-w-[240px] rounded-[14px] border border-ink/10 bg-white/60 p-6">
               <p className="font-display text-[17px] font-semibold leading-[1.3]">AI investment research you can check.</p>
               <p className="t-small mt-2 text-ink/60">See Alfred, the Knowledge Graph and Insights on a question of your own.</p>
-              <Link href="/book-a-demo" data-cta="article-rail" className="group mt-5 inline-flex items-center gap-2 font-display text-[15px] font-medium">
+              <Link href="/book-a-demo" data-cta="article-rail" className="group mt-6 inline-flex items-center gap-2 font-display text-[15px] font-medium">
                 <span className="link-underline">Request a Demo</span>
                 <Arrow />
               </Link>
@@ -139,7 +139,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               </div>
             }
           />
-          <Stagger className="mt-12 grid gap-5 sm:grid-cols-2 md:mt-16 lg:grid-cols-3 lg:gap-6">
+          <Stagger className="mt-12 grid gap-6 sm:grid-cols-2 md:mt-16 lg:grid-cols-3 lg:gap-6">
             {related.map((p) => (
               <StaggerItem key={p.slug} className="h-full">
                 <PostCard post={p} />

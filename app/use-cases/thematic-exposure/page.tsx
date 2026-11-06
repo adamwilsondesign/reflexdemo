@@ -141,7 +141,7 @@ export default function ThematicExposurePage() {
               <div className="font-display text-[28px] font-semibold leading-none tracking-[-0.025em] md:text-[36px]">
                 <CountUp to={st.to} suffix={st.suffix} />
               </div>
-              <p className="t-ui mt-3 text-paper/65">{st.label}</p>
+              <p className="t-ui mt-4 text-paper/65">{st.label}</p>
             </StaggerItem>
           ))}
         </Stagger>

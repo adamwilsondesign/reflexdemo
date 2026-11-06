@@ -159,7 +159,7 @@ export default function DeploymentPage() {
             <dl className="border-t border-white/20 lg:mt-0 mt-8">
               {COMPARE.map((r) => (
                 <Reveal key={r.label}>
-                  <div className="grid gap-x-16 gap-y-3 border-b border-white/20 py-6 md:grid-cols-2 lg:grid-cols-[200px_1fr_1fr] lg:gap-x-12">
+                  <div className="grid gap-x-16 gap-y-4 border-b border-white/20 py-6 md:grid-cols-2 lg:grid-cols-[200px_1fr_1fr] lg:gap-x-12">
                     <dt className="t-label text-paper/60 md:col-span-2 lg:col-span-1">{r.label}</dt>
                     <dd className="t-small text-paper/85">
                       <span className="mb-1 block font-display text-[13px] font-medium text-paper/55 lg:hidden">Platform Access</span>
@@ -194,7 +194,7 @@ export default function DeploymentPage() {
                   "Monitor holdings and themes with Insights",
                   "Bring firm knowledge in from Microsoft 365",
                 ].map((x) => (
-                  <li key={x} className="t-body border-b border-ink/12 py-3 text-ink/80">
+                  <li key={x} className="t-body border-b border-ink/12 py-4 text-ink/80">
                     {x}
                   </li>
                 ))}
@@ -224,14 +224,14 @@ export default function DeploymentPage() {
               className="lg:max-w-none"
             />
             <Reveal delay={0.2}>
-              <dl className="mt-8 grid gap-5 border-t border-white/20 pt-6 sm:grid-cols-2">
+              <dl className="mt-8 grid gap-6 border-t border-white/20 pt-6 sm:grid-cols-2">
                 <div>
                   <dt className="font-display text-[15px] font-semibold">MCP</dt>
-                  <dd className="t-small mt-1.5 text-paper/70">Reflexivity tools your assistant can call, with sources returned alongside the answer.</dd>
+                  <dd className="t-small mt-2 text-paper/70">Reflexivity tools your assistant can call, with sources returned alongside the answer.</dd>
                 </div>
                 <div>
                   <dt className="font-display text-[15px] font-semibold">API</dt>
-                  <dd className="t-small mt-1.5 text-paper/70">Graph, Insights and Alfred research as structured responses for internal platforms.</dd>
+                  <dd className="t-small mt-2 text-paper/70">Graph, Insights and Alfred research as structured responses for internal platforms.</dd>
                 </div>
               </dl>
               <div className="mt-8 flex flex-wrap gap-x-8 gap-y-4">
@@ -253,7 +253,7 @@ export default function DeploymentPage() {
               className="lg:max-w-none"
             />
             <Reveal delay={0.2}>
-              <ul className="mt-8 grid gap-5 border-t border-ink/12 pt-6 sm:grid-cols-3 lg:grid-cols-1">
+              <ul className="mt-8 grid gap-6 border-t border-ink/12 pt-6 sm:grid-cols-3 lg:grid-cols-1">
                 {[
                   ["Thematic baskets", "Find companies exposed to a theme, with the relationship behind each one."],
                   ["Research platforms", "Add supplier, customer and competitor context to your own coverage."],
@@ -270,7 +270,7 @@ export default function DeploymentPage() {
           </div>
           <Reveal className="lg:col-span-7" delay={0.1}>
             <FeedTable />
-            <p className="t-small mt-3 text-ink/50">Illustrative schema and values. Delivery format and cadence are agreed in scoping.</p>
+            <p className="text-[12px] leading-4 mt-4 text-ink/50">Illustrative schema and values. Delivery format and cadence are agreed in scoping.</p>
           </Reveal>
         </div>
       </Section>
@@ -290,7 +290,7 @@ export default function DeploymentPage() {
             <Reveal delay={0.2}>
               <ul className="mt-8 border-t border-white/15">
                 {["Your brand, your interface, your client entitlements", "Insights and Alfred answers alongside your own data", "Sources carried through to your users"].map((x) => (
-                  <li key={x} className="t-body border-b border-white/15 py-3 text-paper/80">
+                  <li key={x} className="t-body border-b border-white/15 py-4 text-paper/80">
                     {x}
                   </li>
                 ))}
@@ -323,9 +323,9 @@ export default function DeploymentPage() {
                 ["Firm knowledge + market data", "Answers can draw on your IC memos and call notes alongside integrated market data, with each source shown."],
                 ["Where you work", "Teams and Copilot are additional surfaces; MCP connects assistants such as ChatGPT and Claude."],
               ].map(([t, b]) => (
-                <div key={t} className="border-t border-ink/12 pt-5">
+                <div key={t} className="border-t border-ink/12 pt-6">
                   <p className="font-display text-[15px] font-semibold">{t}</p>
-                  <p className="t-small mt-1.5 text-ink/65">{b}</p>
+                  <p className="t-small mt-2 text-ink/65">{b}</p>
                 </div>
               ))}
             </div>
@@ -346,7 +346,7 @@ export default function DeploymentPage() {
       >
         <dl className="mt-10 max-w-[520px] border-t border-white/20">
           {FOUNDATION.map((f) => (
-            <div key={f.title} className="border-b border-white/20 py-5">
+            <div key={f.title} className="border-b border-white/20 py-6">
               <dt className="t-h3">{f.title}</dt>
               <dd className="t-small mt-2 text-paper/70">{f.body}</dd>
             </div>
@@ -378,7 +378,7 @@ export default function DeploymentPage() {
             <p className="t-lead text-paper/75">
               Talk to our engineers about API and MCP access, feed delivery, entitlements, identity and data handling. We’ll share technical documentation as part of the call.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Button href="/contact?topic=technical" variant="light" arrow cta="deployment-technical">
                 Book a technical call
               </Button>

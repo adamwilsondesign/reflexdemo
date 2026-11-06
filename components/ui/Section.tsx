@@ -91,10 +91,10 @@ export function SectionHeader({
 }) {
   if (align === "split") {
     return (
-      <div className={clsx("grid gap-6 lg:grid-cols-2 lg:gap-16", className)}>
-        <SplitText text={title} className={size === "h1" ? "t-h1" : "t-h2"} />
+      <div className={clsx("grid-12 gap-y-6", className)}>
+        <SplitText text={title} className={clsx("col-span-12 lg:col-span-6", size === "h1" ? "t-h1" : "t-h2")} />
         {(lead || actions) && (
-          <Reveal delay={0.15} className="flex flex-col justify-end gap-6 lg:pb-1">
+          <Reveal delay={0.15} className="col-span-12 flex flex-col justify-end gap-6 lg:col-span-6">
             {lead && <div className="t-lead opacity-75">{lead}</div>}
             {actions}
           </Reveal>
@@ -103,10 +103,10 @@ export function SectionHeader({
     );
   }
   return (
-    <div className={clsx("max-w-[640px] lg:max-w-[calc(50%-2rem)]", align === "center" && "mx-auto text-center", className)}>
+    <div className={clsx("max-w-[640px] lg:max-w-[calc(50%-1rem)]", align === "center" && "mx-auto text-center", className)}>
       <SplitText text={title} className={size === "h1" ? "t-h1" : "t-h2"} />
       {lead && (
-        <Reveal delay={0.15} className="t-lead mt-5 opacity-75">
+        <Reveal delay={0.15} className="t-lead mt-6 opacity-75">
           {lead}
         </Reveal>
       )}

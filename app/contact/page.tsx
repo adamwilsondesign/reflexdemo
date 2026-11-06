@@ -79,17 +79,17 @@ export default function ContactPage() {
           <div>
             <SplitText text="Choose the right route." className="t-h2 max-w-[520px]" />
             <Reveal delay={0.15}>
-              <p className="t-lead mt-5 max-w-[460px] text-paper/72">Each enquiry goes straight to the team that handles it.</p>
+              <p className="t-lead mt-6 max-w-[460px] text-paper/72">Each enquiry goes straight to the team that handles it.</p>
             </Reveal>
           </div>
           <Stagger as="ul" className="border-t border-white/20">
             {ROUTES.map((r) => (
-              <StaggerItem as="li" key={r.k} className="grid gap-x-6 gap-y-2 border-b border-white/20 py-6 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:py-7">
+              <StaggerItem as="li" key={r.k} className="grid gap-x-6 gap-y-2 border-b border-white/20 py-6 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:py-8">
                 <h3 className="font-display text-[19px] font-medium tracking-[-0.01em] md:text-[21px]">{r.k}</h3>
                 <div>
                   <p className="font-display text-[16px] font-semibold">{r.title}</p>
                   <p className="t-small mt-1 text-paper/70">{r.body}</p>
-                  <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-3">
+                  <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-4">
                     {r.links.map((l) => {
                       const ext = l.href.startsWith("http") || l.href.startsWith("mailto:");
                       const cls = "group inline-flex items-center gap-2 border-b border-current/40 pb-0.5 font-display text-[14.5px] font-medium transition-colors hover:border-current";
@@ -153,9 +153,9 @@ function OfficeList() {
   return (
     <div className="border-t border-ink/12 pt-8 lg:mt-12">
       <h3 className="t-h3">Offices</h3>
-      <ul className="mt-4 space-y-3">
+      <ul className="mt-4 space-y-4">
         {OFFICES.map((o) => (
-          <li key={o} className="flex items-center justify-between border-b border-ink/8 pb-3">
+          <li key={o} className="flex items-center justify-between border-b border-ink/8 pb-4">
             <span className="font-display text-[20px] font-semibold tracking-[-0.01em]">{o}</span>
             <span className="h-1.5 w-1.5 rounded-full bg-lake-500" aria-hidden="true" />
           </li>

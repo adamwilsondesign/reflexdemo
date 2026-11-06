@@ -101,7 +101,7 @@ export function LegalDocument({ doc, children }: { doc: LegalDoc; children?: Rea
               aria-current={on ? "location" : undefined}
               className={clsx(
                 "relative block py-[7px] text-[14px] leading-snug transition-colors duration-300",
-                mobile ? "border-t border-ink/8 py-3" : "-ml-px border-l pl-4",
+                mobile ? "border-t border-ink/8 py-4" : "-ml-px border-l pl-4",
                 !mobile && (on ? "border-ink font-medium text-ink" : "border-transparent text-ink/55 hover:text-ink"),
                 mobile && (on ? "font-medium text-ink" : "text-ink/65"),
               )}
@@ -119,13 +119,13 @@ export function LegalDocument({ doc, children }: { doc: LegalDoc; children?: Rea
       <aside className="lg:col-span-3">
         {/* Mobile / tablet: collapsible */}
         <details className="group rounded-[12px] border border-ink/12 bg-white/60 lg:hidden">
-          <summary className="flex cursor-pointer list-none items-center justify-between px-5 py-4 [&::-webkit-details-marker]:hidden">
+          <summary className="flex cursor-pointer list-none items-center justify-between px-6 py-4 [&::-webkit-details-marker]:hidden">
             <span className="t-ui text-ink/70">On this page · {toc.length} sections</span>
             <svg viewBox="0 0 12 8" className="h-2 w-3 transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
               <path d="M1 1.5l5 5 5-5" />
             </svg>
           </summary>
-          <nav aria-label="Table of contents" className="px-5 pb-2">
+          <nav aria-label="Table of contents" className="px-6 pb-2">
             <TocList mobile />
           </nav>
         </details>
@@ -193,13 +193,13 @@ function Block({ b, first }: { b: LegalBlock; first: boolean }) {
       );
     case "p":
       return (
-        <p className={clsx(first ? "t-lead mt-0 text-ink/85" : "t-body mt-5 !leading-[1.7] text-ink/80")}>
+        <p className={clsx(first ? "t-lead mt-0 text-ink/85" : "t-body mt-6 !leading-[1.7] text-ink/80")}>
           <Linkify text={b.text} />
         </p>
       );
     case "ul":
       return (
-        <ul className="mt-5 space-y-3 pl-1">
+        <ul className="mt-6 space-y-4 pl-1">
           {b.items.map((it, i) => (
             <li key={i} className="t-body relative pl-6 !leading-[1.7] text-ink/80">
               <span className="absolute left-0 top-[0.8em] h-[5px] w-[5px] rounded-full bg-lake-500" aria-hidden="true" />

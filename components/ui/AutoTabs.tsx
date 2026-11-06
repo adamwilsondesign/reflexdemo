@@ -49,11 +49,11 @@ export function AutoTabs({
   return (
     <div
       ref={ref}
-      className={clsx("grid items-center gap-10 lg:grid-cols-12 lg:gap-16", className)}
+      className={clsx("grid-12 items-center gap-y-10", className)}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className={clsx("lg:col-span-5", visualFirst && "lg:order-2")} role="tablist" aria-orientation="vertical">
+      <div className={clsx("col-span-12 lg:col-span-5", visualFirst && "lg:order-2")} role="tablist" aria-orientation="vertical">
         {items.map((it, i) => {
           const on = i === active;
           return (
@@ -66,7 +66,7 @@ export function AutoTabs({
               onFocus={() => setPaused(true)}
               onBlur={() => setPaused(false)}
               className={clsx(
-                "group relative block w-full border-t py-5 text-left transition-colors duration-500 md:py-6",
+                "group relative block w-full border-t py-6 text-left transition-colors duration-500 md:py-6",
                 onDark ? "border-white/12" : "border-ink/12",
               )}
             >
@@ -90,7 +90,7 @@ export function AutoTabs({
                         transition={{ duration: 0.55, ease: EASE }}
                         className="block overflow-hidden"
                       >
-                        <span className={clsx("t-body block pt-3", onDark ? "text-paper/70" : "text-ink/70")}>{it.body}</span>
+                        <span className={clsx("t-body block pt-4", onDark ? "text-paper/70" : "text-ink/70")}>{it.body}</span>
                       </motion.span>
                     )}
                   </AnimatePresence>
@@ -101,7 +101,7 @@ export function AutoTabs({
         })}
       </div>
 
-      <div className={clsx("relative lg:col-span-7", visualFirst && "lg:order-1", visualClassName)} role="tabpanel" aria-labelledby={`tab-${items[active].title}`}>
+      <div className={clsx("relative col-span-12 lg:col-span-6 lg:col-start-7", visualFirst && "lg:order-1 lg:col-start-1", visualClassName)} role="tabpanel" aria-labelledby={`tab-${items[active].title}`}>
         <div className="relative aspect-[4/4.6] w-full sm:aspect-[4/3]">
           <AnimatePresence mode="popLayout" initial={false}>
             <motion.div

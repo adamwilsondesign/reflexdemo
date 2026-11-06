@@ -59,7 +59,7 @@ export default function PlatformPage() {
         title="The investment intelligence layer for your research workflow."
         lead="Reflexivity brings an AI analyst, a market-wide Knowledge Graph, always-on Insights and institutional data together in one maintained platform, or into the tools your team already runs."
         actions={
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-4">
             <Button href="/book-a-demo" variant="light" arrow cta="platform-hero">Request a Demo</Button>
             <Button href="/contact?topic=partnerships" variant="outline-light">Explore partnerships</Button>
           </div>
@@ -115,20 +115,20 @@ export default function PlatformPage() {
         <div className="container-x">
           <SectionHeader title="What you would otherwise build and maintain." />
           <Reveal className="mt-12 overflow-hidden rounded-[16px] border border-ink/10 bg-white md:mt-16">
-            <div className="hidden grid-cols-12 border-b border-ink/10 bg-mist-100 px-7 py-4 md:grid">
+            <div className="hidden grid-cols-12 border-b border-ink/10 bg-mist-100 px-8 py-4 md:grid">
               <span className="t-ui col-span-3 text-ink/50">What it takes</span>
               <span className="t-ui col-span-4 text-ink/50">Assembling it yourself</span>
               <span className="t-ui col-span-5 text-ink">With Reflexivity</span>
             </div>
             <ul>
               {COMPARE.map(([k, diy, rfx]) => (
-                <li key={k} className="grid gap-2 border-b border-ink/8 px-6 py-5 last:border-b-0 md:grid-cols-12 md:gap-0 md:px-7">
+                <li key={k} className="grid gap-2 border-b border-ink/8 px-6 py-6 last:border-b-0 md:grid-cols-12 md:gap-0 md:px-8">
                   <span className="font-display text-[16px] font-semibold md:col-span-3">{k}</span>
-                  <span className="t-small flex gap-2.5 text-ink/55 md:col-span-4 md:pr-8">
+                  <span className="t-small flex gap-4 text-ink/55 md:col-span-4 md:pr-8">
                     <span className="mt-[4px] flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-ink/[0.06] font-display text-[9px] text-ink/50" aria-hidden="true">—</span>
                     <span><span className="sr-only">Assembling it yourself: </span>{diy}</span>
                   </span>
-                  <span className="t-small flex gap-2.5 text-ink md:col-span-5">
+                  <span className="t-small flex gap-4 text-ink md:col-span-5">
                     <span className="mt-[4px] flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-pine-100 font-display text-[10px] text-pine-700" aria-hidden="true">✓</span>
                     <span><span className="sr-only">With Reflexivity: </span>{rfx}</span>
                   </span>

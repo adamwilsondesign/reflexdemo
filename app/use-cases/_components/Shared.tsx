@@ -79,14 +79,7 @@ export function RelatedUseCases({ current, extra, onDark = false }: { current: s
   );
 }
 
-/** Small label used under every illustrative product example. */
+/** Small note under illustrative product examples: 12px, sentence case, muted (no badge). */
 export function IllustrativeNote({ children, onDark = false, className }: { children: React.ReactNode; onDark?: boolean; className?: string }) {
-  return (
-    <p className={clsx("flex items-start gap-2 text-[12.5px] leading-relaxed", onDark ? "text-paper/50" : "text-ink/50", className)}>
-      <span aria-hidden="true" className={clsx("mt-[3px] inline-flex h-[14px] shrink-0 items-center rounded-[3px] px-1 font-mono text-[9px] uppercase tracking-[0.06em]", onDark ? "bg-white/10 text-paper/70" : "bg-ink/[0.07] text-ink/60")}>
-        Illustrative
-      </span>
-      <span>{children}</span>
-    </p>
-  );
+  return <p className={clsx("text-[12px] leading-4", onDark ? "text-paper/50" : "text-ink/50", className)}>{children}</p>;
 }

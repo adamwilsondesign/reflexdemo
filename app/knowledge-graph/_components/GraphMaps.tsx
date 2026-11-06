@@ -141,7 +141,7 @@ export function GraphMaps() {
             </AnimatePresence>
           </div>
         </div>
-        <p className="t-small mt-3 text-ink/50">Illustrative relationships and weights.</p>
+        <p className="text-[12px] leading-4 mt-3 text-ink/50">Illustrative relationships and weights.</p>
       </div>
     </div>
   );

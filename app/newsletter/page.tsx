@@ -76,7 +76,7 @@ export default function NewsletterPage() {
           </div>
         }
         visual={
-          <Stage field="lake" className="p-3 sm:p-8 md:p-10">
+          <Stage field="lake" className="p-4 sm:p-8 md:p-10">
             <IssuePreview />
           </Stage>
         }
@@ -95,7 +95,7 @@ export default function NewsletterPage() {
             <SectionHeader title="Respectful of your inbox." />
             <Stagger as="ul" className="mt-10 border-b border-ink/12">
               {PROMISES.map((p) => (
-                <StaggerItem key={p.k} as="li" className="grid grid-cols-[110px_1fr] gap-4 border-t border-ink/12 py-5">
+                <StaggerItem key={p.k} as="li" className="grid grid-cols-[110px_1fr] gap-4 border-t border-ink/12 py-6">
                   <span className="t-label pt-0.5 text-ink/50">{p.k}</span>
                   <span>
                     <span className="block font-display text-[17px] font-semibold">{p.v}</span>
@@ -108,7 +108,7 @@ export default function NewsletterPage() {
               <div className="rounded-[14px] border border-ink/10 bg-white/60 p-6">
                 <p className="font-display text-[17px] font-semibold">Subscribe</p>
                 <p className="t-small mt-1 text-ink/60">Takes a few seconds. Work or personal address both welcome.</p>
-                <SubscribeForm className="mt-5" />
+                <SubscribeForm className="mt-6" />
               </div>
             </Reveal>
           </div>

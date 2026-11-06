@@ -80,12 +80,12 @@ export default function InsightsPage() {
           <div className="lg:col-span-5">
             <SplitText text="Alerts that signal what matters." className="t-h2" />
             <Reveal delay={0.15}>
-              <p className="t-lead mt-5 text-paper/75">Key developments are surfaced as markets move, connecting events to their broader investment implications for your coverage universe. No waiting for a prompt. Insights do that work while you get on with yours.</p>
+              <p className="t-lead mt-6 text-paper/75">Key developments are surfaced as markets move, connecting events to their broader investment implications for your coverage universe. No waiting for a prompt. Insights do that work while you get on with yours.</p>
             </Reveal>
             <Reveal delay={0.2}>
-              <div className="mt-10 border-t border-white/12 pt-7">
+              <div className="mt-10 border-t border-white/12 pt-8">
                 <h3 className="t-h3 text-paper">Chat answers questions. It does not watch the book.</h3>
-                <p className="t-body mt-3 text-paper/65">
+                <p className="t-body mt-4 text-paper/65">
                   Insights appear in the platform&rsquo;s Insights feed and as alerts on the names and themes in your watchlist, so the morning read starts with what changed, not a blank prompt.
                 </p>
                 <TextLink href="/use-cases/portfolio-monitoring" className="mt-6 text-paper">How teams monitor a book with Insights</TextLink>
@@ -146,9 +146,9 @@ export default function InsightsPage() {
               body: (
                 <>
                   <span className="t-body block italic text-paper/90">{t.question}</span>
-                  <span className="mt-3 block">{t.body}</span>
-                  {t.note && <span className="mt-3 block text-paper/55">{t.note}</span>}
-                  <span className="ui-card mt-6 block px-4 py-3">
+                  <span className="mt-4 block">{t.body}</span>
+                  {t.note && <span className="mt-4 block text-paper/55">{t.note}</span>}
+                  <span className="ui-card mt-6 block px-4 py-4">
                     <span className="block text-[12px] text-[#8f8f8f]">Example insight</span>
                     <span className="mt-0.5 block text-[14px] font-medium text-[#0d0d0d]">{t.example}</span>
                   </span>
@@ -202,7 +202,7 @@ export default function InsightsPage() {
             align="split"
             lead="Any Insight can open in Alfred, refresh on a schedule, or live on a workspace, so a signal becomes research without starting over."
             actions={
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-4">
                 <Button href="/alfred" variant="outline-light" arrow>
                   Meet Alfred
                 </Button>

@@ -59,7 +59,7 @@ export default async function ThankYouPage({ searchParams }: { searchParams: Pro
           </p>
         }
         actions={
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-4">
             <Button href="/platform" variant="primary" arrow cta="thanks-platform">
               Explore the platform
             </Button>
@@ -69,7 +69,7 @@ export default async function ThankYouPage({ searchParams }: { searchParams: Pro
           </div>
         }
         visual={
-          <Stage field="lake" className="p-3 sm:p-8 md:p-10">
+          <Stage field="lake" className="p-4 sm:p-8 md:p-10">
             <div className="mx-auto max-w-[480px]">
               <NextSteps interests={interests} />
             </div>
@@ -114,7 +114,7 @@ export default async function ThankYouPage({ searchParams }: { searchParams: Pro
         lead="Share our security overview and deployment options with your team now, so the review keeps pace with the evaluation."
         note={null}
         actions={
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-4">
             <Button href="/security" variant="light" arrow cta="thanks-security">
               Review Security
             </Button>

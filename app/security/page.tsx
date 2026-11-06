@@ -43,7 +43,7 @@ export default function SecurityPage() {
         lead="Reflexivity protects sensitive research and connected data through independently audited controls, encryption, and permission-aware access."
         cta="security-hero"
         actions={
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-4">
             <Button href={SECURITY_HREF} variant="light" arrow cta="security-hero-overview">
               Request a Security Overview
             </Button>
@@ -113,7 +113,7 @@ export default function SecurityPage() {
         lead="Request a security overview, discuss your firm’s requirements, or begin a due diligence review with our team."
         note={null}
         actions={
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-4">
             <Button href={SECURITY_HREF} variant="light" arrow cta="security-final-overview">
               Request a Security Overview
             </Button>

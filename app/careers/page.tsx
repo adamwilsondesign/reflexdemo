@@ -118,7 +118,7 @@ export default function CareersPage() {
           <div>
             <SplitText text="Don’t see your role?" className="t-h2" />
             <Reveal delay={0.15}>
-              <p className="t-lead mt-5 max-w-[480px] text-ink/72">
+              <p className="t-lead mt-6 max-w-[480px] text-ink/72">
                 We’re always interested in exceptional people who care about markets, data and well-made software. Tell us what you’d build here.
               </p>
               <div className="mt-8">
@@ -136,7 +136,7 @@ export default function CareersPage() {
                 ["Email us", "Include your CV or LinkedIn, and links to work you’re proud of."],
                 ["Add a short note", "What you want to build, and why Reflexivity."],
               ].map(([t, b], i) => (
-                <StaggerItem key={t} as="li" className="grid grid-cols-[40px_1fr] gap-x-4 border-b border-ink/15 py-5">
+                <StaggerItem key={t} as="li" className="grid grid-cols-[40px_1fr] gap-x-4 border-b border-ink/15 py-6">
                   <span className="t-label text-ink/50">{String(i + 1).padStart(2, "0")}</span>
                   <span>
                     <span className="block font-display text-[17px] font-semibold">{t}</span>

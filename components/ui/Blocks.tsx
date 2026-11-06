@@ -30,14 +30,14 @@ export function Testimonials({ items = TESTIMONIALS, onDark = false, title }: { 
       {title && <SplitText text={title} className="t-h2 mb-12 max-w-[640px] md:mb-16" />}
       <Stagger className={clsx("grid border-t", items.length > 1 && "md:grid-cols-2", onDark ? "border-white/15" : "border-ink/12")}>
         {items.map((t, i) => (
-          <StaggerItem key={t.name} as="article" className={clsx("flex flex-col justify-between gap-10 py-9 md:py-12", i > 0 ? (onDark ? "border-t border-white/15 md:border-l md:border-t-0 md:pl-12" : "border-t border-ink/12 md:border-l md:border-t-0 md:pl-12") : "md:pr-12")}>
+          <StaggerItem key={t.name} as="article" className={clsx("flex flex-col justify-between gap-10 py-10 md:py-12", i > 0 ? (onDark ? "border-t border-white/15 md:border-l md:border-t-0 md:pl-12" : "border-t border-ink/12 md:border-l md:border-t-0 md:pl-12") : "md:pr-12")}>
             <div>
               <svg viewBox="0 0 32 24" className={clsx("h-6 w-8", onDark ? "text-lake-300" : "text-lake-500")} fill="currentColor" aria-hidden="true">
                 <path d="M0 24V14C0 6 4 1.5 12 0l1.5 3C9 4.5 7 7.5 7 11h5v13H0zm19 0V14c0-8 4-12.5 12-14l1 3c-4.5 1.5-6.5 4.5-6.5 8H31v13H19z" />
               </svg>
               <blockquote className="t-statement mt-6">&ldquo;{t.quote}&rdquo;</blockquote>
             </div>
-            <footer className="flex items-center gap-3">
+            <footer className="flex items-center gap-4">
               <span className={clsx("flex h-10 w-10 items-center justify-center rounded-full font-display text-[14px] font-semibold", onDark ? "bg-white/10" : "bg-ink/[0.06]")}>
                 {t.name.split(" ").map((s) => s[0]).join("")}
               </span>
@@ -90,7 +90,7 @@ export function CTABand({
           )}
           <Reveal delay={0.25} className="mt-10">
             {actions ?? <DemoActions onDark secondary={secondary} cta={cta} />}
-            {note && <p className="t-small mt-5 max-w-[460px] text-paper/50">{note}</p>}
+            {note && <p className="t-small mt-6 max-w-[460px] text-paper/50">{note}</p>}
           </Reveal>
         </div>
       </div>
@@ -154,7 +154,7 @@ export function IconCard({
     <>
       {icon && <PrecisionIcon name={icon} className="h-10 w-10 md:h-11 md:w-11" />}
       <h3 className={clsx("t-h3 max-w-[320px]", icon && "mt-12 md:mt-16")}>{title}</h3>
-      <div className={clsx("t-small mt-3 max-w-[340px]", onDark ? "text-paper/70" : "text-ink/70")}>{body}</div>
+      <div className={clsx("t-small mt-4 max-w-[340px]", onDark ? "text-paper/70" : "text-ink/70")}>{body}</div>
       {href && (
         <span className="mt-auto flex items-center gap-2 pt-8 font-display text-[15px] font-medium">
           <span className="link-underline">{linkLabel ?? "Learn more"}</span>
@@ -164,7 +164,7 @@ export function IconCard({
     </>
   );
   const cls = clsx(
-    "group flex h-full flex-col border-b border-r p-7 transition-colors duration-500 md:p-9",
+    "group flex h-full flex-col border-b border-r p-8 transition-colors duration-500 md:p-10",
     onDark ? "border-white/15 hover:bg-white/[0.06]" : "border-ink/12 hover:bg-ink/[0.035]",
     className,
   );
@@ -201,17 +201,17 @@ export function LinkCard({
     <Link
       href={href}
       className={clsx(
-        "group relative flex h-full flex-col overflow-hidden rounded-[14px] border p-6 transition-[border-color,background-color,transform] duration-500 ease-[var(--ease-out-expo)] md:p-7",
+        "group relative flex h-full flex-col overflow-hidden rounded-[14px] border p-6 transition-[border-color,background-color,transform] duration-500 ease-[var(--ease-out-expo)] md:p-8",
         onDark ? "border-white/10 bg-white/[0.03] hover:border-white/25 hover:bg-white/[0.06]" : "border-ink/10 bg-white/50 hover:border-ink/25 hover:bg-white",
         className,
       )}
     >
-      {visual && <div className="-mx-6 -mt-6 mb-6 md:-mx-7 md:-mt-7">{visual}</div>}
+      {visual && <div className="-mx-6 -mt-6 mb-6 md:-mx-8 md:-mt-8">{visual}</div>}
       {icon && <PrecisionIcon name={icon} className="mb-8 h-10 w-10 transition-transform duration-700 ease-[var(--ease-out-expo)]" />}
-      {eyebrow && <Eyebrow className="mb-3" dot={false}>{eyebrow}</Eyebrow>}
+      {eyebrow && <Eyebrow className="mb-4" dot={false}>{eyebrow}</Eyebrow>}
       <h3 className="t-h3">{title}</h3>
-      {body && <p className={clsx("t-body mt-2.5", onDark ? "text-paper/65" : "text-ink/65")}>{body}</p>}
-      <span className="mt-auto flex items-center gap-2 pt-7 font-display text-[15px] font-medium">
+      {body && <p className={clsx("t-body mt-4", onDark ? "text-paper/65" : "text-ink/65")}>{body}</p>}
+      <span className="mt-auto flex items-center gap-2 pt-8 font-display text-[15px] font-medium">
         Explore <Arrow />
       </span>
     </Link>
@@ -223,7 +223,7 @@ export function StatRow({ items, onDark = false }: { items: { value: React.React
   return (
     <Stagger className={clsx("grid grid-cols-2 border-t lg:grid-cols-4", onDark ? "border-white/15" : "border-ink/12")}>
       {items.map((s) => (
-        <StaggerItem key={s.label} className={clsx("border-b py-7 pr-6 md:py-9", onDark ? "border-white/15" : "border-ink/12")}>
+        <StaggerItem key={s.label} className={clsx("border-b py-8 pr-6 md:py-10", onDark ? "border-white/15" : "border-ink/12")}>
           <div className="font-display text-[30px] font-semibold leading-none tracking-[-0.025em] md:text-[38px]">{s.value}</div>
           <p className={clsx("t-ui mt-4", onDark ? "text-paper/60" : "text-ink/60")}>{s.label}</p>
           {s.note && <p className={clsx("mt-1 text-[12px]", onDark ? "text-paper/40" : "text-ink/40")}>{s.note}</p>}
@@ -241,7 +241,7 @@ export function Steps({ items, onDark = false }: { items: { title: string; body:
         <StaggerItem key={s.title} as="li" className={clsx("relative border-t pt-6 md:pr-6", onDark ? "border-white/15" : "border-ink/15")}>
           <span className={clsx("absolute -top-[5px] left-0 h-[9px] w-[9px] rounded-full", onDark ? "bg-paper" : "bg-ink")} />
           <p className={clsx("t-ui", onDark ? "text-paper/50" : "text-ink/50")}>Step {i + 1}</p>
-          <h3 className="t-h3 mt-3">{s.title}</h3>
+          <h3 className="t-h3 mt-4">{s.title}</h3>
           <p className={clsx("t-small mt-2", onDark ? "text-paper/65" : "text-ink/65")}>{s.body}</p>
         </StaggerItem>
       ))}

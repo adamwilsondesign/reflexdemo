@@ -50,13 +50,13 @@ export function CookieConsent() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 24 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed bottom-3 left-3 right-3 z-[60] max-w-[360px] rounded-xl border border-white/10 bg-[#141518]/95 p-5 text-[#f4f3f1] shadow-2xl backdrop-blur-xl sm:bottom-5 sm:left-5 sm:right-auto"
+          className="fixed bottom-3 left-3 right-3 z-[60] max-w-[360px] rounded-xl border border-white/10 bg-[#141518]/95 p-6 text-[#f4f3f1] shadow-2xl backdrop-blur-xl sm:bottom-5 sm:left-5 sm:right-auto"
         >
           <p className="t-small text-[#f4f3f1]/75">
             We use cookies to understand how the site is used and to improve it. You can change this at any time.
           </p>
           {details && (
-            <label className="mt-4 flex items-center justify-between gap-3 border-t border-white/10 pt-4 t-small">
+            <label className="mt-4 flex items-center justify-between gap-4 border-t border-white/10 pt-4 t-small">
               <span>Analytics cookies</span>
               <button
                 type="button"

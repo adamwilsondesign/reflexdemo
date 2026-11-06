@@ -22,7 +22,7 @@ export function WorkedExample() {
                 <p className="text-[12px] text-[#8f8f8f]">Market catalyst · Macro</p>
                 <p className="mt-1 text-[18px] font-semibold leading-snug text-[#0d0d0d]">Sept U.S. Flash PMI rekindles factory cost pressure</p>
                 <p className="mt-2 text-[13px] text-[#5d5d5d]">4 holdings in your book have input-cost exposure.</p>
-                <div className="mt-3 h-12"><Sparkline points={series(36, 21, -0.25, 1.8)} className="h-full w-full" /></div>
+                <div className="mt-4 h-12"><Sparkline points={series(36, 21, -0.25, 1.8)} className="h-full w-full" /></div>
               </motion.div>
             </Stage>
           ),
@@ -45,8 +45,8 @@ export function WorkedExample() {
             <Stage field="pine" className="flex h-full w-full items-center justify-center p-6 sm:p-10">
               <div className="ui-card w-full max-w-[420px] p-4">
                 <CardHeader trail={["Industrial automation"]} />
-                <p className="mt-3 rounded-[10px] bg-[#f9f9f9] px-3 py-2 text-[14px] text-[#0d0d0d]">Which of my holdings can pass higher input costs through to customers?</p>
-                <p className="mt-3 text-[13px] leading-relaxed text-[#5d5d5d]">Two of four have contracted pricing escalators covering ~70% of revenue<Cite n={1} />. The other two lose 40–60 bps of gross margin per 1% input inflation<Cite n={2} />.</p>
+                <p className="mt-4 rounded-[10px] bg-[#f9f9f9] px-4 py-2 text-[14px] text-[#0d0d0d]">Which of my holdings can pass higher input costs through to customers?</p>
+                <p className="mt-4 text-[13px] leading-relaxed text-[#5d5d5d]">Two of four have contracted pricing escalators covering ~70% of revenue<Cite n={1} />. The other two lose 40–60 bps of gross margin per 1% input inflation<Cite n={2} />.</p>
               </div>
             </Stage>
           ),
@@ -59,7 +59,7 @@ export function WorkedExample() {
             <Stage field="mist" className="flex h-full w-full items-center justify-center p-6 sm:p-10">
               <div className="ui-card w-full max-w-[420px] p-4">
                 <p className="text-[14px] font-semibold text-[#0d0d0d]">Evidence</p>
-                <div className="mt-3 space-y-2">
+                <div className="mt-4 space-y-2">
                   <SourceRow n={1} title="Q2 2026 10-Q · Pricing and contracts" meta="Filing, p.31" />
                   <CodeBlock lines={["sens = -52 / 1.0  # bps per 1%"]} />
                   <MissingData label="Hedging book, 1 holding" reason="Not disclosed" />

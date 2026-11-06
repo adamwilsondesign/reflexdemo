@@ -1,9 +1,12 @@
+import type { BlogCategory, BlogCover } from "@/lib/blog";
+
 export type NavLink = { label: string; href: string; description?: string };
 export type NavGroup = {
   label: string;
   href?: string;
   columns?: NavLink[][];
-  featured?: { eyebrow: string; title: string; href: string; image: string };
+  /** Featured article: a real post, rendered with its own blog cover. */
+  featured?: { eyebrow: string; title: string; href: string; post: { slug: string; category: BlogCategory; cover: BlogCover } };
 };
 
 export const APP_URL = "https://app.reflexivity.com/app";
@@ -24,10 +27,10 @@ export const NAV: NavGroup[] = [
       ],
     ],
     featured: {
-      eyebrow: "Featured",
-      title: "Meet Alfred.",
-      href: "/alfred",
-      image: "/framer/y8MBoqPyLXK7lxS6MDF0JGeOoOk.jpg",
+      eyebrow: "Featured Article",
+      title: "Chat Is Not the Product",
+      href: "/blog/chat-is-not-the-product",
+      post: { slug: "chat-is-not-the-product", category: "Product", cover: { kind: "photo", icon: "venn", src: "/framer/E99ASuxDchioC1nENoRDYZnbxo.jpg" } },
     },
   },
   {
@@ -44,9 +47,9 @@ export const NAV: NavGroup[] = [
     ],
     featured: {
       eyebrow: "Featured Article",
-      title: "Better Sharpe Ratio is a plumbing problem",
-      href: "/blog/the-sharpe-ratio",
-      image: "/framer/r89tHmgVo4Zd89XWjSx0V9yW93s.png",
+      title: "Introducing Earnings Insights",
+      href: "/blog/introducing-earnings-insights",
+      post: { slug: "introducing-earnings-insights", category: "Product", cover: { kind: "photo", icon: "signal", src: "/framer/jtvQSNmLK3YKDqH2ZYrdHo7sXpU.jpg" } },
     },
   },
   { label: "Deployment", href: "/deployment" },
@@ -66,7 +69,7 @@ export const NAV: NavGroup[] = [
       eyebrow: "Featured Article",
       title: "Better Sharpe Ratio is a plumbing problem",
       href: "/blog/the-sharpe-ratio",
-      image: "/framer/r89tHmgVo4Zd89XWjSx0V9yW93s.png",
+      post: { slug: "the-sharpe-ratio", category: "Research", cover: { kind: "photo", icon: "loop", src: "/framer/Dk8ba2iUYmPKCJUiXcWnhz5CnQ.jpg" } },
     },
   },
   {

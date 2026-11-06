@@ -21,7 +21,7 @@ export function Marquee({ children, duration = 40, className }: { children: Reac
 
 export function DataSourceLogos({ onDark = false, className, marquee = true }: { onDark?: boolean; className?: string; marquee?: boolean }) {
   const items = DATA_SOURCES.map((l) => (
-    <div key={l.name} className={clsx("flex h-10 shrink-0 items-center", marquee ? "px-8 md:px-11" : "justify-center")}>
+    <div key={l.name} className={clsx("flex h-10 shrink-0 items-center", marquee ? "px-8 md:px-12" : "justify-center")}>
       <Image
         src={l.src}
         alt={l.name}

@@ -83,8 +83,8 @@ export default function ScenarioStressTestingPage() {
             <SectionHeader className="lg:max-w-none!" title="Simulations you can check and run again." lead="Scenarios are defined in plain language and executed in code, so every figure can be inspected, questioned and re-run." />
           </div>
           <Reveal delay={0.15} className="lg:col-span-6">
-            <Stage field="ink" className="p-5 sm:p-8">
-              <div className="mx-auto max-w-[480px] space-y-3">
+            <Stage field="ink" className="p-6 sm:p-8">
+              <div className="mx-auto max-w-[480px] space-y-4">
                 <div className="ui-card p-4">
                   <p className="text-[12px] text-[#8f8f8f]">Scenario · rates shock · run 2 of 2</p>
                   <p className="mt-1 text-[15px] font-semibold leading-snug text-[#0d0d0d]">What followed when the US 10-year yield rose 0.5pp in three months?</p>
@@ -147,7 +147,7 @@ export default function ScenarioStressTestingPage() {
           <div className="mt-14 md:mt-16">
             <ScenarioResult />
           </div>
-          <div className="mt-6 grid gap-3 md:grid-cols-2">
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
             <IllustrativeNote>Episode count, returns and sector figures are illustrative, condensed from a Reflexivity scenario analysis.</IllustrativeNote>
             <IllustrativeNote>
               Methodology: historical scenarios describe what followed past episodes. They show correlation, not causation, and are not a forecast of future returns. Results depend on the trigger definition, history window and universe.

@@ -4,71 +4,88 @@ import { AnimatePresence, motion, useInView, useReducedMotion } from "motion/rea
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { CardHeader, Cite, CodeBlock, MetricRow, MissingData, SourceRow, Sparkline, Stage, TakeawayList, series } from "./ui";
+import { Chain, MOTION_EASE, MockPanel, useCycle } from "./motion";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-/* ---------- Always-on: Insights arriving, one line each ---------- */
+/* ---------- Always-on: notifications arrive one at a time (motion system) ---------- */
 const STREAM = [
   { type: "Market catalyst", title: "AI data center power buildout accelerates", touch: "VRT, ETN, CEG" },
   { type: "Earnings recap", title: "Guidance overshadowed a mixed Nike quarter", touch: "NKE" },
-  { type: "Company catalyst", title: "Sanofi settles Regeneron dispute", touch: "SNY, REGN" },
-  { type: "Scenario pattern", title: "Eli Lilly: recession probability at a new low", touch: "LLY" },
   { type: "Company catalyst", title: "CoreWeave rolls out Nvidia Vera Rubin", touch: "CRWV, NVDA" },
 ] as const;
 
 export function InsightStream({ className, field = "lake" }: { className?: string; field?: "lake" | "pine" | "mist" }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { amount: 0.3 });
-  const reduce = useReducedMotion();
-  const [head, setHead] = useState(0);
-  useEffect(() => {
-    if (!inView || reduce) return;
-    const iv = setInterval(() => setHead((h) => h + 1), 2600);
-    return () => clearInterval(iv);
-  }, [inView, reduce]);
-  const visible = [0, 1, 2].map((k) => ({ ...STREAM[(head + 2 - k + STREAM.length * 10) % STREAM.length], key: head - k }));
-
+  const [i, ref] = useCycle(STREAM.length, { ms: 4500 });
   return (
-    <Stage field={field} className={clsx("flex h-full w-full items-center p-5 sm:p-8", className)}>
-      <div ref={ref} className="ui-card mx-auto w-full max-w-[420px] p-4">
-        <div className="flex items-center justify-between">
-          <span className="text-[14px] font-semibold">Insights</span>
-          <span className="flex items-center gap-1.5 text-[12px] text-[#8f8f8f]"><span className="h-1.5 w-1.5 rounded-full bg-[#0d0d0d]" />Monitoring 42 names</span>
-        </div>
-        <ul className="mt-3 divide-y divide-black/10 border-t border-black/10">
-          <AnimatePresence initial={false}>
-            {visible.map((it, i) => (
-              <motion.li key={it.key} layout initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1 - i * 0.25, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.6, ease: EASE }} className="py-2.5">
-                <div className="flex items-center justify-between gap-3 text-[12px] text-[#8f8f8f]">
-                  <span>{it.type}</span>
-                  <span>{i === 0 ? "now" : `${i * 7}m`}</span>
-                </div>
-                <p className="mt-0.5 text-[14px] font-medium leading-snug text-[#0d0d0d]">{it.title}</p>
-                <p className="mt-0.5 text-[12px] text-[#5d5d5d]">{it.touch}</p>
-              </motion.li>
-            ))}
-          </AnimatePresence>
-        </ul>
+    <Stage field={field} className={clsx("flex h-full w-full items-center justify-center p-6 sm:p-10", className)}>
+      <div ref={ref} className="w-full max-w-[380px]">
+        <MockPanel height={232}>
+          <div className="flex items-center justify-between text-[13px]">
+            <span className="font-semibold">Insights</span>
+            <span className="text-[#8f8f8f]">Your watchlist</span>
+          </div>
+          <div className="mt-3">
+            <AnimatePresence initial={false}>
+              {[0, 1].map((k) => {
+                const it = STREAM[(i - k + STREAM.length) % STREAM.length];
+                return (
+                  <motion.div key={`${i}-${k}`} layout initial={k === 0 ? { opacity: 0, y: -8 } : false} animate={{ opacity: k === 0 ? 1 : 0.45, y: 0 }} transition={{ duration: 0.6, ease: MOTION_EASE }} className="border-t border-black/10 py-3">
+                    <p className="flex items-center justify-between text-[12px] text-[#8f8f8f]"><span>{it.type}</span><span>{k === 0 ? "now" : "8m"}</span></p>
+                    <p className="mt-1 text-[14px] font-medium leading-5 text-[#0d0d0d]">{it.title}</p>
+                    <p className="mt-1 text-[12px] text-[#5d5d5d]">{it.touch}</p>
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
+          </div>
+        </MockPanel>
       </div>
     </Stage>
   );
 }
 
-/* ---------- Auditable: one answer, its source, its calculation, one gap ---------- */
-export function AuditTrace({ className, field = "mist", focus = -1 }: { className?: string; field?: "lake" | "pine" | "mist"; focus?: number }) {
-  const dim = (k: number) => (focus === -1 || focus === k ? "opacity-100" : "opacity-40");
+/* ---------- Auditable: answer → source → calculation → gap (motion system) ---------- */
+export function AuditTrace({ className, field = "mist" }: { className?: string; field?: "lake" | "pine" | "mist"; focus?: number }) {
+  const [i, ref] = useCycle(3, { ms: 4500 });
   return (
-    <Stage field={field} className={clsx("flex h-full w-full items-center p-5 sm:p-8", className)}>
-      <div className="ui-card mx-auto w-full max-w-[420px] p-4">
-        <p className="text-[13px] text-[#8f8f8f]">AI infrastructure spend, 2024</p>
-        <p className={clsx("mt-1 text-[24px] font-semibold leading-tight transition-opacity", dim(0))}>
-          +48%<Cite n={1} />
-        </p>
-        <div className="mt-3 space-y-2">
-          <div className={clsx("transition-opacity", dim(0))}><SourceRow n={1} title="Amazon Q4 2024 earnings release" meta="Filing, p.4" /></div>
-          <div className={clsx("transition-opacity", dim(2))}><CodeBlock lines={["growth = (210 - 142) / 142  # 0.479"]} /></div>
-          <div className={clsx("transition-opacity", dim(1))}><MissingData label="Regional breakdown" reason="Not disclosed" /></div>
-        </div>
+    <Stage field={field} className={clsx("flex h-full w-full items-center justify-center p-6 sm:p-10", className)}>
+      <div ref={ref} className="w-full max-w-[380px]">
+        <MockPanel height={232}>
+          <p className="text-[13px] text-[#8f8f8f]">AI infrastructure spend, 2024</p>
+          <p className="mt-1 text-[24px] font-semibold leading-8">+48%<Cite n={1} /></p>
+          <div className="mt-4">
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div key={i} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.5, ease: MOTION_EASE }}>
+                {i === 0 && <SourceRow n={1} title="Amazon Q4 2024 earnings release" meta="Filing, p.4" />}
+                {i === 1 && <CodeBlock lines={["(210 - 142) / 142 = 0.479"]} />}
+                {i === 2 && <MissingData label="Regional breakdown" reason="Not disclosed" />}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </MockPanel>
+      </div>
+    </Stage>
+  );
+}
+
+/* ---------- Relationship: one event, followed through the Graph (motion system) ---------- */
+export function RelationshipPanel({ className, field = "ink", nodes = ["AWS capacity expansion", "NVIDIA, GPU supplier", "TSMC, chip manufacturing"] }: { className?: string; field?: "lake" | "pine" | "mist" | "ink"; nodes?: string[] }) {
+  const [i, ref] = useCycle(2, { ms: 5200 });
+  return (
+    <Stage field={field} className={clsx("flex h-full w-full items-center justify-center p-6 sm:p-10", className)}>
+      <div ref={ref} className="w-full max-w-[380px]">
+        <MockPanel stateKey={i} height={232}>
+          <p className="text-[13px] text-[#8f8f8f]">{i === 0 ? "Impact pathway" : "Second-order effect"}</p>
+          {i === 0 ? (
+            <div className="mt-3"><Chain nodes={nodes} /></div>
+          ) : (
+            <>
+              <p className="mt-2 text-[18px] font-semibold leading-6">Cloud demand reaches chip manufacturing</p>
+              <p className="mt-2 text-[13px] leading-5 text-[#5d5d5d]">Weighted by evidence: supplier disclosures, filings and earnings calls.</p>
+            </>
+          )}
+        </MockPanel>
       </div>
     </Stage>
   );
@@ -147,13 +164,13 @@ export function ScrollStory({
 }) {
   const [active, setActive] = useState(0);
   return (
-    <div className={clsx("grid gap-10 lg:grid-cols-12 lg:gap-16", className)}>
-      <div className="lg:col-span-5">
+    <div className={clsx("grid-12 gap-y-10", className)}>
+      <div className="col-span-12 lg:col-span-5">
         {steps.map((s, i) => (
           <StoryStep key={s.title} index={i} onActive={setActive} active={active === i} {...s} />
         ))}
       </div>
-      <div className="hidden lg:col-span-7 lg:block">
+      <div className="hidden lg:col-span-6 lg:col-start-7 lg:block">
         <div className="sticky top-[calc(var(--header-live)+48px)] aspect-[4/3.6] w-full">
           <AnimatePresence mode="popLayout">
             <motion.div key={active} className="absolute inset-0" initial={{ opacity: 0, y: 30, filter: "blur(8px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} exit={{ opacity: 0, y: -20, filter: "blur(6px)" }} transition={{ duration: 0.8, ease: EASE }}>

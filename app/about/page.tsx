@@ -93,7 +93,7 @@ export default function AboutPage() {
       >
         <div className="mt-12 border-t border-ink/12 pt-6">
           <p className="t-ui text-ink/50">Built by operators from</p>
-          <ul className="mt-4 flex flex-wrap gap-x-7 gap-y-2">
+          <ul className="mt-4 flex flex-wrap gap-x-8 gap-y-2">
             {CREDENTIALS.map((c) => (
               <li key={c} className="font-display text-[19px] font-semibold tracking-[-0.02em] text-ink/70">
                 {c}
@@ -139,9 +139,9 @@ export default function AboutPage() {
                     className="object-cover grayscale transition-[filter] duration-700 group-hover:grayscale-0"
                   />
                 </div>
-                <h3 className="t-h3 mt-5">{p.name}</h3>
+                <h3 className="t-h3 mt-6">{p.name}</h3>
                 <p className="t-label mt-1 text-paper/55">{p.role}</p>
-                <p className="t-small mt-3 text-paper/68">{p.bio}</p>
+                <p className="t-small mt-4 text-paper/68">{p.bio}</p>
               </StaggerItem>
             ))}
           </Stagger>
@@ -190,7 +190,7 @@ export default function AboutPage() {
               <StaggerItem
                 as="li"
                 key={n}
-                className="border-b border-white/20 py-5 pr-4 font-display text-[18px] font-medium tracking-[-0.01em] text-paper/85 odd:border-r odd:border-white/20 even:pl-5 md:py-6 md:text-[21px] md:even:pl-8"
+                className="border-b border-white/20 py-6 pr-4 font-display text-[18px] font-medium tracking-[-0.01em] text-paper/85 odd:border-r odd:border-white/20 even:pl-6 md:py-6 md:text-[21px] md:even:pl-8"
               >
                 {n}
               </StaggerItem>

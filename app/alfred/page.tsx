@@ -55,7 +55,7 @@ export default function AlfredPage() {
         visual={
           <>
             <AlfredHero />
-            <p className="t-small mt-4 text-paper/55">Illustrative example of Alfred’s two modes.</p>
+            <p className="text-[12px] leading-4 mt-4 text-paper/55">Illustrative example of Alfred’s two modes.</p>
           </>
         }
       />
@@ -93,7 +93,7 @@ export default function AlfredPage() {
               lead="Alfred queries itself. It monitors the companies and themes you follow, then surfaces the events, ripple effects and implications that touch them, without waiting for a prompt."
             />
             <Reveal delay={0.2}>
-              <ul className="mt-8 space-y-3 border-t border-ink/12 pt-6">
+              <ul className="mt-8 space-y-4 border-t border-ink/12 pt-6">
                 {[
                   ["Alert", "A catalyst touches a name or theme you follow, with the reason it reached you."],
                   ["Insight", "Five takeaways, tagged to the themes they affect."],
@@ -113,7 +113,7 @@ export default function AlfredPage() {
           </div>
           <Reveal className="lg:col-span-7" delay={0.1}>
             <AlwaysOnVisual />
-            <p className="t-small mt-3 text-ink/50">Illustrative example based on a Reflexivity market catalyst Insight.</p>
+            <p className="text-[12px] leading-4 mt-4 text-ink/50">Illustrative example based on a Reflexivity market catalyst Insight.</p>
           </Reveal>
         </div>
       </Section>
@@ -145,22 +145,22 @@ export default function AlfredPage() {
         <div className="container-x grid gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-7">
             <ImpactCard />
-            <p className="t-small mt-3 text-ink/50">Illustrative relationship view.</p>
+            <p className="text-[12px] leading-4 mt-4 text-ink/50">Illustrative relationship view.</p>
           </Reveal>
           <div className="flex flex-col gap-12 lg:col-span-5">
             <Reveal className="border-t border-ink/15 pt-6">
               <h3 className="t-h3">Built-in relationship intelligence</h3>
-              <p className="t-body mt-3 text-ink/70">
+              <p className="t-body mt-4 text-ink/70">
                 Alfred reasons on top of a Knowledge Graph that maps how companies and themes connect across products, customers, competitors and geographies, surfacing hidden exposures and ripple effects.
               </p>
-              <p className="t-small mt-3 text-ink/55">
+              <p className="t-small mt-4 text-ink/55">
                 The Graph is one input, not the only one. Alfred also works from filings, transcripts, financials, market data and news.
               </p>
               <TextLink href="/knowledge-graph" className="mt-6">Explore the Knowledge Graph</TextLink>
             </Reveal>
             <Reveal delay={0.1} className="border-t border-ink/15 pt-6">
               <h3 className="t-h3">Built-in data sources</h3>
-              <p className="t-body mt-3 text-ink/70">Institutional data and content, natively integrated.</p>
+              <p className="t-body mt-4 text-ink/70">Institutional data and content, natively integrated.</p>
               <ul className="mt-6 grid grid-cols-2 gap-px overflow-hidden border border-ink/10 bg-ink/10 sm:grid-cols-3 lg:grid-cols-2">
                 {DATA_SOURCES.filter((d) => BUILT_IN.includes(d.name)).map((d) => (
                   <li key={d.name} className="flex h-[68px] items-center justify-center bg-mist-200 px-4">
@@ -198,7 +198,7 @@ export default function AlfredPage() {
           <div className="mt-14 md:mt-16">
             <TrustTabs />
           </div>
-          <p className="t-small mt-6 text-ink/50">Illustrative example. Figures from Amazon.com’s Q4 2023 and Q4 2024 earnings releases.</p>
+          <p className="text-[12px] leading-4 mt-6 text-ink/50">Illustrative example. Figures from Amazon.com’s Q4 2023 and Q4 2024 earnings releases.</p>
         </div>
       </Section>
 
@@ -211,14 +211,14 @@ export default function AlfredPage() {
               {ALIVE.map((a, i) => (
                 <Reveal as="li" key={a.title} delay={0.1 + i * 0.08} className="border-t border-white/15 py-6">
                   <h3 className="font-display text-[19px] font-semibold tracking-[-0.01em]">{a.title}</h3>
-                  <p className="t-small mt-1.5 text-paper/70">{a.body}</p>
+                  <p className="t-small mt-2 text-paper/70">{a.body}</p>
                 </Reveal>
               ))}
             </ul>
           </div>
           <Reveal className="lg:col-span-7" delay={0.1}>
             <LivingAnalysis field="mist" />
-            <p className="t-small mt-3 text-paper/55">Illustrative example.</p>
+            <p className="text-[12px] leading-4 mt-4 text-paper/55">Illustrative example.</p>
           </Reveal>
         </div>
       </Section>

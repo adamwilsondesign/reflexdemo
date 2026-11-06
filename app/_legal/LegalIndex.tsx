@@ -25,15 +25,15 @@ export function LegalIndex({ title, kicker, sections, footer }: { title: string;
 
   return (
     <div ref={ref} className="pui relative mx-auto w-full max-w-[420px]" aria-hidden="true">
-      <div className="ui-card p-4 sm:p-5">
-        <div className="flex items-start justify-between gap-3">
+      <div className="ui-card p-4 sm:p-6">
+        <div className="flex items-start justify-between gap-4">
           <span className="min-w-0">
             <span className="block text-[16px] font-semibold leading-snug text-[#0d0d0d]">{title}</span>
             <span className="mt-0.5 block text-[12px] text-[#8f8f8f]">{kicker}</span>
           </span>
           <span className="shrink-0 whitespace-nowrap text-[12px] text-[#8f8f8f]">{sections.length} sections</span>
         </div>
-        <ol className="mt-3 divide-y divide-black/10 border-t border-black/10">
+        <ol className="mt-4 divide-y divide-black/10 border-t border-black/10">
           {shown.map((s, k) => {
             const on = k === i && !reduce;
             return (
@@ -42,7 +42,7 @@ export function LegalIndex({ title, kicker, sections, footer }: { title: string;
                 initial={reduce ? false : { opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 0.5 + k * 0.07, ease: EASE }}
-                className="flex items-center gap-3 py-2.5 text-[13px]"
+                className="flex items-center gap-4 py-4 text-[13px]"
               >
                 <span className="w-4 tabular-nums text-[#8f8f8f]">{k + 1}</span>
                 <span className={clsx("min-w-0 flex-1 truncate transition-colors duration-500", on ? "font-medium text-[#0d0d0d]" : "text-[#5d5d5d]")}>{s}</span>

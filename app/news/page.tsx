@@ -50,9 +50,9 @@ export default function NewsPage() {
 
       {/* Outlet strip */}
       <section data-tone="light" data-bg="#f4f3f1" className="border-y border-ink/10 bg-paper py-8">
-        <div className="container-x flex flex-col gap-5 md:flex-row md:items-center md:gap-10">
+        <div className="container-x flex flex-col gap-6 md:flex-row md:items-center md:gap-10">
           <p className="t-ui shrink-0 text-ink/50">As covered in</p>
-          <ul className="flex flex-wrap items-center gap-x-9 gap-y-4 text-ink/70">
+          <ul className="flex flex-wrap items-center gap-x-10 gap-y-4 text-ink/70">
             {outlets.map((o) => (
               <li key={o}>
                 <Wordmark outlet={o} />
@@ -68,14 +68,14 @@ export default function NewsPage() {
           <SectionHeader title="Official updates from Reflexivity." align="split" lead="Partnerships, product launches, recognition and funding, from the source." />
           <div className="mt-14 grid border-l border-t border-white/15 md:mt-16 lg:grid-cols-12">
             <Reveal className="border-b border-r border-white/15 lg:col-span-7">
-              <article className="flex h-full flex-col p-7 md:p-10">
+              <article className="flex h-full flex-col p-8 md:p-10">
                 <PrecisionIcon name={TAG_ICON[lead.tag]} className="h-12 w-12 text-paper md:h-14 md:w-14" />
                 <h3 className="t-h2 mt-12 max-w-[620px] text-balance md:mt-20">{lead.title}</h3>
                 <p className="t-label mt-4 text-paper/60">
                   {lead.tag} · <time dateTime={lead.date}>{formatNewsDate(lead.date)}</time>
                 </p>
-                <p className="t-body mt-5 max-w-[600px] text-paper/75">{lead.summary}</p>
-                <div className="mt-auto flex flex-wrap gap-3 pt-10">
+                <p className="t-body mt-6 max-w-[600px] text-paper/75">{lead.summary}</p>
+                <div className="mt-auto flex flex-wrap gap-4 pt-10">
                   <Button href="/deployment#platform" variant="light" arrow>
                     See Microsoft 365 access
                   </Button>
@@ -84,14 +84,14 @@ export default function NewsPage() {
             </Reveal>
             <Stagger className="flex flex-col lg:col-span-5">
               {rest.map((a) => (
-                <StaggerItem key={a.title} as="article" className="flex flex-1 gap-5 border-b border-r border-white/15 p-6 md:p-7">
+                <StaggerItem key={a.title} as="article" className="flex flex-1 gap-6 border-b border-r border-white/15 p-6 md:p-8">
                   <PrecisionIcon name={TAG_ICON[a.tag]} className="h-9 w-9 shrink-0 text-paper/90" />
                   <div>
                     <h3 className="font-display text-[17px] font-semibold leading-[1.3]">{a.title}</h3>
-                    <p className="t-label mt-1.5 text-[13px] text-paper/55">
+                    <p className="t-label mt-2 text-[13px] text-paper/55">
                       {a.tag} · <time dateTime={a.date}>{formatNewsDate(a.date)}</time>
                     </p>
-                    <p className="t-small mt-3 text-paper/70">{a.summary}</p>
+                    <p className="t-small mt-4 text-paper/70">{a.summary}</p>
                   </div>
                 </StaggerItem>
               ))}

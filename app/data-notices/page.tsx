@@ -120,7 +120,7 @@ export default function DataNoticesPage() {
           </p>
         }
         actions={
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-4">
             <Button href="/alfred#trust" variant="primary" arrow>
               How sourcing works
             </Button>

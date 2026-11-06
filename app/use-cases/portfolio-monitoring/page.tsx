@@ -39,7 +39,7 @@ export default function PortfolioMonitoringPage() {
       >
         <ul className="mt-10 flex max-w-[560px] flex-wrap gap-2 border-t border-ink/12 pt-6">
           {["Catalysts", "Anomalies", "Earnings", "Second-order read-throughs"].map((t) => (
-            <li key={t} className="rounded-full border border-ink/12 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.04em] text-ink/65">{t}</li>
+            <li key={t} className="rounded-full border border-ink/12 px-4 py-1 font-mono text-[11px] uppercase tracking-[0.04em] text-ink/65">{t}</li>
           ))}
           <li className="t-small basis-full pt-2 text-ink/60">Each with an explicit reason it appeared.</li>
         </ul>
@@ -119,10 +119,10 @@ export default function PortfolioMonitoringPage() {
               </dl>
             </Reveal>
             <Reveal delay={0.2} className="mt-8">
-              <div className="border-l-2 border-pine-500 py-1 pl-5 md:pl-6">
+              <div className="border-l-2 border-pine-500 py-1 pl-6 md:pl-6">
                 <div>
                   <h3 className="t-h3">Watchlist or holdings?</h3>
-                  <p className="t-small mt-1.5 text-ink/70">
+                  <p className="t-small mt-2 text-ink/70">
                     Monitoring runs on a watchlist: the companies and themes you choose to follow. Many teams mirror their holdings or coverage universe there. It doesn’t need a connection to your portfolio system or your position sizes to be useful from day one.{" "}
                     <Link href="/deployment" className="link-underline font-medium text-ink">Integration options</Link>
                   </p>
@@ -131,7 +131,7 @@ export default function PortfolioMonitoringPage() {
             </Reveal>
           </div>
           <Reveal delay={0.1} className="lg:col-span-6">
-            <Stage field="lake" image="/figma/n915.png" className="p-5 sm:p-10">
+            <Stage field="lake" image="/figma/n915.png" className="p-6 sm:p-10">
               <div className="animate-float mx-auto max-w-[420px]">
                 <DailyBrief />
               </div>

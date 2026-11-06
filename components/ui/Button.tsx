@@ -72,7 +72,7 @@ export function DemoActions({
   className?: string;
 }) {
   return (
-    <div className={clsx("flex flex-wrap items-center gap-3", className)}>
+    <div className={clsx("flex flex-wrap items-center gap-4", className)}>
       <Button href="/book-a-demo" variant={onDark ? "light" : "primary"} arrow cta={cta}>
         Request a Demo
       </Button>

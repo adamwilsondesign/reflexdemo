@@ -61,8 +61,8 @@ export function SplitFeature({
   const s = SURFACES[surface];
   return (
     <section id={id} data-tone={s.tone} data-bg={s.bg} className={clsx("relative isolate overflow-hidden py-20 md:py-28 lg:py-32", s.cls, className)}>
-      <div className="container-x grid items-center gap-14 lg:grid-cols-2 lg:gap-16">
-        <div className={clsx(reverse && "lg:order-2")}>
+      <div className="container-x grid-12 items-center gap-y-16">
+        <div className={clsx("col-span-12 lg:col-span-6", reverse && "lg:order-2")}>
           <SplitText text={title} className="t-h1" />
           {lead && (
             <Reveal delay={0.15}>
@@ -76,7 +76,7 @@ export function SplitFeature({
             </Reveal>
           )}
         </div>
-        <Reveal delay={0.1} className={clsx("relative mx-auto aspect-square w-full max-w-[520px]", reverse && "lg:order-1", s.tone === "dark" ? "text-paper" : "text-ink")}>
+        <Reveal delay={0.1} className={clsx("relative col-span-12 mx-auto aspect-square w-full max-w-[520px] lg:col-span-6", reverse && "lg:order-1", s.tone === "dark" ? "text-paper" : "text-ink")}>
           {visual}
         </Reveal>
       </div>
@@ -106,12 +106,12 @@ export function LinkRowsBlock({
 }) {
   const chart = viz === false ? null : (viz ?? vizFor(title, ["branch", "orbit", "flow", "wave", "exposure", "radial"]));
   return (
-    <div className={clsx("grid gap-10 lg:grid-cols-2 lg:gap-16", className)}>
-      <div className="flex flex-col">
+    <div className={clsx("grid-12 gap-y-10", className)}>
+      <div className="col-span-12 flex flex-col lg:col-span-6">
         <SplitText text={title} className="t-h2 max-w-[520px]" />
         {lead && (
           <Reveal delay={0.15}>
-            <div className={clsx("t-lead mt-5 max-w-[460px]", onDark ? "text-paper/72" : "text-ink/72")}>{lead}</div>
+            <div className={clsx("t-lead mt-6 max-w-[460px]", onDark ? "text-paper/72" : "text-ink/72")}>{lead}</div>
           </Reveal>
         )}
         {chart && (
@@ -120,7 +120,7 @@ export function LinkRowsBlock({
           </Reveal>
         )}
       </div>
-      <LinkRows rows={rows} onDark={onDark} />
+      <LinkRows rows={rows} onDark={onDark} className="col-span-12 lg:col-span-6" />
     </div>
   );
 }
@@ -134,7 +134,7 @@ export function LinkRows({ rows, onDark = false, numbered = false, className }: 
             href={r.href}
             data-cta={r.cta}
             className={clsx(
-              "group grid grid-cols-[1fr_auto] items-center gap-x-6 gap-y-1 border-b py-5 transition-colors duration-300 md:py-6",
+              "group grid grid-cols-[1fr_auto] items-center gap-x-6 gap-y-1 border-b py-6 transition-colors duration-300 md:py-6",
               numbered ? "md:grid-cols-[48px_1fr_1fr_auto]" : r.note ? "md:grid-cols-[1fr_1fr_auto]" : "",
               onDark ? "border-white/20 hover:border-paper" : "border-ink/15 hover:border-ink",
             )}
@@ -176,12 +176,12 @@ export function TwoWays({
             <span key={i} className={clsx("absolute top-1/2 h-2 w-2 -translate-y-1/2 rounded-full", onDark ? "bg-paper" : "bg-ink")} style={{ left: `${(i / items.length) * 100}%` }} />
           ))}
         </Reveal>
-        <Stagger className="grid gap-12 md:mt-10 md:grid-cols-2 md:gap-16">
+        <Stagger className="grid-12 gap-y-12 md:mt-10">
           {items.map((it) => (
-            <StaggerItem key={it.title} className={clsx("border-t pt-6 md:border-t-0 md:pt-0", onDark ? "border-white/20" : "border-ink/15")}>
+            <StaggerItem key={it.title} className={clsx("col-span-12 border-t pt-6 md:col-span-6 md:border-t-0 md:pt-0", onDark ? "border-white/20" : "border-ink/15")}>
               <h3 className="t-h2">{it.title}</h3>
-              <p className={clsx("t-body mt-3 max-w-[420px]", onDark ? "text-paper/72" : "text-ink/70")}>{it.body}</p>
-              <TextLink href={it.link.href} className="mt-7">{it.link.label}</TextLink>
+              <p className={clsx("t-body mt-4 max-w-[420px]", onDark ? "text-paper/72" : "text-ink/70")}>{it.body}</p>
+              <TextLink href={it.link.href} className="mt-8">{it.link.label}</TextLink>
             </StaggerItem>
           ))}
         </Stagger>

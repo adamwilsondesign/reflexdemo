@@ -2,15 +2,13 @@
 
 import { AutoTabs } from "@/components/ui/AutoTabs";
 import { PrecisionIcon } from "@/components/ui/PrecisionIcon";
-import { KnowledgeGraph } from "@/components/graphics/KnowledgeGraph";
-import { Stage } from "@/components/product/ui";
-import { AuditTrace, InsightStream } from "@/components/product/visuals";
+import { AuditTrace, InsightStream, RelationshipPanel } from "@/components/product/visuals";
 import Link from "next/link";
 
 export function Differentiators() {
   return (
     <AutoTabs
-      interval={7000}
+      interval={9000}
       items={[
         {
           title: "Knowledge Graph",
@@ -21,12 +19,7 @@ export function Differentiators() {
               <Link href="/knowledge-graph" className="link-underline font-medium text-ink">Explore the Graph</Link>
             </>
           ),
-          visual: (
-            <Stage field="ink" className="h-full w-full">
-              <KnowledgeGraph tone="dark" minor={60} />
-              <p className="pointer-events-none absolute right-4 top-4 text-[12px] text-white/50">Hover a node</p>
-            </Stage>
-          ),
+          visual: <RelationshipPanel />,
         },
         {
           title: "Always-on intelligence",

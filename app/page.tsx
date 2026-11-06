@@ -15,12 +15,27 @@ export default function Home() {
       <HomeHero />
 
       {/* Trusted by — customers only; data vendors live in their own labelled strip */}
-      <section data-tone="light" data-bg="#f4f3f1" className="border-y border-ink/10 bg-paper py-9">
+      <section data-tone="light" data-bg="#f4f3f1" className="border-y border-ink/10 bg-paper py-10">
         <div className="container-x flex flex-col items-start gap-6 md:flex-row md:items-center md:gap-10">
           <p className="t-ui shrink-0 text-ink/50">Trusted by</p>
           <WordmarkStrip names={CUSTOMERS} className="w-full min-w-0" />
         </div>
       </section>
+
+      {/* Two modes (moved out of the hero) */}
+      <Section surface="paper" tight>
+        <div className="container-x">
+          <SectionHeader title="On demand when you ask. Always on when you don’t." align="split" lead="One analyst works both ways, on the same Knowledge Graph and the same institutional data." />
+          <FeatureGrid
+            cols={2}
+            className="mt-12 md:mt-16"
+            items={[
+              { icon: "crosshair", title: "On-demand research", body: "Ask Alfred to investigate a company, analyze a portfolio, or pressure-test a thesis.", href: "/alfred", linkLabel: "Meet Alfred" },
+              { icon: "signal", title: "Always-on intelligence", body: "Relevant catalysts and their ripple effects, surfaced across the names you follow.", href: "/insights", linkLabel: "See Insights" },
+            ]}
+          />
+        </div>
+      </Section>
 
       {/* Investor value */}
       <Section surface="lake">

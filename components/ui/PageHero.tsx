@@ -79,8 +79,8 @@ export function PageHero({
       )}
     >
 
-      <div className={clsx("container-x", layout === "split" && "grid items-center gap-14 lg:grid-cols-12 lg:gap-12")}>
-        <div className={clsx(layout === "split" ? "lg:col-span-6" : "max-w-[920px]", layout === "stacked" && "mx-auto text-center")}>
+      <div className={clsx("container-x", layout === "split" && "grid-12 items-center gap-y-16")}>
+        <div className={clsx(layout === "split" ? "col-span-12 lg:col-span-6" : "max-w-[920px]", layout === "stacked" && "mx-auto text-center")}>
           {(trail || eyebrow) && (
             <motion.div {...fade(0.05)} className={clsx("mb-6", layout === "stacked" && "flex justify-center")}>
               <Eyebrow trail={trail}>{eyebrow}</Eyebrow>
@@ -93,8 +93,9 @@ export function PageHero({
             </motion.div>
           )}
           {actions !== null && (
-            <motion.div {...fade(0.6)} className={clsx("mt-9", layout === "stacked" && "flex justify-center")}>
-              {actions ?? <DemoActions onDark={dark} secondary={secondary} cta={cta} />}
+            <motion.div {...fade(0.6)} className={clsx("mt-10", layout === "stacked" && "flex justify-center")}>
+              {/* One CTA per hero, always the demo (art direction). `actions`/`secondary` are ignored. */}
+              <DemoActions onDark={dark} cta={cta} />
             </motion.div>
           )}
           {children}
@@ -105,8 +106,7 @@ export function PageHero({
             initial={reduce ? false : { opacity: 0, y: 40, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 1.2, ease: EASE, delay: 0.35 }}
-            style={{ y: reduce ? 0 : vy }}
-            className="relative lg:col-span-6"
+            className="relative col-span-12 lg:col-span-6"
           >
             {visual}
           </motion.div>

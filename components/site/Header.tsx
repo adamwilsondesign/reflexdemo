@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import clsx from "clsx";
 import { Logo } from "./Logo";
+import { BlogCover } from "@/app/blog/_components/BlogCover";
 import { APP_URL, NAV, type NavGroup } from "@/lib/nav";
 
 type Tone = "dark" | "light";
@@ -331,13 +331,7 @@ function PanelContent({ group }: { group: NavGroup }) {
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: EASE, delay: 0.12 }}>
           <Link href={group.featured.href} className="group block">
             <div className="relative aspect-[16/9] w-full max-w-[384px] overflow-hidden bg-graphite">
-              <Image
-                src={group.featured.image}
-                alt=""
-                fill
-                sizes="384px"
-                className="object-cover transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover:scale-[1.04]"
-              />
+              <BlogCover post={group.featured.post} size="sm" sizes="384px" className="absolute inset-0 h-full w-full" />
             </div>
             <p className="mt-4 font-display text-[16px] font-medium uppercase text-[#8e908c]">{group.featured.eyebrow}</p>
             <p className="mt-[6px] font-display text-[16px] font-medium text-[#f4f3f1]">{group.featured.title}</p>

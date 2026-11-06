@@ -119,7 +119,7 @@ export default function DeepResearchPage() {
           <Stagger as="ol" className="mt-10 flex flex-wrap items-center gap-2 lg:ml-[calc(50%+32px)]">
             {PIPELINE.map((p, i) => (
               <StaggerItem as="li" key={p} className="flex items-center gap-2">
-                <span className="rounded-full border border-white/20 bg-white/[0.04] px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.04em] text-paper/85">{p}</span>
+                <span className="rounded-full border border-white/20 bg-white/[0.04] px-4 py-2 font-mono text-[11px] uppercase tracking-[0.04em] text-paper/85">{p}</span>
                 {i < PIPELINE.length - 1 && <span aria-hidden="true" className="text-paper/35">→</span>}
               </StaggerItem>
             ))}
@@ -140,16 +140,16 @@ export default function DeepResearchPage() {
 
           <div className="mt-14 grid gap-6 md:mt-16 lg:grid-cols-12">
             <Reveal className="lg:col-span-4">
-              <div className="rounded-[18px] bg-lake-900 p-6 text-paper md:p-7 lg:sticky lg:top-[calc(var(--header-live)+24px)]">
-                <div className="flex items-center gap-2.5">
+              <div className="rounded-[18px] bg-lake-900 p-6 text-paper md:p-8 lg:sticky lg:top-[calc(var(--header-live)+24px)]">
+                <div className="flex items-center gap-4">
                   <AlfredGlyph className="h-4 w-4 text-lake-300" />
                   <span className="t-ui text-[10.5px] text-paper/60">The prompt</span>
                 </div>
-                <div className="mt-5 space-y-3 text-[14.5px] leading-relaxed text-paper/85">
+                <div className="mt-6 space-y-4 text-[14.5px] leading-relaxed text-paper/85">
                   {AMZN_PROMPT.map((p) => <p key={p}>{p}</p>)}
                   <ul className="space-y-2 pl-1">
                     {AMZN_ASKS.map((a) => (
-                      <li key={a} className="flex gap-2.5 text-[13.5px] text-paper/75">
+                      <li key={a} className="flex gap-4 text-[13.5px] text-paper/75">
                         <span aria-hidden="true" className="mt-[9px] h-1 w-1 shrink-0 rounded-full bg-paper/50" />
                         {a}
                       </li>
@@ -163,7 +163,7 @@ export default function DeepResearchPage() {
               <ResearchMemo />
             </Reveal>
           </div>
-          <div className="mt-6 grid gap-3 md:grid-cols-2">
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
             <IllustrativeNote>
               Condensed from a Reflexivity Deep Research output. Figures are shown for illustration and are not current market data. Section structure follows the prompt; other questions return different sections.
             </IllustrativeNote>

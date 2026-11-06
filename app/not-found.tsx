@@ -35,7 +35,7 @@ export default function NotFound() {
               The page you were looking for has moved or no longer exists. The rest of the graph is intact. Here are a few connections that still hold.
             </p>
           </Reveal>
-          <Reveal delay={0.55} className="mt-9 flex flex-wrap items-center gap-3">
+          <Reveal delay={0.55} className="mt-10 flex flex-wrap items-center gap-4">
             <Button href="/" variant="primary" arrow>
               Back to home
             </Button>
