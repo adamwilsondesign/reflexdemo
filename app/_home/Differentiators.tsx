@@ -2,7 +2,10 @@
 
 import { AutoTabs } from "@/components/ui/AutoTabs";
 import { PrecisionIcon } from "@/components/ui/PrecisionIcon";
-import { AuditTrace, InsightStream, RelationshipPanel } from "@/components/product/visuals";
+import { Field } from "@/components/visual/kit";
+import { HomeLinkLedger } from "@/components/visual/scenes/HomeLinkLedger";
+import { OvernightWatch } from "@/components/visual/scenes/OvernightWatch";
+import { SourceTrace } from "@/components/visual/scenes/SourceTrace";
 import Link from "next/link";
 
 export function Differentiators() {
@@ -19,7 +22,7 @@ export function Differentiators() {
               <Link href="/knowledge-graph" className="link-underline font-medium text-ink">Explore the Graph</Link>
             </>
           ),
-          visual: <RelationshipPanel />,
+          visual: <Slot field="lake"><HomeLinkLedger /></Slot>,
         },
         {
           title: "Always-on intelligence",
@@ -30,7 +33,7 @@ export function Differentiators() {
               <Link href="/insights" className="link-underline font-medium text-ink">See Insights</Link>
             </>
           ),
-          visual: <InsightStream />,
+          visual: <Slot field="pine"><OvernightWatch /></Slot>,
         },
         {
           title: "Auditable analysis",
@@ -41,9 +44,17 @@ export function Differentiators() {
               <Link href="/alfred#trust" className="link-underline font-medium text-ink">How auditability works</Link>
             </>
           ),
-          visual: <AuditTrace />,
+          visual: <Slot field="mist"><SourceTrace /></Slot>,
         },
       ]}
     />
+  );
+}
+
+function Slot({ field, children }: { field: "lake" | "pine" | "mist"; children: React.ReactNode }) {
+  return (
+    <Field field={field} className="flex h-full w-full items-center">
+      <div className="w-full">{children}</div>
+    </Field>
   );
 }

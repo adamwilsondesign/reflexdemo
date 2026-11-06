@@ -4,8 +4,8 @@ import { motion, useReducedMotion } from "motion/react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { SplitText } from "@/components/ui/SplitText";
 import { DemoActions } from "@/components/ui/Button";
-import { Stage } from "@/components/product/ui";
-import { HeroWorkflow } from "@/components/product/HeroWorkflow";
+import { Field } from "@/components/visual/kit";
+import { LayeredStack } from "@/components/visual/scenes/LayeredStack";
 import { Illustrative } from "@/components/ui/Illustrative";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -36,9 +36,9 @@ export function HomeHero() {
           transition={{ duration: 1.2, ease: EASE, delay: 0.3 }}
           className="col-span-12 lg:col-span-6"
         >
-          <Stage field="lake" className="p-4 sm:p-8" image="/figma/n875.png" parallax={false}>
-            <HeroWorkflow />
-          </Stage>
+          <Field field="pine">
+            <LayeredStack />
+          </Field>
           <Illustrative className="mt-4">Illustrative example.</Illustrative>
         </motion.div>
       </div>
