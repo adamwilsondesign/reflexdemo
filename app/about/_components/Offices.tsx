@@ -9,6 +9,7 @@ const OFFICES = [
   { city: "Tokyo", tz: "Asia/Tokyo", region: "APAC", coords: "35.68° N, 139.65° E", img: "/cities/tokyo.jpg", pos: "45% 50%" },
 ] as const;
 
+/** CC BY-SA 4.0 attribution for the office photos. Not rendered in round 6; must be restored (or photos licensed) before launch. */
 export const OFFICE_PHOTO_CREDITS = [
   { city: "New York", author: "SebastianBlumeArt", href: "https://commons.wikimedia.org/wiki/File:Aerial_view_of_Lower_Manhattan_and_Battery_Park_at_dusk.jpg" },
   { city: "London", author: "mattbuck", href: "https://commons.wikimedia.org/wiki/File:London_MMB_%C2%BB053_River_Thames_and_the_City.jpg" },
@@ -16,7 +17,7 @@ export const OFFICE_PHOTO_CREDITS = [
 ];
 
 /** Office cards: city photograph background, live local clock (rendered after mount). */
-export function Offices({ onDark = false }: { onDark?: boolean }) {
+export function Offices() {
   const [now, setNow] = useState<Date | null>(null);
   useEffect(() => {
     setNow(new Date());
@@ -48,22 +49,13 @@ export function Offices({ onDark = false }: { onDark?: boolean }) {
           );
         })}
       </ul>
-      <p className={onDark ? "t-small mt-5 text-paper/45" : "t-small mt-5 text-ink/45"}>
-        Photos:{" "}
-        {OFFICE_PHOTO_CREDITS.map((c, i) => (
-          <span key={c.city}>
-            {i > 0 && "; "}
-            <a href={c.href} className="underline-offset-2 hover:underline" rel="noopener" target="_blank">
-              {c.city}, {c.author}
-            </a>
-          </span>
-        ))}
-        . Licensed{" "}
-        <a href="https://creativecommons.org/licenses/by-sa/4.0/" className="underline-offset-2 hover:underline" rel="noopener" target="_blank">
-          CC BY-SA 4.0
-        </a>
-        , colour adjusted.
-      </p>
+      {/*
+        Photo credits are intentionally not rendered (client request, round 6).
+        LEGAL: these photos are CC BY-SA 4.0 and require attribution. Restore a visible credit
+        (see OFFICE_PHOTO_CREDITS) or license/replace the photos before launch.
+        Photos: New York, SebastianBlumeArt; London, mattbuck; Tokyo, Ximonic (Simo Räsänen).
+        Licensed CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/), colour adjusted.
+      */}
     </div>
   );
 }

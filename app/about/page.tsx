@@ -7,9 +7,9 @@ import { Button } from "@/components/ui/Button";
 import { CTABand, FeatureGrid } from "@/components/ui/Blocks";
 import { TextLink } from "@/components/ui/Layouts";
 import { SplitText } from "@/components/ui/SplitText";
-import { INVESTORS } from "@/lib/logos";
 import { DurableOrbit } from "./_components/DurableOrbit";
 import { Offices } from "./_components/Offices";
+import { Investors } from "./_components/Investors";
 
 export const metadata: Metadata = {
   title: "About Reflexivity: Built by Investors, for Investors",
@@ -181,21 +181,13 @@ export default function AboutPage() {
 
       {/* Investors */}
       <Section surface="lake">
-        <div className="container-x grid gap-10 lg:grid-cols-2 lg:gap-16">
-          <div>
+        <div className="container-x grid-12 gap-y-10">
+          <div className="col-span-12 lg:col-span-6">
             <SplitText text="Supported by world-class investors." className="t-h2 max-w-[460px]" />
           </div>
-          <Stagger as="ul" className="grid grid-cols-2 border-t border-white/20">
-            {INVESTORS.map((n) => (
-              <StaggerItem
-                as="li"
-                key={n}
-                className="border-b border-white/20 py-6 pr-4 font-display text-[18px] font-medium tracking-[-0.01em] text-paper/85 odd:border-r odd:border-white/20 even:pl-6 md:py-6 md:text-[21px] md:even:pl-8"
-              >
-                {n}
-              </StaggerItem>
-            ))}
-          </Stagger>
+          <div className="col-span-12 lg:col-span-6">
+            <Investors />
+          </div>
         </div>
       </Section>
 
