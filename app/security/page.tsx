@@ -2,12 +2,9 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
 import { CTABand } from "@/components/ui/Blocks";
 import { Section, SectionHeader } from "@/components/ui/Section";
-import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
-import { SplitText } from "@/components/ui/SplitText";
-import { type IconName } from "@/components/ui/PrecisionIcon";
-import { FeatureGrid } from "@/components/ui/Blocks";
-import { LinkRowsBlock, SplitFeature, TextLink } from "@/components/ui/Layouts";
+import { SplitFeature } from "@/components/ui/Layouts";
+import { ControlBadges } from "./_components/ControlBadges";
 import { IsolationViz } from "./_components/IsolationViz";
 import { SecurityHero } from "./_components/SecurityHero";
 import { DataProtection } from "./_components/DataProtection";
@@ -20,19 +17,6 @@ export const metadata: Metadata = {
 
 const SECURITY_HREF = "/contact?topic=security";
 
-const CONTROLS: { icon: IconName; title: string; body: string }[] = [
-  { icon: "pentagon", title: "SOC 2 Type II", body: "Reflexivity’s security controls undergo annual independent audits." },
-  { icon: "knot", title: "Encryption", body: "Customer data is encrypted in transit to protect sensitive information." },
-  { icon: "venn", title: "Permission-aware access", body: "Access to connected sources respects your firm’s existing permissions." },
-];
-
-const PORTAL = [
-  "SOC 2 Type II report request",
-  "Security overview and architecture walkthrough",
-  "Due-diligence questionnaire (DDQ) support",
-  "Data handling and retention questions",
-];
-
 export default function SecurityPage() {
   return (
     <>
@@ -42,16 +26,6 @@ export default function SecurityPage() {
         title="Security built for institutional research."
         lead="Reflexivity protects sensitive research and connected data through independently audited controls, encryption, and permission-aware access."
         cta="security-hero"
-        actions={
-          <div className="flex flex-wrap items-center gap-4">
-            <Button href={SECURITY_HREF} variant="light" arrow cta="security-hero-overview">
-              Request a Security Overview
-            </Button>
-            <Button href="/book-a-demo" variant="outline-light" cta="security-hero-demo">
-              Request a Demo
-            </Button>
-          </div>
-        }
         visual={<SecurityHero />}
       />
 
@@ -63,7 +37,7 @@ export default function SecurityPage() {
             align="split"
             lead="Answers to the first questions on most due-diligence questionnaires, up front. Governance can vary by deployment, and we’ll walk through yours."
           />
-          <FeatureGrid onDark className="mt-14 md:mt-20" items={CONTROLS} />
+          <ControlBadges className="mt-14 md:mt-20" />
         </div>
       </Section>
 
@@ -85,27 +59,8 @@ export default function SecurityPage() {
         surface="pine"
         title="One environment per client."
         lead="Access is checked at the edge, data is encrypted in transit, and each firm’s research, documents and connected sources sit in their own environment. Nothing is shared between clients."
-        link={{ label: "Request a Security Overview", href: SECURITY_HREF }}
         visual={<IsolationViz />}
       />
-
-      {/* Security portal + cross-link */}
-      <Section surface="mist">
-        <div className="container-x">
-          <LinkRowsBlock
-            title="Trust portal & DDQ"
-            lead="Request our security documentation, get support with your due-diligence questionnaire, or set up a review with our security team."
-            rows={PORTAL.map((p) => ({ label: p, href: SECURITY_HREF }))}
-          />
-          <Reveal className="mt-20 grid gap-6 border-t border-ink/15 pt-10 md:mt-28 lg:grid-cols-2 lg:gap-16">
-            <h3 className="t-h3 max-w-[460px]">Checking the research, not protecting the data?</h3>
-            <div>
-              <p className="t-body max-w-[520px] text-ink/70">Security covers how your data is protected. How analysis can be inspected (sources, calculations and missing-data flags) is part of how Alfred works.</p>
-              <TextLink href="/alfred#trust" className="mt-6">How Alfred shows its work</TextLink>
-            </div>
-          </Reveal>
-        </div>
-      </Section>
 
       {/* CTA: security review */}
       <CTABand

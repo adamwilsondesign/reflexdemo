@@ -73,7 +73,7 @@ export function RadialSystem({ className, accent = "currentColor", label }: { cl
       {[60, 110, 160, 190].map((r, i) => (
         <motion.circle key={r} cx={C} cy={C} r={r} stroke="currentColor" strokeOpacity={i === 3 ? 0.35 : 0.22} strokeWidth={1} strokeDasharray={i === 1 ? "2 5" : undefined} {...draw(seen, reduce, i * 0.15, 1.8)} />
       ))}
-      <motion.g style={{ originX: "200px", originY: "200px" }} animate={live ? { rotate: 360 } : undefined} transition={{ duration: 160, repeat: Infinity, ease: "linear" }}>
+      <motion.g style={{ transformBox: "view-box", originX: 0.5, originY: 0.5 }} animate={live ? { rotate: 360 } : undefined} transition={{ duration: 160, repeat: Infinity, ease: "linear" }}>
         {Array.from({ length: spokes }, (_, i) => {
           const a = (i / spokes) * Math.PI * 2;
           const rr = i % 3 === 0 ? 190 : 160;
@@ -278,7 +278,7 @@ export function OrbitField({ className, accent = "currentColor" }: { className?:
       {orbits.map((o, oi) => (
         <g key={o.r}>
           <motion.circle cx={C} cy={C} r={o.r} stroke="currentColor" strokeOpacity={0.22} strokeDasharray={oi === 1 ? "2 5" : undefined} {...draw(seen, reduce, oi * 0.2, 1.8)} />
-          <motion.g style={{ originX: "200px", originY: "200px" }} animate={live ? { rotate: oi % 2 ? -360 : 360 } : undefined} transition={{ duration: o.dur, repeat: Infinity, ease: "linear" }}>
+          <motion.g style={{ transformBox: "view-box", originX: 0.5, originY: 0.5 }} animate={live ? { rotate: oi % 2 ? -360 : 360 } : undefined} transition={{ duration: o.dur, repeat: Infinity, ease: "linear" }}>
             {Array.from({ length: o.n }, (_, k) => {
               const a = (k / o.n) * Math.PI * 2 + oi;
               const x = r2(C + Math.cos(a) * o.r), y = r2(C + Math.sin(a) * o.r);

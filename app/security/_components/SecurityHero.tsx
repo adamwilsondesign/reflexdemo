@@ -15,11 +15,11 @@ const r2 = (n: number) => Math.round(n * 100) / 100;
 
 const REQUESTS = [
   { a: 28, ok: true, d: 0 },
-  { a: 118, ok: false, d: 1.6 },
-  { a: 205, ok: true, d: 3.1 },
-  { a: 300, ok: false, d: 4.4 },
-  { a: 250, ok: true, d: 5.8 },
+  { a: 140, ok: false, d: 4.8 },
+  { a: 250, ok: true, d: 9.6 },
 ];
+/** One request every 4.8s: a single slow motion idea (arrive, get checked, pass or stop). */
+const CYCLE = REQUESTS.length * 4.8;
 
 function arcTicks(r: number, n: number, len: number) {
   return Array.from({ length: n }, (_, i) => {
@@ -33,7 +33,7 @@ function arcTicks(r: number, n: number, len: number) {
 /**
  * Security hero: three concentric precision layers.
  * Outer: permission-aware access (gated ring, requests checked).
- * Middle: encryption in transit (packets travelling on a dashed channel).
+ * Middle: encryption in transit (a dashed channel).
  * Inner: client isolation (your environment, sealed core).
  */
 export function SecurityHero() {
@@ -68,43 +68,18 @@ export function SecurityHero() {
           </g>
 
           {/* Outer: permission layer */}
-          <motion.g animate={play ? { rotate: 360 } : undefined} transition={{ duration: 120, ease: "linear", repeat: Infinity }}>
+          <g>
             <motion.circle cx={C} cy={C} r={R_OUT} fill="none" stroke="rgb(244 243 241 / 0.55)" strokeWidth="1.2" strokeDasharray="120 14" {...draw(0.3)} />
             <g stroke="rgb(244 243 241 / 0.35)" strokeWidth="1">{arcTicks(R_OUT + 6, 72, 4)}</g>
-          </motion.g>
+          </g>
 
           {/* Middle: encryption channel */}
           <motion.circle cx={C} cy={C} r={R_MID} fill="none" stroke="#8fa3b6" strokeOpacity="0.55" strokeWidth="1" strokeDasharray="2 6" {...draw(0.6)} />
           <motion.circle cx={C} cy={C} r={R_MID - 10} fill="none" stroke="#8fa3b6" strokeOpacity="0.25" strokeWidth="1" {...draw(0.7)} />
-          {[0, 1, 2].map((i) => (
-            <motion.g
-              key={i}
-              initial={{ rotate: i * 120 }}
-              animate={play ? { rotate: i * 120 + 360 } : undefined}
-              transition={{ duration: 14, ease: "linear", repeat: Infinity }}
-            >
-              <circle cx={C} cy={C} r={R_MID + 4} fill="none" stroke="none" />
-              <rect x={C - 7} y={C - R_MID - 4} width="14" height="8" rx="2" fill="#d5dee6" opacity="0.9" />
-              <rect x={C - 24} y={C - R_MID - 1.5} width="12" height="3" rx="1.5" fill="#d5dee6" opacity="0.25" />
-            </motion.g>
-          ))}
-
           {/* Inner: isolated client environment */}
           <circle cx={C} cy={C} r={R_IN + 30} fill="url(#sec-core)" />
           <motion.circle cx={C} cy={C} r={R_IN} fill="rgb(36 50 68 / 0.55)" stroke="rgb(244 243 241 / 0.85)" strokeWidth="1.4" {...draw(0.9)} />
           <motion.circle cx={C} cy={C} r={R_IN - 8} fill="none" stroke="rgb(244 243 241 / 0.25)" strokeWidth="1" {...draw(1)} />
-          {!reduce && (
-            <motion.circle
-              cx={C}
-              cy={C}
-              r={R_IN}
-              fill="none"
-              stroke="rgb(244 243 241 / 0.6)"
-              strokeWidth="1"
-              animate={play ? { r: [R_IN, R_IN + 22], opacity: [0.6, 0] } : undefined}
-              transition={{ duration: 3.2, repeat: Infinity, ease: "easeOut" }}
-            />
-          )}
           <text x={C} y={C - 4} textAnchor="middle" fill="#ffffff" style={{ fontSize: 16, fontWeight: 600 }}>Your environment</text>
           <text x={C} y={C + 16} textAnchor="middle" fill="rgb(255 255 255 / 0.65)" style={{ fontSize: 12 }}>Research, data, outputs</text>
 
@@ -124,7 +99,7 @@ export function SecurityHero() {
                     cy: q.ok ? [0, C - R_OUT, C - R_OUT, C - R_IN - 6] : [0, C - R_OUT - 4, C - R_OUT - 4, C - R_OUT - 14],
                     opacity: [0, 1, 1, 0],
                   }}
-                  transition={{ duration: 3.4, times: [0, 0.4, 0.55, 1], delay: q.d, repeat: Infinity, repeatDelay: 3.6, ease: "easeInOut" }}
+                  transition={{ duration: 4.2, times: [0, 0.4, 0.6, 1], delay: q.d, repeat: Infinity, repeatDelay: CYCLE - 4.2, ease: "easeInOut" }}
                 />
               )}
             </g>
