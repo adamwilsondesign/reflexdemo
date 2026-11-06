@@ -12,7 +12,7 @@ export function FirmPanel() {
   const [i, ref, setI] = useCycle(FIRMS.length, { ms: 5200, finalForReduced: 0 });
   const f = FIRMS[i];
   return (
-    <Stage field="lake" className="flex w-full items-center justify-center p-6 sm:p-12" parallax={false}>
+    <Stage field="lake" className="flex min-h-[360px] w-full items-center justify-center p-6 sm:min-h-[440px] sm:p-12" parallax={false}>
       <div ref={ref} className="w-full max-w-[400px]">
         <MockPanel stateKey={i} height={208}>
           <p className="text-[13px] text-[#8f8f8f]">{f.name}</p>

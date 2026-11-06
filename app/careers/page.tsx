@@ -52,7 +52,7 @@ export default function CareersPage() {
         title="Help build the future of finance."
         lead="Join a distributed team building the research infrastructure institutional investors rely on. Shape the future of investing, and your career, with technology at the edge of what’s possible."
         actions={null}
-        visual={<Photo src={HERO_PHOTO} priority className="aspect-[4/3] lg:aspect-[5/6]" pos="40% 50%" />}
+        visual={<Photo src={HERO_PHOTO} priority className="aspect-[4/3] lg:aspect-square" pos="40% 50%" />}
       />
 
       {/* Culture statement */}
