@@ -3,8 +3,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import type { IconName } from "@/components/ui/PrecisionIcon";
 import { CTABand, FeatureGrid } from "@/components/ui/Blocks";
-import { LinkRowsBlock, SplitFeature } from "@/components/ui/Layouts";
-import { FlowLines } from "@/components/graphics/Cartography";
+import { LinkRowsBlock } from "@/components/ui/Layouts";
 import { JobsHero } from "./_components/JobsHero";
 import { ConnectedLoop } from "./_components/ConnectedLoop";
 import { Audiences } from "./_components/Shared";
@@ -93,15 +92,6 @@ export default function UseCasesPage() {
           />
         </div>
       </Section>
-
-      {/* Concept: one engine */}
-      <SplitFeature
-        surface="pine"
-        title="One engine under every job."
-        lead="Monitoring, research, themes and scenarios read from the same map of market relationships, so a connection found in one workflow is the one the next workflow watches."
-        link={{ label: "Explore the platform", href: "/platform" }}
-        visual={<FlowLines accent="#f4f3f1" />}
-      />
 
       {/* Same engine */}
       <Section surface="paper">

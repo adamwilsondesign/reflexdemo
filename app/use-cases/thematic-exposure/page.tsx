@@ -19,7 +19,7 @@ const STATS = [
   { to: 40, suffix: "K", label: "Securities mapped" },
   { to: 600, suffix: "K", label: "Evidence-backed relationships" },
   { to: 47, suffix: "", label: "Global markets" },
-  { to: 800, suffix: "", label: "Ready-made themes" },
+  { to: 900, suffix: "", label: "Ready-made themes" },
 ];
 
 export default function ThematicExposurePage() {
@@ -39,7 +39,7 @@ export default function ThematicExposurePage() {
           <SectionHeader
             align="split"
             title="From investment thesis to constituent list, faster."
-            lead="Explore 800+ ready-made themes, or trace the connections behind your own investment thesis."
+            lead="Explore 900+ ready-made themes, or trace the connections behind your own investment thesis."
           />
           <FeatureGrid
             onDark

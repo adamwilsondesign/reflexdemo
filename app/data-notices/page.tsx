@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
 import { Section, SectionHeader } from "@/components/ui/Section";
+import { OFFICE_PHOTO_CREDITS } from "@/lib/credits";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { CTABand } from "@/components/ui/Blocks";
@@ -195,6 +196,41 @@ export default function DataNoticesPage() {
               </StaggerItem>
             ))}
           </Stagger>
+        </div>
+      </Section>
+
+      {/* Illustrative examples + image credits */}
+      <Section surface="paper" id="illustrative-examples" className="scroll-mt-[var(--header-h)] border-t border-ink/8">
+        <div className="container-x grid-12 gap-y-10">
+          <div className="col-span-12 lg:col-span-4">
+            <SectionHeader title="Illustrative examples and image credits." />
+          </div>
+          <div className="col-span-12 lg:col-span-8">
+            <div id="illustrative" className="grid gap-2 border-t border-ink/12 py-6 md:grid-cols-[200px_1fr] md:gap-8">
+              <h3 className="font-display text-[17px] font-semibold">Illustrative examples</h3>
+              <p className="t-body text-ink/72">
+                Product screens, animations and worked examples on this website are simplified illustrations of how Reflexivity works. Company names, figures, rankings, scores, returns and other values shown in them are for illustration only. They may be hypothetical, rounded or out of date, are not current market data, and are not a forecast, recommendation or investment advice. Actual outputs depend on the data, entitlements and time of each analysis.
+              </p>
+            </div>
+            <div id="image-credits" className="grid gap-2 border-y border-ink/12 py-6 md:grid-cols-[200px_1fr] md:gap-8">
+              <h3 className="font-display text-[17px] font-semibold">Image credits</h3>
+              <div className="t-body text-ink/72">
+                <p>Office photographs on the About page, colour adjusted, are used under the{" "}
+                  <a href="https://creativecommons.org/licenses/by-sa/4.0/" className="text-ink underline decoration-ink/25 underline-offset-2 hover:decoration-ink" target="_blank" rel="noopener">Creative Commons Attribution-ShareAlike 4.0</a>{" "}
+                  licence:</p>
+                <ul className="mt-2 space-y-1">
+                  {OFFICE_PHOTO_CREDITS.map((c) => (
+                    <li key={c.city}>
+                      {c.city}:{" "}
+                      <a href={c.href} className="text-ink underline decoration-ink/25 underline-offset-2 hover:decoration-ink" target="_blank" rel="noopener">
+                        photo by {c.author}, via Wikimedia Commons
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </Section>
 

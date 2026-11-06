@@ -1,5 +1,7 @@
 "use client";
 
+export { OFFICE_PHOTO_CREDITS } from "@/lib/credits";
+
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -10,11 +12,6 @@ const OFFICES = [
 ] as const;
 
 /** CC BY-SA 4.0 attribution for the office photos. Not rendered in round 6; must be restored (or photos licensed) before launch. */
-export const OFFICE_PHOTO_CREDITS = [
-  { city: "New York", author: "SebastianBlumeArt", href: "https://commons.wikimedia.org/wiki/File:Aerial_view_of_Lower_Manhattan_and_Battery_Park_at_dusk.jpg" },
-  { city: "London", author: "mattbuck", href: "https://commons.wikimedia.org/wiki/File:London_MMB_%C2%BB053_River_Thames_and_the_City.jpg" },
-  { city: "Tokyo", author: "Ximonic (Simo Räsänen)", href: "https://commons.wikimedia.org/wiki/File:Shibuya_and_Shinjuku_from_Yebisu_Garden_Place_Tower,_Ebisu,_Tokyo,_Japan,_2024_May.jpg" },
-];
 
 /** Office cards: city photograph background, live local clock (rendered after mount). */
 export function Offices() {
