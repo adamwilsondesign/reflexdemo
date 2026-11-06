@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, useInView, useReducedMotion } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
+import { MockPanel, Row, useCycle } from "@/components/product/motion";
 import clsx from "clsx";
 import { CardHeader, useTypewriter } from "@/components/product/ui";
 import { TextLink } from "@/components/ui/Layouts";
@@ -11,16 +12,20 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 function ExploreVisual() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { amount: 0.4 });
-  const typed = useTypewriter("Which of my holdings depend on TSMC, directly or through suppliers?", { start: inView, speed: 28, delay: 300 });
+  const typed = useTypewriter("Which of my holdings depend on TSMC?", { start: inView, speed: 40, delay: 300 });
   return (
-    <div ref={ref} className="pui space-y-3 p-5 sm:p-6">
-      <div className="ui-card p-4">
-        <CardHeader />
-        <p className="mt-2 min-h-[2.9em] text-[15px] leading-[1.45] text-[#0d0d0d]">{typed}</p>
-      </div>
-      <div className="ui-card p-4">
-        <span className="flex items-center gap-1.5 text-[12px] text-[#8f8f8f]"><span className="h-1.5 w-1.5 rounded-full bg-[#0d0d0d]" />Insight, touches 3 holdings</span>
-        <span className="mt-0.5 block truncate text-[14px] font-medium text-[#0d0d0d]">AI data center power buildout accelerates</span>
+    <div ref={ref} className="pui flex h-full items-center justify-center p-6">
+      <div className="w-full max-w-[400px]">
+        <MockPanel height={200}>
+          <div className="flex h-full flex-col">
+            <CardHeader />
+            <p className="mt-3 text-[16px] leading-6 text-[#0d0d0d]">{typed}</p>
+            <div className="mt-auto">
+              <Row strong dot label="NVIDIA" value="Supplier, 0.90" />
+              <Row strong dot label="Apple" value="Supplier, 0.88" />
+            </div>
+          </div>
+        </MockPanel>
       </div>
     </div>
   );
@@ -31,39 +36,24 @@ const RECORD = [
   `  "source": "NVIDIA",`,
   `  "target": "TSMC",`,
   `  "relationship": "supplier",`,
-  `  "weight": 0.90,`,
-  `  "evidence": ["filing", "transcript"]`,
+  `  "weight": 0.90`,
   `}`,
 ];
+const CHANNELS = ["Data feeds", "API", "MCP"];
 
 function BuildVisual() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { amount: 0.4 });
-  const reduce = useReducedMotion();
-  const [n, setN] = useState(reduce ? RECORD.length : 0);
-  const [ch, setCh] = useState(0);
-  useEffect(() => {
-    if (reduce || !inView) return;
-    if (n < RECORD.length) {
-      const t = setTimeout(() => setN((x) => x + 1), 260);
-      return () => clearTimeout(t);
-    }
-    const t = setTimeout(() => setCh((c) => (c + 1) % 3), 1800);
-    return () => clearTimeout(t);
-  }, [n, ch, inView, reduce]);
+  const [ch, ref] = useCycle(CHANNELS.length, { ms: 4800, finalForReduced: 0 });
   return (
-    <div ref={ref} className="pui p-5 sm:p-6">
-      <div className="ui-card p-4">
-        <div className="flex gap-4 text-[13px]">
-          {["Data feeds", "API", "MCP"].map((c, k) => (
-            <span key={c} className={clsx("transition-colors duration-500", k === ch ? "font-medium text-[#0d0d0d]" : "text-[#8f8f8f]")}>{c}</span>
-          ))}
-        </div>
-        <pre className="mt-3 min-h-[150px] overflow-hidden rounded-[10px] border border-black/10 bg-[#f9f9f9] p-3 text-[12px] leading-[1.6] text-[#0d0d0d]">
-          {RECORD.slice(0, n).map((l, i) => (
-            <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }} className="whitespace-pre">{l}</motion.div>
-          ))}
-        </pre>
+    <div ref={ref} className="pui flex h-full items-center justify-center p-6">
+      <div className="w-full max-w-[400px]">
+        <MockPanel height={200}>
+          <div className="flex gap-4 text-[13px]">
+            {CHANNELS.map((c, k) => (
+              <span key={c} className={clsx("transition-colors duration-500", k === ch ? "font-medium text-[#0d0d0d]" : "text-[#8f8f8f]")}>{c}</span>
+            ))}
+          </div>
+          <pre className="mt-3 overflow-hidden rounded-[10px] border border-black/10 bg-[#f9f9f9] p-3 text-[12px] leading-5 text-[#0d0d0d]">{RECORD.join("\n")}</pre>
+        </MockPanel>
       </div>
     </div>
   );
@@ -102,7 +92,7 @@ export function ExploreBuild() {
           transition={{ duration: 0.9, ease: EASE, delay: i * 0.1 }}
           className={clsx("flex flex-col overflow-hidden rounded-[16px]", c.dark ? "bg-ink text-paper" : "border border-ink/12 bg-white text-ink")}
         >
-          <div className={clsx("min-h-[250px]", c.dark ? "field-ink" : "field-mist")}>{c.visual}</div>
+          <div className={clsx("h-[296px] shrink-0", c.dark ? "field-ink" : "field-mist")}>{c.visual}</div>
           <div className="flex flex-1 flex-col p-6 md:p-9">
             <h3 className="t-h2">{c.title}</h3>
             <p className={clsx("t-body mt-3 max-w-[480px]", c.dark ? "text-paper/70" : "text-ink/70")}>{c.body}</p>

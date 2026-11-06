@@ -11,7 +11,7 @@ import { SplitFeature, TextLink } from "@/components/ui/Layouts";
 import { BranchLines } from "@/components/graphics/Cartography";
 import { InsightsHero } from "./_components/InsightsHero";
 import { AnatomyDoc } from "./_components/AnatomyDoc";
-import { SignalFilter } from "./_components/SignalFilter";
+import { AlertStack } from "./_components/AlertStack";
 import { WhySurfaced } from "./_components/WhySurfaced";
 import { SameEvent } from "./_components/SameEvent";
 import { InsightToWork } from "./_components/InsightToWork";
@@ -29,35 +29,26 @@ const ANATOMY = [
   { title: "Ask Alfred", body: "See which countries and regions are exposed, then ask Alfred follow-up questions about the cohort." },
 ];
 
-const TYPES: { icon: IconName; name: string; question: string; body: string; example: string; note?: string }[] = [
+const TYPES: { icon: IconName; name: string; body: string }[] = [
   {
     icon: "atom",
     name: "Company Catalysts",
-    question: "What just changed at a company I follow, and what does it mean for my holdings?",
-    body: "Deals, leadership changes and market moves that affect the companies you follow, framed by what they mean for your holdings.",
-    example: "Sanofi settles Regeneron dispute in expanded antibody pact",
+    body: "Deals, leadership changes and market moves at the companies you follow, framed by what they mean for your holdings.",
   },
   {
     icon: "orbit",
     name: "Market Catalysts",
-    question: "Which of my names does this macro, policy or thematic shift reach?",
-    body: "See how macroeconomic shifts, policy changes, geopolitical events, and emerging themes affect companies across your coverage.",
-    example: "AI data center power buildout accelerates",
+    body: "Macro shifts, policy changes, geopolitical events and emerging themes, traced to the companies across your coverage.",
   },
   {
     icon: "signal",
     name: "Earnings Insights",
-    question: "What should I watch on the call, and what actually changed after it?",
-    body: "Previews ahead of the call. Recaps shortly after it, covering key KPIs, management commentary, guidance, and peer implications.",
-    example: "Guidance overshadowed a mixed Nike quarter",
+    body: "Previews before the call and recaps soon after, covering KPIs, management commentary, guidance and peer read-across.",
   },
   {
     icon: "loop",
     name: "Scenario-Pattern Detection",
-    question: "Has this setup appeared before, and what followed historically?",
-    body: "Get alerted when historically backtested fundamental, macro, or technical conditions reappear, signaling potential price movements.",
-    example: "Eli Lilly: recession probability at a new low",
-    note: "Patterns describe what followed historically. They are not a forecast of future prices.",
+    body: "Alerts when backtested fundamental, macro or technical conditions reappear, showing what followed before. Not a forecast.",
   },
 ];
 
@@ -69,7 +60,6 @@ export default function InsightsPage() {
         trail={[{ label: "Product" }, { label: "Insights" }]}
         title="Intelligence that arrives before you ask."
         lead="Insights surface relevant market developments, earnings intelligence, and second-order effects across the companies and themes you follow, each with the reason it reached you."
-        secondary={{ label: "See portfolio monitoring", href: "/use-cases/portfolio-monitoring" }}
         cta="insights-hero"
         visual={<InsightsHero />}
       />
@@ -93,7 +83,7 @@ export default function InsightsPage() {
             </Reveal>
           </div>
           <Reveal className="lg:col-span-7" delay={0.1}>
-            <SignalFilter />
+            <AlertStack />
           </Reveal>
         </div>
       </Section>
@@ -120,11 +110,6 @@ export default function InsightsPage() {
               }))}
             />
           </div>
-          <Reveal>
-            <p className="t-small mt-8 max-w-[640px] text-ink/50">
-              Shown: a Market Catalyst on AI data center power, simplified for illustration. Earnings Insights add KPIs, management commentary and guidance to the same reading path.
-            </p>
-          </Reveal>
         </div>
       </Section>
 
@@ -140,25 +125,8 @@ export default function InsightsPage() {
             onDark
             cols={2}
             className="mt-14 md:mt-20"
-            items={TYPES.map((t) => ({
-              icon: t.icon,
-              title: t.name,
-              body: (
-                <>
-                  <span className="t-body block italic text-paper/90">{t.question}</span>
-                  <span className="mt-4 block">{t.body}</span>
-                  {t.note && <span className="mt-4 block text-paper/55">{t.note}</span>}
-                  <span className="ui-card mt-6 block px-4 py-4">
-                    <span className="block text-[12px] text-[#8f8f8f]">Example insight</span>
-                    <span className="mt-0.5 block text-[14px] font-medium text-[#0d0d0d]">{t.example}</span>
-                  </span>
-                </>
-              ),
-            }))}
+            items={TYPES.map((t) => ({ icon: t.icon, title: t.name, body: t.body }))}
           />
-          <Reveal>
-            <p className="t-small mt-6 text-paper/55">Preview and recap timing varies by company and event. We can confirm coverage for specific names in a demo.</p>
-          </Reveal>
         </div>
       </Section>
 

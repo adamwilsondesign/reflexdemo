@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { CTABand } from "@/components/ui/Blocks";
-import { SplitFeature, TextLink } from "@/components/ui/Layouts";
-import { PrecisionIcon } from "@/components/ui/PrecisionIcon";
+import { SplitFeature } from "@/components/ui/Layouts";
 import { KGHero } from "./_components/KGHero";
-import { GraphMaps, WeightExplainer } from "./_components/GraphMaps";
+import { GraphMaps } from "./_components/GraphMaps";
 import { RippleExample } from "./_components/RippleExample";
 import { ExploreBuild } from "./_components/ExploreBuild";
 import { Coverage } from "./_components/Coverage";
@@ -24,13 +23,12 @@ export default function KnowledgeGraphPage() {
       <KGHero />
 
       {/* 1a · Proofpoint */}
-      <section data-tone="light" data-bg="#f4f3f1" className="border-b border-ink/10 bg-paper py-12 md:py-16">
+      <section data-tone="light" data-bg="#f4f3f1" className="border-b border-ink/10 bg-paper py-20 md:py-28">
         <div className="container-x">
-          <Reveal className="flex flex-col gap-6 md:flex-row md:items-center md:gap-10">
-            <PrecisionIcon name="star" className="h-9 w-9 shrink-0 text-lake-700" />
-            <p className="t-statement max-w-[860px] text-ink">
+          <Reveal>
+            <h2 className="t-h1 mx-auto max-w-[1040px] text-center text-ink">
               Powers thematic analysis at the world’s largest bank and is distributed by Interactive Brokers to millions of end users.
-            </p>
+            </h2>
           </Reveal>
         </div>
       </section>
@@ -55,8 +53,7 @@ export default function KnowledgeGraphPage() {
       </Section>
 
       {/* 3 · Event to ripple effects */}
-      <Section surface="lake" id="ripple" className="overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-chart-dark opacity-40" />
+      <Section surface="lake" id="ripple">
         <div className="container-x">
           <SectionHeader
             title="Surface the ripple effects of any market event."
@@ -65,25 +62,6 @@ export default function KnowledgeGraphPage() {
           />
           <div className="mt-14 md:mt-16">
             <RippleExample />
-          </div>
-        </div>
-      </Section>
-
-      {/* 4 · Relationship weights */}
-      <Section surface="mist">
-        <div className="container-x">
-          <SectionHeader
-            title="What a weight tells you, and what it doesn’t."
-            align="split"
-            lead={
-              <div className="flex flex-col items-start gap-4">
-                <TextLink href="/use-cases/thematic-exposure">See who is really exposed to a theme</TextLink>
-                <TextLink href="/book-a-demo">Request a methodology walkthrough</TextLink>
-              </div>
-            }
-          />
-          <div className="mt-12 md:mt-16">
-            <WeightExplainer />
           </div>
         </div>
       </Section>

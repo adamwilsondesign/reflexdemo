@@ -52,7 +52,7 @@ function Schedule() {
   const [runs, setRuns] = useState(0);
   useEffect(() => {
     if (!inView || reduce) return;
-    const iv = setInterval(() => setRuns((r) => r + 1), 2600);
+    const iv = setInterval(() => setRuns((r) => r + 1), 4800);
     return () => clearInterval(iv);
   }, [inView, reduce]);
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri"];

@@ -88,6 +88,7 @@ export function WhySurfaced() {
 
       <div id="why-panel" role="tabpanel" aria-labelledby={`why-tab-${r.key}`} className="lg:col-span-7">
         <div className="pui field-mist grain relative overflow-hidden rounded-[18px] border border-ink/8 p-5 sm:p-8">
+          <div className="h-[480px] sm:h-[248px]">
           <AnimatePresence mode="wait">
             <motion.div key={r.key} initial={reduce ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.55, ease: EASE }}>
               {/* Path */}
@@ -137,7 +138,8 @@ export function WhySurfaced() {
               </motion.div>
             </motion.div>
           </AnimatePresence>
-          <p className="mt-4 text-[12px] text-[#5d5d5d]">Illustrative example</p>
+          </div>
+          <p className="mt-4 text-[12px] text-[#5d5d5d]">Illustrative example.</p>
         </div>
       </div>
     </div>

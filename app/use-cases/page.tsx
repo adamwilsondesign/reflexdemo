@@ -75,7 +75,6 @@ export default function UseCasesPage() {
         trail={[{ label: "Use Cases" }]}
         title="Explore how the same engine supports research, monitoring, testing, and idea generation."
         lead="Reflexivity is organised around the jobs investors need to finish, not a feature catalogue. Pick the workflow closest to yours."
-        secondary={{ label: "Explore the platform", href: "/platform" }}
         cta="use-cases-hero"
         visual={
           <div className="mx-auto max-w-[1040px]">
@@ -122,7 +121,6 @@ export default function UseCasesPage() {
 
       {/* One connected workflow */}
       <Section surface="lake" className="overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-chart-dark opacity-50" />
         <div className="container-x">
           <SectionHeader
             title="Research, monitoring, and testing feed each other."

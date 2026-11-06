@@ -1,64 +1,68 @@
 "use client";
 
-import { motion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Stage } from "@/components/product/ui";
-import { useLoop } from "../../_components/useLoop";
+import { MOTION_EASE, MockPanel, StepDots, useCycle } from "@/components/product/motion";
 
-const EASE = [0.16, 1, 0.3, 1] as const;
 const W = 400;
-const H = 200;
-const ORIGIN = 92; // y of 0% line
-const TICKS = [
-  { x: 0, l: "0" },
-  { x: 0.07, l: "1W" },
-  { x: 0.2, l: "1M" },
-  { x: 0.42, l: "3M" },
-  { x: 0.68, l: "6M" },
-  { x: 1, l: "1Y" },
+const H = 120;
+const ORIGIN = 52; // y of the 0% line
+const SCALE = 12; // px per %
+// illustrative median path (% return) after past episodes
+const PATH = [
+  { x: 0, v: 0 },
+  { x: 0.2, v: -1.1 },
+  { x: 0.42, v: -2.1 },
+  { x: 0.68, v: -1.4 },
+  { x: 1, v: 0.6 },
 ];
-// illustrative median path (% return) at each tick
-const MEDIAN = [0, -0.4, -1.1, -2.1, -1.4, 0.6];
-const SCALE = 9; // px per %
+const pts = PATH.map((p) => [p.x * W, ORIGIN - p.v * SCALE] as const);
+const D = pts.map((p, i) => (i === 0 ? `M${p[0]},${p[1]}` : `C${(pts[i - 1][0] + p[0]) / 2},${pts[i - 1][1]} ${(pts[i - 1][0] + p[0]) / 2},${p[1]} ${p[0]},${p[1]}`)).join(" ");
 
-const med = TICKS.map((t, i) => [t.x * W, ORIGIN - MEDIAN[i] * SCALE] as const);
-const smooth = (pts: readonly (readonly [number, number])[]) =>
-  pts.map((p, i) => (i === 0 ? `M${p[0]},${p[1]}` : `C${(pts[i - 1][0] + p[0]) / 2},${pts[i - 1][1]} ${(pts[i - 1][0] + p[0]) / 2},${p[1]} ${p[0]},${p[1]}`)).join(" ");
-const MEDIAN_D = smooth(med);
-const band = (k: number) => TICKS.map((t, i) => [t.x * W, ORIGIN - MEDIAN[i] * SCALE - k * Math.sqrt(t.x) * 48] as const);
-const UP = band(1);
-const DN = band(-1);
-const BAND_D = `${smooth(UP)} L${DN[DN.length - 1][0]},${DN[DN.length - 1][1]} ${smooth([...DN].reverse()).replace(/^M/, "L")} Z`;
+/** The three readouts the panel walks through: index into PATH + label. */
+const READS = [
+  { k: 1, label: "1 month after" },
+  { k: 2, label: "3 months after" },
+  { k: 4, label: "1 year after" },
+];
 
-/** Hero: forward returns after past rate-shock episodes; a cursor reads the median by horizon. */
+const fmt = (v: number) => `${v > 0 ? "+" : v < 0 ? "−" : ""}${Math.abs(v).toFixed(1)}%`;
+
+/** Hero: what followed past rate shocks. The line draws once; a marker moves to each horizon and its value is revealed. */
 export function FanChart() {
-  const { ref, step, reduce } = useLoop(TICKS.length - 1, 1800, 2);
-  const i = step + 1;
-  const cx = TICKS[i].x * W;
+  const [i, ref, setI] = useCycle(READS.length, { ms: 4800 });
+  const reduce = useReducedMotion();
+  const r = READS[i];
+  const [cx, cy] = pts[r.k];
+
   return (
-    <Stage field="mist" className="p-4 sm:p-7">
-      <div ref={ref} className="ui-card mx-auto max-w-[560px] p-4">
-        <p className="text-[12px] text-[#8f8f8f]">Scenario · S&amp;P 1500 · 50+ years</p>
-        <p className="mt-0.5 text-[15px] font-semibold leading-snug text-[#0d0d0d]">US 10-year yield +0.5pp in three months</p>
-        <div className="relative mt-4">
-          <svg viewBox={`0 -10 ${W} ${H - 4}`} className="h-auto w-full overflow-visible" aria-hidden="true">
-            <line x1={0} x2={W} y1={ORIGIN} y2={ORIGIN} stroke="rgb(0 0 0 / 0.1)" strokeWidth={1} />
-            <motion.path d={BAND_D} fill="rgb(0 0 0 / 0.04)" initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.8 }} />
-            <motion.path d={MEDIAN_D} fill="none" stroke="#0d0d0d" strokeOpacity={0.7} strokeWidth={1.5} initial={reduce ? false : { pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.4, delay: 0.3, ease: EASE }} />
-            <motion.line x1={cx} x2={cx} y1={-6} y2={H - 14} stroke="rgb(0 0 0 / 0.15)" strokeWidth={1} animate={{ x1: cx, x2: cx }} transition={{ duration: 0.8, ease: EASE }} />
-            <motion.circle r={3.5} fill="#0d0d0d" animate={{ cx, cy: med[i][1] }} transition={{ duration: 0.8, ease: EASE }} />
-          </svg>
-          <div className="relative mt-1 h-4 text-[12px] text-[#8f8f8f]">
-            {TICKS.filter((t) => t.x > 0).map((t) => (
-              <span key={t.l} className={t.x === 1 ? "absolute right-0" : "absolute -translate-x-1/2"} style={t.x === 1 ? undefined : { left: `${t.x * 100}%` }}>{t.l}</span>
-            ))}
+    <Stage field="mist" className="flex items-center justify-center p-6 sm:p-10">
+      <div ref={ref} className="w-full max-w-[400px]">
+        <MockPanel height={264}>
+          <div className="flex h-full flex-col">
+            <p className="text-[13px] text-[#8f8f8f]">Scenario · S&amp;P 1500 · past episodes</p>
+            <p className="mt-1 text-[16px] font-semibold leading-6 text-[#0d0d0d]">US 10-year yield up 0.5pp in 3 months</p>
+            <svg viewBox={`0 0 ${W} ${H}`} className="mt-4 h-auto w-full overflow-visible" aria-hidden="true">
+              <line x1={0} x2={W} y1={ORIGIN} y2={ORIGIN} stroke="rgb(0 0 0 / 0.1)" strokeWidth={1} />
+              <motion.path d={D} fill="none" stroke="#0d0d0d" strokeOpacity={0.7} strokeWidth={1.5} initial={reduce ? false : { pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.4, delay: 0.3, ease: MOTION_EASE }} />
+              <motion.line y1={0} y2={H} stroke="rgb(0 0 0 / 0.12)" strokeWidth={1} initial={false} animate={{ x1: cx, x2: cx }} transition={{ duration: 0.8, ease: MOTION_EASE }} />
+              <motion.circle r={4} fill="#0d0d0d" initial={false} animate={{ cx, cy }} transition={{ duration: 0.8, ease: MOTION_EASE }} />
+            </svg>
+            <div className="mt-auto flex items-center justify-between border-t border-black/10 pt-3">
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.span key={r.label} initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.5, ease: MOTION_EASE }} className="text-[13px] text-[#5d5d5d]">
+                  Median stock, {r.label}
+                </motion.span>
+              </AnimatePresence>
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.span key={r.k} initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.5, ease: MOTION_EASE }} className="text-[18px] font-semibold tabular-nums text-[#0d0d0d]">
+                  {fmt(PATH[r.k].v)}
+                </motion.span>
+              </AnimatePresence>
+            </div>
           </div>
-        </div>
-        <div className="mt-3 flex items-center justify-between border-t border-black/10 pt-3">
-          <span className="text-[13px] text-[#5d5d5d]">Median stock, {TICKS[i].l} after</span>
-          <motion.span key={i} initial={reduce ? false : { opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="text-[18px] font-semibold tabular-nums text-[#0d0d0d]">
-            {MEDIAN[i] > 0 ? "+" : MEDIAN[i] < 0 ? "−" : ""}{Math.abs(MEDIAN[i]).toFixed(1)}%
-          </motion.span>
-        </div>
+        </MockPanel>
+        <StepDots count={READS.length} active={i} onDark={false} onSelect={setI} />
       </div>
     </Stage>
   );

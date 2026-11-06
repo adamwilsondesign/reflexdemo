@@ -26,7 +26,7 @@ export function DurableOrbit() {
 
   useEffect(() => {
     if (!inView || reduce) return;
-    const iv = setInterval(() => setGen((g) => g + 1), 3200);
+    const iv = setInterval(() => setGen((g) => g + 1), 4800);
     return () => clearInterval(iv);
   }, [inView, reduce]);
 

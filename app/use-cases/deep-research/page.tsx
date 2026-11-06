@@ -3,16 +3,15 @@ import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
-import { CTABand, FeatureGrid, IconCard } from "@/components/ui/Blocks";
+import { CTABand, FeatureGrid } from "@/components/ui/Blocks";
 import type { IconName } from "@/components/ui/PrecisionIcon";
 import { DataSourceLogos } from "@/components/ui/LogoStrip";
-import { SplitFeature } from "@/components/ui/Layouts";
+import { SplitFeature, TextLink } from "@/components/ui/Layouts";
+import { SplitText } from "@/components/ui/SplitText";
 import { BranchLines } from "@/components/graphics/Cartography";
-import { AlfredGlyph } from "@/components/product/ui";
-import { Audiences, Contrast, IllustrativeNote, RelatedUseCases } from "../_components/Shared";
+import { Audiences, IllustrativeNote } from "../_components/Shared";
 import { PromptToMemo } from "./_components/PromptToMemo";
 import { ResearchMemo } from "./_components/ResearchMemo";
-import { AMZN_ASKS, AMZN_PROMPT } from "./_components/amzn";
 
 export const metadata: Metadata = {
   title: "Deep Research",
@@ -53,14 +52,12 @@ const DIFFS: { icon: IconName; title: string; body: React.ReactNode }[] = [
   },
 ];
 
-const PIPELINE = ["Entity resolution", "Graph context", "Institutional data", "Code-backed calculations"];
-
-const TYPES: { icon: IconName; title: string; body: string; href?: string; linkLabel?: string }[] = [
-  { icon: "crosshair", title: "Investment research", body: "Build a cited view of a company, sector or theme from one question." },
-  { icon: "pentagon", title: "Portfolio analysis", body: "Check holdings and exposures, with sources attached." },
-  { icon: "cube", title: "Deep fundamental research", body: "Work through one name’s filings, transcripts and data." },
-  { icon: "knot", title: "Thesis pressure-testing", body: "Test a thesis against the latest evidence before acting." },
-  { icon: "rings", title: "Scenario analysis and backtesting", body: "Run a scenario or backtest, with calculations kept for review.", href: "/use-cases/scenario-stress-testing", linkLabel: "More on scenario testing" },
+const TYPES: { title: string; body: string; href?: string; linkLabel?: string }[] = [
+  { title: "Investment research", body: "Build a cited view of a company, sector or theme from one question." },
+  { title: "Portfolio analysis", body: "Check holdings and exposures, with sources attached." },
+  { title: "Deep fundamental research", body: "Work through one name’s filings, transcripts and data." },
+  { title: "Thesis pressure-testing", body: "Test a thesis against the latest evidence before acting." },
+  { title: "Scenario analysis and backtesting", body: "Run a scenario or backtest, with calculations kept for review.", href: "/use-cases/scenario-stress-testing", linkLabel: "More on scenario testing" },
 ];
 
 export default function DeepResearchPage() {
@@ -70,107 +67,40 @@ export default function DeepResearchPage() {
         trail={[{ label: "Use Cases", href: "/use-cases" }, { label: "Deep Research" }]}
         title="Turn one prompt into a cited research memo."
         lead="Ask about a company or a thesis, and Alfred returns the thesis, valuation, catalysts, risks and related names, with claims linked to their sources and calculations you can inspect."
-        secondary={{ label: "See the worked example", href: "#worked-example" }}
         cta="dr-hero"
         visual={<PromptToMemo />}
       />
 
-      {/* The old workflow */}
-      <Section surface="mist">
-        <div className="container-x">
-          <SectionHeader
-            align="split"
-            title="Retrieval returns fragments. Research needs reasoning."
-            lead="Document search and general chat return fragments. Someone still verifies the numbers and assembles the memo."
-          />
-          <Contrast
-            className="mt-14 md:mt-16"
-            before={{
-              label: "Search and general chat",
-              items: [
-                "Passages from filings, without the numbers reconciled.",
-                "Figures you can’t trace back to a page or a dataset.",
-                "Related companies named from memory, not from mapped relationships.",
-                "Gaps filled with plausible estimates, unannounced.",
-              ],
-            }}
-            after={{
-              label: "Deep Research",
-              items: [
-                "One prompt becomes a complete workflow: thesis, valuation, catalysts, risks and related names.",
-                "Claims cited to filings, transcripts and institutional data.",
-                "Calculations run in code, with the code shown.",
-                "Missing data flagged, not estimated.",
-              ],
-            }}
-          />
-        </div>
-      </Section>
-
       {/* How Reflexivity does it */}
       <Section surface="lake" className="overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-chart-dark opacity-50" />
         <div className="container-x">
           <SectionHeader
             align="split"
             title="Fast research, with the evidence attached."
-            lead="Entity resolution, Graph context, institutional data and code-backed calculations run underneath every answer. Filings and transcripts are inputs to the job, not a separate tool to learn."
+            lead="Graph context, institutional data and code-backed calculations run underneath every answer. Filings and transcripts are inputs to the job, not a separate tool to learn."
           />
-          <Stagger as="ol" className="mt-10 flex flex-wrap items-center gap-2 lg:ml-[calc(50%+32px)]">
-            {PIPELINE.map((p, i) => (
-              <StaggerItem as="li" key={p} className="flex items-center gap-2">
-                <span className="rounded-full border border-white/20 bg-white/[0.04] px-4 py-2 font-mono text-[11px] uppercase tracking-[0.04em] text-paper/85">{p}</span>
-                {i < PIPELINE.length - 1 && <span aria-hidden="true" className="text-paper/35">→</span>}
-              </StaggerItem>
-            ))}
-          </Stagger>
-
           <FeatureGrid onDark className="mt-14 md:mt-16" items={DIFFS} />
         </div>
       </Section>
 
-      {/* Worked example */}
-      <Section surface="paper" id="worked-example" className="scroll-mt-[var(--header-h)]">
-        <div className="container-x">
-          <SectionHeader
-            title="Can the Amazon thesis hold up?"
-            align="split"
-            lead="An investor holds Amazon after a selloff, expecting AI demand to lift AWS growth and retail margins to expand. Here is the prompt, and the memo it returns."
-          />
-
-          <div className="mt-14 grid gap-6 md:mt-16 lg:grid-cols-12">
-            <Reveal className="lg:col-span-4">
-              <div className="rounded-[18px] bg-lake-900 p-6 text-paper md:p-8 lg:sticky lg:top-[calc(var(--header-live)+24px)]">
-                <div className="flex items-center gap-4">
-                  <AlfredGlyph className="h-4 w-4 text-lake-300" />
-                  <span className="t-ui text-[10.5px] text-paper/60">The prompt</span>
-                </div>
-                <div className="mt-6 space-y-4 text-[14.5px] leading-relaxed text-paper/85">
-                  {AMZN_PROMPT.map((p) => <p key={p}>{p}</p>)}
-                  <ul className="space-y-2 pl-1">
-                    {AMZN_ASKS.map((a) => (
-                      <li key={a} className="flex gap-4 text-[13.5px] text-paper/75">
-                        <span aria-hidden="true" className="mt-[9px] h-1 w-1 shrink-0 rounded-full bg-paper/50" />
-                        {a}
-                      </li>
-                    ))}
-                  </ul>
-                  <p>Cite a source for every number and flag where data is unavailable.</p>
-                </div>
-              </div>
-            </Reveal>
-            <Reveal delay={0.1} className="lg:col-span-8">
-              <ResearchMemo />
+      {/* Worked example: one prompt (left), the memo it returns (right) */}
+      <Section surface="paper">
+        <div className="container-x grid-12 items-center gap-y-12">
+          <div className="col-span-12 lg:col-span-6">
+            <SplitText text="Can the Amazon thesis hold up?" className="t-h2" />
+            <Reveal delay={0.15}>
+              <p className="t-lead mt-6 max-w-[528px] text-ink/72">
+                An investor holds Amazon after a selloff, expecting AI demand to lift AWS and retail margins to expand. One prompt returns a memo that tests both.
+              </p>
+              <blockquote className="t-body mt-8 max-w-[528px] border-l border-ink/20 pl-6 text-ink/85">
+                “I’m long Amazon after the late-September selloff. Pressure-test my thesis, cite a source for every number, and flag where data is unavailable.”
+              </blockquote>
             </Reveal>
           </div>
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            <IllustrativeNote>
-              Condensed from a Reflexivity Deep Research output. Figures are shown for illustration and are not current market data. Section structure follows the prompt; other questions return different sections.
-            </IllustrativeNote>
-            <IllustrativeNote>
-              A cited research memo is analysis to inspect and challenge, not an investment recommendation.
-            </IllustrativeNote>
-          </div>
+          <Reveal delay={0.1} className="col-span-12 lg:col-span-6">
+            <ResearchMemo />
+            <IllustrativeNote className="mt-4">Illustrative example. Analysis to inspect and challenge, not a recommendation.</IllustrativeNote>
+          </Reveal>
         </div>
       </Section>
 
@@ -183,24 +113,30 @@ export default function DeepResearchPage() {
         visual={<BranchLines accent="#f4f3f1" origin="Prompt" branches={["Thesis", "Valuation", "Catalysts", "Risks", "Related names"]} />}
       />
 
-      {/* How teams use it */}
+      {/* How teams use it + the sources behind it */}
       <Section surface="mist">
         <div className="container-x">
-          <SectionHeader title="Five kinds of research, one way of working." align="split" lead="The same cited, inspectable workflow, whether the question is about one name or a whole book." />
-          <Stagger className="mt-14 grid border-l border-t border-ink/12 sm:grid-cols-2 md:mt-16 lg:grid-cols-5">
-            {TYPES.map((t) => (
-              <StaggerItem key={t.title} className="h-full">
-                <IconCard {...t} />
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </div>
-      </Section>
+          <div className="grid-12 gap-y-12">
+            <div className="col-span-12 lg:col-span-5">
+              <SplitText text="Five kinds of research, one way of working." className="t-h2" />
+              <Reveal delay={0.15}>
+                <p className="t-lead mt-6 max-w-[480px] text-ink/72">The same cited, inspectable workflow, whether the question is about one name or a whole book.</p>
+              </Reveal>
+            </div>
+            <Stagger as="ol" className="col-span-12 border-b border-ink/12 lg:col-span-6 lg:col-start-7">
+              {TYPES.map((t) => (
+                <StaggerItem as="li" key={t.title} className="grid gap-2 border-t border-ink/12 py-6 sm:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] sm:gap-8">
+                  <h3 className="t-h3">{t.title}</h3>
+                  <div>
+                    <p className="t-body text-ink/72">{t.body}</p>
+                    {t.href && <TextLink href={t.href} className="mt-4">{t.linkLabel}</TextLink>}
+                  </div>
+                </StaggerItem>
+              ))}
+            </Stagger>
+          </div>
 
-      {/* Data + who it is for */}
-      <Section surface="paper">
-        <div className="container-x">
-          <div className="flex flex-col gap-6 border-b border-ink/10 pb-12 md:flex-row md:items-center md:gap-10">
+          <div className="mt-16 flex flex-col gap-6 md:mt-20 md:flex-row md:items-center md:gap-10">
             <p className="t-ui shrink-0 text-ink/50">Sources behind the research</p>
             <DataSourceLogos className="w-full min-w-0" />
           </div>
@@ -208,26 +144,22 @@ export default function DeepResearchPage() {
             Coverage depends on your entitlements.{" "}
             <Link href="/alfred#trust" className="link-underline text-ink">How sourcing and entitlements work</Link>
           </p>
-
-          <div className="mt-20 md:mt-28">
-            <Audiences
-              title="Built for serious institutional research."
-              lead="For teams who need speed, and need to show their work."
-              items={[
-                { name: "Hedge Funds", body: "Pressure-test a thesis before sizing a position, with the counter-case laid out and cited.", href: "/customers#hedge-funds" },
-                { name: "Asset Managers", body: "Initiation-quality work on more names, with sources an investment committee can check.", href: "/customers#asset-managers" },
-                { name: "Financial Institutions", body: "Embed cited research in the tools your analysts and clients already use.", href: "/customers#financial-institutions" },
-                { name: "Wealth Managers", body: "Answer client questions on a name with research you can stand behind.", href: "/customers#wealth-managers" },
-              ]}
-            />
-          </div>
         </div>
       </Section>
 
-      {/* Related workflows */}
-      <Section surface="mist">
+      {/* Who it is for */}
+      <Section surface="paper">
         <div className="container-x">
-          <RelatedUseCases current="deep-research" />
+          <Audiences
+            title="Built for serious institutional research."
+            lead="For teams who need speed, and need to show their work."
+            items={[
+              { name: "Hedge Funds", body: "Pressure-test a thesis before sizing a position, with the counter-case laid out and cited.", href: "/customers#hedge-funds" },
+              { name: "Asset Managers", body: "Initiation-quality work on more names, with sources an investment committee can check.", href: "/customers#asset-managers" },
+              { name: "Financial Institutions", body: "Embed cited research in the tools your analysts and clients already use.", href: "/customers#financial-institutions" },
+              { name: "Wealth Managers", body: "Answer client questions on a name with research you can stand behind.", href: "/customers#wealth-managers" },
+            ]}
+          />
         </div>
       </Section>
 
