@@ -32,7 +32,7 @@ export function DirC() {
           <motion.div
             className="rx-card absolute left-[96px] top-[20px] w-[368px] px-4 py-3"
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: p >= 2 ? 0.75 : 1, y: 0, scale: p >= 1 ? 0.94 : 1 }}
+            animate={{ opacity: 1, y: 0, scale: p >= 1 ? 0.94 : 1 }}
             transition={{ duration: 0.8, ease: RX_EASE }}
             style={{ transformOrigin: "50% 0%" }}
           >

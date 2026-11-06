@@ -1,187 +1,229 @@
 "use client";
 
-import { AnimatePresence, motion } from "motion/react";
-import { Canvas, CiteChip, Delta, Glyph, Mono, RX_EASE, Spark, Ticker, useTimeline } from "@/components/visual/kit";
+import { useInView, useReducedMotion } from "motion/react";
+import { useEffect, useRef } from "react";
+import { Canvas } from "@/components/visual/kit";
 
 /**
- * Direction B — "Graph native".
- * The Knowledge Graph's own legend (circle company, pill theme, square geography,
- * diamond product). An amber path traces Apple's exposure to a less obvious name;
- * a floating card names it. Then a second path.
+ * Direction B — "Deep graph".
+ * An abstract, slowly turning three-dimensional Knowledge Graph: a core entity,
+ * a shell of themes, a shell of companies and a far field of the long tail.
+ * Depth is carried by size and brightness. An amber signal travels three hops
+ * out from the core; small crisp tags name each hop as it arrives.
  */
-const LINE = "rgb(255 255 255 / 0.28)";
+const W = 560;
+const H = 480;
+const CAM = 720;
 
-const EDGES = [
-  "M124 190 L62 114",
-  "M168 183 L258 70",
-  "M330 136 L266 70",
-  "M488 112 L500 186",
-  "M118 232 L58 292",
-  "M184 200 C220 160 240 150 275 150",
-  "M425 150 C450 150 466 124 472 110",
-  "M186 222 C226 240 240 262 260 262",
-  "M400 262 C430 262 452 290 458 312",
+type N = { x: number; y: number; z: number; s: number; shell: number };
+
+function rng(seed: number) {
+  let s = seed;
+  return () => ((s = (s * 16807) % 2147483647) - 1) / 2147483646;
+}
+
+function build() {
+  const r = rng(7);
+  const nodes: N[] = [{ x: 0, y: 0, z: 0, s: 1, shell: 0 }];
+  const shell = (count: number, radius: number, jitter: number, shellId: number) => {
+    for (let i = 0; i < count; i++) {
+      // fibonacci sphere for even spread, then jitter the radius
+      const k = i + 0.5;
+      const phi = Math.acos(1 - (2 * k) / count);
+      const th = Math.PI * (1 + Math.sqrt(5)) * k + r() * 0.4;
+      const rr = radius * (1 + (r() - 0.5) * jitter);
+      nodes.push({ x: rr * Math.sin(phi) * Math.cos(th), y: rr * Math.cos(phi) * 0.82, z: rr * Math.sin(phi) * Math.sin(th), s: 0.6 + r() * 0.8, shell: shellId });
+    }
+  };
+  shell(14, 96, 0.2, 1);
+  shell(84, 172, 0.2, 2);
+  shell(320, 262, 0.28, 3);
+  const d2 = (a: N, b: N) => (a.x - b.x) ** 2 + (a.y - b.y) ** 2 + (a.z - b.z) ** 2;
+  const edges: [number, number, number][] = [];
+  const near = (i: number, pool: number[], k: number, w: number) => {
+    pool.filter((j) => j !== i).sort((a, b) => d2(nodes[i], nodes[a]) - d2(nodes[i], nodes[b])).slice(0, k).forEach((j) => edges.push([i, j, w]));
+  };
+  const ids = (sh: number) => nodes.map((n, i) => (n.shell === sh ? i : -1)).filter((i) => i >= 0);
+  const s1 = ids(1), s2 = ids(2), s3 = ids(3);
+  s1.forEach((i) => edges.push([0, i, 1]));
+  s2.forEach((i) => { near(i, s1, 1, 0.8); near(i, s2, 2, 0.4); });
+  s3.forEach((i) => { near(i, s2, 1, 0.22); near(i, s3, 1, 0.12); });
+  // two signal paths: core → theme → company → long tail
+  const pathFrom = (t: number) => {
+    const a = s1[t];
+    const b = s2.slice().sort((x, y) => d2(nodes[a], nodes[x]) - d2(nodes[a], nodes[y]))[1];
+    const c = s3.slice().sort((x, y) => d2(nodes[b], nodes[x]) - d2(nodes[b], nodes[y]))[0];
+    return [0, a, b, c];
+  };
+  return { nodes, edges, paths: [pathFrom(2), pathFrom(7)] };
+}
+
+const G = build();
+const TAGS = [
+  [["AAPL", "Origin"], ["Advanced packaging", "Theme"], ["Amkor", "+2.31%"], ["Arizona", "Geography"]],
+  [["AAPL", "Origin"], ["Audio and haptics", "Theme"], ["Cirrus Logic", "+1.84%"], ["Taiwan", "Geography"]],
 ];
 
-const PATHS = [
-  { d: "M184 200 C220 160 240 150 275 150 L425 150 C450 150 466 124 472 110", target: "AMKR" },
-  { d: "M186 222 C226 240 240 262 260 262 L400 262 C430 262 452 290 458 312", target: "CRUS" },
-];
-
-const CARDS = {
-  AMKR: { name: "Amkor Technology", tone: "#243244", rank: "Rank 1 of 12", via: "Advanced packaging", m: 2.31, cite: 2, line: "M0 30 C20 28 30 22 50 24 S80 14 100 16 S130 8 150 10 S175 4 190 5" },
-  CRUS: { name: "Cirrus Logic", tone: "#3e5368", rank: "Rank 2 of 12", via: "Audio and haptics", m: 1.84, cite: 1, line: "M0 26 C20 30 30 20 50 22 S80 18 100 12 S130 16 150 10 S175 8 190 6" },
-} as const;
-
-// 0 build · 1 path A · 2 card A · 3 path B + card B · 4 out
-const D = [2000, 1700, 3600, 4400, 700];
+const CYCLE = 9000; // per path: 0–1.2s calm, 1.2–3.6s signal travels, 3.6–8s hold, 8–9s release
 
 export function DirB() {
-  const { p, ref, cycle } = useTimeline(D, { still: 2 });
-  const which = p >= 3 ? 1 : 0;
-  const lit = p >= 1 && p <= 3 ? PATHS[which].target : null;
-  const card = p >= 2 && p <= 3 ? CARDS[PATHS[which].target as keyof typeof CARDS] : null;
-  const out = p === 4;
+  const wrap = useRef<HTMLDivElement>(null);
+  const cv = useRef<HTMLCanvasElement>(null);
+  const tagRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const inView = useInView(wrap, { amount: 0.2 });
+  const reduce = useReducedMotion();
+
+  useEffect(() => {
+    const c = cv.current;
+    if (!c) return;
+    const ctx = c.getContext("2d")!;
+    const dpr = 2;
+    c.width = W * dpr;
+    c.height = H * dpr;
+    ctx.scale(dpr, dpr);
+    let raf = 0;
+    const t0 = performance.now();
+    const proj = new Array(G.nodes.length);
+
+    const frame = (now: number) => {
+      const t = reduce ? 5200 : Math.max(0, now - t0);
+      const ang = reduce ? 0.6 : t * 0.00006 + 0.6;
+      const tilt = -0.32;
+      const ca = Math.cos(ang), sa = Math.sin(ang), ct = Math.cos(tilt), st = Math.sin(tilt);
+      for (let i = 0; i < G.nodes.length; i++) {
+        const n = G.nodes[i];
+        const x = n.x * ca - n.z * sa;
+        let z = n.x * sa + n.z * ca;
+        const y = n.y * ct - z * st;
+        z = n.y * st + z * ct;
+        const k = CAM / (CAM + z);
+        proj[i] = { x: W / 2 + x * k, y: H / 2 + y * k, k, d: Math.min(1, Math.max(0, (z + 260) / 520)) };
+      }
+      const which = reduce ? 0 : Math.floor(t / CYCLE) % 2;
+      const ph = reduce ? 5200 : t % CYCLE;
+      const path = G.paths[which];
+      const travel = Math.min(1, Math.max(0, (ph - 1200) / 2400)); // 0..1 over three hops
+      const release = ph > 8000 ? 1 - (ph - 8000) / 1000 : 1;
+      const hop = travel * 3;
+
+      ctx.clearRect(0, 0, W, H);
+      // orbit rings: one per shell, in the rotating equatorial plane
+      for (const R of [96, 172, 262]) {
+        ctx.beginPath();
+        for (let k = 0; k <= 96; k++) {
+          const a = (k / 96) * Math.PI * 2;
+          const ox = R * Math.cos(a), oz = R * Math.sin(a);
+          const x = ox * ca - oz * sa;
+          let z = ox * sa + oz * ca;
+          const y = -z * st;
+          z = z * ct;
+          const kk = CAM / (CAM + z);
+          if (k === 0) ctx.moveTo(W / 2 + x * kk, H / 2 + y * kk); else ctx.lineTo(W / 2 + x * kk, H / 2 + y * kk);
+        }
+        ctx.strokeStyle = "rgba(255,255,255,0.09)";
+        ctx.lineWidth = 1;
+        ctx.setLineDash(R === 172 ? [] : [2, 4]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+      // edges, back to front
+      for (const [a, b, w] of G.edges) {
+        const p = proj[a], q = proj[b];
+        const d = 1 - (p.d + q.d) / 2;
+        ctx.strokeStyle = `rgba(255,255,255,${(0.05 + 0.22 * d) * w})`;
+        ctx.lineWidth = 0.6 + 0.5 * d * w;
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(q.x, q.y);
+        ctx.stroke();
+      }
+      // nodes
+      for (let i = 0; i < G.nodes.length; i++) {
+        const n = G.nodes[i], p = proj[i];
+        const d = 1 - p.d;
+        const r = (n.shell === 0 ? 9 : n.shell === 1 ? 3.6 : n.shell === 2 ? 2.4 : 1.3) * n.s * p.k * (n.shell === 0 ? 1 : 1);
+        ctx.fillStyle = `rgba(255,255,255,${0.25 + 0.7 * d})`;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, Math.max(0.6, r), 0, Math.PI * 2);
+        ctx.fill();
+        if (n.shell <= 1) {
+          ctx.strokeStyle = `rgba(255,255,255,${0.15 + 0.3 * d})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, r + (n.shell === 0 ? 7 : 4), 0, Math.PI * 2);
+          ctx.stroke();
+        }
+      }
+      // signal path
+      if (travel > 0 && release > 0) {
+        ctx.save();
+        ctx.globalAlpha = release;
+        ctx.lineCap = "round";
+        for (let h = 0; h < 3; h++) {
+          const f = Math.min(1, Math.max(0, hop - h));
+          if (f <= 0) break;
+          const a = proj[path[h]], b = proj[path[h + 1]];
+          const ex = a.x + (b.x - a.x) * f, ey = a.y + (b.y - a.y) * f;
+          ctx.strokeStyle = "rgba(233,169,58,0.22)";
+          ctx.lineWidth = 7;
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(ex, ey); ctx.stroke();
+          ctx.strokeStyle = "#e9a93a";
+          ctx.lineWidth = 2;
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(ex, ey); ctx.stroke();
+          if (f < 1) {
+            ctx.fillStyle = "#ffd88a";
+            ctx.beginPath(); ctx.arc(ex, ey, 3.2, 0, Math.PI * 2); ctx.fill();
+          }
+        }
+        for (let h = 0; h <= 3; h++) {
+          if (hop < h) break;
+          const p = proj[path[h]];
+          const age = Math.min(1, (hop - h) * 3 + (h === 0 ? 1 : 0));
+          ctx.fillStyle = "#e9a93a";
+          ctx.beginPath(); ctx.arc(p.x, p.y, h === 0 ? 10 : 4.5, 0, Math.PI * 2); ctx.fill();
+          ctx.strokeStyle = `rgba(233,169,58,${0.5 * (1 - age) + 0.25})`;
+          ctx.lineWidth = 1.2;
+          ctx.beginPath(); ctx.arc(p.x, p.y, (h === 0 ? 16 : 9) + 10 * (1 - age), 0, Math.PI * 2); ctx.stroke();
+        }
+        ctx.restore();
+      }
+      // tags follow their nodes
+      for (let h = 0; h < 4; h++) {
+        const el = tagRefs.current[h];
+        if (!el) continue;
+        const p = proj[path[h]];
+        const on = travel > 0 && hop >= h - 0.02 && release > 0;
+        el.style.transform = `translate(${p.x + (h === 0 ? 20 : 12)}px, ${p.y - 13}px)`;
+        el.style.opacity = on ? String(release) : "0";
+        const label = TAGS[which][h];
+        if (el.dataset.k !== `${which}-${h}`) {
+          el.dataset.k = `${which}-${h}`;
+          (el.children[0] as HTMLElement).textContent = label[0];
+          (el.children[1] as HTMLElement).textContent = label[1];
+        }
+      }
+      if (!reduce) raf = requestAnimationFrame(frame);
+    };
+    if (inView || reduce) raf = requestAnimationFrame(frame);
+    return () => cancelAnimationFrame(raf);
+  }, [inView, reduce]);
 
   return (
-    <div ref={ref}>
-      <Canvas w={560} h={480}>
-        <motion.div key={cycle} className="absolute inset-0 text-white" animate={{ opacity: out ? 0 : 1 }} transition={{ duration: 0.6 }}>
-          <p className="absolute left-0 top-0 text-[11px] font-medium text-white/60">Knowledge Graph · Apple ecosystem</p>
-
-          <svg className="absolute inset-0 overflow-visible" width="560" height="480" viewBox="0 0 560 480" fill="none">
-            {EDGES.map((d, i) => (
-              <motion.path key={d} d={d} stroke={LINE} strokeWidth="1.2" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.3 + i * 0.09, duration: 0.9, ease: RX_EASE }} />
-            ))}
-            <AnimatePresence>
-              {lit && (
-                <motion.g key={lit} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
-                  <motion.path d={PATHS[which].d} stroke="var(--rx-signal)" strokeOpacity="0.25" strokeWidth="8" strokeLinecap="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.3, ease: RX_EASE }} />
-                  <motion.path d={PATHS[which].d} stroke="var(--rx-signal)" strokeWidth="2.2" strokeLinecap="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.3, ease: RX_EASE }} />
-                </motion.g>
-              )}
-            </AnimatePresence>
-          </svg>
-
-          {/* Apple: the origin */}
-          <Node x={150} y={215} d={0.1}>
-            <span className="absolute -inset-[10px] rounded-full bg-white/10" />
-            <span className="relative grid h-[72px] w-[72px] place-items-center rounded-full border-2 border-white bg-[#33465d] text-[17px] font-semibold tracking-[-0.02em]">AAPL</span>
-          </Node>
-          <Label x={150} y={268} d={0.2} center title="Apple" sub="Origin" />
-
-          <Node x={56} y={108} d={0.5}><Glyph kind="product" size={14} className="text-white" /></Node>
-          <Label x={56} y={70} d={0.5} center title="iPhone" sub="Product" />
-
-          <Node x={262} y={64} d={0.6}><Glyph kind="company" size={14} className="text-white" /></Node>
-          <Label x={280} y={56} d={0.6} title="TSMC" sub="Supplier · #1" />
-
-          <Node x={52} y={298} d={0.7}><Glyph kind="company" size={14} className="text-white" /></Node>
-          <Label x={52} y={312} d={0.7} center title="Corning" sub="Supplier" />
-
-          <Pill x={350} y={150} w={150} d={0.8} lit={lit === "AMKR"}>Advanced packaging</Pill>
-          <Pill x={330} y={262} w={140} d={0.9} lit={lit === "CRUS"}>Audio and haptics</Pill>
-
-          <Target x={488} y={92} t="AMKR" lit={lit === "AMKR"} d={1.0} />
-          <Label x={462} y={84} d={1.0} title="Amkor" sub="" right />
-          <Target x={470} y={332} t="CRUS" lit={lit === "CRUS"} d={1.1} />
-          <Label x={470} y={364} d={1.1} center title="Cirrus Logic" sub="" />
-
-          <Node x={500} y={196} d={1.2}><Glyph kind="geo" size={13} className="text-white" /></Node>
-          <Label x={500} y={210} d={1.2} center title="Arizona" sub="Geography" />
-
-          {/* result card */}
-          <AnimatePresence mode="wait">
-            {card && (
-              <motion.div
-                key={card.name}
-                className="rx-card rx-card-lift absolute left-[8px] top-[352px] w-[262px] p-4 text-[var(--rx-ink)]"
-                initial={{ opacity: 0, y: 18, scale: 0.98 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 8 }}
-                transition={{ duration: 0.7, ease: RX_EASE, delay: p === 3 ? 1.1 : 0 }}
-              >
-                <div className="flex items-center gap-2.5">
-                  <Mono t={PATHS[which].target.slice(0, 2)} tone={card.tone} />
-                  <span className="min-w-0 flex-1">
-                    <span className="block truncate text-[13px] font-medium leading-4">{card.name}</span>
-                    <span className="block text-[11px] leading-4 text-[var(--rx-3)]">{card.rank}</span>
-                  </span>
-                  <Delta v={card.m} />
-                </div>
-                <svg viewBox="0 0 190 36" className="mt-3 h-9 w-full overflow-visible">
-                  <defs>
-                    <linearGradient id={`fill-${PATHS[which].target}`} x1="0" x2="0" y1="0" y2="1">
-                      <stop offset="0" stopColor="#2f7457" stopOpacity="0.18" />
-                      <stop offset="1" stopColor="#2f7457" stopOpacity="0" />
-                    </linearGradient>
-                  </defs>
-                  <motion.path d={`${card.line} L190 36 L0 36 Z`} fill={`url(#fill-${PATHS[which].target})`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6, duration: 0.8 }} />
-                  <motion.path d={card.line} fill="none" stroke="var(--rx-up)" strokeWidth="1.5" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.3, duration: 1.1, ease: RX_EASE }} />
-                </svg>
-                <p className="mt-2.5 flex items-center gap-1.5 border-t border-[var(--rx-line)] pt-2.5 text-[11.5px] text-[var(--rx-2)]">
-                  <Spark size={11} className="text-[var(--rx-signal)]" />
-                  Via {card.via}
-                  <CiteChip n={card.cite} active />
-                  <span className="ml-auto"><Ticker>{PATHS[which].target}</Ticker></span>
-                </p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
+    <div ref={wrap}>
+      <Canvas w={W} h={H}>
+        <canvas ref={cv} className="absolute inset-0" style={{ width: W, height: H }} />
+        {[0, 1, 2, 3].map((i) => (
+          <div
+            key={i}
+            ref={(el) => { tagRefs.current[i] = el; }}
+            className="rx-card absolute left-0 top-0 flex h-[26px] items-center gap-2 whitespace-nowrap rounded-[8px] px-2.5 transition-opacity duration-500"
+            style={{ opacity: 0 }}
+          >
+            <span className="text-[11.5px] font-medium" />
+            <span className="rx-num text-[10.5px] text-[var(--rx-3)]" />
+          </div>
+        ))}
       </Canvas>
     </div>
-  );
-}
-
-function Node({ x, y, d, children }: { x: number; y: number; d: number; children: React.ReactNode }) {
-  return (
-    <motion.div className="absolute grid place-items-center" style={{ left: x, top: y, x: "-50%", y: "-50%" }} initial={{ opacity: 0, scale: 0.6 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: d, duration: 0.6, ease: RX_EASE }}>
-      {children}
-    </motion.div>
-  );
-}
-
-function Label({ x, y, d, title, sub, center, right }: { x: number; y: number; d: number; title: string; sub: string; center?: boolean; right?: boolean }) {
-  return (
-    <motion.div
-      className="absolute whitespace-nowrap"
-      style={{ left: x, top: y, x: center ? "-50%" : right ? "-100%" : 0, textAlign: center ? "center" : right ? "right" : "left" }}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: d + 0.15, duration: 0.6 }}
-    >
-      <p className="text-[12px] font-medium leading-4 text-white/90">{title}</p>
-      {sub && <p className="rx-num text-[9px] uppercase leading-4 tracking-[0.12em] text-white/50">{sub}</p>}
-    </motion.div>
-  );
-}
-
-function Pill({ x, y, w, d, lit, children }: { x: number; y: number; w: number; d: number; lit: boolean; children: React.ReactNode }) {
-  return (
-    <motion.div
-      className="absolute grid h-7 place-items-center rounded-full border text-[11.5px] font-medium"
-      style={{ left: x, top: y, width: w, x: "-50%", y: "-50%" }}
-      initial={{ opacity: 0, scale: 0.85 }}
-      animate={{ opacity: 1, scale: 1, borderColor: lit ? "#e9a93a" : "rgba(255,255,255,0.35)", backgroundColor: lit ? "#5b5a4f" : "#41546b", color: lit ? "#ffe1a8" : "#ffffff" }}
-      transition={{ delay: lit ? 0.4 : d, duration: 0.6, ease: RX_EASE }}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-function Target({ x, y, t, lit, d }: { x: number; y: number; t: string; lit: boolean; d: number }) {
-  return (
-    <Node x={x} y={y} d={d}>
-      <motion.span className="absolute -inset-[8px] rounded-full" animate={{ backgroundColor: lit ? "rgba(233,169,58,0.25)" : "rgba(255,255,255,0)" }} transition={{ delay: lit ? 1.1 : 0, duration: 0.6 }} />
-      <motion.span
-        className="relative grid h-10 w-10 place-items-center rounded-full border-[1.5px] text-[10.5px] font-semibold"
-        animate={{ backgroundColor: lit ? "#e9a93a" : "rgba(51,70,93,1)", borderColor: lit ? "#e9a93a" : "#ffffff", color: lit ? "#17191c" : "#ffffff" }}
-        transition={{ delay: lit ? 1.1 : 0, duration: 0.5 }}
-      >
-        {t}
-      </motion.span>
-    </Node>
   );
 }

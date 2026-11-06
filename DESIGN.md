@@ -131,3 +131,8 @@ Replaces the DESIGN_1 flat style for product graphics once a direction is chosen
 - **Brand vocabulary**: Knowledge Graph entity glyphs (circle company, pill theme, square geography, diamond product); amber `--rx-signal` for the traced path and active citations only; pine for positive, rust for negative. Hatching marks data that isn't disclosed.
 - **Composition**: one focal card; context cards cropped off the frame and masked out. Fixed design canvas (560×480) scaled to fit.
 - **Motion**: a phase timeline (`useTimeline`) acted out by the UI: a cursor moves and clicks, steps check off, rows arrive, a path draws, a toast lands. No visible state controls. Loops with a soft fade; reduced motion holds the most informative phase.
+
+**Hard rules (from review):**
+- Never place faint, ghosted or blurred "context" cards in the background. Every card on the canvas is crisp and fully opaque. Cropping a card at the frame edge is fine; fading it out is not.
+- Graph and network views stay abstract, dense and deep (3D, orbits, many nodes), never a literal labelled diagram. Tags appear only on the traced path.
+- Vary the composition from graphic to graphic (stack, roll, table, dashboard, document with rail, drawer, settings, deep graph). No two adjacent sections use the same layout.
